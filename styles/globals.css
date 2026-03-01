@@ -1,0 +1,51 @@
+:root{
+  --bs-body-bg: #f8fafb;
+  --brand-orange: #ff6a00;
+}
+html,body,#root{
+  height:100%;
+}
+body{
+  background:var(--bs-body-bg);
+  font-family: "Optimistic Display", Montserrat, Helvetica, Arial, "Noto Sans", sans-serif;
+}
+
+.hero-title{
+  letter-spacing: -0.5px;
+}
+
+/* Coming soon full-screen background */
+.coming-soon-bg{
+  background: #080a0f; /* deep dark */
+  color: #ffffff;
+}
+
+.coming-soon-bg h1{
+  font-weight: 600;
+}
+
+.author-link{
+  color: var(--brand-orange);
+  text-decoration: none;
+}
+.author-link:hover{
+  text-decoration: underline;
+}
+
+/* space GIF styles and hover tilt */
+.space-gif{
+  display:block;
+  margin:0 auto 1rem auto;
+  max-width:360px;
+  width:80%;
+  height:auto;
+  transition: transform 400ms cubic-bezier(.2,.9,.2,1), box-shadow 400ms;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  border-radius: 12px;
+}
+.space-gif:hover, .space-gif:focus{
+  transform: perspective(1000px) rotateX(6deg) rotateY(-8deg) translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
