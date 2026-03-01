@@ -49,3 +49,18 @@ body{
   box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
 
+/* rainbow animation for vibrant COSMONUS text */
+@keyframes rainbow {
+   0%{ color:#ff0000; }
+   15%{ color:#ff5400; }
+   30%{ color:#ff7f00; }
+   45%{ color:#ffd600; }
+   60%{ color:#00ff00; }
+   75%{ color:#7f00ff; }
+   90%{ color:#8f00ff; }
+   100%{ color:#ff0000; }
+}
+.rainbow {
+   animation: rainbow 12s ease-in-out infinite;
+}
+
