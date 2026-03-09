@@ -1,6 +1,62 @@
+/* ── TWK Everett Custom Font ─────────────────────────── */
+@font-face {
+  font-family: 'TWKEverett';
+  src: url('/twk-Font/TWKEverett-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWKEverett';
+  src: url('/twk-Font/TWKEverett-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWKEverett';
+  src: url('/twk-Font/TWKEverett-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWKEverett';
+  src: url('/twk-Font/TWKEverett-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWKEverett';
+  src: url('/twk-Font/TWKEverett-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWKEverett';
+  src: url('/twk-Font/TWKEverett-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWKEverett';
+  src: url('/twk-Font/TWKEverett-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Headings always use TWK Everett ─────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'TWKEverett', Montserrat, Helvetica, Arial, sans-serif !important;
+}
+
 :root{
   --bs-body-bg: #f8fafb;
-  --brand-orange: #ff6a00;
+  --brand-orange: #FF462F;
 }
 html,body,#root{
   height:100%;
@@ -14,13 +70,14 @@ body{
   letter-spacing: -0.5px;
 }
 
-/* Coming soon full-screen background */
+/* Coming soon full-screen background — light theme */
 .coming-soon-bg{
-  background: #080a0f; /* deep dark */
-  color: #ffffff;
+  background: #f8fafb;
+  color: #111111;
 }
 
-.coming-soon-bg h1{
+.coming-soon-bg h1,
+.coming-soon-bg h4 {
   font-weight: 600;
 }
 
@@ -30,37 +87,5 @@ body{
 }
 .author-link:hover{
   text-decoration: underline;
-}
-
-/* space GIF styles and hover tilt */
-.space-gif{
-  display:block;
-  margin:0 auto 1rem auto;
-  max-width:360px;
-  width:80%;
-  height:auto;
-  transition: transform 400ms cubic-bezier(.2,.9,.2,1), box-shadow 400ms;
-  transform-origin: 50% 50%;
-  will-change: transform;
-  border-radius: 12px;
-}
-.space-gif:hover, .space-gif:focus{
-  transform: perspective(1000px) rotateX(6deg) rotateY(-8deg) translateY(-6px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-}
-
-/* rainbow animation for vibrant COSMONUS text */
-@keyframes rainbow {
-   0%{ color:#ff0000; }
-   15%{ color:#ff5400; }
-   30%{ color:#ff7f00; }
-   45%{ color:#ffd600; }
-   60%{ color:#00ff00; }
-   75%{ color:#7f00ff; }
-   90%{ color:#8f00ff; }
-   100%{ color:#ff0000; }
-}
-.rainbow {
-   animation: rainbow 12s ease-in-out infinite;
 }
 
