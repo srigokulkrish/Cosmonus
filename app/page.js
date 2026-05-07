@@ -1,32 +1,88 @@
+import ClientShowcase from '@/components/ClientShowcase'
+import BlogSection from '@/components/BlogSection'
+import RaycastVisual from '@/components/RaycastVisual'
+
+const LOGOS = [
+  'Acme Corp', 'TechFlow', 'NovaBuild', 'Vendora', 'CloudAxis', 'Orbitix', 'Stackly',
+  'Datawise', 'Sparkline', 'Elementis', 'Apexion', 'ShipFast', 'Growthly', 'Quantix',
+  'Buildwave', 'Luminos', 'Nextera', 'Fyndr',
+]
+
 export default function Home() {
   return (
-    <main className="coming-soon-bg d-flex align-items-center justify-content-center text-center" style={{ minHeight: '100vh' }}>
-      <div className="mb-4" style={{ maxWidth: '800px', padding: '2rem' }}>
+    <>
+      <section className="hero-section">
+        <div className="container">
+          <div className="hero-inner">
+            <div className="hero-left">
+              <h1 className="hero-title">Build smarter. <br /> Grow faster. Lead with AI.</h1>
+              <div className="hero-actions">
+                <a href="/signup" className="btn-cosmonus">Book Consultation</a>
+                <a href="/contact" className="btn-ghost">About Us</a>
+              </div>
+            </div>
+            <div className="hero-right">
+              <p className="hero-desc">
+                Cosmonus helps ambitious businesses automate operations, launch products, and grow revenue with intelligent systems, powerful websites, and modern branding.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {/* Trusted by */}
+      <section className="trusted-section">
+        <div className="container">
+          <div className="trusted-header">
+            <p className="trusted-label">Trusted by leading developers and enterprises</p>
+          </div>
+        </div>
+        <div className="trusted-marquee" aria-label="Client logos">
+          <div className="trusted-marquee__track">
+            {[...LOGOS, ...LOGOS].map((name, i) => (
+              <div
+                key={`${name}-${i}`}
+                className="trusted-logo"
+                aria-hidden={i >= LOGOS.length ? 'true' : undefined}
+              >
+                {name}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        {/* Logo */}
-        <img src="/images/logo.png" className="mb-4" alt="Cosmonus logo" style={{ height: '56px', objectFit: 'contain' }} />
+      {/* Client Showcase */}
+      <ClientShowcase />
 
-        {/* Headline */}
-        <h4 className=" mb-3">
-          We're cooking something cool for you! 🚀
-        </h4>
+      {/* Stats */}
+      <section className="stats-section">
+        <div className="container">
+          <h2 className="stats-title">The backbone of<br />digital growth</h2>
+          <div className="stats-grid">
+            <div className="stats-item">
+              <span className="stats-value">50+</span>
+              <span className="stats-label">projects delivered across industries</span>
+            </div>
+            <div className="stats-item">
+              <span className="stats-value">3x</span>
+              <span className="stats-label">average revenue growth for our clients</span>
+            </div>
+            <div className="stats-item">
+              <span className="stats-value">99.9%</span>
+              <span className="stats-label">uptime across all products we build</span>
+            </div>
+            <div className="stats-item">
+              <span className="stats-value">10M+</span>
+              <span className="stats-label">end users reached through our solutions</span>
+            </div>
+          </div>
+        </div>
+        <RaycastVisual />
+      </section>
 
-        {/* Description */}
-        <p className="mt-2" style={{ lineHeight: '1.75', opacity: 0.85 }}>
-          Behind the scenes, we're building something exciting that will make things
-          <b> smarter</b>, <b>faster</b>, and more <b>creative</b>. Stay tuned —
-          something awesome is coming your way soon! ✨
-        </p>
-
-        {/* Author */}
-        <p className="mt-4 small" >
-          Built by{' '}
-          <a href="https://www.srigokulkrishnan.com/" target="_blank" rel="noopener noreferrer" className="author-link fw-bold">
-            Sri Gokul Krishnan
-          </a>
-        </p>
-      </div>
-    </main>
+      {/* Blog & Insights */}
+      <BlogSection />
+    </>
   )
 }
