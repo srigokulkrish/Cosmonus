@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();` }} />
       </head>
       <body>
         <div className="d-flex flex-column min-vh-100">
