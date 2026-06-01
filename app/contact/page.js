@@ -1,4 +1,5 @@
 import ContactForm from '@/components/ContactForm'
+import ContactFaqAccordion from '@/components/ContactFaqAccordion'
 
 const TRUST_PILLS = [
   'Free consultation',
@@ -6,12 +7,6 @@ const TRUST_PILLS = [
   'No commitment required',
 ]
 
-const FAQ = [
-  { q: 'How quickly will you reply?', a: 'Within one business day — always. You\'ll hear from a real person, not an autoresponder.' },
-  { q: 'Do you take on small projects?', a: 'Yes. Some of our best work has come from focused, small-scope projects. We\'ll tell you honestly if something is too small to be worth your investment in an agency.' },
-  { q: 'What information should I include?', a: 'As much or as little as you have. A rough idea of what you need, your timeline, and a budget range is enough to start. We\'ll ask the right questions from there.' },
-  { q: 'Do you work with international clients?', a: 'Yes. We work async-first and are set up to collaborate across time zones. Most of our process is documented and transparent, so location rarely matters.' },
-]
 
 const NEXT_STEPS = [
   { n: '01', title: 'We review your brief', body: 'A team member reads your message and researches your space before replying.' },
@@ -111,14 +106,7 @@ export default function ContactPage() {
             <span className="eyebrow">FAQ</span>
             <h2 className="contact-faq__title">Questions people usually ask first.</h2>
           </div>
-          <div className="contact-faq__grid">
-            {FAQ.map((f) => (
-              <div key={f.q} className="contact-faq__item">
-                <h4 className="contact-faq__q">{f.q}</h4>
-                <p className="contact-faq__a">{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <ContactFaqAccordion />
         </div>
       </section>
     </>

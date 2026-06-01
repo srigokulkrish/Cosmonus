@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import RelatedServices from '@/components/RelatedServices'
+import BrandApplicationCarousel from '@/components/BrandApplicationCarousel'
 
 const SYSTEM_PARTS = [
   { label: 'Logo system', detail: 'Primary · Secondary · Monogram · Favicon' },
@@ -10,11 +11,6 @@ const SYSTEM_PARTS = [
   { label: 'Guidelines', detail: 'Usage rules · Dos & don\'ts · Application examples' },
 ]
 
-const APPLICATIONS = [
-  { title: 'Digital', items: ['Website', 'Social media', 'Email', 'App UI', 'Ads'] },
-  { title: 'Print', items: ['Business cards', 'Letterhead', 'Brochures', 'Packaging', 'Signage'] },
-  { title: 'Brand assets', items: ['Pitch decks', 'Proposals', 'Invoices', 'Contracts', 'Reports'] },
-]
 
 const PROCESS = [
   { n: '01', title: 'Discovery', body: 'Deep-dive session covering your business, audience, competitors, and three-year ambition. Everything flows from what we learn here.' },
@@ -135,25 +131,14 @@ export default function BrandingPage() {
         </div>
       </section>
 
-      {/* Where the brand lives */}
+      {/* Where the brand lives — carousel */}
       <section className="sol-section">
         <div className="container">
           <div className="sol-section__head">
             <span className="eyebrow">Where the brand lives</span>
             <h2 className="sol-section__title">We design for how brands actually get used.</h2>
           </div>
-          <div className="brand-applications">
-            {APPLICATIONS.map((a) => (
-              <div key={a.title} className="brand-applications__col">
-                <h5 className="brand-applications__col-title">{a.title}</h5>
-                <ul className="brand-applications__list">
-                  {a.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <BrandApplicationCarousel />
         </div>
       </section>
 

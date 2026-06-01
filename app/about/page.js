@@ -1,3 +1,5 @@
+import AboutImageCarousel from '@/components/AboutImageCarousel'
+
 const TESTIMONIALS = [
   {
     quote: 'Gokul is very proactive, taking charge of design projects and making sure everything is followed up on. He produces good content quickly, and engages with clients to make sure that he is meeting the brief. He is friendly and great to work with.',
@@ -165,12 +167,9 @@ export default function AboutPage() {
               <div className="about-img about-img--main">
                 <span className="about-img__label">Studio · Cosmonus</span>
               </div>
-              <div className="about-hero__img-row">
-                <div className="about-img about-img--sm about-img--a" />
-                <div className="about-img about-img--sm about-img--b" />
-              </div>
             </div>
           </div>
+          <AboutImageCarousel />
         </div>
       </section>
 

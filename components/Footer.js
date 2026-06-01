@@ -21,6 +21,8 @@ export default function Footer() {
 
   return (
     <footer className="cos-footer">
+      <div className="cos-footer__glow-a" aria-hidden="true" />
+      <div className="cos-footer__glow-b" aria-hidden="true" />
       <div className="container">
         {/* Top CTA banner */}
         <div className="footer-cta">

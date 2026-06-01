@@ -43,7 +43,7 @@ const STACK = [
   { layer: 'Real-time', tech: 'Socket.io — chat + notifications' },
   { layer: 'Email', tech: 'Resend' },
   { layer: 'Push', tech: 'Web Push API (VAPID)' },
-  { layer: 'AI', tech: 'Anthropic Claude Haiku' },
+  { layer: 'AI', tech: 'Anthropic Claude' },
 ]
 
 const HOW_IT_WORKS = [
@@ -170,8 +170,8 @@ export default function StayOnMapPage() {
       {/* App screenshot strip */}
       <section className="som-section som-section--dark">
         <div className="container">
-          <div className="som-section__head som-section__head--light">
-            <span className="eyebrow som-eyebrow--dim">Product screens</span>
+          <div className="som-section__head">
+            <span className="eyebrow">Product screens</span>
             <h2 className="som-screen-title">Map. Listings. Chat. All in one.</h2>
           </div>
           <div className="som-screens-grid">

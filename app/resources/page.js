@@ -75,13 +75,15 @@ const GLOSSARY = [
 
 const TOOLS = [
   { name: 'Figma', category: 'Design', desc: 'Industry-standard design and prototyping tool. Free tier is genuinely useful.' },
-  { name: 'Vercel', category: 'Hosting', desc: 'The fastest way to deploy a Next.js project. Free tier covers most early-stage products.' },
+  { name: 'Vercel', category: 'Hosting', desc: 'The fastest way to deploy a Next.js project. Zero-config deployments with global edge network.' },
+  { name: 'AWS', category: 'Infrastructure', desc: 'Cloud infrastructure for scalable backends, storage, and compute. The industry standard for serious deployments.' },
   { name: 'Supabase', category: 'Backend', desc: 'Open-source Firebase alternative — database, auth, and storage with a generous free tier.' },
-  { name: 'Sanity', category: 'CMS', desc: 'Structured content platform. Flexible, developer-friendly, and free to start.' },
-  { name: 'Resend', category: 'Email', desc: 'Modern email API for developers. Clean, reliable, affordable.' },
+  { name: 'Google Analytics', category: 'Analytics', desc: 'The baseline for understanding traffic, acquisition, and user behaviour on any web property.' },
+  { name: 'Heatmaps', category: 'Analytics', desc: 'Visual overlays showing exactly where users click, scroll, and drop off — essential for conversion work.' },
   { name: 'Anthropic Claude', category: 'AI', desc: 'The model we use for AI features. Strong at reasoning, instruction-following, and long context.' },
+  { name: 'LangChain', category: 'AI', desc: 'Framework for building LLM-powered applications — chains, agents, RAG pipelines, and tool use.' },
   { name: 'Railway', category: 'Infrastructure', desc: 'Simple, fast infrastructure for deploying backends and databases without DevOps overhead.' },
-  { name: 'Hotjar', category: 'Analytics', desc: 'Heatmaps, session recordings, and funnel analysis. Shows you what users actually do on your site.' },
+  { name: 'Pencil & Paper', category: 'Design', desc: 'Still the fastest way to think through a layout, flow, or idea. No app beats it for the first five minutes.' },
 ]
 
 const TOPICS = [
@@ -162,8 +164,10 @@ export default function ResourcesPage() {
       <section className="res-section res-section--tinted">
         <div className="container">
           <div className="res-section__head">
-            <span className="eyebrow">Checklists</span>
-            <h2 className="res-section__title">Download and use on your next project.</h2>
+            <div>
+              <span className="eyebrow">Checklists</span>
+              <h2 className="res-section__title">Download and use on your next project.</h2>
+            </div>
           </div>
           <div className="res-checklists-grid">
             {CHECKLISTS.map((c) => (
@@ -192,9 +196,11 @@ export default function ResourcesPage() {
       <section className="res-section">
         <div className="container">
           <div className="res-section__head">
-            <span className="eyebrow">Tools we recommend</span>
-            <h2 className="res-section__title">The stack we actually use and trust.</h2>
-            <p className="res-tools-intro">These aren't affiliate links — they're the tools we reach for on our own projects. All have generous free tiers to get started.</p>
+            <div>
+              <span className="eyebrow">Tools we recommend</span>
+              <h2 className="res-section__title">The stack we actually use and trust.</h2>
+              <p className="res-tools-intro">These aren't affiliate links — they're the tools we reach for on our own projects. All have generous free tiers to get started.</p>
+            </div>
           </div>
           <div className="res-tools-grid">
             {TOOLS.map((t) => (
@@ -214,8 +220,10 @@ export default function ResourcesPage() {
       <section className="res-section res-section--tinted">
         <div className="container">
           <div className="res-section__head">
-            <span className="eyebrow">Glossary</span>
-            <h2 className="res-section__title">Terms you&apos;ll hear when working with us — explained plainly.</h2>
+            <div>
+              <span className="eyebrow">Glossary</span>
+              <h2 className="res-section__title">Terms you&apos;ll hear when working with us — explained plainly.</h2>
+            </div>
           </div>
           <div className="res-glossary">
             {GLOSSARY.map((g) => (

@@ -58,9 +58,7 @@ export default function Header() {
                 ))}
               </div>
             </div>
-            {PRIMARY_NAV.slice(0, 1).map((l) => (
-              <Link key={l.href} href={l.href} className="cos-nav__link">{l.label}</Link>
-            ))}
+            <Link href="/products" className="cos-nav__link">Products</Link>
             <div className="cos-dropdown">
               <button className="cos-nav__link" type="button">
                 Company
@@ -144,11 +142,9 @@ export default function Header() {
             </div>
           </div>
 
-          {PRIMARY_NAV.slice(0, 1).map((l) => (
-            <Link key={l.href} href={l.href} className="cos-mobile-menu__link" onClick={close}>
-              {l.label}
-            </Link>
-          ))}
+          <Link href="/products" className="cos-mobile-menu__link" onClick={close}>
+            Products
+          </Link>
 
           <div className={`cos-mobile-menu__group${activeSection === 'company' ? ' is-open' : ''}`}>
             <button

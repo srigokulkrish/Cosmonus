@@ -125,15 +125,11 @@ export default function ProductsPage() {
             <div key={p.name} className="products-built__split">
               {/* Left — image / visual area */}
               <div className="products-built__visuals">
-                <div className="products-built__img-main" style={{ background: p.gradient }}>
+                <div className="products-built__img-main products-built__img-main--full" style={{ background: p.gradient }}>
                   <div className="products-built__img-main-inner">
                     <span className="products-built__img-label">{p.name}</span>
                     <span className="products-built__img-sublabel">{p.tagline}</span>
                   </div>
-                </div>
-                <div className="products-built__img-row">
-                  <div className="products-built__img-sm products-built__img-sm--1" style={{ background: p.gradient }} />
-                  <div className="products-built__img-sm products-built__img-sm--2" style={{ background: p.gradient, opacity: 0.6 }} />
                 </div>
               </div>
 

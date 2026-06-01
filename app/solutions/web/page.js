@@ -1,17 +1,21 @@
 import Link from 'next/link'
 import RelatedServices from '@/components/RelatedServices'
+import {
+  SiNextdotjs, SiReact, SiTypescript, SiNodedotjs, SiPostgresql,
+  SiVercel, SiSanity, SiStripe, SiTailwindcss, SiFigma,
+} from 'react-icons/si'
 
 const STACK = [
-  { name: 'Next.js', type: 'Framework' },
-  { name: 'React', type: 'UI' },
-  { name: 'TypeScript', type: 'Language' },
-  { name: 'Node.js', type: 'Backend' },
-  { name: 'PostgreSQL', type: 'Database' },
-  { name: 'Vercel', type: 'Hosting' },
-  { name: 'Sanity', type: 'CMS' },
-  { name: 'Stripe', type: 'Payments' },
-  { name: 'Tailwind CSS', type: 'Styling' },
-  { name: 'Figma', type: 'Design' },
+  { name: 'Next.js',    type: 'Framework', bg: '#000',     Icon: SiNextdotjs,   color: '#fff' },
+  { name: 'React',      type: 'UI',        bg: '#20232A',  Icon: SiReact,       color: '#61DAFB' },
+  { name: 'TypeScript', type: 'Language',  bg: '#3178C6',  Icon: SiTypescript,  color: '#fff' },
+  { name: 'Node.js',    type: 'Backend',   bg: '#339933',  Icon: SiNodedotjs,   color: '#fff' },
+  { name: 'PostgreSQL', type: 'Database',  bg: '#336791',  Icon: SiPostgresql,  color: '#fff' },
+  { name: 'Vercel',     type: 'Hosting',   bg: '#000',     Icon: SiVercel,      color: '#fff' },
+  { name: 'Sanity',     type: 'CMS',       bg: '#F03E2F',  Icon: SiSanity,      color: '#fff' },
+  { name: 'Stripe',     type: 'Payments',  bg: '#635BFF',  Icon: SiStripe,      color: '#fff' },
+  { name: 'Tailwind',   type: 'Styling',   bg: '#0F172A',  Icon: SiTailwindcss, color: '#06B6D4' },
+  { name: 'Figma',      type: 'Design',    bg: '#1E1E1E',  Icon: SiFigma,       color: '#fff' },
 ]
 
 const PROJECT_TYPES = [
@@ -184,6 +188,9 @@ export default function WebPage() {
           <div className="web-stack-grid">
             {STACK.map((t) => (
               <div key={t.name} className="web-stack-item">
+                <span className="web-stack-item__icon" style={{ background: t.bg }}>
+                  <t.Icon size={22} color={t.color} aria-hidden="true" />
+                </span>
                 <span className="web-stack-item__name">{t.name}</span>
                 <span className="web-stack-item__type">{t.type}</span>
               </div>
