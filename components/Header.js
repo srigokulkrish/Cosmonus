@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { SOLUTIONS_MEGA, PRIMARY_NAV, COMPANY_MENU } from '../lib/nav'
+import ThemeToggle from './ThemeToggle'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -79,6 +80,7 @@ export default function Header() {
           </nav>
 
           <div className="cos-nav__cta">
+            <ThemeToggle />
             <Link href="/contact" className="btn-cosmonus btn--sm btn-arrow">Contact us</Link>
             <button
               type="button"

@@ -4,10 +4,10 @@ import { useState } from 'react'
 
 const CLIENTS = [
   {
-    name: 'Vendora',
-    logo: 'V',
-    summary: 'Vendora scales its e-commerce platform with Cosmonus.',
-    description: 'We helped Vendora rebuild their storefront with an AI-powered recommendation engine, cutting page load times by 60% and increasing conversion rates across 12 markets.',
+    name: 'Taatom',
+    logo: 'T',
+    summary: 'Taatom scales its e-commerce platform with Cosmonus.',
+    description: 'We helped Taatom rebuild their storefront with an AI-powered recommendation engine, cutting page load times by 60% and increasing conversion rates across 12 markets.',
     stats: [
       { label: 'Markets served', value: '12+' },
       { label: 'Conversion lift', value: '34%' },

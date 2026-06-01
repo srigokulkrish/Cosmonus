@@ -77,23 +77,6 @@ export default function BlogSection() {
           </div>
         </div>
 
-        {/* Two CTA banners */}
-        <div className="blog-cta-row">
-          <a href="/blogs" className="blog-cta-card blog-cta-card--learn">
-            <div className="blog-cta-card__text">
-              <p className="blog-cta-card__heading"><strong>Learn About AI.</strong> Explore how artificial intelligence is transforming brands, products, and business operations.</p>
-              <span className="blog-cta-card__link">Explore now ›</span>
-            </div>
-            <div className="blog-cta-card__visual blog-cta-card__visual--learn" />
-          </a>
-          <a href="/contact" className="blog-cta-card blog-cta-card--build">
-            <div className="blog-cta-card__text">
-              <p className="blog-cta-card__heading"><strong>Build with AI.</strong> Start your next project with intelligent systems, modern design, and automation built in from day one.</p>
-              <span className="blog-cta-card__link">Get started ›</span>
-            </div>
-            <div className="blog-cta-card__visual blog-cta-card__visual--build" />
-          </a>
-        </div>
       </div>
     </section>
   )
