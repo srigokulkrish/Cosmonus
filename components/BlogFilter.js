@@ -32,7 +32,8 @@ export default function BlogFilter({ posts }) {
           <div className="blog-page-grid">
             {filtered.map((p) => (
               <a key={p.title} href="#" className="blog-card blog-card--page">
-                <div className="blog-card__img" style={{ background: p.gradient }}>
+                <div className="blog-card__img">
+                  <span className="blog-card__bg" style={{ backgroundImage: p.gradient }} />
                   <span className="blog-card__tag">{p.tag}</span>
                 </div>
                 <p className="blog-card__title">{p.title}</p>

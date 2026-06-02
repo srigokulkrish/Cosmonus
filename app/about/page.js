@@ -6,42 +6,42 @@ const TESTIMONIALS = [
     name: 'Shruthi Balasa',
     role: 'Founder',
     company: 'Thirus',
-    initials: 'SB',
+    img: '/images/assets/people/shruthi.jpeg',
   },
   {
     quote: 'Our company brand is our identity. Gokul went above and beyond the usual to understand us and help construct a brand that represents us and is unique. Great working with him.',
     name: 'Dan Justin',
     role: 'CEO',
     company: 'Fluid.work UK',
-    initials: 'DJ',
+    img: '/images/assets/people/Dan.jpeg',
   },
   {
     quote: 'Gokul demonstrated exceptional professionalism and skill throughout our project. He quickly grasped the project requirements and delivered a polished, fully functional website within a tight timeframe. His communication was clear and consistent, and he approached feedback with a collaborative attitude, ensuring every detail met expectations.',
     name: 'Sabari Smat',
     role: 'Founder',
     company: 'Flawlex',
-    initials: 'SS',
+    img: '/images/assets/people/Smat.jpg',
   },
   {
     quote: 'Working with Gokul was one of the best experiences I\'ve had. He delivered a clean, responsive website in just two days — exactly what I needed. No rush, no stress — just a true commitment to getting it right. His reliability and willingness to go the extra mile really stand out. I\'d gladly work with him again.',
     name: 'Harsha',
     role: 'Lead',
     company: 'Project RhineX Circle',
-    initials: 'HA',
+    img: '/images/assets/people/Harsha.jpeg',
   },
   {
     quote: 'Very delighted with the support — they evaluated my startup niche and provided defined digital support for establishing a website, and took effort to escalate our presence across social media networks. Really wonderful working with Gokul.',
     name: 'Monish Prashanth',
     role: 'ex-CEO',
     company: 'Stopnosms',
-    initials: 'MP',
+    img: '/images/assets/people/Monish.jpeg',
   },
   {
     quote: 'Working with Sri Gokul Krishnan was a great experience. His creativity, attention to detail, and ability to deliver impactful designs stood out. On our rebranding project, his visuals boosted customer engagement by 20%. Reliable, meets deadlines, and communicates clearly. Highly recommended.',
     name: 'Manpreet Singh',
     role: 'Developer',
     company: 'Bitfumes',
-    initials: 'MS',
+    img: '/images/assets/people/Manpreet.jpeg',
   },
 ]
 
@@ -242,7 +242,7 @@ export default function AboutPage() {
           <div className="about-founder__split">
 
             <div className="about-founder__identity">
-              <div className="about-founder__avatar" aria-hidden="true">SG</div>
+              <img src="/images/assets/mockups works/gokul - Copy.jpg" alt="Sri Gokul Krishnan" className="about-founder__avatar" />
               <h3 className="about-founder__name">Sri Gokul Krishnan</h3>
               <p className="about-founder__role">Founder · Product Designer &amp; Engineer</p>
               <div className="about-founder__tags">
@@ -356,7 +356,7 @@ export default function AboutPage() {
               <div key={t.name} className="about-tcard">
                 <p className="about-tcard__quote">&ldquo;{t.quote}&rdquo;</p>
                 <div className="about-tcard__author">
-                  <div className="about-tcard__avatar">{t.initials}</div>
+                  <img src={t.img} alt={t.name} className="about-tcard__avatar" />
                   <div>
                     <p className="about-tcard__name">{t.name}</p>
                     <p className="about-tcard__role">{t.role}, {t.company}</p>

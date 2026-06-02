@@ -80,9 +80,8 @@ export default function BrandingPage() {
         </div>
         <div className="brand-hero-visual">
           <div className="container">
-            <div className="sol-placeholder brand-hero-visual__placeholder">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="1.5" y="5.5" width="25" height="17" rx="2.5" stroke="currentColor" strokeWidth="1.4"/><circle cx="9" cy="11.5" r="2" stroke="currentColor" strokeWidth="1.4"/><path d="M1.5 19l6-5 4 4 3.5-3.5L22 19.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              <span>Brand identity showcase</span>
+            <div>
+              <img src="/images/assets/brandidentity.png" alt="Brand identity showcase" />
             </div>
           </div>
         </div>
@@ -116,15 +115,18 @@ export default function BrandingPage() {
           </div>
           <div className="sol-work-grid">
             {[
-              { img: 'Logo system — Astusx', label: 'Full brand identity system' },
-              { img: 'Brand + web — Fluid.Work', label: 'Brand and web design combined' },
-              { img: 'Applied brand across channels', label: 'Brand application examples' },
+              { src: '/images/assets/branding-logos.png', alt: 'Logo system — Astusx', label: 'Full brand identity system' },
+              { src: '/images/assets/project3.png', alt: 'Brand + web — Fluid.Work', label: 'Brand and web design combined' },
+              { src: '/images/assets/project4.png', alt: 'Applied brand across channels', label: 'Brand application examples' },
             ].map((w) => (
-              <div key={w.img} className="sol-work-item">
-                <div className="sol-placeholder">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="1.5" y="5.5" width="25" height="17" rx="2.5" stroke="currentColor" strokeWidth="1.4"/><circle cx="9" cy="11.5" r="2" stroke="currentColor" strokeWidth="1.4"/><path d="M1.5 19l6-5 4 4 3.5-3.5L22 19.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  <span>{w.img}</span>
-                </div>
+              <div key={w.alt} className="sol-work-item">
+                {w.src
+                  ? <img src={w.src} alt={w.alt} className="sol-work-item__img" />
+                  : <div className="sol-placeholder">
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="1.5" y="5.5" width="25" height="17" rx="2.5" stroke="currentColor" strokeWidth="1.4"/><circle cx="9" cy="11.5" r="2" stroke="currentColor" strokeWidth="1.4"/><path d="M1.5 19l6-5 4 4 3.5-3.5L22 19.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      <span>{w.alt}</span>
+                    </div>
+                }
                 <p className="sol-work-item__label">{w.label}</p>
               </div>
             ))}

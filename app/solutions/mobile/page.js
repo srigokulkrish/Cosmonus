@@ -83,17 +83,8 @@ export default function MobilePage() {
               </div>
             </div>
             <div className="mobile-hero__screens">
-              <div className="mobile-screen mobile-screen--back">
-                <div className="sol-placeholder mobile-screen__inner">
-                  <svg width="20" height="20" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="1.5" y="5.5" width="25" height="17" rx="2.5" stroke="currentColor" strokeWidth="1.4"/><circle cx="9" cy="11.5" r="2" stroke="currentColor" strokeWidth="1.4"/><path d="M1.5 19l6-5 4 4 3.5-3.5L22 19.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  <span>Android screen</span>
-                </div>
-              </div>
               <div className="mobile-screen mobile-screen--front">
-                <div className="sol-placeholder mobile-screen__inner">
-                  <svg width="20" height="20" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="1.5" y="5.5" width="25" height="17" rx="2.5" stroke="currentColor" strokeWidth="1.4"/><circle cx="9" cy="11.5" r="2" stroke="currentColor" strokeWidth="1.4"/><path d="M1.5 19l6-5 4 4 3.5-3.5L22 19.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  <span>iOS screen</span>
-                </div>
+                <img src="/images/assets/mobile.png" alt="Mobile app screen" className="mobile-screen__inner mobile-screen__img" />
               </div>
             </div>
           </div>

@@ -11,22 +11,22 @@ const BLOGS = [
   {
     title: 'Building Scalable Products with AI-First Architecture',
     tag: 'Engineering',
-    gradient: 'linear-gradient(135deg, #0A2540 0%, #1B3A5C 50%, #425466 100%)',
+    gradient: 'linear-gradient(135deg, #0f3443 0%, #34e89e 100%)',
   },
   {
     title: 'From Idea to Launch: The Cosmonus Playbook',
     tag: 'Strategy',
-    gradient: 'linear-gradient(135deg, #24B47E 0%, #0A2540 100%)',
+    gradient: 'linear-gradient(135deg, #f46b45 0%, #eea849 100%)',
   },
   {
     title: 'Automating Growth: Workflows That Scale Revenue',
     tag: 'Automation',
-    gradient: 'linear-gradient(135deg, #635BFF 0%, #FF80B5 100%)',
+    gradient: 'linear-gradient(135deg, #635BFF 0%, #FF6B9D 100%)',
   },
   {
     title: 'Why Every Startup Needs an AI Operations Layer',
     tag: 'Ops',
-    gradient: 'linear-gradient(135deg, #0A2540 0%, #635BFF 100%)',
+    gradient: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
   },
 ]
 
@@ -67,7 +67,8 @@ export default function BlogSection() {
           <div className="blog-slider" ref={sliderRef}>
             {BLOGS.map((blog) => (
               <a key={blog.title} href="/blogs" className="blog-card">
-                <div className="blog-card__img" style={{ background: blog.gradient }}>
+                <div className="blog-card__img">
+                  <span className="blog-card__bg" style={{ backgroundImage: blog.gradient }} />
                   <span className="blog-card__tag">{blog.tag}</span>
                 </div>
                 <p className="blog-card__title">{blog.title}</p>

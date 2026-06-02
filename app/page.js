@@ -4,9 +4,14 @@ import BlogSection from '@/components/BlogSection'
 import RaycastVisual from '@/components/RaycastVisual'
 
 const LOGOS = [
-  'Acme Corp', 'TechFlow', 'NovaBuild', 'Vendora', 'CloudAxis', 'Orbitix', 'Stackly',
-  'Datawise', 'Sparkline', 'Elementis', 'Apexion', 'ShipFast', 'Growthly', 'Quantix',
-  'Buildwave', 'Luminos', 'Nextera', 'Fyndr',
+  { src: '/images/assets/brands/c1.png', alt: 'Client 1' },
+  { src: '/images/assets/brands/c2.png', alt: 'Client 2' },
+  { src: '/images/assets/brands/c3.png', alt: 'Client 3' },
+  { src: '/images/assets/brands/c4.png', alt: 'Client 4' },
+  { src: '/images/assets/brands/c5.png', alt: 'Client 5' },
+  { src: '/images/assets/brands/c6.png', alt: 'Client 6' },
+  { src: '/images/assets/brands/c7.png', alt: 'Client 7' },
+  { src: '/images/assets/brands/Legallyne.png', alt: 'Legallyne' },
 ]
 
 export const metadata = {
@@ -58,9 +63,9 @@ export default function Home() {
         </div>
         <div className="trusted-marquee" aria-label="Client logos">
           <div className="trusted-marquee__track">
-            {[...LOGOS, ...LOGOS].map((name, i) => (
-              <div key={`${name}-${i}`} className="trusted-logo" aria-hidden={i >= LOGOS.length ? 'true' : undefined}>
-                {name}
+            {[...LOGOS, ...LOGOS].map((logo, i) => (
+              <div key={`${logo.alt}-${i}`} className="trusted-logo" aria-hidden={i >= LOGOS.length ? 'true' : undefined}>
+                <img src={logo.src} alt={logo.alt} className="trusted-logo__img" />
               </div>
             ))}
           </div>
