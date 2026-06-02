@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import RelatedServices from '@/components/RelatedServices'
+import FAQAccordion from '@/components/FAQAccordion'
 
 const DELIVERABLES = [
   { title: 'Analytics setup & configuration', body: 'GA4, Mixpanel, PostHog, or your tool of choice — configured properly from the start, not just installed and left at defaults. Bad configuration produces bad data.' },
@@ -158,14 +159,7 @@ export default function AnalyticsPage() {
             <span className="eyebrow">Common questions</span>
             <h2 className="sol-section__title">What clients usually ask.</h2>
           </div>
-          <div className="sol-faq">
-            {FAQ.map((f) => (
-              <div key={f.q} className="sol-faq__item">
-                <h4 className="sol-faq__q">{f.q}</h4>
-                <p className="sol-faq__a">{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion items={FAQ} />
         </div>
       </section>
 

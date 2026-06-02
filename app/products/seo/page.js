@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import RelatedServices from '@/components/RelatedServices'
+import FAQAccordion from '@/components/FAQAccordion'
 
 const DELIVERABLES = [
   { title: 'Technical SEO audit', body: 'Find and fix what\'s holding your site back — crawlability, indexing errors, page speed, structured data, and Core Web Vitals. The foundation everything else rests on.' },
@@ -158,14 +159,7 @@ export default function SeoPage() {
             <span className="eyebrow">Common questions</span>
             <h2 className="sol-section__title">What clients usually ask.</h2>
           </div>
-          <div className="sol-faq">
-            {FAQ.map((f) => (
-              <div key={f.q} className="sol-faq__item">
-                <h4 className="sol-faq__q">{f.q}</h4>
-                <p className="sol-faq__a">{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion items={FAQ} />
         </div>
       </section>
 

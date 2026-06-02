@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import RelatedServices from '@/components/RelatedServices'
+import FAQAccordion from '@/components/FAQAccordion'
 
 const PLATFORMS = [
   {
@@ -192,14 +193,7 @@ export default function MobilePage() {
             <span className="eyebrow">Common questions</span>
             <h2 className="sol-section__title">What clients usually ask.</h2>
           </div>
-          <div className="sol-faq">
-            {FAQ.map((f) => (
-              <div key={f.q} className="sol-faq__item">
-                <h4 className="sol-faq__q">{f.q}</h4>
-                <p className="sol-faq__a">{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion items={FAQ} />
         </div>
       </section>
 

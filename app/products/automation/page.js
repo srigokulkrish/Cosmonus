@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import RelatedServices from '@/components/RelatedServices'
+import FAQAccordion from '@/components/FAQAccordion'
 
 const DELIVERABLES = [
   { title: 'Workflow audit', body: 'We map what your team does manually, what data you have, and where automation creates genuine leverage — before proposing a solution.' },
@@ -158,14 +159,7 @@ export default function AutomationPage() {
             <span className="eyebrow">Common questions</span>
             <h2 className="sol-section__title">What clients usually ask.</h2>
           </div>
-          <div className="sol-faq">
-            {FAQ.map((f) => (
-              <div key={f.q} className="sol-faq__item">
-                <h4 className="sol-faq__q">{f.q}</h4>
-                <p className="sol-faq__a">{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion items={FAQ} />
         </div>
       </section>
 

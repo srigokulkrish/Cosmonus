@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import RelatedServices from '@/components/RelatedServices'
+import FAQAccordion from '@/components/FAQAccordion'
 import {
   SiNextdotjs, SiReact, SiTypescript, SiNodedotjs, SiPostgresql,
   SiVercel, SiSanity, SiStripe, SiTailwindcss, SiFigma,
+  SiSupabase, SiPrisma, SiGraphql, SiDocker, SiMongodb,
+  SiWordpress, SiShopify, SiCloudflare, SiRedis, SiGithub,
 } from 'react-icons/si'
 
 const STACK = [
@@ -16,6 +19,16 @@ const STACK = [
   { name: 'Stripe',     type: 'Payments',  bg: '#635BFF',  Icon: SiStripe,      color: '#fff' },
   { name: 'Tailwind',   type: 'Styling',   bg: '#0F172A',  Icon: SiTailwindcss, color: '#06B6D4' },
   { name: 'Figma',      type: 'Design',    bg: '#1E1E1E',  Icon: SiFigma,       color: '#fff' },
+  { name: 'Supabase',   type: 'Database',  bg: '#1C1C1C',  Icon: SiSupabase,    color: '#3ECF8E' },
+  { name: 'Prisma',     type: 'ORM',       bg: '#0C344B',  Icon: SiPrisma,      color: '#fff' },
+  { name: 'GraphQL',    type: 'API',       bg: '#171e26',  Icon: SiGraphql,     color: '#E10098' },
+  { name: 'Docker',     type: 'DevOps',    bg: '#2496ED',  Icon: SiDocker,      color: '#fff' },
+  { name: 'MongoDB',    type: 'Database',  bg: '#13AA52',  Icon: SiMongodb,     color: '#fff' },
+  { name: 'WordPress',  type: 'CMS',       bg: '#21759B',  Icon: SiWordpress,   color: '#fff' },
+  { name: 'Shopify',    type: 'Commerce',  bg: '#96BF48',  Icon: SiShopify,     color: '#fff' },
+  { name: 'Cloudflare', type: 'CDN',       bg: '#F38020',  Icon: SiCloudflare,  color: '#fff' },
+  { name: 'Redis',      type: 'Cache',     bg: '#DC382D',  Icon: SiRedis,       color: '#fff' },
+  { name: 'GitHub',     type: 'VCS',       bg: '#181717',  Icon: SiGithub,      color: '#fff' },
 ]
 
 const PROJECT_TYPES = [
@@ -50,9 +63,10 @@ const PROCESS = [
 ]
 
 const METRICS = [
-  { label: 'Performance score', value: '95+', note: 'Core Web Vitals target' },
-  { label: 'Accessibility', value: 'AA', note: 'WCAG 2.1 compliance' },
-  { label: 'Time to live', value: '2–4w', note: 'For a marketing site' },
+  { label: 'Performance score', value: '95+',   note: 'Core Web Vitals target' },
+  { label: 'Page load',         value: '<1s',   note: 'Avg. first contentful paint' },
+  { label: 'Projects shipped',  value: '50+',   note: 'Across industries' },
+  { label: 'Uptime SLA',        value: '99.9%', note: 'Post-launch guarantee' },
 ]
 
 const FAQ = [
@@ -225,14 +239,7 @@ export default function WebPage() {
             <span className="eyebrow">Common questions</span>
             <h2 className="sol-section__title">What clients usually ask.</h2>
           </div>
-          <div className="sol-faq">
-            {FAQ.map((f) => (
-              <div key={f.q} className="sol-faq__item">
-                <h4 className="sol-faq__q">{f.q}</h4>
-                <p className="sol-faq__a">{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion items={FAQ} />
         </div>
       </section>
 

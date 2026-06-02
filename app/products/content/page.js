@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import RelatedServices from '@/components/RelatedServices'
+import FAQAccordion from '@/components/FAQAccordion'
 
 const DELIVERABLES = [
   { title: 'Brand voice guide', body: 'A concrete document that defines how you sound, what you avoid, and how tone shifts across different contexts — so every piece of content feels like it came from the same company.' },
@@ -158,14 +159,7 @@ export default function ContentPage() {
             <span className="eyebrow">Common questions</span>
             <h2 className="sol-section__title">What clients usually ask.</h2>
           </div>
-          <div className="sol-faq">
-            {FAQ.map((f) => (
-              <div key={f.q} className="sol-faq__item">
-                <h4 className="sol-faq__q">{f.q}</h4>
-                <p className="sol-faq__a">{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion items={FAQ} />
         </div>
       </section>
 

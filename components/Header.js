@@ -49,7 +49,7 @@ export default function Header() {
                   <div key={col.heading} className="cos-mega__col">
                     <span className="cos-mega__heading">{col.heading}</span>
                     {col.items.map((item) => (
-                      <Link key={item.href} href={item.href} className="cos-dropdown__item">
+                      <Link key={item.href} href={item.href} className="cos-dropdown__item" onClick={() => document.activeElement?.blur()}>
                         <span>{item.label}</span>
                         <span className="cos-dropdown__item-desc">{item.desc}</span>
                       </Link>
@@ -65,7 +65,7 @@ export default function Header() {
               </button>
               <div className="cos-dropdown__menu" role="menu">
                 {COMPANY_MENU.map((item) => (
-                  <Link key={item.href} href={item.href} className="cos-dropdown__item">
+                  <Link key={item.href} href={item.href} className="cos-dropdown__item" onClick={() => document.activeElement?.blur()}>
                     <span>{item.label}</span>
                     <span className="cos-dropdown__item-desc">{item.desc}</span>
                   </Link>
