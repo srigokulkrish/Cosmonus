@@ -244,26 +244,43 @@ export default function AboutPage() {
             <div className="about-founder__identity">
               <div className="about-founder__avatar" aria-hidden="true">SG</div>
               <h3 className="about-founder__name">Sri Gokul Krishnan</h3>
-              <p className="about-founder__role">Founder &amp; Designer</p>
+              <p className="about-founder__role">Founder · Product Designer &amp; Engineer</p>
               <div className="about-founder__tags">
-                {['UI / UX', 'Web Design', 'Branding', 'VR Design', 'Product Strategy'].map((t) => (
+                {['9+ yrs Product Design', 'Fullstack', 'AI-native', 'Claude Code', 'Designer-Engineer'].map((t) => (
                   <span key={t} className="about-founder__tag">{t}</span>
                 ))}
+              </div>
+              <div className="about-founder__location">
+                <span>📍 Chennai</span>
+                <span>✍️ LinkedIn &amp; X</span>
               </div>
             </div>
 
             <div className="about-founder__content">
               <p className="about-founder__quote">
-                &ldquo;I got tired of watching good ideas die inside companies more focused on
-                process than on what the business actually needs. So I built the studio
-                I always wanted to work at.&rdquo;
+                &ldquo;Somewhere along the way I got tired of waiting on handoffs and taught myself
+                to ship fullstack applications — and I mean actually ship. The stack doesn&apos;t matter,
+                whatever the product needs.&rdquo;
               </p>
               <p className="about-founder__bio">
-                Product designer with a track record across UI/UX, web design, branding, and VR.
-                Shipped work for startups and enterprises across industries — from marketing sites
-                to full product experiences. Built Cosmonus to be the answer to every agency that
-                ever chose a meeting over a milestone.
+                9+ years as a product designer. I pick up tools the way other people pick up books:
+                fast, with intent, and only because there&apos;s something I want to build with them.
               </p>
+
+              <div className="about-founder__obsessions">
+                <p className="about-founder__obsessions-label">What I&apos;m obsessed with right now</p>
+                <ul>
+                  <li><strong>Claude Code as a discipline, not a toy.</strong> Guardrails before features. No silent refactors. The teams winning with AI aren&apos;t generating the most code — they&apos;re the ones who trust the code they generate.</li>
+                  <li><strong>System prompts as IP.</strong> A prompt library, compounded over months of real product work, is a moat people are still sleeping on.</li>
+                  <li><strong>The designer-engineer archetype.</strong> I think this is the role that defines the next decade of software. I&apos;m betting my career on it.</li>
+                </ul>
+              </div>
+
+              <div className="about-founder__building">
+                <p className="about-founder__obsessions-label">Currently building</p>
+                <p><strong>StayOnMap</strong> — a map-first, broker-free rental platform for India. Direct owner contact, zero commission, real-time chat, AI fraud detection, and a full lease management system. Built fullstack from the ground up.</p>
+              </div>
+
               <a href="https://srigokulkrishnan.com" target="_blank" rel="noopener noreferrer" className="about-founder__link">
                 srigokulkrishnan.com →
               </a>
