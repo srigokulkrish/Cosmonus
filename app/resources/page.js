@@ -2,53 +2,53 @@ import Link from 'next/link'
 
 const GUIDES = [
   {
-    tag: 'Platform',
-    title: 'What an intelligence layer is (and why one shared platform beats point tools)',
-    desc: 'When a pilot stalls, the model usually isn\'t the problem — the foundation is.',
+    tag: 'Foundations',
+    title: 'What makes a system intelligent (and why most "AI features" aren\'t)',
+    desc: 'The difference between software that follows rules and a system that reasons — stated precisely.',
     readTime: '6 min read',
   },
   {
-    tag: 'Enterprise',
+    tag: 'Strategy',
     title: 'Why your data isn\'t driving decisions — and what to fix first',
-    desc: 'A framework for diagnosing why data sits unused — before another dashboard.',
+    desc: 'A framework for diagnosing why data sits unused — before you buy another dashboard.',
     readTime: '8 min read',
   },
   {
-    tag: 'Agents',
-    title: 'A plain-language guide to RAG, knowledge graphs, and agent orchestration',
+    tag: 'Architecture',
+    title: 'A plain-language guide to RAG, knowledge systems, and agent orchestration',
     desc: 'What each technique does, when to use it, and what breaks when you pick wrong.',
     readTime: '10 min read',
   },
   {
-    tag: 'Predictive',
-    title: 'Scoping your first intelligence use case: shipped vs stalled',
-    desc: 'Define the smallest use case that changes a decision — and defend that scope.',
+    tag: 'Strategy',
+    title: 'Scoping your first intelligent system: shipped vs stalled',
+    desc: 'Define the smallest system that changes a real decision — and defend that scope.',
     readTime: '7 min read',
   },
   {
-    tag: 'Knowledge',
-    title: 'Building a knowledge graph in plain English: what to model and in what order',
-    desc: 'A prioritised way to connect your data into intelligence — no two-year program.',
+    tag: 'Architecture',
+    title: 'Modeling your business so software can reason about it',
+    desc: 'What to model, in what order, and why the domain model matters more than the AI model.',
     readTime: '9 min read',
   },
   {
-    tag: 'Spatial',
-    title: 'Real-time vs batch: how to make the right call for spatial intelligence',
-    desc: 'The trade-offs we weigh on every spatial deployment.',
+    tag: 'Trust',
+    title: 'Explainability, oversight, and autonomy: how much to grant, and when',
+    desc: 'The trade-offs we weigh before any system is allowed to decide on its own.',
     readTime: '5 min read',
   },
 ]
 
 const CHECKLISTS = [
   {
-    title: 'Intelligence deployment checklist',
+    title: 'Production readiness checklist',
     items: 14,
-    desc: 'Verify before going live — pipelines, evaluation, latency, access, and monitoring.',
+    desc: 'Verify before a system decides anything live — evaluation, latency, oversight, and monitoring.',
   },
   {
     title: 'Data readiness checklist',
     items: 11,
-    desc: 'What your data needs to feed a layer — sources, schemas, quality, governance.',
+    desc: 'What your data needs before it can feed reasoning — sources, schemas, quality, governance.',
   },
   {
     title: 'Use case scoping checklist',
@@ -56,19 +56,19 @@ const CHECKLISTS = [
     desc: 'Questions to answer before you build — stops scope creep and stalled pilots.',
   },
   {
-    title: 'Decision automation audit checklist',
+    title: 'Decision audit checklist',
     items: 12,
-    desc: 'Map decision workflows before automating — find where intelligence adds leverage.',
+    desc: 'Map how decisions are actually made today — find where intelligence adds real leverage.',
   },
 ]
 
 const GLOSSARY = [
+  { term: 'Reasoning Engine', def: 'The core of an intelligent system — logic that weighs evidence, draws conclusions, and can show its work.' },
+  { term: 'Knowledge System', def: 'Your entities, relationships, and history structured into a model software can reason over.' },
+  { term: 'Agent Orchestration', def: 'Coordinating autonomous workers that plan, act, and verify their own output — within bounds you set.' },
+  { term: 'Decision Support', def: 'The system assembles evidence and recommends; a person makes the call.' },
+  { term: 'Explainability', def: 'Every decision traceable to the evidence and reasoning that produced it.' },
   { term: 'RAG', def: 'Retrieval-Augmented Generation — AI that answers from your data, not just its training.' },
-  { term: 'Knowledge Graph', def: 'A connected model of your entities and relationships systems can reason over.' },
-  { term: 'Spatial Intelligence', def: 'Location and movement data turned into real-time understanding of where things are.' },
-  { term: 'Decision Automation', def: 'Systems that make or recommend decisions, not just report on them.' },
-  { term: 'Enterprise Intelligence', def: 'One shared layer so every team reasons from the same source of truth.' },
-  { term: 'Intelligence Layer', def: 'The shared platform that turns raw data into intelligence, and intelligence into decisions.' },
 ]
 
 const TOOLS = [
@@ -82,29 +82,27 @@ const TOOLS = [
 
 const TOPICS = [
   { label: 'All', active: true },
-  { label: 'Platform' },
-  { label: 'Enterprise' },
-  { label: 'Spatial' },
-  { label: 'Agents' },
-  { label: 'Predictive' },
-  { label: 'Knowledge' },
+  { label: 'Foundations' },
+  { label: 'Strategy' },
+  { label: 'Architecture' },
+  { label: 'Trust' },
 ]
 
 export const metadata = {
-  title: 'Resources | Guides, Checklists & Tools on Intelligence Infrastructure',
-  description: 'Stuck on why your data isn\'t driving decisions, or whether you need a knowledge graph or an agent? Free guides, checklists, and tools from the Cosmonus team that answer it.',
-  keywords: ['intelligence infrastructure resources', 'knowledge graph guides', 'AI agent resources', 'decision automation checklists', 'RAG guide', 'enterprise intelligence guides'],
+  title: 'Resources | How to Think About Intelligent Systems',
+  description: 'How intelligent systems work, where they deliver measurable value, and how to adopt them without stalling — guides, checklists, and definitions from the engineers who build them.',
+  keywords: ['intelligent systems guides', 'AI architecture resources', 'reasoning systems', 'AI adoption strategy', 'RAG guide', 'AI explainability'],
   alternates: { canonical: '/resources' },
   openGraph: {
-    title: 'Resources | Guides, Checklists & Tools',
-    description: 'Practical guides on intelligence infrastructure from the Cosmonus team — all free.',
+    title: 'Resources | How to Think About Intelligent Systems',
+    description: 'Guides, checklists, and definitions from the engineers who build intelligent systems — all free.',
     url: 'https://cosmonus.com/resources',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Resources from Cosmonus',
-    description: 'Guides, checklists, and tools on intelligence infrastructure — all free.',
+    description: 'How to think about intelligent systems — from the engineers who build them.',
     images: ['/images/ICON.png'],
   },
 }
@@ -117,10 +115,10 @@ export default function ResourcesPage() {
           <span className="eyebrow">Resources</span>
           <h1 className="res-hero__title">The questions you ask<br />before you build.</h1>
           <p className="lead res-hero__lead">
-            &ldquo;Why isn&apos;t our data driving anything?&rdquo; &ldquo;Do we need a knowledge
-            graph or an agent?&rdquo; &ldquo;What&apos;s the smallest thing worth shipping?&rdquo;
-            Here are the guides, checklists, and tools we hand founders and data teams when they
-            ask &mdash; the same answers, written down.
+            &ldquo;Is this a software problem or an intelligence problem?&rdquo; &ldquo;How much
+            autonomy should the system get?&rdquo; &ldquo;What&apos;s the smallest thing worth
+            shipping?&rdquo; These are the answers we give founders and operators when they ask
+            &mdash; written down, free, no email gate.
           </p>
         </div>
       </section>

@@ -3,9 +3,9 @@ import Link from 'next/link'
 const BUILT_PRODUCTS = [
   {
     name: 'StayOnMap',
-    tagline: 'Real-time spatial intelligence.',
-    desc: 'The first product on the Cosmonus Intelligence Layer — a map-first, broker-free rental platform for India, powered by the platform\'s spatial and predictive engines. The map is the product.',
-    tags: ['Spatial Intelligence', 'Knowledge Graph', 'Predictive', 'Agents', 'Real-Time', 'Live'],
+    tagline: 'Intelligence applied to a broken market.',
+    desc: 'India\'s rental market runs on brokers because nobody solved trust. StayOnMap replaces that intermediary with engineered intelligence — live trust scoring, autonomous fraud detection, and direct owner-to-tenant leases, running in production today.',
+    tags: ['Trust Scoring', 'Fraud Detection', 'Autonomous Agents', 'Real-Time', 'In Production'],
     href: '/products/stayonmap',
     live: 'https://stayonmap-frontend-production-23f8.up.railway.app/',
     status: 'Live',
@@ -14,20 +14,20 @@ const BUILT_PRODUCTS = [
 ]
 
 export const metadata = {
-  title: 'Products | Built on the Cosmonus Intelligence Layer',
-  description: 'Every Cosmonus product runs on one shared Intelligence Layer. From StayOnMap — the first product live in production — to the applied capabilities you can build on the platform.',
-  keywords: ['cosmonus products', 'intelligence layer', 'intelligence platform', 'spatial intelligence', 'decision automation', 'StayOnMap'],
+  title: 'Products | Intelligence We Run in Production',
+  description: 'We prove our engineering on our own products before we apply it to yours. StayOnMap — intelligence applied to India\'s rental market — is live in production today.',
+  keywords: ['cosmonus products', 'intelligent systems', 'trust scoring', 'fraud detection', 'StayOnMap', 'AI in production'],
   alternates: { canonical: '/products' },
   openGraph: {
     title: 'Products | Cosmonus',
-    description: 'Products built on one shared Intelligence Layer — with StayOnMap live in production.',
+    description: 'Intelligence we run in production — starting with StayOnMap.',
     url: 'https://cosmonus.com/products',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Products | Cosmonus',
-    description: 'Products built on one shared Intelligence Layer.',
+    description: 'Intelligence we run in production — starting with StayOnMap.',
     images: ['/images/ICON.png'],
   },
 }
@@ -40,14 +40,14 @@ export default function ProductsPage() {
         <div className="container">
           <div className="products-hero__inner products-hero__inner--solo">
             <span className="eyebrow">Products</span>
-            <h1 className="products-hero__title">One platform.<br />Every product runs on it.</h1>
+            <h1 className="products-hero__title">We prove it on our own products first.</h1>
             <p className="products-hero__lead">
-              Every Cosmonus product is built on the same Intelligence Layer — one knowledge graph,
-              five engines, and decision automation underneath. StayOnMap is the first live in production.
+              Anyone can claim their AI works. We put ours in production under our own name, in a market
+              that punishes bad decisions — and let you inspect the result before you trust us with yours.
             </p>
             <div className="products-hero__actions">
-              <Link href="/platform" className="btn-cosmonus btn-arrow">Explore the platform</Link>
-              <Link href="/contact" className="btn-ghost">Talk to us</Link>
+              <Link href="/platform" className="btn-cosmonus btn-arrow">How we build intelligence</Link>
+              <Link href="/contact" className="btn-ghost">Discuss your system</Link>
             </div>
           </div>
         </div>
@@ -57,8 +57,8 @@ export default function ProductsPage() {
       <section className="products-built">
         <div className="container">
           <div className="products-built__head">
-            <span className="eyebrow">Built on the platform</span>
-            <h2 className="products-built__title">The first product on the Intelligence Layer.</h2>
+            <span className="eyebrow">In production</span>
+            <h2 className="products-built__title">StayOnMap — our engineering, on the record.</h2>
           </div>
 
           {BUILT_PRODUCTS.map((p) => (

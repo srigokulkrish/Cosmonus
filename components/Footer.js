@@ -24,10 +24,10 @@ export default function Footer() {
       <div className="container">
         {/* Top CTA banner */}
         <div className="footer-cta">
-          <h2>Build with Cosmonus.</h2>
+          <h2>Let&apos;s build something intelligent.</h2>
           <div className="footer-cta__actions">
-            <Link href="/contact" className="btn-ghost">Talk to us</Link>
-            <Link href="/contact" className="btn-cosmonus btn-arrow">Start a project</Link>
+            <Link href="/platform" className="btn-ghost">How we build</Link>
+            <Link href="/contact" className="btn-cosmonus btn-arrow">Discuss your system</Link>
           </div>
         </div>
 
@@ -40,7 +40,7 @@ export default function Footer() {
             <Link href="/" className="footer-brand" aria-label="Cosmonus home">
               <img src="/images/logo-white.png" alt="Cosmonus" className="footer-brand__logo" />
             </Link>
-            <p className="footer-brand__tagline">AI-native intelligence infrastructure. One platform that turns your data into intelligence, and intelligence into decisions.</p>
+            <p className="footer-brand__tagline">An intelligence company. We engineer systems that understand your operation, reason over your data, and make decisions that hold up in production.</p>
             <div className="footer-socials">
               <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>

@@ -6,18 +6,19 @@ import { GeistMono } from 'geist/font/mono'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import SmoothScroll from '../components/SmoothScroll'
+import CxReveal from '../components/CxReveal'
 
 const SITE_URL = 'https://cosmonus.com'
-const SITE_DESC = 'Cosmonus builds the Intelligence Layer beneath modern operations — one platform that unifies data into a living Ontology and turns it into spatial, predictive, and agent intelligence, then into automated decisions.'
+const SITE_DESC = 'Cosmonus is an intelligence company. We design and build systems that understand a business, reason over its data, and make decisions that hold up in production — engineered from first principles, not assembled from off-the-shelf tools.'
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Cosmonus — AI-Native Intelligence Infrastructure',
+    default: 'Cosmonus — We Engineer Intelligence',
     template: '%s | Cosmonus',
   },
   description: SITE_DESC,
-  keywords: ['intelligence infrastructure', 'intelligence layer', 'ontology', 'knowledge graph', 'spatial intelligence', 'predictive intelligence', 'agent intelligence', 'decision automation', 'AI-native platform'],
+  keywords: ['intelligence company', 'AI engineering', 'reasoning systems', 'decision systems', 'agent orchestration', 'knowledge systems', 'intelligent software', 'custom AI systems'],
   applicationName: 'Cosmonus',
   authors: [{ name: 'Sri Gokul Krishnan', url: 'https://srigokulkrishnan.com' }],
   creator: 'Cosmonus',
@@ -30,14 +31,14 @@ export const metadata = {
     locale: 'en_US',
     url: SITE_URL,
     siteName: 'Cosmonus',
-    title: 'Cosmonus — AI-Native Intelligence Infrastructure',
+    title: 'Cosmonus — We Engineer Intelligence',
     description: SITE_DESC,
   },
   twitter: {
     card: 'summary_large_image',
     site: '@cosmonus',
     creator: '@cosmonus',
-    title: 'Cosmonus — AI-Native Intelligence Infrastructure',
+    title: 'Cosmonus — We Engineer Intelligence',
     description: SITE_DESC,
   },
   robots: {
@@ -87,6 +88,7 @@ export default function RootLayout({ children }) {
         />
         <div className="d-flex flex-column min-vh-100">
           <SmoothScroll />
+          <CxReveal />
           <Header />
           <main className="flex-grow-1">{children}</main>
           <Footer />

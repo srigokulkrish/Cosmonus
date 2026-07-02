@@ -13,7 +13,7 @@ const FEATURES = [
   },
   {
     title: 'Trust & risk scoring',
-    desc: 'Predictive intelligence turns 12 sub-scores into a live TrustScore. A RiskScore from reports and fraud signals auto-suspends a property the moment it crosses a HIGH threshold.',
+    desc: 'Twelve live sub-scores compound into a TrustScore per property. A parallel RiskScore built from reports and fraud signals auto-suspends a listing the moment it crosses the HIGH threshold — no human queue.',
   },
   {
     title: 'Real-time chat',
@@ -21,7 +21,7 @@ const FEATURES = [
   },
   {
     title: 'Agent-driven fraud detection',
-    desc: 'An intelligence agent scores listings and behaviour against the knowledge graph, flagging anomalies continuously or on demand. Currently opt-in.',
+    desc: 'An autonomous agent reasons over listings and behaviour patterns, flagging anomalies continuously or on demand — with every flag traceable to the signals behind it. Currently opt-in.',
   },
 ]
 
@@ -61,20 +61,20 @@ const STATS = [
 ]
 
 export const metadata = {
-  title: 'StayOnMap — Real-Time Spatial Intelligence Platform | Cosmonus',
-  description: 'StayOnMap is a real-time spatial intelligence platform built on the Cosmonus Intelligence Layer — the first product on the platform. A map-first, broker-free rental market powered by live spatial and predictive intelligence.',
-  keywords: ['StayOnMap', 'spatial intelligence', 'real-time location intelligence', 'cosmonus intelligence layer', 'broker free rentals India', 'rental platform', 'geospatial platform'],
+  title: 'StayOnMap — Intelligence Applied to a Broken Market | Cosmonus',
+  description: 'StayOnMap is Cosmonus engineering in production: India\'s rental market runs on brokers because nobody solved trust. We solved it with live trust scoring, autonomous fraud detection, and direct owner-to-tenant leases.',
+  keywords: ['StayOnMap', 'trust scoring', 'fraud detection', 'intelligent systems', 'broker free rentals India', 'rental platform', 'AI in production'],
   alternates: { canonical: '/products/stayonmap' },
   openGraph: {
-    title: 'StayOnMap — Real-Time Spatial Intelligence, in Production',
-    description: 'The first product built on the Cosmonus Intelligence Layer. Live spatial intelligence applied to India’s rental market — map-first, broker-free, trust-scored.',
+    title: 'StayOnMap — Cosmonus Intelligence, in Production',
+    description: 'The trust problem brokers used to solve, engineered instead: live trust scoring, autonomous fraud detection, direct leases. Running today.',
     url: 'https://cosmonus.com/products/stayonmap',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'StayOnMap — Spatial Intelligence in Production',
-    description: 'The first product on the Cosmonus Intelligence Layer. Real-time spatial intelligence applied to the rental market.',
+    title: 'StayOnMap — Intelligence in Production',
+    description: 'The trust problem brokers used to solve, engineered instead. Running in production today.',
     images: ['/images/ICON.png'],
   },
 }
@@ -89,15 +89,15 @@ export default function StayOnMapPage() {
             <div className="som-hero__text">
               <div className="som-hero__badge">
                 <span className="som-badge-dot" aria-hidden="true" />
-                Live · built on the Intelligence Layer
+                Live · engineered by Cosmonus
               </div>
               <h1 className="som-hero__title">StayOnMap</h1>
-              <p className="som-hero__tagline">A real-time spatial intelligence platform.</p>
+              <p className="som-hero__tagline">The trust problem brokers used to solve — engineered instead.</p>
               <p className="lead som-hero__lead">
-                You&apos;re hunting for a flat near the office. Instead of a broker and a month&apos;s rent in
-                commission, you open a map: live pins, real prices, the owner&apos;s number. That&apos;s StayOnMap —
-                the first product built on the Cosmonus Intelligence Layer, applying real-time spatial
-                intelligence to India&apos;s rental market.
+                You&apos;re hunting for a flat near the office. Instead of a broker and a month&apos;s rent
+                in commission, you open a map: live pins, real prices, the owner&apos;s number — and a
+                system underneath continuously scoring every listing for trust and fraud. That&apos;s
+                StayOnMap: Cosmonus intelligence, running in production in India&apos;s rental market.
               </p>
               <div className="som-hero__actions">
                 <a
@@ -147,8 +147,8 @@ export default function StayOnMapPage() {
               <h2 className="som-problem__title">Indian renters pay 1–2 months' commission just to find a home.</h2>
             </div>
             <div className="som-problem__right">
-              <p>India's rental market runs on brokers. See a flat? Broker. Talk to the owner? Broker. Sign a lease? Broker — one to two months' rent for a phone call you could have made yourself.</p>
-              <p>StayOnMap removes that layer. Owners and tenants connect directly; trust and risk scoring run on the platform's graph and predictive engines. Rental decisions are spatial, so the map is the product — the first built on the Intelligence Layer.</p>
+              <p>India's rental market runs on brokers. See a flat? Broker. Talk to the owner? Broker. Sign a lease? Broker — one to two months' rent for a phone call you could have made yourself. The broker survives because he solves one real problem: neither side knows who to trust.</p>
+              <p>StayOnMap replaces that judgment with an engineered one. Twelve live signals compound into a TrustScore for every listing; an autonomous agent watches for fraud patterns and suspends high-risk properties before a tenant ever visits. Owners and tenants connect directly — the intermediary is now a system that shows its reasoning.</p>
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function StayOnMapPage() {
         <div className="container">
           <div className="som-section__head">
             <span className="eyebrow">What it does</span>
-            <h2 className="som-features-title">Six systems. One intelligence platform.</h2>
+            <h2 className="som-features-title">Six systems. One engineered product.</h2>
           </div>
           <div className="som-features-grid">
             {FEATURES.map((f) => (

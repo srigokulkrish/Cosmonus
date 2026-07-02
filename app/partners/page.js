@@ -1,45 +1,45 @@
 const PARTNERSHIP_TYPES = [
   {
     type: 'Agency & Studio Partners',
-    desc: "Build intelligence features on the Cosmonus Intelligence Layer and ship them under your own name — no year spent building the platform.",
+    desc: "Your clients are asking for intelligence — systems that reason, not just apps that record. We engineer those systems behind your delivery, under your name, to the standard your reputation demands.",
     fits: [
-      'Clients keep asking for AI features your stack can\'t deliver yet',
-      'You\'d rather build on a proven intelligence layer than maintain your own',
-      'You need white-label delivery that still looks like your best work',
+      'Clients keep asking for AI capabilities your stack can\'t honestly deliver yet',
+      'You\'d rather partner with engineers who build reasoning systems than improvise one',
+      'You need delivery that survives your client\'s technical due diligence',
     ],
   },
   {
-    type: 'Integration Partners',
-    desc: "Your product already generates the data. Connect to the layer once and give customers analytics, agents, and automation without building any of it.",
+    type: 'Product & Platform Partners',
+    desc: "Your product already generates the data. We engineer the intelligence on top of it — scoring, prediction, agents — so your customers get decisions from your product, not just records.",
     fits: [
-      'Customers want analytics, agents, or automation on top of what you do',
-      'You\'d add intelligence tomorrow if it didn\'t mean building a platform first',
+      'Customers want your product to recommend and decide, not just report',
+      'You\'d add intelligence tomorrow if it didn\'t mean building an AI team first',
       'You want a deep technical integration, not a reseller badge',
     ],
   },
 ]
 
 const BENEFITS = [
-  { title: 'One platform under you', body: 'You build on the same Intelligence Layer we ship our own products on — same reliability, your name on it.' },
-  { title: 'You always know where things stand', body: 'No dropped balls, no surprise timelines — you see every stage as it happens.' },
-  { title: 'We grow when you do', body: 'We build alongside you, and the layer gets stronger every time you ship on it.' },
+  { title: 'Engineering you can stand behind', body: 'The same first-principles discipline we put in our own products — explainable decisions, audit trails, oversight — shipped under your name.' },
+  { title: 'You always know where things stand', body: 'No dropped balls, no surprise timelines — you see the architecture, the progress, and the evaluation results at every stage.' },
+  { title: 'We grow when you do', body: 'We build alongside you, and every system shipped together sharpens the next one.' },
 ]
 
 export const metadata = {
-  title: 'Partner with Cosmonus | Build on the Intelligence Layer',
-  description: 'Ship the intelligence features your clients ask for without building the platform yourself. Agencies and platforms build on the Cosmonus Intelligence Layer — under their own name.',
-  keywords: ['cosmonus partners', 'intelligence platform partnership', 'AI infrastructure partner', 'white label intelligence', 'technology integration partner'],
+  title: 'Partner with Cosmonus | Intelligence Engineering Behind Your Name',
+  description: 'Your clients are asking for systems that reason. Cosmonus engineers the intelligence behind your delivery — agencies and product teams ship it under their own name.',
+  keywords: ['cosmonus partners', 'AI engineering partner', 'intelligent systems partnership', 'white label AI engineering', 'technology integration partner'],
   alternates: { canonical: '/partners' },
   openGraph: {
     title: 'Partner with Cosmonus',
-    description: 'Ship intelligence features on the Cosmonus Intelligence Layer without building the platform yourself.',
+    description: 'We engineer the intelligence behind your delivery — shipped under your name.',
     url: 'https://cosmonus.com/partners',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Partner with Cosmonus',
-    description: 'Build intelligence products on the Cosmonus Intelligence Layer.',
+    description: 'We engineer the intelligence behind your delivery — shipped under your name.',
     images: ['/images/ICON.png'],
   },
 }
@@ -51,12 +51,12 @@ export default function PartnersPage() {
         <div className="container">
           <span className="eyebrow">Partners</span>
           <h1 className="partners-hero__title">
-            Ship intelligence.<br />Skip the platform.
+            Ship intelligence.<br />Keep your name on it.
           </h1>
           <p className="lead partners-hero__lead">
-            Your clients want features that turn their data into decisions &mdash; and the
-            infrastructure underneath is a year you don&apos;t have. Build on the Cosmonus
-            Intelligence Layer instead, and ship it as yours.
+            Your clients want systems that turn their data into decisions &mdash; and building that
+            capability in-house is years you don&apos;t have. Partner with the engineers who build
+            these systems from first principles, and ship it as yours.
           </p>
         </div>
       </section>

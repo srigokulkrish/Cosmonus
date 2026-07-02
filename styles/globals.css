@@ -1006,12 +1006,8 @@ body.cos-no-scroll {
 @media (prefers-reduced-motion: reduce) {
   .hero-eyebrow--live .hero-eyebrow__dot { animation: none; }
 }
-/* Gradient accent on the hero title's payoff word */
+/* Brand accent on the hero title's payoff word */
 .hero-title__accent {
-  background: linear-gradient(135deg, var(--brand) 0%, #3882F6 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   color: var(--brand);
 }
 .hero-left { max-width: 560px; }
@@ -2383,11 +2379,7 @@ body.cos-no-scroll {
   letter-spacing: -0.04em;
   line-height: 1.0;
   font-weight: 500;
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-hover) 60%, var(--accent-pink) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: var(--brand);
 }
 .coming-soon-desc {
   margin: 0;
@@ -6017,9 +6009,7 @@ body.cos-no-scroll {
 
 .cx-mono { font-family: var(--font-geist-mono), monospace; }
 .cx-gradient-text {
-  background: linear-gradient(100deg, var(--fg) 20%, var(--brand) 62%, var(--accent-cyan) 95%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
+  color: var(--brand);
 }
 
 /* ── HERO ─────────────────────────────────────────────── */
@@ -6193,6 +6183,104 @@ body.cos-no-scroll {
   width: 5px; height: 5px; border-right: 1px solid var(--brand); border-bottom: 1px solid var(--brand);
 }
 
+/* ── MICRO ANIMATIONS ─────────────────────────────────── */
+
+/* Hero entrance — pure CSS, staggered rise on page load */
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-inner--solo > *,
+.about-hero__text > *,
+.about-hero__visuals,
+.products-hero__inner > *,
+.som-hero__text > *,
+.som-hero__visual,
+.contact-hero .container > *,
+.careers-hero .container > *,
+.partners-hero .container > *,
+.res-hero .container > *,
+.blog-page-hero__inner > div > *,
+.coming-soon-inner > *,
+.cx-hero__inner > * {
+  animation: heroRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--hr, 0) * 90ms + 50ms);
+}
+:is(
+  .hero-inner--solo, .about-hero__text, .products-hero__inner, .som-hero__text,
+  .contact-hero .container, .careers-hero .container, .partners-hero .container,
+  .res-hero .container, .blog-page-hero__inner > div, .coming-soon-inner, .cx-hero__inner
+) > :nth-child(2) { --hr: 1; }
+:is(
+  .hero-inner--solo, .about-hero__text, .products-hero__inner, .som-hero__text,
+  .contact-hero .container, .careers-hero .container, .partners-hero .container,
+  .res-hero .container, .blog-page-hero__inner > div, .coming-soon-inner, .cx-hero__inner
+) > :nth-child(3) { --hr: 2; }
+:is(
+  .hero-inner--solo, .about-hero__text, .products-hero__inner, .som-hero__text,
+  .contact-hero .container, .careers-hero .container, .partners-hero .container,
+  .res-hero .container, .blog-page-hero__inner > div, .coming-soon-inner, .cx-hero__inner
+) > :nth-child(4) { --hr: 3; }
+:is(
+  .hero-inner--solo, .about-hero__text, .products-hero__inner, .som-hero__text,
+  .contact-hero .container, .careers-hero .container, .partners-hero .container,
+  .res-hero .container, .blog-page-hero__inner > div, .coming-soon-inner, .cx-hero__inner
+) > :nth-child(5) { --hr: 4; }
+:is(
+  .hero-inner--solo, .about-hero__text, .products-hero__inner, .som-hero__text,
+  .contact-hero .container, .careers-hero .container, .partners-hero .container,
+  .res-hero .container, .blog-page-hero__inner > div, .coming-soon-inner, .cx-hero__inner
+) > :nth-child(n + 6) { --hr: 5; }
+.about-hero__visuals, .som-hero__visual { --hr: 3; }
+
+/* Scroll reveal — applied by CxReveal to below-fold elements */
+.rv {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--rv-i, 0) * 70ms);
+  will-change: opacity, transform;
+}
+.rv.rv-in { opacity: 1; transform: none; }
+
+/* Hover micro-interactions — card lift + border response */
+.som-feature, .res-tool, .res-checklist-card, .res-glossary__item,
+.about-how__card, .about-vibe__step, .about-tcard, .about-values__card,
+.partners-type-card, .partners-benefit, .about-disciplines__item,
+.som-hiw-col, .som-stack-row, .contact-trust-pill, .cfaq__item {
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.som-feature:hover, .res-tool:hover, .res-checklist-card:hover,
+.about-how__card:hover, .about-vibe__step:hover, .about-tcard:hover,
+.about-values__card:hover, .partners-type-card:hover, .partners-benefit:hover {
+  transform: translateY(-3px);
+}
+.res-checklist-card:hover, .about-how__card:hover,
+.partners-type-card:hover, .partners-benefit:hover, .cfaq__item:hover {
+  border-color: var(--border-strong);
+}
+.about-disciplines__item:hover, .res-glossary__item:hover, .som-stack-row:hover {
+  background-color: rgba(99, 91, 255, 0.05);
+}
+.trusted-logo__img { transition: opacity 0.3s ease, filter 0.3s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-inner--solo > *, .about-hero__text > *, .about-hero__visuals,
+  .products-hero__inner > *, .som-hero__text > *, .som-hero__visual,
+  .contact-hero .container > *, .careers-hero .container > *,
+  .partners-hero .container > *, .res-hero .container > *,
+  .blog-page-hero__inner > div > *, .coming-soon-inner > *, .cx-hero__inner > * {
+    animation: none;
+  }
+  .rv { opacity: 1; transform: none; transition: none; }
+}
+
 /* ── KNOWLEDGE GRAPH visual ───────────────────────────── */
 .cx-kgraph {
   position: relative; aspect-ratio: 1 / 1; width: 100%; max-width: 460px; margin-inline: auto;
@@ -6332,8 +6420,7 @@ body.cos-no-scroll {
   display: flex;
   align-items: stretch;
   gap: 0;
-  max-width: 1120px;
-  margin-inline: auto;
+  width: 100%;
 }
 .cx-pipe__node {
   flex: 1 1 0;
@@ -6398,7 +6485,7 @@ body.cos-no-scroll {
 @keyframes cx-travel-x { from { left: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } to { left: 100%; opacity: 0; } }
 
 @media (max-width: 900px) {
-  .cx-pipe { flex-direction: column; max-width: 460px; }
+  .cx-pipe { flex-direction: column; }
   .cx-pipe__node { width: 100%; }
   .cx-pipe__link { width: 2px; height: clamp(20px, 4vw, 34px); }
   .cx-pipe__link::before {

@@ -4,12 +4,12 @@ import { useRef } from 'react'
 
 const BLOGS = [
   {
-    title: 'The Intelligence Layer: Why Every Operation Needs One',
-    tag: 'Platform',
+    title: 'What Makes a System Intelligent — and Why Most "AI Features" Aren\'t',
+    tag: 'Foundations',
     gradient: 'linear-gradient(135deg, #635BFF 0%, #3882F6 100%)',
   },
   {
-    title: 'Knowledge Graphs, Explained for Operators',
+    title: 'How Software Reasons: Knowledge Systems, Explained for Operators',
     tag: 'Engineering',
     gradient: 'linear-gradient(135deg, #0f3443 0%, #34e89e 100%)',
   },
@@ -19,13 +19,13 @@ const BLOGS = [
     gradient: 'linear-gradient(135deg, #f46b45 0%, #eea849 100%)',
   },
   {
-    title: 'Decision Automation: Workflows That Act on Their Own',
-    tag: 'Automation',
+    title: 'Autonomy Is Granted, Not Assumed: Oversight in Decision Systems',
+    tag: 'Trust',
     gradient: 'linear-gradient(135deg, #635BFF 0%, #3882F6 100%)',
   },
   {
-    title: 'Spatial Intelligence in Production: Lessons from StayOnMap',
-    tag: 'Spatial',
+    title: 'Intelligence in Production: Lessons from StayOnMap',
+    tag: 'Case Study',
     gradient: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
   },
 ]
@@ -46,9 +46,9 @@ export default function BlogSection() {
         {/* Header */}
         <div className="blog-header">
           <div className="blog-header__left">
-            <h2 className="blog-header__title">Insights & ideas from the Cosmonus team</h2>
+            <h2 className="blog-header__title">Notes from the engineers</h2>
             <p className="blog-header__desc">
-              Field notes on intelligence infrastructure — graphs, agents, decisions.
+              How intelligent systems work, where they fail, and what we learn running them.
             </p>
           </div>
           <a href="/blogs" className="btn-ghost btn--sm btn-arrow">All posts</a>

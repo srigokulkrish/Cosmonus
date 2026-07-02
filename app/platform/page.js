@@ -1,31 +1,30 @@
 import Link from 'next/link';
-import CxReveal from '@/components/CxReveal';
 
 export const metadata = {
-  title: 'How We Build — AI Systems That Automate Work | Cosmonus',
+  title: 'How Intelligence Is Engineered | Cosmonus',
   description:
-    'The Cosmonus approach: we take a real, manual workflow and turn it into an AI system that runs in production. One path — discover, prototype, integrate, ship, run.',
+    'How Cosmonus turns an operation into an intelligent system: model the domain, engineer the reasoning, deploy with oversight, and operate in production. Understand → Model → Reason → Deploy → Operate.',
   keywords: [
-    'AI automation',
-    'workflow automation',
-    'AI product engineering',
-    'AI agents',
-    'applied AI',
-    'cosmonus platform',
+    'intelligence engineering',
+    'reasoning systems',
+    'AI architecture',
+    'agent orchestration',
+    'knowledge systems',
+    'decision systems',
   ],
   alternates: { canonical: '/platform' },
   openGraph: {
-    title: 'How We Build — AI That Automates Your Work | Cosmonus',
+    title: 'How Intelligence Is Engineered | Cosmonus',
     description:
-      'From a messy manual workflow to an AI system running in production. Discover → Prototype → Integrate → Ship → Run.',
+      'From an operation to a system that reasons about it. Understand → Model → Reason → Deploy → Operate.',
     url: 'https://cosmonus.com/platform',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'How We Build — Cosmonus',
+    title: 'How Intelligence Is Engineered — Cosmonus',
     description:
-      'From manual work to AI that runs it — one path from first look to production.',
+      'From an operation to a system that reasons about it — one disciplined path to production.',
     images: ['/images/ICON.png'],
   },
 };
@@ -33,103 +32,103 @@ export const metadata = {
 const PHASES = [
   {
     icon: 'search',
-    title: 'Discover',
-    lead: 'We map the workflow and find where the manual, repetitive work actually is.',
-    tags: ['audit', 'map', 'scope'],
+    title: 'Understand',
+    lead: 'We study the operation before writing code — the entities, the decisions, and where judgment actually lives.',
+    tags: ['domain', 'decisions', 'constraints'],
   },
   {
     icon: 'spark',
-    title: 'Prototype',
-    lead: 'A working AI prototype in days — something you can click, not a spec to read.',
-    tags: ['design', 'generate', 'demo'],
+    title: 'Model',
+    lead: 'We build a working model of your world — data, relationships, and rules the system can reason against.',
+    tags: ['knowledge', 'structure', 'signals'],
     accent: true,
   },
   {
     icon: 'plug',
-    title: 'Integrate',
-    lead: 'We wire it into the tools and data you already run — CRM, ERP, sheets, warehouses.',
-    tags: ['connect', 'data', 'auth'],
+    title: 'Reason',
+    lead: 'We engineer the decision logic: what the system infers, when it acts, and when it defers to a person.',
+    tags: ['inference', 'agents', 'thresholds'],
   },
   {
     icon: 'ship',
-    title: 'Ship',
-    lead: 'Into production — tested, monitored, and with humans in the loop where it matters.',
-    tags: ['test', 'deploy', 'monitor'],
+    title: 'Deploy',
+    lead: 'Into production against live data — evaluated, monitored, with every decision traceable to its evidence.',
+    tags: ['evaluate', 'observe', 'trace'],
     accent: true,
   },
   {
     icon: 'loop',
-    title: 'Run',
-    lead: 'It runs the work every day. We keep it sharp as your operation changes.',
-    tags: ['operate', 'improve', 'scale'],
+    title: 'Operate',
+    lead: 'The system keeps learning from outcomes. We measure decision quality and tighten it as your operation changes.',
+    tags: ['measure', 'refine', 'scale'],
   },
 ];
 
 const CAPABILITIES = [
   {
-    title: 'Workflow Automation',
-    body: 'Encode a process once; AI runs it end to end, every time — no one re-keying data or chasing handoffs.',
+    title: 'Reasoning Engines',
+    body: 'The core of every system we build: logic that weighs evidence, draws conclusions, and can show its work.',
   },
   {
-    title: 'AI Agents',
-    body: 'Long-running workers that plan a task, use your tools, and check their own work before acting.',
+    title: 'Agent Orchestration',
+    body: 'Autonomous workers that plan, use your tools, and verify their own output — coordinated, bounded, and observable.',
   },
   {
-    title: 'Document Processing',
-    body: 'Turn contracts, invoices, and forms into structured data your systems can act on.',
+    title: 'Knowledge Systems',
+    body: 'Your entities, relationships, and history structured into a model the system reasons against — data becomes knowledge.',
   },
   {
-    title: 'Integrations',
-    body: 'Pre-built connectors for the tools you already run — CRM, ERP, spreadsheets, and warehouses.',
+    title: 'Workflow Intelligence',
+    body: 'Processes that don’t just execute steps — they understand state, handle exceptions, and route judgment to people.',
   },
   {
-    title: 'Data Pipelines',
-    body: 'Durable ingestion for high-volume feeds, with replay and backfill built in.',
+    title: 'Prediction',
+    body: 'Forecasts of demand, risk, and failure trained on your own history — with confidence levels, not just numbers.',
   },
   {
-    title: 'Predictive Models',
-    body: 'Forecast demand, risk, and failure from your own history — not a generic template.',
+    title: 'Decision Support',
+    body: 'When the call belongs to a human, the system assembles the evidence, states its recommendation, and explains why.',
   },
   {
-    title: 'Internal Tools',
-    body: 'Custom dashboards and apps that put the automation in your team’s hands.',
+    title: 'Data Foundations',
+    body: 'Durable pipelines that turn raw feeds into reliable inputs — because reasoning is only as good as what it reads.',
   },
   {
-    title: 'APIs & SDK',
-    body: 'A typed surface to query, trigger, and wire automation directly into your own code.',
+    title: 'Human Oversight',
+    body: 'Approval gates, overrides, and escalation designed into the architecture — autonomy is granted, never assumed.',
   },
   {
-    title: 'Analytics',
-    body: 'Query live and historical state together — every metric traces to the work behind it.',
+    title: 'Infrastructure',
+    body: 'Typed APIs, monitoring, and audit trails — the engineering that makes intelligence dependable at scale.',
   },
 ];
 
 const COMPARE = [
   {
-    before: 'Data re-keyed between systems by hand',
-    after: 'Data flows in and updates itself',
+    before: 'Rules written once, wrong within a year',
+    after: 'A model of the business that adapts as it changes',
   },
   {
-    before: 'Answers arrive a week late',
-    after: 'Decisions happen in milliseconds',
+    before: 'Data collected, reported, never acted on',
+    after: 'Data reasoned over and turned into decisions',
   },
   {
-    before: 'Work sits waiting in someone’s inbox',
-    after: 'The workflow runs on its own',
+    before: 'Every exception escalates to a person',
+    after: 'Exceptions handled; judgment routed to people',
   },
   {
-    before: 'Scaling means hiring more people',
-    after: 'Scaling is a config change',
+    before: 'Nobody can say why the system did that',
+    after: 'Every decision traceable to its evidence',
   },
 ];
 
 const RELIABILITY = [
-  { title: 'Human in the Loop', body: 'Approvals and overrides where they matter — automation you can trust, not a black box.' },
-  { title: 'Monitoring & Alerts', body: 'Every run is observed; you know the moment something needs attention.' },
-  { title: 'Role-Based Access', body: 'Scoped permissions down to the action and record level.' },
-  { title: 'Encryption', body: 'Data encrypted in transit and at rest, with managed key rotation.' },
-  { title: 'Audit Logs', body: 'An immutable record of every automated action and decision.' },
-  { title: 'Reliability', body: 'Retries, fallbacks, and graceful failure — built for real workloads.' },
+  { title: 'Explainability', body: 'A system that can’t explain its decision doesn’t get to make it. Every conclusion carries its reasoning.' },
+  { title: 'Human Oversight', body: 'Approvals and overrides where the stakes demand them — autonomy is scoped decision by decision.' },
+  { title: 'Audit Trails', body: 'An immutable record of every decision: what the system saw, what it inferred, what it did.' },
+  { title: 'Access Control', body: 'Permissions scoped to the action and record level — intelligence operates inside boundaries you set.' },
+  { title: 'Security', body: 'Data encrypted in transit and at rest, with managed key rotation. Your data trains your system, no one else’s.' },
+  { title: 'Reliability', body: 'Retries, fallbacks, and graceful degradation — a system trusted with decisions must survive bad days.' },
 ];
 
 function PhaseIcon({ name }) {
@@ -189,43 +188,42 @@ function PhaseIcon({ name }) {
 export default function PlatformPage() {
   return (
     <>
-      <CxReveal />
-
       <section className="cx-hero">
         <div className="container">
           <div className="cx-hero__inner">
             <span className="cx-eyebrow">
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              The Cosmonus Approach
+              How We Engineer Intelligence
             </span>
             <h1 className="cx-hero__title cx-hero__title--oneline">
-              From manual work to <span className="cx-gradient-text">AI that runs it.</span>
+              Software that follows rules. <span className="cx-gradient-text">Systems that reason.</span>
             </h1>
             <p className="cx-hero__sub">
-              Cosmonus takes a real workflow — the messy, manual, repetitive kind — and turns it into
-              an AI system that runs in production. One clear path, from the first look at your process
-              to something your team actually relies on.
+              Traditional software encodes decisions someone already made. An intelligent system makes
+              them — it holds a model of your operation, weighs live evidence against it, and acts.
+              This is how we build one: a disciplined path from understanding your domain to a system
+              you trust in production.
             </p>
             <div className="cx-hero__actions">
               <Link className="btn-cosmonus btn-arrow" href="/contact">
-                Get Started
+                Discuss your system
               </Link>
               <Link className="btn-ghost" href="/products/stayonmap">
-                See StayOnMap
+                See it in production
               </Link>
             </div>
             <div className="cx-strip">
               <div className="cx-strip__item">
-                <span className="cx-strip__val">Days</span>
-                <span className="cx-strip__lbl">To a working prototype</span>
+                <span className="cx-strip__val">First&nbsp;principles</span>
+                <span className="cx-strip__lbl">Designed, not assembled from tools</span>
               </div>
               <div className="cx-strip__item">
                 <span className="cx-strip__val">End&nbsp;to&nbsp;end</span>
-                <span className="cx-strip__lbl">Discovery to running system</span>
+                <span className="cx-strip__lbl">Domain model to running system</span>
               </div>
               <div className="cx-strip__item">
-                <span className="cx-strip__val">In&nbsp;the&nbsp;loop</span>
-                <span className="cx-strip__lbl">Humans stay in control</span>
+                <span className="cx-strip__val">Accountable</span>
+                <span className="cx-strip__lbl">Every decision traceable</span>
               </div>
               <div className="cx-strip__item">
                 <span className="cx-strip__val">Production</span>
@@ -242,12 +240,13 @@ export default function PlatformPage() {
           <div className="cx-section-head">
             <span className="cx-eyebrow">
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              The Path
+              The Method
             </span>
-            <h2 className="cx-heading">Five steps from workflow to working AI.</h2>
+            <h2 className="cx-heading">Five phases from operation to intelligence.</h2>
             <p className="cx-lead cx-lead--wide">
-              No year-long project, no stack of tools to stitch together. One continuous path — you can
-              see it working long before it ships.
+              Intelligence isn&apos;t a model you plug in — it&apos;s an architecture you design.
+              Each phase earns the next: we don&apos;t write reasoning logic until the domain is
+              modeled, and nothing reaches production untested against your real data.
             </p>
           </div>
 
@@ -290,14 +289,14 @@ export default function PlatformPage() {
           <div className="cx-section-head">
             <span className="cx-eyebrow cx-eyebrow--cyan">
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              The Difference
+              Why Intelligence, Not Automation
             </span>
-            <h2 className="cx-heading">What changes when the work runs itself.</h2>
+            <h2 className="cx-heading">Automation repeats instructions. Intelligence exercises judgment.</h2>
           </div>
 
           <div className="cx-compare" data-cx-reveal>
             <div className="cx-compare__col cx-compare__col--before">
-              <p className="cx-compare__label">Manual today</p>
+              <p className="cx-compare__label">Traditional software</p>
               <ul className="cx-compare__list">
                 {COMPARE.map((row) => (
                   <li key={row.before}>
@@ -315,7 +314,7 @@ export default function PlatformPage() {
             </div>
 
             <div className="cx-compare__col cx-compare__col--after">
-              <p className="cx-compare__label">With Cosmonus</p>
+              <p className="cx-compare__label">An intelligent system</p>
               <ul className="cx-compare__list">
                 {COMPARE.map((row) => (
                   <li key={row.after}>
@@ -335,12 +334,12 @@ export default function PlatformPage() {
           <div className="cx-section-head">
             <span className="cx-eyebrow">
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              What We Build
+              What We Engineer
             </span>
-            <h2 className="cx-heading">The building blocks of an automation.</h2>
+            <h2 className="cx-heading">The anatomy of an intelligent system.</h2>
             <p className="cx-lead cx-lead--wide">
-              Most systems we ship are a few of these working together — chosen for your workflow, not
-              sold as a fixed bundle.
+              Every system we build composes these disciplines — selected for the decisions your
+              operation needs to make, not sold as a fixed bundle.
             </p>
           </div>
           <div className="cx-grid cx-grid--3">
@@ -366,12 +365,13 @@ export default function PlatformPage() {
           <div className="cx-section-head">
             <span className="cx-eyebrow cx-eyebrow--cyan">
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              Built to Run
+              Built to Be Trusted
             </span>
-            <h2 className="cx-heading">Automation you can actually depend on.</h2>
+            <h2 className="cx-heading">A system that decides must answer for its decisions.</h2>
             <p className="cx-lead cx-lead--wide">
-              A demo runs once. Production runs every day, on your real data — so control, visibility,
-              and reliability are built in from the start.
+              Trust in an intelligent system isn&apos;t a feeling — it&apos;s an architecture.
+              Explainability, oversight, and auditability are designed in from the first line,
+              because you can&apos;t bolt accountability onto a black box.
             </p>
           </div>
           <div className="cx-grid cx-grid--3">
@@ -390,17 +390,17 @@ export default function PlatformPage() {
           <div className="cx-cta">
             <span className="cx-eyebrow" style={{ justifyContent: 'center' }}>
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              Start with one workflow
+              Start with one decision
             </span>
             <h2 className="cx-heading cx-heading--xl">
-              Ready to <span className="cx-gradient-text">automate the work?</span>
+              Bring us the problem <span className="cx-gradient-text">software couldn&apos;t solve.</span>
             </h2>
             <div className="cx-cta__actions">
               <Link className="btn-cosmonus btn-arrow" href="/contact">
-                Get Started
+                Discuss your system
               </Link>
               <Link className="btn-ghost" href="/products/stayonmap">
-                See StayOnMap
+                See it in production
               </Link>
             </div>
           </div>

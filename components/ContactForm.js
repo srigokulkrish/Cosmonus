@@ -4,11 +4,11 @@ import { useState } from 'react'
 import CustomSelect from '@/components/CustomSelect'
 
 const PROJECT_TYPES = [
-  'Spatial Intelligence',
-  'Enterprise Intelligence',
-  'Decision Automation',
-  'Agent / AI Intelligence',
-  'Platform integration',
+  'Reasoning & decision system',
+  'Agent orchestration',
+  'Knowledge system',
+  'Prediction & forecasting',
+  'Workflow intelligence',
   'Something else',
 ]
 
@@ -22,9 +22,9 @@ const BUDGETS = [
 ]
 
 const NEXT_STEPS = [
-  { n: '01', title: 'We review your brief', body: 'We read your message and study your data and decision workflows before replying.' },
-  { n: '02', title: 'You get a tailored reply', body: 'Within one business day — initial thoughts, a fit assessment, and next steps.' },
-  { n: '03', title: 'Discovery call', body: 'A 30-minute call to align on your use case, scope, and fit.' },
+  { n: '01', title: 'We study the problem', body: 'We read your message and think about the decision, the data, and the architecture before replying.' },
+  { n: '02', title: 'You get an engineering answer', body: 'Within one business day — whether intelligence helps here, and what we\'d build first.' },
+  { n: '03', title: 'Working session', body: 'A 30-minute call to walk the problem together — engineer to engineer, not a sales script.' },
 ]
 
 export default function ContactForm() {
@@ -126,7 +126,7 @@ export default function ContactForm() {
           required
           value={form.message}
           onChange={update('message')}
-          placeholder="What data do you have, and what decisions do you want to automate? Add your goals and timeline."
+          placeholder="Describe the decision or problem: who makes it today, what data feeds it, and what it costs when it goes wrong. Timelines welcome."
         />
       </div>
 

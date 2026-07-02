@@ -47,18 +47,18 @@ const TESTIMONIALS = [
 
 const VALUES = [
   {
-    title: 'Quality',
-    body: "Every deliverable meets a standard we'd put our name on — deadlines never the reason it slips.",
+    title: 'Rigor',
+    body: 'We understand a problem before we write code for it. A system that reasons about your business has to be built by people who reasoned about it first.',
     gradient: 'linear-gradient(135deg, #635BFF 0%, #3882F6 100%)',
   },
   {
     title: 'Transparency',
-    body: 'No vague updates, no hidden timelines — you always know where things stand and what\'s next.',
+    body: 'Our systems explain their decisions, and so do we — you always know what was built, why, and where it stands.',
     gradient: 'linear-gradient(135deg, #3882F6 0%, #635BFF 100%)',
   },
   {
-    title: 'Commitment',
-    body: "We only say yes to work we can actually deliver — then we deliver it.",
+    title: 'Accountability',
+    body: 'We only take on systems we can stand behind in production — then we stand behind them.',
     gradient: 'linear-gradient(135deg, #635BFF 0%, #7C3AED 100%)',
   },
 ]
@@ -66,18 +66,18 @@ const VALUES = [
 const HOW = [
   {
     n: '01',
-    title: 'Validate',
-    body: 'We test ideas against real users before investing fully — not assumptions.',
+    title: 'Understand',
+    body: 'We map the decisions before the data. The hardest work in intelligence happens before the first line of code.',
   },
   {
     n: '02',
-    title: 'Iterate',
-    body: 'We move fast on feedback. The market matters more than internal opinion.',
+    title: 'Engineer',
+    body: 'Architecture from first principles — reasoning, oversight, and auditability designed in, not patched on.',
   },
   {
     n: '03',
-    title: 'Ship',
-    body: 'A product learning in the market beats a perfect one still in planning.',
+    title: 'Prove',
+    body: 'A system earns trust in production, against live data — not in a slide about what it will someday do.',
   },
 ]
 
@@ -85,65 +85,65 @@ const VIBE_STEPS = [
   {
     n: '01',
     title: 'Describe',
-    body: 'Tell us the outcome you\'re after in plain language — no specs, no briefs.',
+    body: 'You state the outcome in plain language. We translate it into architecture — the thinking stays human.',
   },
   {
     n: '02',
     title: 'Generate',
-    body: 'AI produces the first working version fast; engineers review and refine every output.',
+    body: 'AI produces the first working version fast; engineers review, constrain, and harden every output.',
   },
   {
     n: '03',
     title: 'Iterate',
-    body: 'Feedback loops in hours, not weeks — you see it working as you explain it.',
+    body: 'Feedback loops in hours, not weeks — you judge working systems, not documents about them.',
   },
   {
     n: '04',
     title: 'Ship',
-    body: 'Production-ready software in days, not weeks — humans stay in the loop.',
+    body: 'Production-grade in days — with the guardrails, tests, and oversight a real system demands.',
   },
 ]
 
 const VIBE_GAINS = [
   { value: '3×', label: 'Faster delivery vs traditional development' },
-  { value: '↓ Cost', label: 'Less time on boilerplate, more on what matters' },
+  { value: '↓ Cost', label: 'Less spent on boilerplate, more on the hard problems' },
   { value: 'More loops', label: 'Same budget, dramatically more iterations' },
-  { value: 'Same quality', label: 'Engineers on architecture, AI on execution' },
+  { value: 'Same rigor', label: 'Engineers own architecture and judgment, AI executes' },
 ]
 
 const CONTRAST = [
-  { old: 'Process-first thinking', ours: 'Outcome-first execution' },
-  { old: 'Meetings about meetings', ours: 'Direct, async communication' },
-  { old: 'Roadmaps that never ship', ours: 'Working software, fast' },
-  { old: 'Strategy decks, no follow-through', ours: 'Real applications that reach users' },
+  { old: 'Stitch existing tools, call it AI', ours: 'Design the system from first principles' },
+  { old: 'Sell features off a services menu', ours: 'Start from the decision that needs making' },
+  { old: 'Demos that never survive contact', ours: 'Systems proven against live production data' },
+  { old: 'Black boxes nobody can question', ours: 'Every decision traceable to its evidence' },
 ]
 
 const DISCIPLINES = [
-  { label: 'Workflow Automation' },
-  { label: 'AI Agents' },
-  { label: 'Document Processing' },
-  { label: 'Data Pipelines' },
-  { label: 'Predictive Models' },
-  { label: 'Internal Tools' },
-  { label: 'Custom Integrations' },
-  { label: 'Applied AI' },
+  { label: 'Reasoning Engines' },
+  { label: 'Agent Orchestration' },
+  { label: 'Knowledge Systems' },
+  { label: 'Workflow Intelligence' },
+  { label: 'Prediction' },
+  { label: 'Decision Support' },
+  { label: 'Data Foundations' },
+  { label: 'Custom Software' },
 ]
 
 export const metadata = {
-  title: 'About Cosmonus | AI Systems That Automate Work',
-  description: 'Cosmonus is a product and engineering team that builds AI systems to automate real workflows — from first prototype to production. Founded by Sri Gokul Krishnan.',
-  keywords: ['about cosmonus', 'AI automation', 'AI product engineering', 'Sri Gokul Krishnan', 'applied AI', 'workflow automation'],
+  title: 'About Cosmonus | An Intelligence Company',
+  description: 'Cosmonus engineers intelligent systems — software that understands a business, reasons over its data, and decides. Founded by Sri Gokul Krishnan; every system designed from first principles.',
+  keywords: ['about cosmonus', 'intelligence company', 'AI engineering', 'Sri Gokul Krishnan', 'reasoning systems', 'intelligent software'],
   alternates: { canonical: '/about' },
   openGraph: {
-    title: 'About Cosmonus | AI Systems That Automate Work',
-    description: 'A product and engineering team building AI that takes on the manual, repetitive work — from first prototype to production.',
+    title: 'About Cosmonus | An Intelligence Company',
+    description: 'We engineer systems that understand, reason, and decide — designed from first principles, proven in production.',
     url: 'https://cosmonus.com/about',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About Cosmonus',
-    description: 'AI systems that automate the work — built to ship, not to demo.',
+    description: 'We engineer intelligence — systems that understand, reason, and decide.',
     images: ['/images/ICON.png'],
   },
 }
@@ -157,12 +157,13 @@ export default function AboutPage() {
             <div className="about-hero__text">
               <span className="eyebrow">About Cosmonus</span>
               <h1 className="about-hero__title">
-                We do what&apos;s needed.<br />Not what&apos;s comfortable.
+                We don&apos;t build software.<br />We engineer intelligence.
               </h1>
               <p className="lead about-hero__lead">
-                Most teams lose hours a day to work software should be doing — manual handoffs,
-                repetitive decisions, data re-keyed by hand. We build AI systems that take that work
-                on end to end, from first prototype to something you run in production.
+                Every business runs on decisions its software can&apos;t make — so people make them,
+                slowly, from data spread across ten systems. Cosmonus builds systems that understand
+                the operation, reason over the data, and make those decisions accountable — designed
+                from first principles, not stitched together from existing tools.
               </p>
             </div>
             <div className="about-hero__visuals">
@@ -181,17 +182,18 @@ export default function AboutPage() {
           <div className="about-why__grid">
             <div className="about-why__left">
               <span className="eyebrow">Why we exist</span>
-              <h2 className="about-why__title">Built out of frustration with how things get done.</h2>
+              <h2 className="about-why__title">Built on a conviction: software should think, not just record.</h2>
             </div>
             <div className="about-why__right">
               <p>
-                Every company I worked at cared more about process than outcome — meetings about
-                meetings, roadmaps that never shipped, strategy decks that never touched a real user.
+                Every company I worked at had the same gap. The data existed. The answers were in it.
+                And still, every decision that mattered was made by a person reading dashboards a week
+                too late — because the software could store the business, but couldn&apos;t understand it.
               </p>
               <p>
-                Most software is the same: work that could be automated is still done by hand,
-                answers arrive a week late. Cosmonus builds AI that runs the workflow itself — and
-                StayOnMap, our first product, is proof of what that looks like shipped.
+                Cosmonus exists to close that gap. We build systems that hold a model of the operation
+                and reason over it — and StayOnMap, our first product, is that conviction running in
+                production, not a thesis in a deck.
               </p>
             </div>
           </div>
@@ -203,10 +205,11 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-vibe__head">
             <span className="eyebrow">How we build</span>
-            <h2 className="about-vibe__title">Vibe coding — describe it, ship it.</h2>
+            <h2 className="about-vibe__title">AI-native engineering, with human judgment in charge.</h2>
             <p className="about-vibe__lead">
-              Pioneered by Andrej Karpathy: describe what you want in plain English, AI generates it.
-              It&apos;s why the gap between ask and running software is measured in hours.
+              We build intelligent systems the way we&apos;d advise you to run them: AI does the
+              execution, engineers own the architecture and the judgment. It&apos;s why the gap
+              between a stated outcome and a running system is measured in days.
             </p>
           </div>
 
@@ -230,8 +233,9 @@ export default function AboutPage() {
           </div>
 
           <p className="about-vibe__note">
-            Vibe coding doesn&apos;t replace engineers — it multiplies them. AI handles execution;
-            our team handles judgement.
+            AI doesn&apos;t replace engineering discipline — it raises the bar for it. The teams that
+            win with AI aren&apos;t the ones generating the most code; they&apos;re the ones who can
+            trust what they generate.
           </p>
         </div>
       </section>
@@ -279,7 +283,7 @@ export default function AboutPage() {
 
               <div className="about-founder__building">
                 <p className="about-founder__obsessions-label">Currently building</p>
-                <p><strong>AI systems that automate real work</strong> — and <strong>StayOnMap</strong>, our first product: applied to India&apos;s rental market with direct owner contact, live trust scoring, AI-driven fraud detection, and full lease management. Proof of what we ship.</p>
+                <p><strong>Intelligent systems that reason and decide</strong> — and <strong>StayOnMap</strong>, our first product: intelligence applied to India&apos;s rental market, with live trust scoring, autonomous fraud detection, and full lease management. Proof of what we engineer.</p>
               </div>
 
               <a href="https://srigokulkrishnan.com" target="_blank" rel="noopener noreferrer" className="about-founder__link">
@@ -331,7 +335,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-how__head">
             <span className="eyebrow">How we work</span>
-            <h2 className="about-how__title">Validate. Iterate. Ship.</h2>
+            <h2 className="about-how__title">Understand. Engineer. Prove.</h2>
           </div>
           <div className="about-how__grid">
             {HOW.map((s) => (
@@ -373,11 +377,11 @@ export default function AboutPage() {
       <section className="about-disciplines">
         <div className="container">
           <div className="about-disciplines__head">
-            <span className="eyebrow">What we build</span>
-            <h2 className="about-disciplines__title">One team, many capabilities.</h2>
+            <span className="eyebrow">What we engineer</span>
+            <h2 className="about-disciplines__title">One team, the full stack of intelligence.</h2>
             <p className="lead about-disciplines__lead">
-              Not off-the-shelf tools to wire together — AI built around your actual workflows and
-              the systems you already run.
+              Not off-the-shelf tools wired together — systems designed around your decisions,
+              your data, and the software you already run.
             </p>
           </div>
           <div className="about-disciplines__grid">

@@ -2,19 +2,19 @@ import ComingSoon from '@/components/ComingSoon'
 
 export const metadata = {
   title: 'Pricing | Cosmonus',
-  description: 'Transparent pricing for the Cosmonus Intelligence Layer — knowledge graphs, predictive and agent intelligence, and decision automation at the scale you need.',
-  keywords: ['intelligence platform pricing', 'AI infrastructure pricing', 'enterprise intelligence plans', 'platform access', 'usage-based intelligence'],
+  description: 'How Cosmonus engagements are priced: a fixed-price first phase with a defined outcome, scoped to the decision your system needs to make — never an open-ended research project.',
+  keywords: ['AI engineering pricing', 'intelligent systems cost', 'AI engagement pricing', 'fixed price AI project'],
   alternates: { canonical: '/pricing' },
   openGraph: {
     title: 'Pricing | Cosmonus',
-    description: 'Transparent pricing for the Cosmonus Intelligence Layer — platform capabilities at the scale you need.',
+    description: 'A fixed-price first phase with a defined outcome — never an open-ended research project.',
     url: 'https://cosmonus.com/pricing',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pricing | Cosmonus',
-    description: 'Transparent pricing for the Cosmonus Intelligence Layer.',
+    description: 'A fixed-price first phase with a defined outcome — never an open-ended research project.',
     images: ['/images/ICON.png'],
   },
 }

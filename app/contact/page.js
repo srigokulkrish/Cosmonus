@@ -2,33 +2,33 @@ import ContactForm from '@/components/ContactForm'
 import ContactFaqAccordion from '@/components/ContactFaqAccordion'
 
 const TRUST_PILLS = [
-  'Free technical consult',
+  'You talk to an engineer',
   'Reply within 24 h',
   'No commitment required',
 ]
 
 
 const NEXT_STEPS = [
-  { n: '01', title: 'We read your brief', body: 'We map your data and the decision it should drive — so our first reply is about your problem, not our pitch.' },
-  { n: '02', title: 'You get a straight answer', body: 'Within one business day: where the leverage is, whether we fit, and what the first step costs.' },
-  { n: '03', title: 'We deploy with you', body: 'We embed with your team, stand the first version up on your data, and stay until it runs in production.' },
+  { n: '01', title: 'We study the problem', body: 'We map the decision you described — what feeds it, who makes it today, and what a system would need to know to make it well.' },
+  { n: '02', title: 'You get an engineering answer', body: 'Within one business day: whether intelligence helps here, what the architecture looks like, and an honest read on fit.' },
+  { n: '03', title: 'We build it with you', body: 'We embed with your team, stand the first version up on your data, and stay until it earns trust in production.' },
 ]
 
 export const metadata = {
-  title: 'Contact Cosmonus | Talk to the Intelligence Team',
-  description: 'Your data lives in ten systems and every decision waits on all of them. Tell us the decision you want to automate — we reply within a business day, starting with a free technical consult.',
-  keywords: ['contact cosmonus', 'intelligence platform', 'AI infrastructure', 'enterprise intelligence', 'decision automation contact'],
+  title: 'Contact Cosmonus | Bring Us a Hard Problem',
+  description: 'Tell us the decision your business makes slowly, expensively, or by gut. We\'ll tell you — within a business day, engineer to engineer — whether an intelligent system can make it better.',
+  keywords: ['contact cosmonus', 'intelligence company', 'AI engineering', 'decision systems', 'intelligent software consultation'],
   alternates: { canonical: '/contact' },
   openGraph: {
-    title: 'Contact Cosmonus | Talk to the Intelligence Team',
-    description: 'Tell us the decision your data should be driving. We reply within a business day.',
+    title: 'Contact Cosmonus | Bring Us a Hard Problem',
+    description: 'Tell us the decision your business makes slowly or by gut. We reply within a business day.',
     url: 'https://cosmonus.com/contact',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Contact Cosmonus',
-    description: 'Tell us the decision your data should be driving. We reply within a business day.',
+    description: 'Tell us the decision your business makes slowly or by gut. We reply within a business day.',
     images: ['/images/ICON.png'],
   },
 }
@@ -39,11 +39,11 @@ export default function ContactPage() {
       <section className="contact-hero">
         <div className="container">
           <span className="eyebrow">Contact</span>
-          <h1 className="contact-hero__title">The data is there.<br />The decision is waiting.</h1>
+          <h1 className="contact-hero__title">Bring us the decision<br />your software can&apos;t make.</h1>
           <p className="lead contact-hero__lead">
-            It sits across ten systems, and every call your team makes waits on all of them.
-            Tell us the decision you want to automate and what feeds it &mdash; we&apos;ll
-            reply within one business day.
+            Every business has one: the call that&apos;s made slowly, expensively, or by gut, because
+            the software only records and never reasons. Describe it &mdash; the decision, what feeds
+            it, what it costs you today &mdash; and we&apos;ll reply within one business day.
           </p>
           <div className="contact-trust-row">
             {TRUST_PILLS.map((p) => (
@@ -108,7 +108,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="contact-faq__head">
             <span className="eyebrow">FAQ</span>
-            <h2 className="contact-faq__title">The questions you&apos;re probably weighing right now.</h2>
+            <h2 className="contact-faq__title">What people ask before they work with us.</h2>
           </div>
           <ContactFaqAccordion />
         </div>

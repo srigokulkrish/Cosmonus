@@ -15,20 +15,20 @@ const LOGOS = [
 ]
 
 export const metadata = {
-  title: 'Cosmonus — AI-Native Intelligence Infrastructure',
-  description: 'Cosmonus builds the Intelligence Layer beneath modern operations — one platform that unifies data into a living knowledge graph and turns it into spatial, predictive, and agent intelligence, then into automated decisions.',
-  keywords: ['intelligence infrastructure', 'intelligence layer', 'knowledge graph', 'spatial intelligence', 'predictive intelligence', 'agent intelligence', 'decision automation', 'AI-native platform'],
+  title: 'Cosmonus — We Engineer Intelligence',
+  description: 'Cosmonus is an intelligence company. We design and build systems that understand a business, reason over its data, and make decisions that hold up in production — engineered from first principles.',
+  keywords: ['intelligence company', 'AI engineering', 'reasoning systems', 'decision systems', 'agent orchestration', 'intelligent software', 'custom AI systems'],
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Cosmonus — AI-Native Intelligence Infrastructure',
-    description: 'The Intelligence Layer beneath modern operations. Turn data into intelligence, and intelligence into decisions — on one unified platform.',
+    title: 'Cosmonus — We Engineer Intelligence',
+    description: 'Systems that understand, reason, and decide. Designed from first principles, run in production.',
     url: 'https://cosmonus.com',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cosmonus — AI-Native Intelligence Infrastructure',
-    description: 'Turn data into intelligence, and intelligence into decisions — on one unified platform.',
+    title: 'Cosmonus — We Engineer Intelligence',
+    description: 'Systems that understand, reason, and decide. Designed from first principles, run in production.',
     images: ['/images/ICON.png'],
   },
 }
@@ -41,16 +41,17 @@ export default function Home() {
         <div className="container">
           <div className="hero-inner hero-inner--solo">
             <div className="hero-eyebrow">
-              AI Product &amp; Engineering
+              An Intelligence Company
             </div>
-            <h1 className="hero-title">AI that <span className="hero-title__accent">automates</span> work.</h1>
+            <h1 className="hero-title">We engineer <span className="hero-title__accent">intelligence</span>.</h1>
             <p className="hero-subtitle">
-              Cosmonus is a product and engineering team that turns real workflows into AI that runs
-              them — reliable enough to put in production, not just a pitch deck.
+              Software has always followed instructions. We build systems that understand your
+              operation, reason over your data, and make decisions — designed from first principles
+              and accountable for every action they take.
             </p>
             <div className="hero-actions">
-              <Link href="/platform" className="btn-cosmonus btn-arrow">Explore the platform</Link>
-              <Link href="/products/stayonmap" className="btn-ghost btn-arrow">See StayOnMap</Link>
+              <Link href="/platform" className="btn-cosmonus btn-arrow">How we build intelligence</Link>
+              <Link href="/products/stayonmap" className="btn-ghost btn-arrow">See it in production</Link>
             </div>
           </div>
         </div>
@@ -60,7 +61,7 @@ export default function Home() {
       <section className="trusted-section">
         <div className="container">
           <div className="trusted-header">
-            <p className="trusted-label">Trusted by teams putting intelligence into production</p>
+            <p className="trusted-label">Trusted by teams who run our systems in production</p>
           </div>
         </div>
         <div className="trusted-marquee" aria-label="Client logos">
@@ -80,15 +81,15 @@ export default function Home() {
       {/* Stats */}
       <section className="stats-section">
         <div className="container">
-          <h2 className="stats-title">The backbone of<br />intelligent operations</h2>
+          <h2 className="stats-title">Intelligence is measured<br />in production, not demos</h2>
           <div className="stats-grid">
             <div className="stats-item">
-              <span className="stats-value">5</span>
-              <span className="stats-label">intelligence engines, one platform</span>
+              <span className="stats-value">100%</span>
+              <span className="stats-label">of decisions traceable to their evidence</span>
             </div>
             <div className="stats-item">
               <span className="stats-value">&lt;100ms</span>
-              <span className="stats-label">event to automated decision</span>
+              <span className="stats-label">from event to reasoned decision</span>
             </div>
             <div className="stats-item">
               <span className="stats-value">99.9%</span>
@@ -96,7 +97,7 @@ export default function Home() {
             </div>
             <div className="stats-item">
               <span className="stats-value">10M+</span>
-              <span className="stats-label">events processed</span>
+              <span className="stats-label">events reasoned over in production</span>
             </div>
           </div>
         </div>
