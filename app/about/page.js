@@ -119,31 +119,31 @@ const CONTRAST = [
 ]
 
 const DISCIPLINES = [
-  { label: 'Spatial Intelligence' },
-  { label: 'Enterprise Intelligence' },
-  { label: 'Knowledge Intelligence' },
-  { label: 'Predictive Intelligence' },
-  { label: 'Agent Intelligence' },
-  { label: 'Knowledge Graph' },
-  { label: 'Decision Automation' },
+  { label: 'Workflow Automation' },
+  { label: 'AI Agents' },
+  { label: 'Document Processing' },
+  { label: 'Data Pipelines' },
+  { label: 'Predictive Models' },
+  { label: 'Internal Tools' },
+  { label: 'Custom Integrations' },
   { label: 'Applied AI' },
 ]
 
 export const metadata = {
-  title: 'About Cosmonus | The Intelligence Layer Beneath Your Decisions',
-  description: 'Cosmonus was built out of one frustration: teams drowning in data and dashboards no one acts on. We build the Intelligence Layer that turns your data into decisions — starting with StayOnMap, the first product proving what it can power.',
-  keywords: ['about cosmonus', 'intelligence infrastructure', 'AI-native company', 'Sri Gokul Krishnan', 'intelligence layer', 'knowledge graph'],
+  title: 'About Cosmonus | AI Systems That Automate Work',
+  description: 'Cosmonus is a product and engineering team that builds AI systems to automate real workflows — from first prototype to production. Founded by Sri Gokul Krishnan.',
+  keywords: ['about cosmonus', 'AI automation', 'AI product engineering', 'Sri Gokul Krishnan', 'applied AI', 'workflow automation'],
   alternates: { canonical: '/about' },
   openGraph: {
-    title: 'About Cosmonus | The Intelligence Layer Beneath Your Decisions',
-    description: 'Born from frustration with data no one acts on. The story behind the platform that turns your data into decisions.',
+    title: 'About Cosmonus | AI Systems That Automate Work',
+    description: 'A product and engineering team building AI that takes on the manual, repetitive work — from first prototype to production.',
     url: 'https://cosmonus.com/about',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About Cosmonus',
-    description: 'The Intelligence Layer that turns your data into decisions.',
+    description: 'AI systems that automate the work — built to ship, not to demo.',
     images: ['/images/ICON.png'],
   },
 }
@@ -160,9 +160,9 @@ export default function AboutPage() {
                 We do what&apos;s needed.<br />Not what&apos;s comfortable.
               </h1>
               <p className="lead about-hero__lead">
-                You already have the data. What you don&apos;t have is the moment it becomes a decision.
-                We&apos;re building the Intelligence Layer to close that gap — the shared platform that turns
-                data into decisions, and that every product we ship runs on.
+                Most teams lose hours a day to work software should be doing — manual handoffs,
+                repetitive decisions, data re-keyed by hand. We build AI systems that take that work
+                on end to end, from first prototype to something you run in production.
               </p>
             </div>
             <div className="about-hero__visuals">
@@ -189,9 +189,9 @@ export default function AboutPage() {
                 meetings, roadmaps that never shipped, strategy decks that never touched a real user.
               </p>
               <p>
-                Your data is probably the same: scattered across systems, dashboards no one acts on,
-                answers a week late. Cosmonus resolves it into an Ontology — a living model of your
-                operation — and the Ontology into decisions, with StayOnMap the first product proving it works.
+                Most software is the same: work that could be automated is still done by hand,
+                answers arrive a week late. Cosmonus builds AI that runs the workflow itself — and
+                StayOnMap, our first product, is proof of what that looks like shipped.
               </p>
             </div>
           </div>
@@ -279,7 +279,7 @@ export default function AboutPage() {
 
               <div className="about-founder__building">
                 <p className="about-founder__obsessions-label">Currently building</p>
-                <p><strong>The Cosmonus Intelligence Layer</strong> — and <strong>StayOnMap</strong>, the first product on it: a real-time spatial intelligence platform applied to India&apos;s rental market. Direct owner contact, live trust scoring, agent-driven fraud detection, and full lease management — proof of what the platform can power.</p>
+                <p><strong>AI systems that automate real work</strong> — and <strong>StayOnMap</strong>, our first product: applied to India&apos;s rental market with direct owner contact, live trust scoring, AI-driven fraud detection, and full lease management. Proof of what we ship.</p>
               </div>
 
               <a href="https://srigokulkrishnan.com" target="_blank" rel="noopener noreferrer" className="about-founder__link">
@@ -374,10 +374,10 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-disciplines__head">
             <span className="eyebrow">What we build</span>
-            <h2 className="about-disciplines__title">One layer, many capabilities.</h2>
+            <h2 className="about-disciplines__title">One team, many capabilities.</h2>
             <p className="lead about-disciplines__lead">
-              Not separate tools to wire together — capabilities of one Intelligence Layer, all
-              reasoning over the same data you already have.
+              Not off-the-shelf tools to wire together — AI built around your actual workflows and
+              the systems you already run.
             </p>
           </div>
           <div className="about-disciplines__grid">

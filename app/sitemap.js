@@ -11,13 +11,6 @@ export default function sitemap() {
     { url: '/developers',                priority: 0.8,  changeFrequency: 'monthly' },
     { url: '/research',                  priority: 0.7,  changeFrequency: 'monthly' },
 
-    // Solutions — by industry
-    { url: '/solutions',                 priority: 0.85, changeFrequency: 'monthly' },
-    { url: '/solutions/logistics',       priority: 0.9,  changeFrequency: 'monthly' },
-    { url: '/solutions/real-estate',     priority: 0.9,  changeFrequency: 'monthly' },
-    { url: '/solutions/enterprise',      priority: 0.9,  changeFrequency: 'monthly' },
-    { url: '/solutions/retail',          priority: 0.9,  changeFrequency: 'monthly' },
-
     // Products
     { url: '/products',                  priority: 0.85, changeFrequency: 'monthly' },
     { url: '/products/stayonmap',        priority: 0.8,  changeFrequency: 'monthly' },

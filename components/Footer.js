@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import {
-  SOLUTIONS,
   FOOTER_PRODUCTS,
   FOOTER_RESOURCES,
   FOOTER_COMPANY,
@@ -9,7 +8,6 @@ import {
 } from '../lib/nav'
 
 const COLUMNS = [
-  { head: 'Solutions', items: SOLUTIONS },
   { head: 'Platform',  items: FOOTER_PRODUCTS },
   { head: 'Resources', items: FOOTER_RESOURCES },
   { head: 'Company',   items: FOOTER_COMPANY },

@@ -1,229 +1,282 @@
 import Link from 'next/link';
+import CxReveal from '@/components/CxReveal';
 
 export const metadata = {
-  title: 'The Platform — Intelligence Infrastructure | Cosmonus',
+  title: 'How We Build — AI Systems That Automate Work | Cosmonus',
   description:
-    'One platform that turns disconnected data into decisions: your data unifies into a living Ontology, feeds five intelligence engines, drives AI agents, and closes the loop with decision automation.',
+    'The Cosmonus approach: we take a real, manual workflow and turn it into an AI system that runs in production. One path — discover, prototype, integrate, ship, run.',
   keywords: [
-    'intelligence infrastructure',
-    'knowledge graph platform',
+    'AI automation',
+    'workflow automation',
+    'AI product engineering',
     'AI agents',
-    'decision automation',
-    'spatial intelligence',
+    'applied AI',
     'cosmonus platform',
   ],
   alternates: { canonical: '/platform' },
   openGraph: {
-    title: 'The Cosmonus Platform — The Intelligence Layer, End to End',
+    title: 'How We Build — AI That Automates Your Work | Cosmonus',
     description:
-      'Data sources → knowledge graph → intelligence engines → AI agents → decision automation. One continuous platform, not a stack of tools.',
+      'From a messy manual workflow to an AI system running in production. Discover → Prototype → Integrate → Ship → Run.',
     url: 'https://cosmonus.com/platform',
     images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Cosmonus Platform',
+    title: 'How We Build — Cosmonus',
     description:
-      'The intelligence layer, end to end — knowledge graph, engines, agents, and automation on one platform.',
+      'From manual work to AI that runs it — one path from first look to production.',
     images: ['/images/ICON.png'],
   },
 };
 
-const FLOW = [
-  { title: 'Data Sources', sub: 'ingest · stream · connect' },
-  { title: 'The Ontology', sub: 'entities · relations · context', accent: true },
-  { title: 'Intelligence Engines', sub: 'reason · model · predict' },
-  { title: 'AI Agents', sub: 'plan · act · verify', accent: true },
-  { title: 'Decision Automation', sub: 'trigger · route · resolve' },
-  { title: 'Products', sub: 'ship · operate · scale' },
-];
-
-const SERVICES = [
+const PHASES = [
   {
-    title: 'The Ontology',
-    body: 'A living model of your operation — every entity, relation, and event — that every engine and agent reasons over.',
+    icon: 'search',
+    title: 'Discover',
+    lead: 'We map the workflow and find where the manual, repetitive work actually is.',
+    tags: ['audit', 'map', 'scope'],
   },
   {
-    title: 'Decision Automation',
-    body: 'Encode rules once; the platform evaluates and acts continuously, no human in the loop.',
+    icon: 'spark',
+    title: 'Prototype',
+    lead: 'A working AI prototype in days — something you can click, not a spec to read.',
+    tags: ['design', 'generate', 'demo'],
+    accent: true,
+  },
+  {
+    icon: 'plug',
+    title: 'Integrate',
+    lead: 'We wire it into the tools and data you already run — CRM, ERP, sheets, warehouses.',
+    tags: ['connect', 'data', 'auth'],
+  },
+  {
+    icon: 'ship',
+    title: 'Ship',
+    lead: 'Into production — tested, monitored, and with humans in the loop where it matters.',
+    tags: ['test', 'deploy', 'monitor'],
+    accent: true,
+  },
+  {
+    icon: 'loop',
+    title: 'Run',
+    lead: 'It runs the work every day. We keep it sharp as your operation changes.',
+    tags: ['operate', 'improve', 'scale'],
+  },
+];
+
+const CAPABILITIES = [
+  {
+    title: 'Workflow Automation',
+    body: 'Encode a process once; AI runs it end to end, every time — no one re-keying data or chasing handoffs.',
   },
   {
     title: 'AI Agents',
-    body: 'Long-running workers that plan tasks, call tools, and check their work against ground truth.',
+    body: 'Long-running workers that plan a task, use your tools, and check their own work before acting.',
   },
   {
-    title: 'Real-Time Event Processing',
-    body: 'Match events against the graph as they land, then fire downstream actions in milliseconds.',
-  },
-  {
-    title: 'Streaming Data',
-    body: 'Durable ingestion for high-volume feeds — with replay and backfill built in.',
-  },
-  {
-    title: 'Analytics',
-    body: 'Query historical and live state together — every metric traces to the entities behind it.',
-  },
-  {
-    title: 'APIs',
-    body: 'One consistent REST and streaming surface over the graph, engines, and agents.',
-  },
-  {
-    title: 'Developer SDK',
-    body: 'Typed clients to query the graph, define agents, and wire automation into your code.',
+    title: 'Document Processing',
+    body: 'Turn contracts, invoices, and forms into structured data your systems can act on.',
   },
   {
     title: 'Integrations',
-    body: 'Pre-built connectors for the systems you already run — ERP, CRM, and warehouses.',
+    body: 'Pre-built connectors for the tools you already run — CRM, ERP, spreadsheets, and warehouses.',
+  },
+  {
+    title: 'Data Pipelines',
+    body: 'Durable ingestion for high-volume feeds, with replay and backfill built in.',
+  },
+  {
+    title: 'Predictive Models',
+    body: 'Forecast demand, risk, and failure from your own history — not a generic template.',
+  },
+  {
+    title: 'Internal Tools',
+    body: 'Custom dashboards and apps that put the automation in your team’s hands.',
+  },
+  {
+    title: 'APIs & SDK',
+    body: 'A typed surface to query, trigger, and wire automation directly into your own code.',
+  },
+  {
+    title: 'Analytics',
+    body: 'Query live and historical state together — every metric traces to the work behind it.',
   },
 ];
 
-const TRUST = [
-  { title: 'Identity Management', body: 'Central directory and single sign-on across every platform surface.' },
-  { title: 'Role-Based Access', body: 'Scoped permissions down to the entity and field level.' },
+const COMPARE = [
+  {
+    before: 'Data re-keyed between systems by hand',
+    after: 'Data flows in and updates itself',
+  },
+  {
+    before: 'Answers arrive a week late',
+    after: 'Decisions happen in milliseconds',
+  },
+  {
+    before: 'Work sits waiting in someone’s inbox',
+    after: 'The workflow runs on its own',
+  },
+  {
+    before: 'Scaling means hiring more people',
+    after: 'Scaling is a config change',
+  },
+];
+
+const RELIABILITY = [
+  { title: 'Human in the Loop', body: 'Approvals and overrides where they matter — automation you can trust, not a black box.' },
+  { title: 'Monitoring & Alerts', body: 'Every run is observed; you know the moment something needs attention.' },
+  { title: 'Role-Based Access', body: 'Scoped permissions down to the action and record level.' },
   { title: 'Encryption', body: 'Data encrypted in transit and at rest, with managed key rotation.' },
-  { title: 'Zero Trust', body: 'Every request authenticated and authorized — no implicit network trust.' },
-  { title: 'Audit Logs', body: 'Immutable record of every read, write, and automated action.' },
-  { title: 'Compliance', body: 'Controls mapped to the frameworks your industry requires.' },
+  { title: 'Audit Logs', body: 'An immutable record of every automated action and decision.' },
+  { title: 'Reliability', body: 'Retries, fallbacks, and graceful failure — built for real workloads.' },
 ];
 
-const ENGINES = [
-  {
-    id: 'spatial',
-    eyebrow: 'Spatial Intelligence',
-    title: 'Understand movement in the real world.',
-    lead: 'Track how people, assets, and fleets move across geography — and reason about where they are, where they are heading, and what it means.',
-    points: [
-      { t: 'Positions to routes', d: 'Resolve live positions and history into routes, dwell time, and coverage.' },
-      { t: 'Anomaly detection', d: 'Catch a fleet off-route or an asset in the wrong zone the moment it happens.' },
-      { t: 'Geospatial queries', d: 'Answer where-questions directly against your live operational Ontology.' },
-    ],
-    cta: { href: '/products/stayonmap', label: 'See StayOnMap' },
-  },
-  {
-    id: 'enterprise',
-    eyebrow: 'Enterprise Intelligence',
-    title: 'Your whole business, in one model.',
-    lead: 'Unify ERP, CRM, HR, finance, and operations into one connected view — no more reconciling exports between systems that never talked.',
-    points: [
-      { t: 'One entity model', d: 'Join records across departments into a single resolved model of every entity.' },
-      { t: 'End-to-end traces', d: 'Follow a customer, order, or employee through every system at once.' },
-      { t: 'Live state, no reports', d: 'Query operational and financial state without waiting on a nightly report.' },
-    ],
-  },
-  {
-    id: 'knowledge',
-    eyebrow: 'Knowledge Intelligence',
-    cyan: true,
-    title: 'The Ontology — a living map of everything you know.',
-    lead: 'Every source becomes entities and relationships in one Ontology that updates as reality changes — the shared model every engine and agent reasons over.',
-    points: [
-      { t: 'Entity resolution', d: 'Merge duplicate records from every source into one canonical entity.' },
-      { t: 'Multi-hop answers', d: 'Follow relationships across sources to answer questions no single system can.' },
-      { t: 'Always current', d: 'The Ontology updates as new events and records arrive — never stale.' },
-    ],
-  },
-  {
-    id: 'predictive',
-    eyebrow: 'Predictive Intelligence',
-    title: 'See events before they happen.',
-    lead: 'Forecast outcomes from historical patterns scored against real-time signals — act on what is about to happen, not just what already did.',
-    points: [
-      { t: 'Models from your data', d: 'Model demand, risk, and failure from your own history, not a generic template.' },
-      { t: 'Live forecasts', d: 'Forecasts update continuously as new events stream in.' },
-      { t: 'Early warnings', d: 'Surface at-risk outcomes early, with the context behind each prediction.' },
-    ],
-  },
-  {
-    id: 'agent',
-    eyebrow: 'Agent Intelligence',
-    cyan: true,
-    title: 'Agents that reason, plan, and execute.',
-    lead: 'Autonomous agents read the Ontology, break goals into steps, call tools, and verify their work — no person watching a dashboard.',
-    points: [
-      { t: 'Plan and adapt', d: 'Break a goal into multi-step plans and adjust when conditions change.' },
-      { t: 'Call any tool', d: 'Use platform services, APIs, and workflows as tools to get work done.' },
-      { t: 'Verify before acting', d: 'Check results against the Ontology before committing an action.' },
-    ],
-  },
-];
+function PhaseIcon({ name }) {
+  const common = {
+    width: 22,
+    height: 22,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.6,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    'aria-hidden': true,
+  };
+  switch (name) {
+    case 'search':
+      return (
+        <svg {...common}>
+          <circle cx="11" cy="11" r="6.5" />
+          <path d="m20 20-3.5-3.5" />
+        </svg>
+      );
+    case 'spark':
+      return (
+        <svg {...common}>
+          <path d="M13 2 5 13h6l-1 9 8-11h-6z" />
+        </svg>
+      );
+    case 'plug':
+      return (
+        <svg {...common}>
+          <path d="M9 2v6M15 2v6" />
+          <path d="M6 8h12v3a6 6 0 0 1-12 0z" />
+          <path d="M12 17v5" />
+        </svg>
+      );
+    case 'ship':
+      return (
+        <svg {...common}>
+          <path d="M12 2c3 2.2 4.5 5.4 4.5 9 0 2.2-.8 4.3-2 6h-5c-1.2-1.7-2-3.8-2-6 0-3.6 1.5-6.8 4.5-9Z" />
+          <circle cx="12" cy="10" r="1.6" />
+          <path d="M7.5 17 5 20M16.5 17 19 20" />
+        </svg>
+      );
+    case 'loop':
+      return (
+        <svg {...common}>
+          <path d="M20 12a8 8 0 1 1-2.3-5.6" />
+          <path d="M20 4v4h-4" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
 
 export default function PlatformPage() {
   return (
     <>
+      <CxReveal />
+
       <section className="cx-hero">
         <div className="container">
           <div className="cx-hero__inner">
             <span className="cx-eyebrow">
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              The Platform
+              The Cosmonus Approach
             </span>
-            <h1 className="cx-hero__title">
-              The intelligence layer,{' '}
-              <span className="cx-gradient-text">end to end.</span>
+            <h1 className="cx-hero__title cx-hero__title--oneline">
+              From manual work to <span className="cx-gradient-text">AI that runs it.</span>
             </h1>
             <p className="cx-hero__sub">
-              Follow one signal. A sensor ticks, an order lands, a truck turns off-route. Cosmonus
-              resolves it into your Ontology — a living model of your whole operation — reasons over it
-              with five engines, hands it to an agent, and turns it into a decision before the next one lands.
+              Cosmonus takes a real workflow — the messy, manual, repetitive kind — and turns it into
+              an AI system that runs in production. One clear path, from the first look at your process
+              to something your team actually relies on.
             </p>
             <div className="cx-hero__actions">
               <Link className="btn-cosmonus btn-arrow" href="/contact">
                 Get Started
               </Link>
-              <Link className="btn-ghost" href="/products">
-                View Products
+              <Link className="btn-ghost" href="/products/stayonmap">
+                See StayOnMap
               </Link>
             </div>
             <div className="cx-strip">
               <div className="cx-strip__item">
-                <span className="cx-strip__val">5</span>
-                <span className="cx-strip__lbl">Intelligence engines</span>
+                <span className="cx-strip__val">Days</span>
+                <span className="cx-strip__lbl">To a working prototype</span>
               </div>
               <div className="cx-strip__item">
-                <span className="cx-strip__val">1</span>
-                <span className="cx-strip__lbl">Living operational Ontology</span>
+                <span className="cx-strip__val">End&nbsp;to&nbsp;end</span>
+                <span className="cx-strip__lbl">Discovery to running system</span>
               </div>
               <div className="cx-strip__item">
-                <span className="cx-strip__val">&lt;100ms</span>
-                <span className="cx-strip__lbl">Event to action</span>
+                <span className="cx-strip__val">In&nbsp;the&nbsp;loop</span>
+                <span className="cx-strip__lbl">Humans stay in control</span>
               </div>
               <div className="cx-strip__item">
-                <span className="cx-strip__val">One API</span>
-                <span className="cx-strip__lbl">Graph · engines · agents</span>
+                <span className="cx-strip__val">Production</span>
+                <span className="cx-strip__lbl">Built to run, not to demo</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="cx-section" id="architecture">
+      {/* The pipeline — how a workflow becomes an AI system */}
+      <section className="cx-section" id="approach">
         <div className="container">
           <div className="cx-section-head">
             <span className="cx-eyebrow">
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              Architecture
+              The Path
             </span>
-            <h2 className="cx-heading">One path from signal to decision.</h2>
+            <h2 className="cx-heading">Five steps from workflow to working AI.</h2>
             <p className="cx-lead cx-lead--wide">
-              Most stacks stitch a warehouse, rules engine, model, and scheduler together, then spend
-              years syncing them. Cosmonus collapses that into one flow over a shared graph.
+              No year-long project, no stack of tools to stitch together. One continuous path — you can
+              see it working long before it ships.
             </p>
           </div>
-          <div className="cx-flow">
-            {FLOW.map((node, i) => (
-              <div key={node.title} style={{ display: 'contents' }}>
+
+          <div className="cx-pipe">
+            {PHASES.map((p, i) => (
+              <div key={p.title} style={{ display: 'contents' }}>
                 <div
-                  className={
-                    node.accent
-                      ? 'cx-flow__node cx-flow__node--accent'
-                      : 'cx-flow__node'
-                  }
+                  className={`cx-pipe__node${p.accent ? ' cx-pipe__node--accent' : ''}`}
+                  data-cx-reveal
+                  style={{ '--cx-i': i }}
                 >
-                  <strong>{node.title}</strong>
-                  <span>{node.sub}</span>
+                  <div className="cx-pipe__top">
+                    <span className="cx-pipe__num">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="cx-pipe__icon">
+                      <PhaseIcon name={p.icon} />
+                    </span>
+                  </div>
+                  <h3 className="cx-pipe__title">{p.title}</h3>
+                  <p className="cx-pipe__lead">{p.lead}</p>
+                  <div className="cx-pipe__tags">
+                    {p.tags.map((t) => (
+                      <span key={t} className="cx-pipe__tag">{t}</span>
+                    ))}
+                  </div>
                 </div>
-                {i < FLOW.length - 1 && (
-                  <div className="cx-flow__arrow" aria-hidden="true" />
+                {i < PHASES.length - 1 && (
+                  <div className="cx-pipe__link" aria-hidden="true">
+                    <span className="cx-pipe__dot" />
+                  </div>
                 )}
               </div>
             ))}
@@ -231,84 +284,99 @@ export default function PlatformPage() {
         </div>
       </section>
 
-      <section className="cx-section" id="engines">
+      {/* Before / after infographic */}
+      <section className="cx-section" id="difference">
         <div className="container">
           <div className="cx-section-head">
             <span className="cx-eyebrow cx-eyebrow--cyan">
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              Intelligence Engines
+              The Difference
             </span>
-            <h2 className="cx-heading">Five engines, one Ontology.</h2>
-            <p className="cx-lead cx-lead--wide">
-              Each engine reasons differently, but all read and write the same Ontology. Run one, or all together.
-            </p>
+            <h2 className="cx-heading">What changes when the work runs itself.</h2>
           </div>
 
-          <div className="cx-engines-grid">
-            {ENGINES.map((e, i) => (
-              <div id={e.id} className="cx-card cx-card--engine" key={e.id}>
-                <span className="cx-card__num">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="cx-card__title" style={{ marginTop: '0.6rem' }}>{e.eyebrow}</h3>
-                <p className="cx-card__body">{e.title}</p>
-                <p className="cx-card__foot">{e.points.map((p) => p.t).join(' · ')}</p>
-                {e.cta ? (
-                  <Link className="cx-card__btn" href={e.cta.href}>
-                    {e.cta.label}
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                ) : (
-                  <span className="cx-card__btn cx-card__btn--soon">Coming soon</span>
-                )}
-              </div>
-            ))}
+          <div className="cx-compare" data-cx-reveal>
+            <div className="cx-compare__col cx-compare__col--before">
+              <p className="cx-compare__label">Manual today</p>
+              <ul className="cx-compare__list">
+                {COMPARE.map((row) => (
+                  <li key={row.before}>
+                    <span className="cx-compare__dot cx-compare__dot--before" aria-hidden="true" />
+                    {row.before}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="cx-compare__arrow" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 12h15M13 6l6 6-6 6" />
+              </svg>
+            </div>
+
+            <div className="cx-compare__col cx-compare__col--after">
+              <p className="cx-compare__label">With Cosmonus</p>
+              <ul className="cx-compare__list">
+                {COMPARE.map((row) => (
+                  <li key={row.after}>
+                    <span className="cx-compare__dot cx-compare__dot--after" aria-hidden="true" />
+                    {row.after}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="cx-section" id="services">
+      {/* What we build */}
+      <section className="cx-section" id="capabilities">
         <div className="container">
           <div className="cx-section-head">
             <span className="cx-eyebrow">
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              Platform Services
+              What We Build
             </span>
-            <h2 className="cx-heading">Infrastructure, not features.</h2>
+            <h2 className="cx-heading">The building blocks of an automation.</h2>
             <p className="cx-lead cx-lead--wide">
-              The primitives every Cosmonus product is built on — a platform to build on, not features locked in one app.
+              Most systems we ship are a few of these working together — chosen for your workflow, not
+              sold as a fixed bundle.
             </p>
           </div>
           <div className="cx-grid cx-grid--3">
-            {SERVICES.map((svc, i) => (
-              <div className="cx-card cx-card--engine" key={svc.title}>
-                <span className="cx-card__num">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="cx-card__title" style={{ marginTop: '0.6rem' }}>
-                  {svc.title}
-                </h3>
-                <p className="cx-card__body">{svc.body}</p>
+            {CAPABILITIES.map((c, i) => (
+              <div
+                className="cx-card cx-card--engine"
+                key={c.title}
+                data-cx-reveal
+                style={{ '--cx-i': i % 3 }}
+              >
+                <span className="cx-card__num">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="cx-card__title" style={{ marginTop: '0.6rem' }}>{c.title}</h3>
+                <p className="cx-card__body">{c.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="cx-section" id="trust">
+      {/* Built to run in production */}
+      <section className="cx-section" id="reliability">
         <div className="container">
           <div className="cx-section-head">
             <span className="cx-eyebrow cx-eyebrow--cyan">
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              Security &amp; Trust
+              Built to Run
             </span>
-            <h2 className="cx-heading">Governed by default.</h2>
+            <h2 className="cx-heading">Automation you can actually depend on.</h2>
             <p className="cx-lead cx-lead--wide">
-              Because intelligence sits on your most sensitive data, control and accountability are
-              built into the layer every engine, agent, and product runs on.
+              A demo runs once. Production runs every day, on your real data — so control, visibility,
+              and reliability are built in from the start.
             </p>
           </div>
           <div className="cx-grid cx-grid--3">
-            {TRUST.map((item) => (
-              <div className="cx-card" key={item.title}>
+            {RELIABILITY.map((item, i) => (
+              <div className="cx-card" key={item.title} data-cx-reveal style={{ '--cx-i': i % 3 }}>
                 <h3 className="cx-card__title">{item.title}</h3>
                 <p className="cx-card__body">{item.body}</p>
               </div>
@@ -322,17 +390,17 @@ export default function PlatformPage() {
           <div className="cx-cta">
             <span className="cx-eyebrow" style={{ justifyContent: 'center' }}>
               <span className="cx-eyebrow__dot" aria-hidden="true" />
-              Build on the platform
+              Start with one workflow
             </span>
             <h2 className="cx-heading cx-heading--xl">
-              Put the whole <span className="cx-gradient-text">intelligence layer</span> to work.
+              Ready to <span className="cx-gradient-text">automate the work?</span>
             </h2>
             <div className="cx-cta__actions">
               <Link className="btn-cosmonus btn-arrow" href="/contact">
                 Get Started
               </Link>
-              <Link className="btn-ghost" href="/developers">
-                Developer Platform
+              <Link className="btn-ghost" href="/products/stayonmap">
+                See StayOnMap
               </Link>
             </div>
           </div>

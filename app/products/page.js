@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import RelatedServices from '@/components/RelatedServices'
 
 const BUILT_PRODUCTS = [
   {
@@ -12,13 +11,6 @@ const BUILT_PRODUCTS = [
     status: 'Live',
     gradient: 'linear-gradient(135deg, #24B47E 0%, #0A2540 60%, #1B3A5C 100%)',
   },
-]
-
-const INDUSTRIES = [
-  { href: '/solutions/logistics',   label: 'Logistics & Fleet', desc: 'Spatial intelligence for every vehicle, shipment, and asset in motion.' },
-  { href: '/solutions/real-estate', label: 'Real Estate',       desc: 'Spatial intelligence for property — the domain StayOnMap runs in.' },
-  { href: '/solutions/enterprise',  label: 'Enterprise Ops',    desc: 'Every system in one connected model, traced end to end.' },
-  { href: '/solutions/retail',      label: 'Retail',            desc: 'Predictive intelligence from catalogue and behaviour to demand.' },
 ]
 
 export const metadata = {
@@ -108,9 +100,6 @@ export default function ProductsPage() {
           ))}
         </div>
       </section>
-
-      {/* Solutions by industry */}
-      <RelatedServices items={INDUSTRIES} />
     </>
   )
 }

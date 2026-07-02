@@ -40,15 +40,13 @@ export default function Home() {
       <section className="hero-section">
         <div className="container">
           <div className="hero-inner hero-inner--solo">
-            <div className="hero-eyebrow hero-eyebrow--live">
-              <span className="hero-eyebrow__dot" aria-hidden="true" />
-              Intelligence Infrastructure · StayOnMap live
+            <div className="hero-eyebrow">
+              AI Product &amp; Engineering
             </div>
-            <h1 className="hero-title">Your data already knows.<br />Cosmonus makes it <span className="hero-title__accent">act.</span></h1>
+            <h1 className="hero-title">AI that <span className="hero-title__accent">automates</span> work.</h1>
             <p className="hero-subtitle">
-              Every second, your operation throws off signals that die in dashboards no one is watching.
-              Cosmonus builds one living Ontology of your operation — and turns those signals into
-              decisions the moment they matter.
+              Cosmonus is a product and engineering team that turns real workflows into AI that runs
+              them — reliable enough to put in production, not just a pitch deck.
             </p>
             <div className="hero-actions">
               <Link href="/platform" className="btn-cosmonus btn-arrow">Explore the platform</Link>
