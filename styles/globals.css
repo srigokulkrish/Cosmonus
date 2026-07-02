@@ -531,7 +531,7 @@ a:hover { color: var(--fg-muted); }
 
 /* Mega dropdown */
 .cos-dropdown--mega .cos-dropdown__menu.cos-mega {
-  min-width: 860px;
+  min-width: min(340px, calc(100vw - 2rem));
   left: 0;
   transform: translateX(0) translateY(-4px);
   display: flex;
@@ -5820,9 +5820,11 @@ body.cos-no-scroll {
   .footer-cta__actions .btn-ghost { width: 100%; justify-content: center; }
 }
 
-/* ── Nav CTA button — hide label on very small screens ─ */
-@media (max-width: 380px) {
+/* ── Nav CTA button — arrow-only on small screens so the
+      brand + CTA + hamburger row never overflows ─ */
+@media (max-width: 479.98px) {
   .cos-nav__cta .btn-cosmonus span { display: none; }
+  .cos-nav__cta .btn-cosmonus.btn-arrow::after { margin-left: 0; }
 }
 
 /* ── Solution pages — missing 575px grid breakpoints ── */
@@ -6049,11 +6051,8 @@ body.cos-no-scroll {
   line-height: 1.02;
 }
 .cx-hero__title--oneline {
-  white-space: nowrap;
-  font-size: clamp(1.35rem, 4.7vw, 3.1rem);
-}
-@media (max-width: 380px) {
-  .cx-hero__title--oneline { white-space: normal; }
+  font-size: clamp(1.75rem, 4.7vw, 3.4rem);
+  text-wrap: balance;
 }
 .cx-hero__sub {
   color: var(--fg-muted);

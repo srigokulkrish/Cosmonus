@@ -77,7 +77,7 @@ export default function Header() {
           </nav>
 
           <div className="cos-nav__cta">
-            <Link href="/contact" className="btn-cosmonus btn--sm btn-arrow">Contact us</Link>
+            <Link href="/contact" className="btn-cosmonus btn--sm btn-arrow"><span>Contact us</span></Link>
             <button
               type="button"
               className="cos-nav__toggle"
