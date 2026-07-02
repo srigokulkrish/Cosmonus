@@ -1,17 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-
-function loadThree() {
-  return new Promise((resolve, reject) => {
-    if (window.THREE) return resolve(window.THREE)
-    const script = document.createElement('script')
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'
-    script.onload = () => resolve(window.THREE)
-    script.onerror = reject
-    document.head.appendChild(script)
-  })
-}
+import * as THREE from 'three'
 
 function buildPalette(THREE, isDark) {
   if (isDark) {
@@ -69,7 +59,6 @@ export default function RaycastVisual() {
     let cancelled = false
 
     async function init() {
-      const THREE = await loadThree()
       if (cancelled || !containerRef.current) return
 
       const container = containerRef.current

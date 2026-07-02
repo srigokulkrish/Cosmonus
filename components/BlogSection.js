@@ -4,28 +4,28 @@ import { useRef } from 'react'
 
 const BLOGS = [
   {
-    title: 'How AI Is Reshaping Brand Identity in 2026',
-    tag: 'Branding',
-    gradient: 'linear-gradient(135deg, #635BFF 0%, #00D4FF 100%)',
+    title: 'The Intelligence Layer: Why Every Operation Needs One',
+    tag: 'Platform',
+    gradient: 'linear-gradient(135deg, #635BFF 0%, #3882F6 100%)',
   },
   {
-    title: 'Building Scalable Products with AI-First Architecture',
+    title: 'Knowledge Graphs, Explained for Operators',
     tag: 'Engineering',
     gradient: 'linear-gradient(135deg, #0f3443 0%, #34e89e 100%)',
   },
   {
-    title: 'From Idea to Launch: The Cosmonus Playbook',
+    title: 'From Data to Decision: The Cosmonus Playbook',
     tag: 'Strategy',
     gradient: 'linear-gradient(135deg, #f46b45 0%, #eea849 100%)',
   },
   {
-    title: 'Automating Growth: Workflows That Scale Revenue',
+    title: 'Decision Automation: Workflows That Act on Their Own',
     tag: 'Automation',
-    gradient: 'linear-gradient(135deg, #635BFF 0%, #FF6B9D 100%)',
+    gradient: 'linear-gradient(135deg, #635BFF 0%, #3882F6 100%)',
   },
   {
-    title: 'Why Every Startup Needs an AI Operations Layer',
-    tag: 'Ops',
+    title: 'Spatial Intelligence in Production: Lessons from StayOnMap',
+    tag: 'Spatial',
     gradient: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
   },
 ]
@@ -48,7 +48,7 @@ export default function BlogSection() {
           <div className="blog-header__left">
             <h2 className="blog-header__title">Insights & ideas from the Cosmonus team</h2>
             <p className="blog-header__desc">
-              Stories on AI, product building, automation, and growing smarter businesses.
+              Field notes on intelligence infrastructure — graphs, agents, decisions.
             </p>
           </div>
           <a href="/blogs" className="btn-ghost btn--sm btn-arrow">All posts</a>

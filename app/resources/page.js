@@ -2,113 +2,110 @@ import Link from 'next/link'
 
 const GUIDES = [
   {
-    tag: 'Branding',
-    title: 'How to brief a brand designer (and actually get what you want)',
-    desc: 'The questions to answer before you talk to anyone. Most projects go wrong because the brief was wrong — not the designer.',
+    tag: 'Platform',
+    title: 'What an intelligence layer is (and why one shared platform beats point tools)',
+    desc: 'When a pilot stalls, the model usually isn\'t the problem — the foundation is.',
     readTime: '6 min read',
   },
   {
-    tag: 'Web',
-    title: 'Why your website isn\'t converting — and what to fix first',
-    desc: 'A framework for diagnosing conversion problems without guessing. Start here before redesigning anything.',
+    tag: 'Enterprise',
+    title: 'Why your data isn\'t driving decisions — and what to fix first',
+    desc: 'A framework for diagnosing why data sits unused — before another dashboard.',
     readTime: '8 min read',
   },
   {
-    tag: 'AI',
-    title: 'A plain-language guide to RAG, fine-tuning, and prompt engineering',
-    desc: 'What each technique actually does, when to use it, and what goes wrong when you pick the wrong one.',
+    tag: 'Agents',
+    title: 'A plain-language guide to RAG, knowledge graphs, and agent orchestration',
+    desc: 'What each technique does, when to use it, and what breaks when you pick wrong.',
     readTime: '10 min read',
   },
   {
-    tag: 'Product',
-    title: 'Scoping your v1: the discipline that separates shipped from stalled',
-    desc: 'How to define the smallest version of your product that\'s genuinely useful — and how to defend that scope when everyone wants to add more.',
+    tag: 'Predictive',
+    title: 'Scoping your first intelligence use case: shipped vs stalled',
+    desc: 'Define the smallest use case that changes a decision — and defend that scope.',
     readTime: '7 min read',
   },
   {
-    tag: 'SEO',
-    title: 'Technical SEO in plain English: what to fix and in what order',
-    desc: 'A prioritised checklist for teams who want to improve organic traffic without hiring an agency yet.',
+    tag: 'Knowledge',
+    title: 'Building a knowledge graph in plain English: what to model and in what order',
+    desc: 'A prioritised way to connect your data into intelligence — no two-year program.',
     readTime: '9 min read',
   },
   {
-    tag: 'Mobile',
-    title: 'Native vs cross-platform: how to make the right call for your app',
-    desc: 'The decision framework we use with every mobile client. No dogma — just the trade-offs you need to understand.',
+    tag: 'Spatial',
+    title: 'Real-time vs batch: how to make the right call for spatial intelligence',
+    desc: 'The trade-offs we weigh on every spatial deployment.',
     readTime: '5 min read',
   },
 ]
 
 const CHECKLISTS = [
   {
-    title: 'Website launch checklist',
+    title: 'Intelligence deployment checklist',
     items: 14,
-    desc: 'Everything to verify before going live — performance, SEO, analytics, redirects, and accessibility.',
+    desc: 'Verify before going live — pipelines, evaluation, latency, access, and monitoring.',
   },
   {
-    title: 'Brand handoff checklist',
+    title: 'Data readiness checklist',
     items: 11,
-    desc: 'What to ask your designer to deliver. File formats, guidelines, font licences — the full list.',
+    desc: 'What your data needs to feed a layer — sources, schemas, quality, governance.',
   },
   {
-    title: 'Product scope checklist',
+    title: 'Use case scoping checklist',
     items: 9,
-    desc: 'Questions to answer before you start building. Prevents scope creep and six-month delays.',
+    desc: 'Questions to answer before you build — stops scope creep and stalled pilots.',
   },
   {
-    title: 'AI project audit checklist',
+    title: 'Decision automation audit checklist',
     items: 12,
-    desc: 'Map your workflows before you automate anything. Identifies where AI adds real leverage.',
+    desc: 'Map decision workflows before automating — find where intelligence adds leverage.',
   },
 ]
 
 const GLOSSARY = [
-  { term: 'RAG', def: 'Retrieval-Augmented Generation — AI that answers from your documents, not just its training data.' },
-  { term: 'Core Web Vitals', def: 'Google\'s performance metrics: LCP (load speed), FID (interactivity), CLS (visual stability).' },
-  { term: 'Brand system', def: 'The complete set of visual and verbal rules that make a brand consistent across every touchpoint.' },
-  { term: 'CMS', def: 'Content Management System — software that lets non-developers edit website content.' },
-  { term: 'Conversion rate', def: 'The percentage of visitors who take a desired action — sign up, buy, contact, download.' },
-  { term: 'Design system', def: 'A library of reusable UI components with documented usage rules, built for consistency and speed.' },
-  { term: 'Information architecture', def: 'The structure of a website or app — how pages and content are organised and labelled.' },
-  { term: 'Socket.io', def: 'A library for real-time, bidirectional communication between browser and server — used for chat, live updates, notifications.' },
+  { term: 'RAG', def: 'Retrieval-Augmented Generation — AI that answers from your data, not just its training.' },
+  { term: 'Knowledge Graph', def: 'A connected model of your entities and relationships systems can reason over.' },
+  { term: 'Spatial Intelligence', def: 'Location and movement data turned into real-time understanding of where things are.' },
+  { term: 'Decision Automation', def: 'Systems that make or recommend decisions, not just report on them.' },
+  { term: 'Enterprise Intelligence', def: 'One shared layer so every team reasons from the same source of truth.' },
+  { term: 'Intelligence Layer', def: 'The shared platform that turns raw data into intelligence, and intelligence into decisions.' },
 ]
 
 const TOOLS = [
-  { name: 'Figma', category: 'Design', desc: 'Industry-standard design and prototyping tool. Free tier is genuinely useful.' },
-  { name: 'Vercel', category: 'Hosting', desc: 'The fastest way to deploy a Next.js project. Zero-config deployments with global edge network.' },
-  { name: 'AWS', category: 'Infrastructure', desc: 'Cloud infrastructure for scalable backends, storage, and compute. The industry standard for serious deployments.' },
-  { name: 'Supabase', category: 'Backend', desc: 'Open-source Firebase alternative — database, auth, and storage with a generous free tier.' },
-  { name: 'Google Analytics', category: 'Analytics', desc: 'The baseline for understanding traffic, acquisition, and user behaviour on any web property.' },
-  { name: 'Heatmaps', category: 'Analytics', desc: 'Visual overlays showing exactly where users click, scroll, and drop off — essential for conversion work.' },
-  { name: 'Anthropic Claude', category: 'AI', desc: 'The model we use for AI features. Strong at reasoning, instruction-following, and long context.' },
-  { name: 'LangChain', category: 'AI', desc: 'Framework for building LLM-powered applications — chains, agents, RAG pipelines, and tool use.' },
-  { name: 'Railway', category: 'Infrastructure', desc: 'Simple, fast infrastructure for deploying backends and databases without DevOps overhead.' },
-  { name: 'Pencil & Paper', category: 'Design', desc: 'Still the fastest way to think through a layout, flow, or idea. No app beats it for the first five minutes.' },
+  { name: 'Figma', category: 'Design', desc: 'Where we shape how intelligence surfaces to users. The free tier is genuinely useful.' },
+  { name: 'Vercel', category: 'Hosting', desc: 'The fastest way to deploy a Next.js project — zero-config, global edge network.' },
+  { name: 'AWS', category: 'Infrastructure', desc: 'Cloud infrastructure for scalable data pipelines, storage, and compute.' },
+  { name: 'Supabase', category: 'Backend', desc: 'Database, auth, and storage with pgvector for embeddings and a generous free tier.' },
+  { name: 'Google Analytics', category: 'Analytics', desc: 'The baseline for understanding traffic, acquisition, and user behaviour.' },
+  { name: 'Anthropic Claude', category: 'AI', desc: 'The model we build reasoning and agent features on — strong at reasoning and long context.' },
 ]
 
 const TOPICS = [
   { label: 'All', active: true },
-  { label: 'Branding' },
-  { label: 'Web' },
-  { label: 'Mobile' },
-  { label: 'AI' },
-  { label: 'Product' },
-  { label: 'SEO' },
+  { label: 'Platform' },
+  { label: 'Enterprise' },
+  { label: 'Spatial' },
+  { label: 'Agents' },
+  { label: 'Predictive' },
+  { label: 'Knowledge' },
 ]
 
 export const metadata = {
-  title: 'Resources | Free Guides, Checklists & Tools from Cosmonus',
-  description: 'Free guides, templates, and checklists from the Cosmonus team. Practical resources on AI, product building, web design, and growing your business.',
-  keywords: ['free design resources', 'product development guides', 'AI resources', 'startup checklists', 'web design tools', 'business growth guides'],
+  title: 'Resources | Guides, Checklists & Tools on Intelligence Infrastructure',
+  description: 'Stuck on why your data isn\'t driving decisions, or whether you need a knowledge graph or an agent? Free guides, checklists, and tools from the Cosmonus team that answer it.',
+  keywords: ['intelligence infrastructure resources', 'knowledge graph guides', 'AI agent resources', 'decision automation checklists', 'RAG guide', 'enterprise intelligence guides'],
+  alternates: { canonical: '/resources' },
   openGraph: {
-    title: 'Free Resources | Guides, Checklists & Tools',
-    description: 'Practical guides and templates from the Cosmonus team — all free.',
+    title: 'Resources | Guides, Checklists & Tools',
+    description: 'Practical guides on intelligence infrastructure from the Cosmonus team — all free.',
     url: 'https://cosmonus.com/resources',
+    images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Resources from Cosmonus',
-    description: 'Guides, checklists, and tools — all free.',
+    title: 'Resources from Cosmonus',
+    description: 'Guides, checklists, and tools on intelligence infrastructure — all free.',
+    images: ['/images/ICON.png'],
   },
 }
 
@@ -118,10 +115,12 @@ export default function ResourcesPage() {
       <section className="res-hero">
         <div className="container">
           <span className="eyebrow">Resources</span>
-          <h1 className="res-hero__title">Learn how to build,<br />launch, and grow.</h1>
+          <h1 className="res-hero__title">The questions you ask<br />before you build.</h1>
           <p className="lead res-hero__lead">
-            Guides, checklists, and tools from the Cosmonus team — written for founders,
-            product teams, and anyone building something worth using.
+            &ldquo;Why isn&apos;t our data driving anything?&rdquo; &ldquo;Do we need a knowledge
+            graph or an agent?&rdquo; &ldquo;What&apos;s the smallest thing worth shipping?&rdquo;
+            Here are the guides, checklists, and tools we hand founders and data teams when they
+            ask &mdash; the same answers, written down.
           </p>
         </div>
       </section>
@@ -132,7 +131,7 @@ export default function ResourcesPage() {
           <div className="res-section__head">
             <div>
               <span className="eyebrow">Guides</span>
-              <h2 className="res-section__title">Practical reading — no fluff.</h2>
+              <h2 className="res-section__title">Start with the question you&apos;re stuck on.</h2>
             </div>
             <div className="res-topic-pills">
               {TOPICS.map((t) => (
@@ -166,7 +165,7 @@ export default function ResourcesPage() {
           <div className="res-section__head">
             <div>
               <span className="eyebrow">Checklists</span>
-              <h2 className="res-section__title">Download and use on your next project.</h2>
+              <h2 className="res-section__title">The things you&apos;ll wish you&apos;d checked before you shipped.</h2>
             </div>
           </div>
           <div className="res-checklists-grid">
@@ -198,8 +197,8 @@ export default function ResourcesPage() {
           <div className="res-section__head">
             <div>
               <span className="eyebrow">Tools we recommend</span>
-              <h2 className="res-section__title">The stack we actually use and trust.</h2>
-              <p className="res-tools-intro">These aren't affiliate links — they're the tools we reach for on our own projects. All have generous free tiers to get started.</p>
+              <h2 className="res-section__title">When you ask what we actually build with.</h2>
+              <p className="res-tools-intro">No affiliate links, no sponsorships &mdash; just what we actually build with, and why. Most have a free tier.</p>
             </div>
           </div>
           <div className="res-tools-grid">
@@ -222,7 +221,7 @@ export default function ResourcesPage() {
           <div className="res-section__head">
             <div>
               <span className="eyebrow">Glossary</span>
-              <h2 className="res-section__title">Terms you&apos;ll hear when working with us — explained plainly.</h2>
+              <h2 className="res-section__title">The words that get thrown around &mdash; in plain English.</h2>
             </div>
           </div>
           <div className="res-glossary">

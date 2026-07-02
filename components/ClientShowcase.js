@@ -6,50 +6,50 @@ const CLIENTS = [
   {
     name: 'Taatom',
     logo: 'T',
-    summary: 'Taatom scales its e-commerce platform with Cosmonus.',
-    description: 'We helped Taatom rebuild their storefront with an AI-powered recommendation engine, cutting page load times by 60% and increasing conversion rates across 12 markets.',
+    summary: 'Taatom turns catalogue and behaviour data into predictive intelligence.',
+    description: 'Predictive intelligence over a unified knowledge graph powers live recommendations — lifting conversion across 12 markets, response times down 60%.',
     stats: [
       { label: 'Markets served', value: '12+' },
       { label: 'Conversion lift', value: '34%' },
     ],
-    products: 'Branding, Web Development, AI Automation',
-    image: 'linear-gradient(135deg, #635BFF 0%, #00D4FF 100%)',
+    products: 'Knowledge Graph, Predictive Intelligence, Decision Automation',
+    image: 'linear-gradient(135deg, #635BFF 0%, #3882F6 100%)',
   },
   {
     name: 'CloudAxis',
     logo: 'C',
-    summary: 'CloudAxis automates infrastructure billing with Cosmonus.',
-    description: 'Cosmonus designed and built a real-time billing dashboard and automated invoicing system, reducing manual overhead by 80% and accelerating their enterprise sales cycle.',
+    summary: 'CloudAxis automates infrastructure billing with enterprise intelligence.',
+    description: 'Usage, finance, and CRM in one model, with decision automation resolving invoicing in real time — 80% less manual overhead.',
     stats: [
       { label: 'Manual overhead reduced', value: '80%' },
       { label: 'Enterprise clients onboarded', value: '150+' },
     ],
-    products: 'Product Design, Automation, Dashboard Development',
+    products: 'Enterprise Intelligence, Decision Automation, Agent Intelligence',
     image: 'linear-gradient(135deg, #0A2540 0%, #1B3A5C 50%, #425466 100%)',
   },
   {
     name: 'Sparkline',
     logo: 'S',
-    summary: 'Sparkline launches its analytics suite with Cosmonus.',
-    description: 'From brand identity to product launch, we partnered with Sparkline to bring their data analytics platform to market — complete with interactive dashboards and AI-driven insights.',
+    summary: 'Sparkline launches its analytics suite on the Intelligence Layer.',
+    description: 'A live knowledge graph surfaced through knowledge intelligence took their analytics platform to market in four months — every insight traceable to its source.',
     stats: [
       { label: 'Time to market', value: '4 months' },
       { label: 'Active users at launch', value: '2,000+' },
     ],
-    products: 'Brand Identity, Web App, AI Integration',
+    products: 'Knowledge Graph, Knowledge Intelligence, Analytics',
     image: 'linear-gradient(135deg, #24B47E 0%, #0A2540 100%)',
   },
   {
     name: 'Apexion',
     logo: 'A',
-    summary: 'Apexion modernizes its client portal with Cosmonus.',
-    description: 'We redesigned Apexion\'s legacy client portal into a modern, responsive platform with automated reporting and self-service capabilities that their enterprise clients love.',
+    summary: 'Apexion modernizes its client portal with agent intelligence.',
+    description: 'Rebuilt on the Intelligence Layer, where agents handle reporting and self-service against a unified enterprise model — support tickets down 45%.',
     stats: [
       { label: 'Support tickets reduced', value: '45%' },
       { label: 'Client satisfaction', value: '96%' },
     ],
-    products: 'UX Redesign, Web Development, Automation',
-    image: 'linear-gradient(135deg, #635BFF 0%, #FF80B5 100%)',
+    products: 'Enterprise Intelligence, Agent Intelligence, Decision Automation',
+    image: 'linear-gradient(135deg, #635BFF 0%, #3882F6 100%)',
   },
 ]
 
@@ -66,14 +66,14 @@ export default function ClientShowcase() {
         {/* Header */}
         <div className="clients-header">
           <div className="clients-header__left">
-            <h2 className="clients-header__title">Built for ambitious teams and enterprises</h2>
+            <h2 className="clients-header__title">What changes when your data can decide</h2>
             <div className="clients-header__actions">
               <a href="/contact" className="btn-cosmonus btn-arrow">Start your project</a>
             </div>
           </div>
           <div className="clients-header__right">
             <p className="clients-header__desc">
-              Leading teams trust Cosmonus to design, build, and automate the digital products that power their growth.
+              Leading teams run on the Cosmonus Intelligence Layer — data in, decisions out.
             </p>
           </div>
         </div>
@@ -114,7 +114,7 @@ export default function ClientShowcase() {
                             </div>
                           ))}
                           <div className="clients-acc-stat clients-acc-stat--products">
-                            <span className="clients-acc-stat__label">Services used</span>
+                            <span className="clients-acc-stat__label">Intelligence applied</span>
                             <span className="clients-acc-stat__value clients-acc-stat__value--sm">{client.products}</span>
                           </div>
                         </div>

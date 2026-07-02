@@ -2,31 +2,34 @@ import ContactForm from '@/components/ContactForm'
 import ContactFaqAccordion from '@/components/ContactFaqAccordion'
 
 const TRUST_PILLS = [
-  'Free consultation',
+  'Free technical consult',
   'Reply within 24 h',
   'No commitment required',
 ]
 
 
 const NEXT_STEPS = [
-  { n: '01', title: 'We review your brief', body: 'A team member reads your message and researches your space before replying.' },
-  { n: '02', title: 'You get a tailored reply', body: 'Within one business day — initial thoughts, timeline estimate, and suggested next steps.' },
-  { n: '03', title: 'Discovery call', body: 'A 30-minute call to align on goals, scope, and whether we\'re the right fit.' },
+  { n: '01', title: 'We read your brief', body: 'We map your data and the decision it should drive — so our first reply is about your problem, not our pitch.' },
+  { n: '02', title: 'You get a straight answer', body: 'Within one business day: where the leverage is, whether we fit, and what the first step costs.' },
+  { n: '03', title: 'We deploy with you', body: 'We embed with your team, stand the first version up on your data, and stay until it runs in production.' },
 ]
 
 export const metadata = {
-  title: 'Contact Cosmonus | Start a Project',
-  description: 'Ready to build something? Get in touch with the Cosmonus team. We respond within 24 hours and start every engagement with a free strategy call.',
-  keywords: ['contact cosmonus', 'hire digital agency', 'start a project', 'get a quote', 'web development contact'],
+  title: 'Contact Cosmonus | Talk to the Intelligence Team',
+  description: 'Your data lives in ten systems and every decision waits on all of them. Tell us the decision you want to automate — we reply within a business day, starting with a free technical consult.',
+  keywords: ['contact cosmonus', 'intelligence platform', 'AI infrastructure', 'enterprise intelligence', 'decision automation contact'],
+  alternates: { canonical: '/contact' },
   openGraph: {
-    title: 'Contact Cosmonus | Start a Project',
-    description: 'Ready to build something? We respond within 24 hours.',
+    title: 'Contact Cosmonus | Talk to the Intelligence Team',
+    description: 'Tell us the decision your data should be driving. We reply within a business day.',
     url: 'https://cosmonus.com/contact',
+    images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Contact Cosmonus',
-    description: 'Ready to build something? We respond within 24 hours.',
+    description: 'Tell us the decision your data should be driving. We reply within a business day.',
+    images: ['/images/ICON.png'],
   },
 }
 
@@ -36,10 +39,11 @@ export default function ContactPage() {
       <section className="contact-hero">
         <div className="container">
           <span className="eyebrow">Contact</span>
-          <h1 className="contact-hero__title">Let&apos;s build something<br />together.</h1>
+          <h1 className="contact-hero__title">The data is there.<br />The decision is waiting.</h1>
           <p className="lead contact-hero__lead">
-            Tell us about your project. We&apos;ll get back within one business day
-            with next steps, timelines, and a clear path forward.
+            It sits across ten systems, and every call your team makes waits on all of them.
+            Tell us the decision you want to automate and what feeds it &mdash; we&apos;ll
+            reply within one business day.
           </p>
           <div className="contact-trust-row">
             {TRUST_PILLS.map((p) => (
@@ -104,7 +108,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="contact-faq__head">
             <span className="eyebrow">FAQ</span>
-            <h2 className="contact-faq__title">Questions people usually ask first.</h2>
+            <h2 className="contact-faq__title">The questions you&apos;re probably weighing right now.</h2>
           </div>
           <ContactFaqAccordion />
         </div>

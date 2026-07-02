@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { SOLUTIONS_MEGA, PRIMARY_NAV, COMPANY_MENU } from '../lib/nav'
-import ThemeToggle from './ThemeToggle'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -36,7 +35,7 @@ export default function Header() {
       <div className="container">
         <div className="cos-nav__inner">
           <Link href="/" className="cos-nav__brand" aria-label="Cosmonus home">
-            <img src="/images/logo.png" alt="Cosmonus" />
+            <img src="/images/logo-dark.png" alt="Cosmonus" />
           </Link>
 
           <nav className="cos-nav__links" aria-label="Primary">
@@ -78,7 +77,6 @@ export default function Header() {
           </nav>
 
           <div className="cos-nav__cta">
-            <ThemeToggle />
             <Link href="/contact" className="btn-cosmonus btn--sm btn-arrow">Contact us</Link>
             <button
               type="button"
@@ -105,7 +103,7 @@ export default function Header() {
       >
         <div className="cos-mobile-menu__head">
           <Link href="/" className="cos-nav__brand" onClick={close} aria-label="Cosmonus home">
-            <img src="/images/logo.png" alt="Cosmonus" />
+            <img src="/images/logo-dark.png" alt="Cosmonus" />
           </Link>
           <button
             type="button"

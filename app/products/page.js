@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import ServiceCarousel from '@/components/ServiceCarousel'
+import RelatedServices from '@/components/RelatedServices'
 
 const BUILT_PRODUCTS = [
   {
     name: 'StayOnMap',
-    tagline: 'Find your place. No broker.',
-    desc: 'A map-first, broker-free rental discovery platform built for India. The homepage is the map — property pins with live rent prices, direct owner contact, verified listings, real-time chat, and zero commission.',
-    tags: ['React', 'Node.js', 'PostgreSQL', 'Google Maps', 'Socket.io', 'AI'],
+    tagline: 'Real-time spatial intelligence.',
+    desc: 'The first product on the Cosmonus Intelligence Layer — a map-first, broker-free rental platform for India, powered by the platform\'s spatial and predictive engines. The map is the product.',
+    tags: ['Spatial Intelligence', 'Knowledge Graph', 'Predictive', 'Agents', 'Real-Time', 'Live'],
     href: '/products/stayonmap',
     live: 'https://stayonmap-frontend-production-23f8.up.railway.app/',
     status: 'Live',
@@ -14,81 +14,29 @@ const BUILT_PRODUCTS = [
   },
 ]
 
-const SERVICES = [
-  {
-    category: 'Build',
-    items: [
-      {
-        href: '/products/websites',
-        label: 'Websites',
-        desc: 'High-performance marketing sites that convert visitors into leads.',
-        gradient: 'linear-gradient(135deg, #635BFF 0%, #00D4FF 100%)',
-      },
-      {
-        href: '/products/apps',
-        label: 'Applications',
-        desc: 'Web and mobile apps scoped tightly and built to ship.',
-        gradient: 'linear-gradient(135deg, #0A2540 0%, #1B3A5C 50%, #425466 100%)',
-      },
-      {
-        href: '/products/automation',
-        label: 'Automation',
-        desc: 'AI-powered workflows that eliminate repetitive manual work.',
-        gradient: 'linear-gradient(135deg, #635BFF 0%, #7C3AED 100%)',
-      },
-      {
-        href: '/products/ecommerce',
-        label: 'E-Commerce',
-        desc: 'Online stores optimised from storefront to checkout.',
-        gradient: 'linear-gradient(135deg, #24B47E 0%, #0A2540 100%)',
-      },
-    ],
-  },
-  {
-    category: 'Grow',
-    items: [
-      {
-        href: '/products/seo',
-        label: 'SEO',
-        desc: 'Search optimisation that drives qualified traffic, not vanity metrics.',
-        gradient: 'linear-gradient(135deg, #00D4FF 0%, #0A2540 100%)',
-      },
-      {
-        href: '/products/analytics',
-        label: 'Analytics',
-        desc: 'Data setup and dashboards that tell you what to act on.',
-        gradient: 'linear-gradient(135deg, #0A2540 0%, #635BFF 100%)',
-      },
-      {
-        href: '/products/content',
-        label: 'Content',
-        desc: 'Strategy and production — from brand voice to campaign copy.',
-        gradient: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
-      },
-    ],
-  },
-]
-
-const STATS = [
-  { value: '50+', label: 'Products shipped' },
-  { value: '2–4 wks', label: 'Avg. time to live' },
-  { value: '7', label: 'Service categories' },
-  { value: '96%', label: 'Client satisfaction' },
+const INDUSTRIES = [
+  { href: '/solutions/logistics',   label: 'Logistics & Fleet', desc: 'Spatial intelligence for every vehicle, shipment, and asset in motion.' },
+  { href: '/solutions/real-estate', label: 'Real Estate',       desc: 'Spatial intelligence for property — the domain StayOnMap runs in.' },
+  { href: '/solutions/enterprise',  label: 'Enterprise Ops',    desc: 'Every system in one connected model, traced end to end.' },
+  { href: '/solutions/retail',      label: 'Retail',            desc: 'Predictive intelligence from catalogue and behaviour to demand.' },
 ]
 
 export const metadata = {
-  title: 'Products & Services | What Cosmonus Builds',
-  description: 'From StayOnMap — our own live platform — to the full range of design, development, and AI services we deliver for clients. Everything Cosmonus builds.',
-  keywords: ['cosmonus products', 'digital services', 'web development services', 'AI products', 'design services', 'StayOnMap'],
+  title: 'Products | Built on the Cosmonus Intelligence Layer',
+  description: 'Every Cosmonus product runs on one shared Intelligence Layer. From StayOnMap — the first product live in production — to the applied capabilities you can build on the platform.',
+  keywords: ['cosmonus products', 'intelligence layer', 'intelligence platform', 'spatial intelligence', 'decision automation', 'StayOnMap'],
+  alternates: { canonical: '/products' },
   openGraph: {
-    title: 'Products & Services | Cosmonus',
-    description: 'Our own live products and the full range of services we deliver for clients.',
+    title: 'Products | Cosmonus',
+    description: 'Products built on one shared Intelligence Layer — with StayOnMap live in production.',
     url: 'https://cosmonus.com/products',
+    images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Products & Services | Cosmonus',
-    description: 'Our own products and services for clients.',
+    title: 'Products | Cosmonus',
+    description: 'Products built on one shared Intelligence Layer.',
+    images: ['/images/ICON.png'],
   },
 }
 
@@ -100,14 +48,14 @@ export default function ProductsPage() {
         <div className="container">
           <div className="products-hero__inner products-hero__inner--solo">
             <span className="eyebrow">Products</span>
-            <h1 className="products-hero__title">Things we&apos;ve built.<br />Things we can build for you.</h1>
+            <h1 className="products-hero__title">One platform.<br />Every product runs on it.</h1>
             <p className="products-hero__lead">
-              From our own products shipped to market, to the full range of services we deliver for clients —
-              here&apos;s what Cosmonus builds.
+              Every Cosmonus product is built on the same Intelligence Layer — one knowledge graph,
+              five engines, and decision automation underneath. StayOnMap is the first live in production.
             </p>
             <div className="products-hero__actions">
-              <Link href="/contact" className="btn-cosmonus btn-arrow">Start a project</Link>
-              <Link href="/about" className="btn-ghost">About us</Link>
+              <Link href="/platform" className="btn-cosmonus btn-arrow">Explore the platform</Link>
+              <Link href="/contact" className="btn-ghost">Talk to us</Link>
             </div>
           </div>
         </div>
@@ -117,8 +65,8 @@ export default function ProductsPage() {
       <section className="products-built">
         <div className="container">
           <div className="products-built__head">
-            <span className="eyebrow">Built by Cosmonus</span>
-            <h2 className="products-built__title">Products we&apos;ve taken from zero to live.</h2>
+            <span className="eyebrow">Built on the platform</span>
+            <h2 className="products-built__title">The first product on the Intelligence Layer.</h2>
           </div>
 
           {BUILT_PRODUCTS.map((p) => (
@@ -150,7 +98,7 @@ export default function ProductsPage() {
                 <p className="products-featured-card__tagline">{p.tagline}</p>
                 <p className="products-featured-card__desc">{p.desc}</p>
                 <div className="products-featured-card__actions">
-                  <Link href={p.href} className="btn-cosmonus btn-arrow">View case study</Link>
+                  <Link href={p.href} className="btn-cosmonus btn-arrow">Explore StayOnMap</Link>
                   <a href={p.live} target="_blank" rel="noopener noreferrer" className="products-featured-card__live-link">
                     Visit live product →
                   </a>
@@ -161,21 +109,8 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Services */}
-      <section className="products-services">
-        <div className="container">
-          <div className="products-services__head">
-            <span className="eyebrow">Built for you</span>
-            <h2 className="products-services__title">Services we deliver for clients.</h2>
-            <p className="products-services__lead">
-              Every product below is a service we&apos;ve scoped, designed, and shipped for businesses.
-              Click through to see what&apos;s included, how it works, and what you&apos;ll get.
-            </p>
-          </div>
-
-          <ServiceCarousel services={SERVICES} />
-        </div>
-      </section>
+      {/* Solutions by industry */}
+      <RelatedServices items={INDUSTRIES} />
     </>
   )
 }

@@ -48,17 +48,17 @@ const TESTIMONIALS = [
 const VALUES = [
   {
     title: 'Quality',
-    body: "We don't ship half-finished work. Every deliverable meets a standard we'd be proud to put our name on — no exceptions for tight deadlines.",
-    gradient: 'linear-gradient(135deg, #635BFF 0%, #00D4FF 100%)',
+    body: "Every deliverable meets a standard we'd put our name on — deadlines never the reason it slips.",
+    gradient: 'linear-gradient(135deg, #635BFF 0%, #3882F6 100%)',
   },
   {
     title: 'Transparency',
-    body: 'No vague updates, no hidden timelines. You know exactly where things stand at every stage of the project.',
+    body: 'No vague updates, no hidden timelines — you always know where things stand and what\'s next.',
     gradient: 'linear-gradient(135deg, #3882F6 0%, #635BFF 100%)',
   },
   {
     title: 'Commitment',
-    body: "When we take something on, it gets done. We only say yes to work we can actually deliver — and then we deliver it.",
+    body: "We only say yes to work we can actually deliver — then we deliver it.",
     gradient: 'linear-gradient(135deg, #635BFF 0%, #7C3AED 100%)',
   },
 ]
@@ -67,17 +67,17 @@ const HOW = [
   {
     n: '01',
     title: 'Validate',
-    body: 'We test ideas against the real world before investing in them fully — with users, not assumptions.',
+    body: 'We test ideas against real users before investing fully — not assumptions.',
   },
   {
     n: '02',
     title: 'Iterate',
-    body: 'We move fast on feedback. What the market tells us matters more than internal opinions or committee votes.',
+    body: 'We move fast on feedback. The market matters more than internal opinion.',
   },
   {
     n: '03',
     title: 'Ship',
-    body: 'A product in the market learning is worth more than a perfect product still in planning. We get things live.',
+    body: 'A product learning in the market beats a perfect one still in planning.',
   },
 ]
 
@@ -85,22 +85,22 @@ const VIBE_STEPS = [
   {
     n: '01',
     title: 'Describe',
-    body: 'You tell us what you need in plain language. No technical specs, no lengthy briefs — just the outcome you\'re after.',
+    body: 'Tell us the outcome you\'re after in plain language — no specs, no briefs.',
   },
   {
     n: '02',
     title: 'Generate',
-    body: 'AI produces the first working version at speed. Our engineers guide, review, and refine every output for quality and correctness.',
+    body: 'AI produces the first working version fast; engineers review and refine every output.',
   },
   {
     n: '03',
     title: 'Iterate',
-    body: 'Feedback loops happen in hours, not weeks. Every change is immediate — you see it working before you\'ve finished explaining it.',
+    body: 'Feedback loops in hours, not weeks — you see it working as you explain it.',
   },
   {
     n: '04',
     title: 'Ship',
-    body: 'Production-ready software that would have taken weeks, delivered in days. Quality stays high because humans stay in the loop.',
+    body: 'Production-ready software in days, not weeks — humans stay in the loop.',
   },
 ]
 
@@ -116,34 +116,35 @@ const CONTRAST = [
   { old: 'Meetings about meetings', ours: 'Direct, async communication' },
   { old: 'Roadmaps that never ship', ours: 'Working software, fast' },
   { old: 'Strategy decks, no follow-through', ours: 'Real applications that reach users' },
-  { old: 'Opinions over evidence', ours: 'Validation over assumptions' },
-  { old: 'Siloed execution', ours: 'Transparent at every stage' },
 ]
 
 const DISCIPLINES = [
-  { label: 'UI / UX Design' },
-  { label: 'Web Development' },
-  { label: 'Mobile Apps' },
-  { label: 'Branding & Identity' },
-  { label: 'AI & Automation' },
-  { label: 'E-Commerce' },
-  { label: 'SEO & Analytics' },
-  { label: 'VR / Spatial UI' },
+  { label: 'Spatial Intelligence' },
+  { label: 'Enterprise Intelligence' },
+  { label: 'Knowledge Intelligence' },
+  { label: 'Predictive Intelligence' },
+  { label: 'Agent Intelligence' },
+  { label: 'Knowledge Graph' },
+  { label: 'Decision Automation' },
+  { label: 'Applied AI' },
 ]
 
 export const metadata = {
-  title: 'About Cosmonus | Our Story, Values & Approach',
-  description: 'Meet the team behind Cosmonus. We build real products, move fast, and focus on outcomes — design, engineering, and AI that ships and makes a measurable difference.',
-  keywords: ['about cosmonus', 'digital studio', 'Sri Gokul Krishnan', 'design team', 'product studio India'],
+  title: 'About Cosmonus | The Intelligence Layer Beneath Your Decisions',
+  description: 'Cosmonus was built out of one frustration: teams drowning in data and dashboards no one acts on. We build the Intelligence Layer that turns your data into decisions — starting with StayOnMap, the first product proving what it can power.',
+  keywords: ['about cosmonus', 'intelligence infrastructure', 'AI-native company', 'Sri Gokul Krishnan', 'intelligence layer', 'knowledge graph'],
+  alternates: { canonical: '/about' },
   openGraph: {
-    title: 'About Cosmonus | Our Story, Values & Approach',
-    description: 'We do what\'s needed, not what\'s comfortable. The story behind Cosmonus.',
+    title: 'About Cosmonus | The Intelligence Layer Beneath Your Decisions',
+    description: 'Born from frustration with data no one acts on. The story behind the platform that turns your data into decisions.',
     url: 'https://cosmonus.com/about',
+    images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About Cosmonus',
-    description: 'We do what\'s needed, not what\'s comfortable.',
+    description: 'The Intelligence Layer that turns your data into decisions.',
+    images: ['/images/ICON.png'],
   },
 }
 
@@ -159,8 +160,9 @@ export default function AboutPage() {
                 We do what&apos;s needed.<br />Not what&apos;s comfortable.
               </h1>
               <p className="lead about-hero__lead">
-                Most companies lose themselves in process. We focus on what actually moves the needle —
-                real applications, fast go-to-market, and relentless iteration until it works.
+                You already have the data. What you don&apos;t have is the moment it becomes a decision.
+                We&apos;re building the Intelligence Layer to close that gap — the shared platform that turns
+                data into decisions, and that every product we ship runs on.
               </p>
             </div>
             <div className="about-hero__visuals">
@@ -183,13 +185,13 @@ export default function AboutPage() {
             </div>
             <div className="about-why__right">
               <p>
-                Every company I worked at had the same problem — they were more invested in process
-                than in the actual business outcome. Meetings about meetings. Roadmaps that never shipped.
-                Beautiful strategy decks that never touched a real user.
+                Every company I worked at cared more about process than outcome — meetings about
+                meetings, roadmaps that never shipped, strategy decks that never touched a real user.
               </p>
               <p>
-                Cosmonus is the answer to that. We work on what matters: real applications, validated
-                ideas, and getting to market fast enough to actually learn something.
+                Your data is probably the same: scattered across systems, dashboards no one acts on,
+                answers a week late. Cosmonus resolves it into an Ontology — a living model of your
+                operation — and the Ontology into decisions, with StayOnMap the first product proving it works.
               </p>
             </div>
           </div>
@@ -203,9 +205,8 @@ export default function AboutPage() {
             <span className="eyebrow">How we build</span>
             <h2 className="about-vibe__title">Vibe coding — describe it, ship it.</h2>
             <p className="about-vibe__lead">
-              Pioneered by Andrej Karpathy, vibe coding flips traditional development: instead of writing
-              every line by hand, you describe what you want in plain English and AI generates it.
-              We&apos;ve built this workflow into every project we ship — without cutting corners on quality.
+              Pioneered by Andrej Karpathy: describe what you want in plain English, AI generates it.
+              It&apos;s why the gap between ask and running software is measured in hours.
             </p>
           </div>
 
@@ -229,8 +230,8 @@ export default function AboutPage() {
           </div>
 
           <p className="about-vibe__note">
-            Vibe coding doesn&apos;t replace engineers — it makes them dramatically more productive.
-            We use it as a force multiplier: AI handles the execution, our team handles the judgement.
+            Vibe coding doesn&apos;t replace engineers — it multiplies them. AI handles execution;
+            our team handles judgement.
           </p>
         </div>
       </section>
@@ -270,7 +271,7 @@ export default function AboutPage() {
               <div className="about-founder__obsessions">
                 <p className="about-founder__obsessions-label">What I&apos;m obsessed with right now</p>
                 <ul>
-                  <li><strong>Claude Code as a discipline, not a toy.</strong> Guardrails before features. No silent refactors. The teams winning with AI aren&apos;t generating the most code — they&apos;re the ones who trust the code they generate.</li>
+                  <li><strong>Claude Code as a discipline, not a toy.</strong> Guardrails before features. The teams winning with AI aren&apos;t generating the most code — they&apos;re the ones who trust what they generate.</li>
                   <li><strong>System prompts as IP.</strong> A prompt library, compounded over months of real product work, is a moat people are still sleeping on.</li>
                   <li><strong>The designer-engineer archetype.</strong> I think this is the role that defines the next decade of software. I&apos;m betting my career on it.</li>
                 </ul>
@@ -278,7 +279,7 @@ export default function AboutPage() {
 
               <div className="about-founder__building">
                 <p className="about-founder__obsessions-label">Currently building</p>
-                <p><strong>StayOnMap</strong> — a map-first, broker-free rental platform for India. Direct owner contact, zero commission, real-time chat, AI fraud detection, and a full lease management system. Built fullstack from the ground up.</p>
+                <p><strong>The Cosmonus Intelligence Layer</strong> — and <strong>StayOnMap</strong>, the first product on it: a real-time spatial intelligence platform applied to India&apos;s rental market. Direct owner contact, live trust scoring, agent-driven fraud detection, and full lease management — proof of what the platform can power.</p>
               </div>
 
               <a href="https://srigokulkrishnan.com" target="_blank" rel="noopener noreferrer" className="about-founder__link">
@@ -373,10 +374,10 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-disciplines__head">
             <span className="eyebrow">What we build</span>
-            <h2 className="about-disciplines__title">End-to-end across the stack.</h2>
+            <h2 className="about-disciplines__title">One layer, many capabilities.</h2>
             <p className="lead about-disciplines__lead">
-              From brand identity to live software — we cover the full range so you don&apos;t have to
-              stitch together five different vendors.
+              Not separate tools to wire together — capabilities of one Intelligence Layer, all
+              reasoning over the same data you already have.
             </p>
           </div>
           <div className="about-disciplines__grid">

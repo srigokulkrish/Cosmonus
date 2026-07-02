@@ -5,8 +5,8 @@ export default function RelatedServices({ items }) {
     <section className="related-services">
       <div className="container">
         <div className="related-services__head">
-          <span className="eyebrow">Related services</span>
-          <h2 className="related-services__title">Explore what else we build.</h2>
+          <span className="eyebrow">More solutions</span>
+          <h2 className="related-services__title">Explore the rest of the platform.</h2>
         </div>
         <div className="related-services__grid">
           {items.map((r) => (

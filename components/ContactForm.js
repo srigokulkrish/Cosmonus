@@ -4,11 +4,11 @@ import { useState } from 'react'
 import CustomSelect from '@/components/CustomSelect'
 
 const PROJECT_TYPES = [
-  'Branding & identity',
-  'Web development',
-  'Mobile app',
-  'AI / automation',
-  'E-commerce',
+  'Spatial Intelligence',
+  'Enterprise Intelligence',
+  'Decision Automation',
+  'Agent / AI Intelligence',
+  'Platform integration',
   'Something else',
 ]
 
@@ -22,9 +22,9 @@ const BUDGETS = [
 ]
 
 const NEXT_STEPS = [
-  { n: '01', title: 'We review your brief', body: 'A team member reads your message and researches your space before replying.' },
-  { n: '02', title: 'You get a tailored reply', body: 'Within one business day — initial thoughts, timeline estimate, and suggested next steps.' },
-  { n: '03', title: 'Discovery call', body: 'A 30-minute call to align on goals, scope, and whether we\'re the right fit.' },
+  { n: '01', title: 'We review your brief', body: 'We read your message and study your data and decision workflows before replying.' },
+  { n: '02', title: 'You get a tailored reply', body: 'Within one business day — initial thoughts, a fit assessment, and next steps.' },
+  { n: '03', title: 'Discovery call', body: 'A 30-minute call to align on your use case, scope, and fit.' },
 ]
 
 export default function ContactForm() {
@@ -126,7 +126,7 @@ export default function ContactForm() {
           required
           value={form.message}
           onChange={update('message')}
-          placeholder="What are you looking to build? Share your goals, timeline, and anything else we should know."
+          placeholder="What data do you have, and what decisions do you want to automate? Add your goals and timeline."
         />
       </div>
 

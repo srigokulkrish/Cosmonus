@@ -15,18 +15,21 @@ const LOGOS = [
 ]
 
 export const metadata = {
-  title: 'Cosmonus — Design, Development & AI Agency',
-  description: 'Cosmonus helps ambitious businesses ship products, automate operations, and grow revenue. Expert design, web development, and AI solutions that deliver real results — fast.',
-  keywords: ['digital agency', 'web development agency', 'AI solutions', 'product development', 'design agency', 'automation', 'India'],
+  title: 'Cosmonus — AI-Native Intelligence Infrastructure',
+  description: 'Cosmonus builds the Intelligence Layer beneath modern operations — one platform that unifies data into a living knowledge graph and turns it into spatial, predictive, and agent intelligence, then into automated decisions.',
+  keywords: ['intelligence infrastructure', 'intelligence layer', 'knowledge graph', 'spatial intelligence', 'predictive intelligence', 'agent intelligence', 'decision automation', 'AI-native platform'],
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Cosmonus — Design, Development & AI Agency',
-    description: 'Ship products faster. Automate smarter. Grow with AI. Cosmonus is the digital studio built for ambitious businesses.',
+    title: 'Cosmonus — AI-Native Intelligence Infrastructure',
+    description: 'The Intelligence Layer beneath modern operations. Turn data into intelligence, and intelligence into decisions — on one unified platform.',
     url: 'https://cosmonus.com',
+    images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cosmonus — Design, Development & AI Agency',
-    description: 'Ship products faster. Automate smarter. Grow with AI.',
+    title: 'Cosmonus — AI-Native Intelligence Infrastructure',
+    description: 'Turn data into intelligence, and intelligence into decisions — on one unified platform.',
+    images: ['/images/ICON.png'],
   },
 }
 
@@ -37,18 +40,19 @@ export default function Home() {
       <section className="hero-section">
         <div className="container">
           <div className="hero-inner hero-inner--solo">
-            <div className="hero-eyebrow">
+            <div className="hero-eyebrow hero-eyebrow--live">
               <span className="hero-eyebrow__dot" aria-hidden="true" />
-              Design · Development · AI
+              Intelligence Infrastructure · StayOnMap live
             </div>
-            <h1 className="hero-title">Build smarter.<br />Grow faster. Lead with AI.</h1>
+            <h1 className="hero-title">Your data already knows.<br />Cosmonus makes it <span className="hero-title__accent">act.</span></h1>
             <p className="hero-subtitle">
-              Cosmonus helps ambitious businesses ship products, automate operations,
-              and grow revenue — with the clarity and speed most agencies can&apos;t match.
+              Every second, your operation throws off signals that die in dashboards no one is watching.
+              Cosmonus builds one living Ontology of your operation — and turns those signals into
+              decisions the moment they matter.
             </p>
             <div className="hero-actions">
-              <Link href="/contact" className="btn-cosmonus btn-arrow">Start a project</Link>
-              <Link href="/about" className="btn-ghost">About us</Link>
+              <Link href="/platform" className="btn-cosmonus btn-arrow">Explore the platform</Link>
+              <Link href="/products/stayonmap" className="btn-ghost btn-arrow">See StayOnMap</Link>
             </div>
           </div>
         </div>
@@ -58,7 +62,7 @@ export default function Home() {
       <section className="trusted-section">
         <div className="container">
           <div className="trusted-header">
-            <p className="trusted-label">Trusted by founders, startups, and enterprise teams</p>
+            <p className="trusted-label">Trusted by teams putting intelligence into production</p>
           </div>
         </div>
         <div className="trusted-marquee" aria-label="Client logos">
@@ -78,23 +82,23 @@ export default function Home() {
       {/* Stats */}
       <section className="stats-section">
         <div className="container">
-          <h2 className="stats-title">The backbone of<br />digital growth</h2>
+          <h2 className="stats-title">The backbone of<br />intelligent operations</h2>
           <div className="stats-grid">
             <div className="stats-item">
-              <span className="stats-value">50+</span>
-              <span className="stats-label">projects delivered across industries</span>
+              <span className="stats-value">5</span>
+              <span className="stats-label">intelligence engines, one platform</span>
             </div>
             <div className="stats-item">
-              <span className="stats-value">3x</span>
-              <span className="stats-label">average revenue growth for our clients</span>
+              <span className="stats-value">&lt;100ms</span>
+              <span className="stats-label">event to automated decision</span>
             </div>
             <div className="stats-item">
               <span className="stats-value">99.9%</span>
-              <span className="stats-label">uptime across all products we build</span>
+              <span className="stats-label">production uptime</span>
             </div>
             <div className="stats-item">
               <span className="stats-value">10M+</span>
-              <span className="stats-label">end users reached through our solutions</span>
+              <span className="stats-label">events processed</span>
             </div>
           </div>
         </div>

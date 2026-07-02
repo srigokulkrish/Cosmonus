@@ -2,17 +2,20 @@ import ComingSoon from '@/components/ComingSoon'
 
 export const metadata = {
   title: 'Pricing | Cosmonus',
-  description: 'Transparent pricing for web development, branding, automation, and AI solutions. Fixed-scope projects and flexible retainers — no surprises.',
-  keywords: ['pricing', 'web development cost', 'agency pricing', 'digital agency rates', 'project pricing'],
+  description: 'Transparent pricing for the Cosmonus Intelligence Layer — knowledge graphs, predictive and agent intelligence, and decision automation at the scale you need.',
+  keywords: ['intelligence platform pricing', 'AI infrastructure pricing', 'enterprise intelligence plans', 'platform access', 'usage-based intelligence'],
+  alternates: { canonical: '/pricing' },
   openGraph: {
     title: 'Pricing | Cosmonus',
-    description: 'Transparent pricing for web, branding, automation, and AI — fixed-scope projects and flexible retainers.',
+    description: 'Transparent pricing for the Cosmonus Intelligence Layer — platform capabilities at the scale you need.',
     url: 'https://cosmonus.com/pricing',
+    images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pricing | Cosmonus',
-    description: 'Transparent pricing for web, branding, automation, and AI.',
+    description: 'Transparent pricing for the Cosmonus Intelligence Layer.',
+    images: ['/images/ICON.png'],
   },
 }
 

@@ -10,7 +10,7 @@ import {
 
 const COLUMNS = [
   { head: 'Solutions', items: SOLUTIONS },
-  { head: 'Products',  items: FOOTER_PRODUCTS },
+  { head: 'Platform',  items: FOOTER_PRODUCTS },
   { head: 'Resources', items: FOOTER_RESOURCES },
   { head: 'Company',   items: FOOTER_COMPANY },
   { head: 'Socials',   items: FOOTER_SOCIALS, external: true },
@@ -40,9 +40,9 @@ export default function Footer() {
           {/* Brand column — logo + social icons */}
           <div className="col-12 col-lg-3">
             <Link href="/" className="footer-brand" aria-label="Cosmonus home">
-              <img src="/images/logo.png" alt="Cosmonus" className="footer-brand__logo" />
+              <img src="/images/logo-white.png" alt="Cosmonus" className="footer-brand__logo" />
             </Link>
-            <p className="footer-brand__tagline">AI-powered digital company helping businesses build brands, websites, products, and automation systems.</p>
+            <p className="footer-brand__tagline">AI-native intelligence infrastructure. One platform that turns your data into intelligence, and intelligence into decisions.</p>
             <div className="footer-socials">
               <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>

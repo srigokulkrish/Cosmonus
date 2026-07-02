@@ -1,43 +1,46 @@
 const PARTNERSHIP_TYPES = [
   {
     type: 'Agency & Studio Partners',
-    desc: "Creative agencies and development studios who need an overflow partner, a specialist collaborator, or a reliable team to help deliver for their clients.",
+    desc: "Build intelligence features on the Cosmonus Intelligence Layer and ship them under your own name — no year spent building the platform.",
     fits: [
-      'You have clients who need design or development but lack internal capacity',
-      'You want a trusted partner for AI and automation projects',
-      'You need white-label delivery that reflects your quality standards',
+      'Clients keep asking for AI features your stack can\'t deliver yet',
+      'You\'d rather build on a proven intelligence layer than maintain your own',
+      'You need white-label delivery that still looks like your best work',
     ],
   },
   {
     type: 'Integration Partners',
-    desc: "Complementary service businesses — marketing firms, consultancies, legal, finance, HR — whose clients frequently need what we build.",
+    desc: "Your product already generates the data. Connect to the layer once and give customers analytics, agents, and automation without building any of it.",
     fits: [
-      'Your clients ask for digital products, websites, or automation',
-      'You want to expand your offering without hiring developers',
-      'You prefer mutual referrals over transactional relationships',
+      'Customers want analytics, agents, or automation on top of what you do',
+      'You\'d add intelligence tomorrow if it didn\'t mean building a platform first',
+      'You want a deep technical integration, not a reseller badge',
     ],
   },
 ]
 
 const BENEFITS = [
-  { title: 'Reliable delivery', body: 'We treat partner-sourced projects with the same rigour as our own clients. Your reputation stays intact.' },
-  { title: 'Clear communication', body: 'No dropped balls, no surprise timelines. You stay in the loop at every stage.' },
-  { title: 'Mutual growth', body: 'The relationship works both ways. We refer back, collaborate openly, and build together.' },
+  { title: 'One platform under you', body: 'You build on the same Intelligence Layer we ship our own products on — same reliability, your name on it.' },
+  { title: 'You always know where things stand', body: 'No dropped balls, no surprise timelines — you see every stage as it happens.' },
+  { title: 'We grow when you do', body: 'We build alongside you, and the layer gets stronger every time you ship on it.' },
 ]
 
 export const metadata = {
-  title: 'Partner with Cosmonus | Agency & Platform Partnerships',
-  description: 'Cosmonus partners with agencies, platforms, and technology companies. Refer clients, co-deliver projects, or integrate our services into your offering.',
-  keywords: ['cosmonus partners', 'agency partnership', 'referral program', 'white label digital services', 'technology partner'],
+  title: 'Partner with Cosmonus | Build on the Intelligence Layer',
+  description: 'Ship the intelligence features your clients ask for without building the platform yourself. Agencies and platforms build on the Cosmonus Intelligence Layer — under their own name.',
+  keywords: ['cosmonus partners', 'intelligence platform partnership', 'AI infrastructure partner', 'white label intelligence', 'technology integration partner'],
+  alternates: { canonical: '/partners' },
   openGraph: {
     title: 'Partner with Cosmonus',
-    description: 'Refer clients, co-deliver, or integrate — partnership built around your goals.',
+    description: 'Ship intelligence features on the Cosmonus Intelligence Layer without building the platform yourself.',
     url: 'https://cosmonus.com/partners',
+    images: ['/images/ICON.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Partner with Cosmonus',
-    description: 'Refer clients, co-deliver, or integrate our services.',
+    description: 'Build intelligence products on the Cosmonus Intelligence Layer.',
+    images: ['/images/ICON.png'],
   },
 }
 
@@ -48,11 +51,12 @@ export default function PartnersPage() {
         <div className="container">
           <span className="eyebrow">Partners</span>
           <h1 className="partners-hero__title">
-            Better work happens<br />when we build together.
+            Ship intelligence.<br />Skip the platform.
           </h1>
           <p className="lead partners-hero__lead">
-            We partner with agencies, studios, and complementary service businesses to create more
-            value than either of us could alone.
+            Your clients want features that turn their data into decisions &mdash; and the
+            infrastructure underneath is a year you don&apos;t have. Build on the Cosmonus
+            Intelligence Layer instead, and ship it as yours.
           </p>
         </div>
       </section>
@@ -61,7 +65,7 @@ export default function PartnersPage() {
         <div className="container">
           <div className="partners-types__head">
             <span className="eyebrow">Partnership types</span>
-            <h2 className="partners-types__title">Two ways to work together.</h2>
+            <h2 className="partners-types__title">Find the one that fits how you work.</h2>
           </div>
           <div className="partners-types__grid">
             {PARTNERSHIP_TYPES.map((p) => (
@@ -88,7 +92,7 @@ export default function PartnersPage() {
         <div className="container">
           <div className="partners-benefits__head">
             <span className="eyebrow">What to expect</span>
-            <h2 className="partners-benefits__title">A partnership worth having.</h2>
+            <h2 className="partners-benefits__title">What you get out of it.</h2>
           </div>
           <div className="partners-benefits__grid">
             {BENEFITS.map((b) => (

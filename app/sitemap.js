@@ -6,22 +6,21 @@ export default function sitemap() {
   const routes = [
     { url: '/',                          priority: 1.0,  changeFrequency: 'weekly' },
 
-    // Solutions
-    { url: '/solutions/web',             priority: 0.9,  changeFrequency: 'monthly' },
-    { url: '/solutions/branding',        priority: 0.9,  changeFrequency: 'monthly' },
-    { url: '/solutions/mobile',          priority: 0.9,  changeFrequency: 'monthly' },
-    { url: '/solutions/ai',              priority: 0.9,  changeFrequency: 'monthly' },
+    // Platform
+    { url: '/platform',                  priority: 0.9,  changeFrequency: 'monthly' },
+    { url: '/developers',                priority: 0.8,  changeFrequency: 'monthly' },
+    { url: '/research',                  priority: 0.7,  changeFrequency: 'monthly' },
+
+    // Solutions — by industry
+    { url: '/solutions',                 priority: 0.85, changeFrequency: 'monthly' },
+    { url: '/solutions/logistics',       priority: 0.9,  changeFrequency: 'monthly' },
+    { url: '/solutions/real-estate',     priority: 0.9,  changeFrequency: 'monthly' },
+    { url: '/solutions/enterprise',      priority: 0.9,  changeFrequency: 'monthly' },
+    { url: '/solutions/retail',          priority: 0.9,  changeFrequency: 'monthly' },
 
     // Products
     { url: '/products',                  priority: 0.85, changeFrequency: 'monthly' },
-    { url: '/products/websites',         priority: 0.8,  changeFrequency: 'monthly' },
-    { url: '/products/apps',             priority: 0.8,  changeFrequency: 'monthly' },
-    { url: '/products/automation',       priority: 0.8,  changeFrequency: 'monthly' },
-    { url: '/products/ecommerce',        priority: 0.8,  changeFrequency: 'monthly' },
-    { url: '/products/seo',              priority: 0.8,  changeFrequency: 'monthly' },
-    { url: '/products/analytics',        priority: 0.8,  changeFrequency: 'monthly' },
-    { url: '/products/content',          priority: 0.8,  changeFrequency: 'monthly' },
-    { url: '/products/stayonmap',        priority: 0.75, changeFrequency: 'monthly' },
+    { url: '/products/stayonmap',        priority: 0.8,  changeFrequency: 'monthly' },
 
     // Company
     { url: '/about',                     priority: 0.7,  changeFrequency: 'monthly' },

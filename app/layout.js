@@ -7,35 +7,84 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import SmoothScroll from '../components/SmoothScroll'
 
+const SITE_URL = 'https://cosmonus.com'
+const SITE_DESC = 'Cosmonus builds the Intelligence Layer beneath modern operations — one platform that unifies data into a living Ontology and turns it into spatial, predictive, and agent intelligence, then into automated decisions.'
+
 export const metadata = {
-  metadataBase: new URL('https://cosmonus.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Cosmonus — Design, Development & AI for Ambitious Businesses',
+    default: 'Cosmonus — AI-Native Intelligence Infrastructure',
     template: '%s | Cosmonus',
   },
-  description: 'Cosmonus helps ambitious businesses ship products, automate operations, and grow revenue — with expert design, engineering, and AI that delivers results.',
-  keywords: ['digital agency', 'web development', 'AI solutions', 'product design', 'automation', 'mobile apps', 'branding', 'SEO'],
-  authors: [{ name: 'Sri Gokul Krishnan' }],
+  description: SITE_DESC,
+  keywords: ['intelligence infrastructure', 'intelligence layer', 'ontology', 'knowledge graph', 'spatial intelligence', 'predictive intelligence', 'agent intelligence', 'decision automation', 'AI-native platform'],
+  applicationName: 'Cosmonus',
+  authors: [{ name: 'Sri Gokul Krishnan', url: 'https://srigokulkrishnan.com' }],
   creator: 'Cosmonus',
+  publisher: 'Cosmonus',
+  category: 'technology',
+  alternates: { canonical: '/' },
+  formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
-    siteName: 'Cosmonus',
     type: 'website',
     locale: 'en_US',
+    url: SITE_URL,
+    siteName: 'Cosmonus',
+    title: 'Cosmonus — AI-Native Intelligence Infrastructure',
+    description: SITE_DESC,
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@cosmonus',
     creator: '@cosmonus',
+    title: 'Cosmonus — AI-Native Intelligence Infrastructure',
+    description: SITE_DESC,
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+}
+
+const JSON_LD = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'Cosmonus',
+      url: SITE_URL,
+      logo: `${SITE_URL}/images/logo.png`,
+      description: SITE_DESC,
+      founder: { '@type': 'Person', name: 'Sri Gokul Krishnan', url: 'https://srigokulkrishnan.com' },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      name: 'Cosmonus',
+      url: SITE_URL,
+      description: SITE_DESC,
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      inLanguage: 'en',
+    },
+  ],
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();` }} />
-      </head>
+    <html lang="en" data-theme="light" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <div className="d-flex flex-column min-vh-100">
           <SmoothScroll />
           <Header />
