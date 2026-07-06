@@ -185,6 +185,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 500; }
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
   max-width: 720px;
 }
+.section-head .body { margin-top: 0.75rem; }
 .section-head--wide { max-width: 880px; }
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); }
