@@ -30,6 +30,7 @@ Editorial, architectural, calm. Dark-first — `data-theme` on `<html>` defaults
 - **Dark (primary):** `#0a0a0a` background, `#ececec` text — neutral near-black, no blue/violet cast; violet lives only in the accent, never the base/surface colors
 - **Light:** `#ffffff`/`#faf9fb` background, `#141318` text
 - **Accent:** the Cosmonus brand violet `#635bff` in both themes — used *deliberately*, not everywhere: primary CTA fill, link/nav hover, active nav underline, focus rings, the intelligence-canvas diagram (violet marks the organized/knowledge side, neutral marks raw/scattered data), numbered `.eyebrow__num` marks. Everything else stays neutral grey/black so violet reads as intentional.
+- **Accent as text:** use `--accent-text` (lighter `#928cff` in dark, `#635bff` in light) for violet *text/underlines* on the page background — nav/footer link hover and active states — because the raw accent is too dark to read on `#0a0a0a`. `--accent` stays for fills and the canvas.
 - **CTAs:** `.btn--primary` is violet-filled (`background: var(--accent)`, white text) — not monochrome ink. `.btn--ghost` borders/text tint violet on hover.
 - **Buttons:** `border-radius: 4px` (`--r-sm`), not pill
 - **No gradients, no emoji, no rounded-card-with-left-accent clichés, no stock illustration.** Every visual means something.
