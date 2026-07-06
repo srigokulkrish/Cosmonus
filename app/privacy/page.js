@@ -64,7 +64,7 @@ export default function PrivacyPage() {
           <h2>Your rights</h2>
           <p>
             You can ask us to access, correct, or delete the personal data we hold about you. To
-            do so, email <a href="mailto:hello@cosmonus.com">hello@cosmonus.com</a> from the
+            do so, email <a href="mailto:srigokulkrishnan@gmail.com">srigokulkrishnan@gmail.com</a> from the
             address associated with your data, and we&apos;ll respond within a reasonable time.
           </p>
 
@@ -92,7 +92,7 @@ export default function PrivacyPage() {
 
           <h2>Contact</h2>
           <p>
-            Questions about this policy: <a href="mailto:hello@cosmonus.com">hello@cosmonus.com</a>.
+            Questions about this policy: <a href="mailto:srigokulkrishnan@gmail.com">srigokulkrishnan@gmail.com</a>.
           </p>
         </div>
       </div>

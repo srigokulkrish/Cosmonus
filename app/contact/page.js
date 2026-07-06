@@ -56,7 +56,7 @@ export default function ContactPage() {
             <aside>
               <div className="contact-aside__block">
                 <h6 className="contact-aside__head">Email</h6>
-                <a href="mailto:hello@cosmonus.com" className="contact-aside__link">hello@cosmonus.com</a>
+                <a href="mailto:srigokulkrishnan@gmail.com" className="contact-aside__link">srigokulkrishnan@gmail.com</a>
               </div>
               <div className="contact-aside__block">
                 <h6 className="contact-aside__head">Working hours</h6>

@@ -54,7 +54,7 @@ export default function ContactForm() {
       setStatus('sent')
     } catch (err) {
       setStatus('idle')
-      setError(err.message || 'Something went wrong. Please email hello@cosmonus.com directly.')
+      setError(err.message || 'Something went wrong. Please email srigokulkrishnan@gmail.com directly.')
     }
   }
 
