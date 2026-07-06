@@ -1,103 +1,81 @@
 import Link from 'next/link'
+import StripedPlaceholder from '@/components/StripedPlaceholder'
 
-const BUILT_PRODUCTS = [
-  {
-    name: 'StayOnMap',
-    tagline: 'Intelligence applied to a broken market.',
-    desc: 'India\'s rental market runs on brokers because nobody solved trust. StayOnMap replaces that intermediary with engineered intelligence — live trust scoring, autonomous fraud detection, and direct owner-to-tenant leases, running in production today.',
-    tags: ['Trust Scoring', 'Fraud Detection', 'Autonomous Agents', 'Real-Time', 'In Production'],
-    href: '/products/stayonmap',
-    live: 'https://stayonmap-frontend-production-23f8.up.railway.app/',
-    status: 'Live',
-    gradient: 'linear-gradient(135deg, #24B47E 0%, #0A2540 60%, #1B3A5C 100%)',
-  },
-]
+const STAYONMAP_URL = 'https://stayonmap-frontend-production-23f8.up.railway.app/'
 
 export const metadata = {
-  title: 'Products | Intelligence We Run in Production',
-  description: 'We prove our engineering on our own products before we apply it to yours. StayOnMap — intelligence applied to India\'s rental market — is live in production today.',
-  keywords: ['cosmonus products', 'intelligent systems', 'trust scoring', 'fraud detection', 'StayOnMap', 'AI in production'],
+  title: 'Products',
+  description: 'We prove the approach in production before applying it to client work. StayOnMap, a broker-free rental marketplace, is our first product.',
   alternates: { canonical: '/products' },
-  openGraph: {
-    title: 'Products | Cosmonus',
-    description: 'Intelligence we run in production — starting with StayOnMap.',
-    url: 'https://cosmonus.com/products',
-    images: ['/images/ICON.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Products | Cosmonus',
-    description: 'Intelligence we run in production — starting with StayOnMap.',
-    images: ['/images/ICON.png'],
-  },
 }
 
 export default function ProductsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="products-hero">
+      <section className="section section--hero">
         <div className="container">
-          <div className="products-hero__inner products-hero__inner--solo">
-            <span className="eyebrow">Products</span>
-            <h1 className="products-hero__title">We prove it on our own products first.</h1>
-            <p className="products-hero__lead">
-              Anyone can claim their AI works. We put ours in production under our own name, in a market
-              that punishes bad decisions — and let you inspect the result before you trust us with yours.
+          <div className="page-hero">
+            <div className="eyebrow">Products</div>
+            <h1 className="page-hero__title">We prove it on our own products first.</h1>
+            <p className="body-lg page-hero__lede">
+              Anyone can claim a system reasons well. We put ours in production under our own
+              name, in a market that punishes a bad decision immediately, and let anyone inspect
+              the result before trusting us with theirs.
             </p>
-            <div className="products-hero__actions">
-              <Link href="/platform" className="btn-cosmonus btn-arrow">How we build intelligence</Link>
-              <Link href="/contact" className="btn-ghost">Discuss your system</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="feature" data-reveal>
+            <div className="feature__content">
+              <div className="eyebrow feature__eyebrow">Product — StayOnMap</div>
+              <h2 className="feature__title">The trust problem brokers used to solve, engineered instead.</h2>
+              <p className="body feature__body">
+                India’s rental market runs on brokers because nobody solved trust between two
+                strangers. StayOnMap replaces that judgment with an engineered one — twelve live
+                signals compounding into a trust score, an agent watching for fraud — so owners
+                and tenants connect directly, on a live map, with no intermediary.
+              </p>
+              <ul className="feature__list">
+                <li>Live trust scoring across twelve signals per listing</li>
+                <li>An autonomous agent that flags fraud before a tenant ever visits</li>
+                <li>Direct owner-to-tenant leases, chat, and scheduling — no broker</li>
+              </ul>
+              <div className="hero__actions">
+                <Link href="/products/stayonmap" className="btn btn--primary">
+                  <span>See StayOnMap</span>
+                  <span className="btn__arrow" aria-hidden="true">→</span>
+                </Link>
+                <a href={STAYONMAP_URL} target="_blank" rel="noopener noreferrer" className="btn btn--ghost">
+                  Open live product
+                </a>
+              </div>
+            </div>
+            <div className="feature__visual">
+              <StripedPlaceholder label="StayOnMap / map homepage" ratio="4/3" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Built products */}
-      <section className="products-built">
+      <section className="section section--tight">
         <div className="container">
-          <div className="products-built__head">
-            <span className="eyebrow">In production</span>
-            <h2 className="products-built__title">StayOnMap — our engineering, on the record.</h2>
-          </div>
-
-          {BUILT_PRODUCTS.map((p) => (
-            <div key={p.name} className="products-built__split">
-              {/* Left — image / visual area */}
-              <div className="products-built__visuals">
-                <div className="products-built__img-main products-built__img-main--full" style={{ background: p.gradient }}>
-                  <div className="products-built__img-main-inner">
-                    <span className="products-built__img-label">{p.name}</span>
-                    <span className="products-built__img-sublabel">{p.tagline}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right — description */}
-              <div className="products-built__desc">
-                <div className="products-featured-card__meta">
-                  <span className="products-featured-card__status">
-                    <span className="som-badge-dot" aria-hidden="true" />
-                    {p.status}
-                  </span>
-                  <div className="products-featured-card__tags">
-                    {p.tags.map((t) => (
-                      <span key={t} className="products-tag">{t}</span>
-                    ))}
-                  </div>
-                </div>
-                <h3 className="products-featured-card__name">{p.name}</h3>
-                <p className="products-featured-card__tagline">{p.tagline}</p>
-                <p className="products-featured-card__desc">{p.desc}</p>
-                <div className="products-featured-card__actions">
-                  <Link href={p.href} className="btn-cosmonus btn-arrow">Explore StayOnMap</Link>
-                  <a href={p.live} target="_blank" rel="noopener noreferrer" className="products-featured-card__live-link">
-                    Visit live product →
-                  </a>
-                </div>
-              </div>
+          <div className="section-head" style={{ marginBottom: 0 }} data-reveal>
+            <div className="eyebrow">What’s next</div>
+            <h2 className="section-title">More products are in progress. This page grows as they ship.</h2>
+            <p className="body">
+              We build products for the same reason we build client systems: a decision worth
+              engineering, proven where it can’t hide. Have one worth building?
+            </p>
+            <div className="hero__actions" style={{ marginTop: '0.5rem' }}>
+              <Link href="/contact" className="btn btn--ghost">
+                <span>Talk to us</span>
+                <span className="btn__arrow" aria-hidden="true">→</span>
+              </Link>
             </div>
-          ))}
+          </div>
         </div>
       </section>
     </>

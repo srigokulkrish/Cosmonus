@@ -1,6 +1,8 @@
 # Cosmonus
 
-Next.js 14 App Router + Bootstrap 5. Solo founder: Sri Gokul Krishnan.
+Next.js 14 App Router. Solo founder: Sri Gokul Krishnan.
+
+Positioning: Cosmonus engineers intelligent software systems from first principles — software that reads context, reasons over information, automates hard decisions, and improves with use. AI is one component among many (architecture, distributed systems, spatial computing, knowledge systems, design). Philosophically between Palantir's density and Stripe's clarity. Confidence through clarity, never hype.
 
 ## Karpathy vibe coding workflow
 
@@ -11,83 +13,86 @@ This project is built vibe-coding style — Sri describes outcomes in plain Engl
 - **Iterate fast** — every change is immediate. No planning phase, no lengthy back-and-forth.
 - **Human steers, AI executes** — Sri holds taste and direction. Claude holds implementation.
 - **Quality stays high** — vibe coding here doesn't mean sloppy. The design system, rules, and constraints below are the guardrails that keep output coherent.
+- This is an internal workflow note, not customer-facing marketing copy — don't surface "vibe coding" language on the site itself.
 
 ## Stack
 
 - Next.js 14 App Router (`app/`)
-- Bootstrap 5 (no Tailwind — ever)
-- Geist + Geist Mono via `next/font/google` (`--font-geist`, `--font-geist-mono`)
-- Lenis (smooth scroll), Three.js (RaycastVisual canvas)
+- No CSS framework — hand-written CSS in `styles/globals.css` (no Tailwind, no Bootstrap)
+- Schibsted Grotesk + JetBrains Mono via `next/font/google` (`--font-grotesk`, `--font-mono`)
+- Lenis (smooth scroll)
 - Deployed on Vercel
 
 ## Design system
 
-- **Brand:** `#635BFF` violet — primary CTAs, active states, gradient accents only
-- **Text:** `#0A2540` slate-navy (light) / `#E2E8F0` (dark) — never pure black
-- **Dark theme default** — `#080808` near-black background, violet/blue cool radial glows
-- **Light theme** — white surfaces, violet/blue cool gradients
-- **Buttons:** `border-radius: 8px` (`--r-sm`), not pill
-- **Shadows:** slate-tinted in light, black-alpha in dark — never pure black
-- **Gradients:** cool only (violet, blue) in page hero glows. Warm orange/yellow for dark-mode Three.js particles only.
-- **Reference aesthetic:** stripe.com/in — visual cues only, never copy content or messaging
+Editorial, architectural, calm. Light-first (warm white), dark theme fully supported via `data-theme` on `<html>`.
+
+- **Light:** `#ffffff`/`#faf9fb` background, `#141318` text
+- **Dark:** `#0a0a0a` background, `#ececec` text — neutral near-black, no blue/violet cast; violet lives only in the accent, never the base/surface colors
+- **Accent:** brand violet (`#635bff` light / `#8072ff` dark, glows slightly brighter in dark) — used *deliberately*, not everywhere: primary CTA fill, link/nav hover, active nav underline, focus rings, the intelligence-canvas diagram (violet marks the organized/knowledge side, neutral marks raw/scattered data), numbered `.eyebrow__num` marks. Everything else stays neutral grey/black so violet reads as intentional.
+- **CTAs:** `.btn--primary` is violet-filled (`background: var(--accent)`, white text) — not monochrome ink. `.btn--ghost` borders/text tint violet on hover.
+- **Buttons:** `border-radius: 4px` (`--r-sm`), not pill
+- **No gradients, no emoji, no rounded-card-with-left-accent clichés, no stock illustration.** Every visual means something.
+- **Imagery placeholders:** use `components/StripedPlaceholder.js` (diagonal-stripe background + monospace label) until real screenshots are supplied — never invent fake product photography
+- **Sections separate with 1px border-top rules** (`.section`). Alternating sections get a faint violet-tinted panel (`var(--panel)`, applied automatically via `.site-main > section:nth-of-type(even)`) — deliberate zebra striping, not a grey fill; hero and final-CTA sections (`.section--hero`/`.section--tight`) are excluded so they stay plain.
+- **Numbered sections:** `.eyebrow` with `.eyebrow__num` (e.g. "01 — THE PROBLEM") for major page sections
+- **Reference aesthetic:** Palantir density / Stripe clarity — visual cues only, never copy content or messaging
 
 ## File layout
 
 ```
 app/
-  page.js                   # Home
+  page.js                    # Home — fully built, all sections below
   about/page.js
-  blogs/page.js             # Server component — filter logic in components/BlogFilter.js
-  careers/page.js
-  contact/page.js           # Server component — form logic in components/ContactForm.js
-  partners/page.js
-  resources/page.js
   products/
-    page.js
-    stayonmap/page.js
-    websites / apps / automation / ecommerce / seo / analytics / content
-  solutions/
-    branding / web / mobile / ai
+    page.js                  # Products index — StayOnMap + space for future products
+    stayonmap/page.js        # StayOnMap detail — real rental-marketplace product
+  technology/page.js         # Engineering disciplines, deeper stack walkthrough
+  research/page.js           # Research areas + open problems
+  careers/page.js
+  contact/page.js            # Server component — form logic in components/ContactForm.js
+  privacy/page.js
+  terms/page.js
+  support/page.js            # Support center — FAQs + contact routes, linked from footer
 
 components/
-  Header.js                 # Sticky nav, mega dropdown, mobile menu
-  Footer.js
-  ThemeToggle.js            # Light/dark toggle, persists to localStorage
-  BlogSection.js            # Home page blog slider
-  BlogFilter.js             # 'use client' — blog page filter + grid
-  ClientShowcase.js         # Accordion case studies
-  ContactForm.js            # 'use client' — contact form state
-  RelatedServices.js        # Shared related services section (11 pages)
-  ServiceCarousel.js        # 'use client' — products page service slider
-  RaycastVisual.js          # Three.js particle canvas (theme-aware colors)
-  SmoothScroll.js           # Lenis smooth scroll init
+  Header.js                  # Sticky nav, mobile menu, theme toggle
+  Footer.js                  # CTA banner + link columns + legal/support bar
+  ThemeToggle.js             # Light/dark toggle, persists to localStorage as 'cosmonus-theme'
+  ContactForm.js             # 'use client' — contact form state
+  CustomSelect.js            # 'use client' — custom <select> used by ContactForm
+  FAQAccordion.js            # 'use client' — used by Contact + Support (items: [{q, a}])
+  IntelligenceCanvas.js      # 'use client' — Home hero canvas (raw information → intelligence layer band → knowledge rows)
+  LayeredStack.js            # 'use client' — interactive 4-layer stack (Home + Technology)
+  CapabilitiesList.js        # 'use client' — expandable capability list (Home "What We Build")
+  StripedPlaceholder.js      # Monospace-labeled striped placeholder for unshipped imagery
+  SmoothScroll.js            # Lenis smooth scroll init
+  CxReveal.js                # IntersectionObserver reveal — mark elements with `data-reveal`
 
 lib/
-  nav.js                    # All nav/footer link data
+  nav.js                     # All nav/footer link data
 
 styles/
-  globals.css               # Full design system — tokens, components, pages
-
-public/
-  images/logo.png
+  globals.css                # Full design system — tokens, components, pages
 ```
 
 ## Server vs client components
 
 Next.js App Router rule: `export const metadata` only works in server components. Any page needing both `metadata` and interactivity must split: page = server component, interactive parts = separate `'use client'` child components.
 
-Currently client components: `BlogFilter`, `ContactForm`, `ServiceCarousel`, `ThemeToggle`, `ClientShowcase`, `Header`, `RaycastVisual`, `SmoothScroll`.
+Currently client components: `Header`, `ThemeToggle`, `ContactForm`, `CustomSelect`, `FAQAccordion`, `IntelligenceCanvas`, `LayeredStack`, `CapabilitiesList`, `SmoothScroll`, `CxReveal`.
 
 ## Rules
 
 - No comments unless the WHY is non-obvious
-- No Tailwind, no TWK Everett font references
-- Positioning/tagline/ICP are UNDECIDED — never propose them; wait for Sri to state them
+- No Tailwind, no Bootstrap, no TWK Everett font references
+- Never use "AI-powered", "cutting-edge", "next-generation", "revolutionary", "digital transformation", "game-changing", or "innovative solutions" — explain and teach instead
 - Design refs: extract visual style only, generate all content original to Cosmonus
 - Don't introduce abstractions beyond what the task requires
-- No grey section backgrounds — sections separate with border lines only, not `bg-elev-2` fills
-- Dark mode: hardcode `#08080F` for always-dark sections (about-founder, som-hero) — don't rely on `var(--fg)`
+- Sections separate with border lines (`.section` border-top); alternating sections may use the faint violet-tinted `.panel` background (automatic, see Design system) — never a plain grey fill
+- StayOnMap is a real broker-free rental-property marketplace (trust/fraud scoring, direct owner-tenant leases) — not a transportation/transit product. Keep it framed that way everywhere it's mentioned.
 - Metadata: every page must export `metadata` for SEO
+- Mark reveal-on-scroll elements with `data-reveal` (handled globally by `CxReveal.js`) rather than page-specific selector lists
 
 ## Commands
 

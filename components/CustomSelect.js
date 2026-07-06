@@ -64,7 +64,7 @@ export default function CustomSelect({ id, value, onChange, options, placeholder
                 <span>{opt}</span>
                 {sel && (
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2.5 7l3.5 3.5L11.5 3.5" stroke="var(--brand)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M2.5 7l3.5 3.5L11.5 3.5" stroke="var(--accent)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )}
               </li>

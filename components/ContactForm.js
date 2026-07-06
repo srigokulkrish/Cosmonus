@@ -65,7 +65,7 @@ export default function ContactForm() {
         </div>
         <button
           type="button"
-          className="btn-ghost"
+          className="btn btn--ghost"
           onClick={() => {
             setStatus('idle')
             setForm({ name: '', email: '', company: '', projectType: '', budget: '', message: '' })
@@ -79,23 +79,23 @@ export default function ContactForm() {
 
   return (
     <form className="contact-form" onSubmit={onSubmit} noValidate>
-      <div className="contact-form__row">
-        <div className="contact-field">
+      <div className="form-row">
+        <div className="field">
           <label htmlFor="name">Name</label>
           <input id="name" type="text" autoComplete="name" required placeholder="Your name" value={form.name} onChange={update('name')} />
         </div>
-        <div className="contact-field">
+        <div className="field">
           <label htmlFor="email">Work email</label>
           <input id="email" type="email" autoComplete="email" required placeholder="you@company.com" value={form.email} onChange={update('email')} />
         </div>
       </div>
 
-      <div className="contact-form__row">
-        <div className="contact-field">
-          <label htmlFor="company">Company <span className="contact-field__opt">(optional)</span></label>
+      <div className="form-row">
+        <div className="field">
+          <label htmlFor="company">Company <span className="field__opt">(optional)</span></label>
           <input id="company" type="text" autoComplete="organization" placeholder="Acme Inc." value={form.company} onChange={update('company')} />
         </div>
-        <div className="contact-field">
+        <div className="field">
           <label htmlFor="projectType">Project type</label>
           <CustomSelect
             id="projectType"
@@ -107,7 +107,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="contact-field">
+      <div className="field">
         <label htmlFor="budget">Budget range</label>
         <CustomSelect
           id="budget"
@@ -118,7 +118,7 @@ export default function ContactForm() {
         />
       </div>
 
-      <div className="contact-field">
+      <div className="field">
         <label htmlFor="message">Message</label>
         <textarea
           id="message"
@@ -130,11 +130,12 @@ export default function ContactForm() {
         />
       </div>
 
-      <div className="contact-form__actions">
-        <button type="submit" className="btn-cosmonus btn-arrow" disabled={status === 'submitting'}>
-          {status === 'submitting' ? 'Sending…' : 'Send message'}
+      <div className="form-actions">
+        <button type="submit" className="btn btn--primary" disabled={status === 'submitting'}>
+          <span>{status === 'submitting' ? 'Sending…' : 'Send message'}</span>
+          <span className="btn__arrow" aria-hidden="true">→</span>
         </button>
-        <p className="contact-form__note">
+        <p className="form-note">
           By submitting you agree to our privacy policy. We never share your data.
         </p>
       </div>
