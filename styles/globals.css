@@ -41,14 +41,14 @@
 
 [data-theme='light'] {
   --bg: #ffffff;
-  --surface: #faf9fb;
-  --surface-2: #f3f1f6;
-  --panel: #f6f4fb;
+  --surface: #fafafa;
+  --surface-2: #f1f1f3;
+  --panel: #f5f5f6;
   --fg: #141318;
   --fg-muted: #6b6a72;
   --fg-faint: #838089;
-  --border: rgba(0, 0, 0, 0.10);
-  --border-strong: rgba(0, 0, 0, 0.18);
+  --border: rgba(0, 0, 0, 0.13);
+  --border-strong: rgba(0, 0, 0, 0.24);
   --accent: #635bff;
   --accent-text: #635bff;
   --accent-fg: #ffffff;
@@ -171,7 +171,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 500; }
 .section--hero { border-top: none; padding-top: clamp(6rem, 14vw, 9rem); }
 .section--tight { padding-top: clamp(2.5rem, 5vw, 4rem); padding-bottom: clamp(2.5rem, 5vw, 4rem); }
 
-/* Alternating faint violet-tinted panels — deliberate, not on every section */
+/* Alternating faint panel tint — deliberate, not on every section */
 .site-main > section:nth-of-type(even):not(.section--hero):not(.section--tight) {
   background: var(--panel);
 }

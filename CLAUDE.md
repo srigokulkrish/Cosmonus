@@ -34,7 +34,7 @@ Editorial, architectural, calm. Dark-first — `data-theme` on `<html>` defaults
 - **Buttons:** `border-radius: 4px` (`--r-sm`), not pill
 - **No gradients, no emoji, no rounded-card-with-left-accent clichés, no stock illustration.** Every visual means something.
 - **Imagery placeholders:** use `components/StripedPlaceholder.js` (diagonal-stripe background + monospace label) until real screenshots are supplied — never invent fake product photography
-- **Sections separate with 1px border-top rules** (`.section`). Alternating sections get a faint violet-tinted panel (`var(--panel)`, applied automatically via `.site-main > section:nth-of-type(even)`) — deliberate zebra striping, not a grey fill; hero and final-CTA sections (`.section--hero`/`.section--tight`) are excluded so they stay plain.
+- **Sections separate with 1px border-top rules** (`.section`). Alternating sections get a faint near-bg panel tint (`var(--panel)` — `#131313` dark, neutral `#f5f5f6` light; Sri rejected violet-tinted light surfaces as "doesn't look good", keep light surfaces neutral). Applied automatically via `.site-main > section:nth-of-type(even)`; hero and final-CTA sections (`.section--hero`/`.section--tight`) are excluded so they stay plain.
 - **Numbered sections:** `.eyebrow` with `.eyebrow__num` (e.g. "01 — THE PROBLEM") for major page sections
 - **Reference aesthetic:** Palantir density / Stripe clarity — visual cues only, never copy content or messaging
 
@@ -89,7 +89,7 @@ Currently client components: `Header`, `ThemeToggle`, `ContactForm`, `CustomSele
 - Never use "AI-powered", "cutting-edge", "next-generation", "revolutionary", "digital transformation", "game-changing", or "innovative solutions" — explain and teach instead
 - Design refs: extract visual style only, generate all content original to Cosmonus
 - Don't introduce abstractions beyond what the task requires
-- Sections separate with border lines (`.section` border-top); alternating sections may use the faint violet-tinted `.panel` background (automatic, see Design system) — never a plain grey fill
+- Sections separate with border lines (`.section` border-top); alternating sections use the faint `--panel` background (automatic, see Design system)
 - StayOnMap is a real broker-free rental-property marketplace (trust/fraud scoring, direct owner-tenant leases) — not a transportation/transit product. Keep it framed that way everywhere it's mentioned.
 - Metadata: every page must export `metadata` for SEO
 - Mark reveal-on-scroll elements with `data-reveal` (handled globally by `CxReveal.js`) rather than page-specific selector lists

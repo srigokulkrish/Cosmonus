@@ -88,7 +88,7 @@ export default function IntelligenceCanvas() {
       const s = getComputedStyle(document.documentElement)
       c = {
         panel: s.getPropertyValue('--panel').trim(),
-        border: s.getPropertyValue('--border').trim(),
+        border: s.getPropertyValue('--border-strong').trim(),
         faint: s.getPropertyValue('--fg-faint').trim(),
         muted: s.getPropertyValue('--fg-muted').trim(),
         accent: s.getPropertyValue('--accent').trim(),
