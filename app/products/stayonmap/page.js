@@ -1,6 +1,6 @@
 import StripedPlaceholder from '@/components/StripedPlaceholder'
 
-const STAYONMAP_URL = 'https://stayonmap-frontend-production-23f8.up.railway.app/'
+const STAYONMAP_URL = 'https://www.stayonmap.com/'
 
 const STATS = [
   { value: '0', label: 'Broker fees — direct owner-to-tenant' },

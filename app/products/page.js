@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import StripedPlaceholder from '@/components/StripedPlaceholder'
 
-const STAYONMAP_URL = 'https://stayonmap-frontend-production-23f8.up.railway.app/'
+const STAYONMAP_URL = 'https://www.stayonmap.com/'
 
 export const metadata = {
   title: 'Products',
