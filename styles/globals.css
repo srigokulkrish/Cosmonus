@@ -507,7 +507,7 @@ body.no-scroll { overflow: hidden; }
    Layered stack (interactive)
    ============================================================ */
 
-.stack { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; }
+.stack { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; background: var(--bg); }
 .stack__layer { border-top: 1px solid var(--border); }
 .stack__layer:first-child { border-top: none; }
 .stack__layer-head {
@@ -521,8 +521,8 @@ body.no-scroll { overflow: hidden; }
   text-align: left;
   transition: background var(--dur-fast) var(--ease);
 }
-.stack__layer-head:hover { background: var(--surface); }
-.stack__layer.is-active .stack__layer-head { background: var(--surface); }
+.stack__layer-head:hover { background: var(--surface-2); }
+.stack__layer.is-active .stack__layer-head { background: var(--surface-2); }
 .stack__layer-num { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--fg-faint); width: 1.6rem; flex: none; }
 .stack__layer.is-active .stack__layer-num { color: var(--accent); }
 .stack__layer-name { font-size: 1.1rem; letter-spacing: -0.01em; flex: 1; }
