@@ -603,7 +603,7 @@ body.no-scroll { overflow: hidden; }
 .process__step:first-child { border-top: none; }
 .process__step-num { font-family: var(--font-mono); font-size: 0.9375rem; color: var(--fg-faint); }
 .process__step-title { font-size: 1.15rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
-.process__step-reason { font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.6; max-width: 640px; }
+.process__step-reason { font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.6; }
 
 /* ============================================================
    Proof
