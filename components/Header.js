@@ -78,7 +78,7 @@ export default function Header() {
       <div id="nav-mobile" className={`nav-mobile${menuOpen ? ' is-open' : ''}`} aria-hidden={!menuOpen}>
         <div className="nav-mobile__body">
           {PRIMARY_NAV.map((l) => (
-            <Link key={l.href} href={l.href} className="nav-mobile__link" onClick={() => setMenuOpen(false)}>
+            <Link key={l.href} href={l.href} className={`nav-mobile__link${isActive(l.href) ? ' is-active' : ''}`} onClick={() => setMenuOpen(false)}>
               {l.label}
               <span className="mono" style={{ color: 'var(--fg-faint)', fontSize: '0.8rem' }}>→</span>
             </Link>
