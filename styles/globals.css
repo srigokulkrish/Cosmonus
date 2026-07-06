@@ -41,9 +41,9 @@
 
 [data-theme='light'] {
   --bg: #ffffff;
-  --surface: #fafafa;
-  --surface-2: #f1f1f3;
-  --panel: #f5f5f6;
+  --surface: #fafbfc;
+  --surface-2: #eff2f5;
+  --panel: #f5f7fa;
   --fg: #141318;
   --fg-muted: #6b6a72;
   --fg-faint: #838089;

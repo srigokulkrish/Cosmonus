@@ -34,7 +34,7 @@ Editorial, architectural, calm. Dark-first — `data-theme` on `<html>` defaults
 - **Buttons:** `border-radius: 4px` (`--r-sm`), not pill
 - **No gradients, no emoji, no rounded-card-with-left-accent clichés, no stock illustration.** Every visual means something.
 - **Imagery placeholders:** use `components/StripedPlaceholder.js` (diagonal-stripe background + monospace label) until real screenshots are supplied — never invent fake product photography
-- **Sections separate with 1px border-top rules** (`.section`). Alternating sections get a faint near-bg panel tint (`var(--panel)` — `#131313` dark, neutral `#f5f5f6` light; Sri rejected violet-tinted light surfaces as "doesn't look good", keep light surfaces neutral). Applied automatically via `.site-main > section:nth-of-type(even)`; hero and final-CTA sections (`.section--hero`/`.section--tight`) are excluded so they stay plain.
+- **Sections separate with 1px border-top rules** (`.section`). Alternating sections get a faint near-bg panel tint (`var(--panel)` — `#131313` dark, cool blue-grey `#f5f7fa` light; Sri rejected both violet-tinted and flat-grey light surfaces — keep light surfaces cool/airy, never lavender, never dingy grey). Applied automatically via `.site-main > section:nth-of-type(even)`; hero and final-CTA sections (`.section--hero`/`.section--tight`) are excluded so they stay plain.
 - **Numbered sections:** `.eyebrow` with `.eyebrow__num` (e.g. "01 — THE PROBLEM") for major page sections
 - **Reference aesthetic:** Palantir density / Stripe clarity — visual cues only, never copy content or messaging
 
