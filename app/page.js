@@ -119,11 +119,9 @@ export default function Home() {
               <span className="hero__title-line">Intelligence understands the world.</span>
             </h1>
             <p className="body-lg hero__lede">
-              Software has always followed instructions: store this, retrieve that, execute in
-              order. We build the layer above that — systems that read context, reason over
-              incomplete information, and make decisions they can account for. Architecture,
-              distributed systems, spatial computing, and knowledge systems, with AI as one
-              component among many.
+              <span className="hero__lede-line">Software has always followed instructions: store this, retrieve that, execute in order.</span>
+              <span className="hero__lede-line">We build the layer above that — systems that read context, reason over incomplete information, and make decisions they can account for.</span>
+              <span className="hero__lede-line">Architecture, distributed systems, spatial computing, and knowledge systems, with AI as one component among many.</span>
             </p>
             <div className="hero__actions">
               <Link href="/technology" className="btn btn--primary">
