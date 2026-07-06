@@ -115,7 +115,8 @@ export default function Home() {
           <div className="hero__inner">
             <div className="eyebrow">Intelligence engineering</div>
             <h1 className="display hero__title">
-              Software follows instructions.<br />Intelligence understands the world.
+              <span className="hero__title-line">Software follows instructions.</span>
+              <span className="hero__title-line">Intelligence understands the world.</span>
             </h1>
             <p className="body-lg hero__lede">
               Software has always followed instructions: store this, retrieve that, execute in

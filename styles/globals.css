@@ -406,7 +406,8 @@ body.no-scroll { overflow: hidden; }
    ============================================================ */
 
 .hero__inner { max-width: 880px; }
-.hero__title { margin: 1.25rem 0 1.5rem; }
+.hero__title { margin: 1.25rem 0 1.5rem; font-size: clamp(1rem, 5.9vw - 3.8px, 4.35rem); }
+.hero__title-line { display: block; white-space: nowrap; }
 .hero__lede { max-width: 620px; margin-bottom: 2.25rem; }
 .hero__actions { display: flex; gap: 0.85rem; flex-wrap: wrap; }
 
