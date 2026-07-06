@@ -63,7 +63,7 @@ export default function AboutPage() {
           </div>
           <div className="founder" data-reveal>
             <div className="founder__identity">
-              <span className="founder__mark mono" aria-hidden="true">SGK</span>
+              <img src="/images/founder.jpg" alt="Sri Gokul Krishnan" className="founder__photo" width="340" height="453" />
               <h3 className="founder__name">Sri Gokul Krishnan</h3>
               <p className="founder__role">Founder — design &amp; engineering</p>
               <p className="founder__location mono">Chennai, India</p>
