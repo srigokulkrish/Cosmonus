@@ -372,6 +372,20 @@ body.no-scroll { overflow: hidden; }
 .footer-brand__word { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.85rem; }
 .footer-brand__tagline { font-size: 0.9375rem; color: var(--fg-muted); max-width: 320px; line-height: 1.55; }
 
+.footer-social { display: flex; gap: 0.6rem; margin-top: 1.25rem; }
+.footer-social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--fg-muted);
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.footer-social__link:hover { color: var(--accent-text); border-color: var(--accent-text); }
+
 .footer-col-head {
   font-family: var(--font-mono);
   font-size: 0.75rem;

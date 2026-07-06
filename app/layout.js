@@ -76,6 +76,7 @@ const JSON_LD = {
       logo: `${SITE_URL}/images/logo.png`,
       description: SITE_DESC,
       founder: { '@type': 'Person', name: 'Sri Gokul Krishnan', url: 'https://srigokulkrishnan.com' },
+      sameAs: ['https://www.linkedin.com/company/cosmonus'],
     },
     {
       '@type': 'WebSite',
