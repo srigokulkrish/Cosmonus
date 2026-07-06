@@ -36,8 +36,8 @@ export default function Header() {
     <header className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
       <div className="container nav__inner">
         <Link href="/" className="nav__brand" aria-label="Cosmonus home">
-          <span className="nav__brand-mark" aria-hidden="true" />
-          <span className="nav__brand-word">Cosmonus</span>
+          <img src="/images/logo-white.png" alt="Cosmonus" width="231" height="30" className="brand-logo brand-logo--white" />
+          <img src="/images/logo-dark.png" alt="Cosmonus" width="231" height="30" className="brand-logo brand-logo--dark" />
         </Link>
 
         <nav className="nav__links" aria-label="Primary">

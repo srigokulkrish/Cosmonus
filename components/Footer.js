@@ -22,7 +22,10 @@ export default function Footer() {
 
         <div className="footer-grid">
           <div>
-            <div className="footer-brand__word">Cosmonus</div>
+            <div className="footer-brand__word">
+              <img src="/images/logo-white.png" alt="Cosmonus" width="231" height="30" className="brand-logo brand-logo--white" />
+              <img src="/images/logo-dark.png" alt="Cosmonus" width="231" height="30" className="brand-logo brand-logo--dark" />
+            </div>
             <p className="footer-brand__tagline">
               We engineer intelligent software systems from first principles — software that reads context, reasons over information, and improves with use.
             </p>

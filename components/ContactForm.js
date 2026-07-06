@@ -29,17 +29,33 @@ const NEXT_STEPS = [
 
 export default function ContactForm() {
   const [status, setStatus] = useState('idle')
+  const [error, setError] = useState('')
   const [form, setForm] = useState({
     name: '', email: '', company: '', projectType: '', budget: '', message: '',
   })
 
   const update = (field) => (e) => setForm((f) => ({ ...f, [field]: typeof e === 'string' ? e : e.target.value }))
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     if (!form.name || !form.email || !form.message) return
     setStatus('submitting')
-    setTimeout(() => setStatus('sent'), 600)
+    setError('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || 'Something went wrong.')
+      }
+      setStatus('sent')
+    } catch (err) {
+      setStatus('idle')
+      setError(err.message || 'Something went wrong. Please email hello@cosmonus.com directly.')
+    }
   }
 
   if (status === 'sent') {
@@ -129,6 +145,8 @@ export default function ContactForm() {
           placeholder="Describe the decision or problem: who makes it today, what data feeds it, and what it costs when it goes wrong. Timelines welcome."
         />
       </div>
+
+      {error && <p className="form-error" role="alert">{error}</p>}
 
       <div className="form-actions">
         <button type="submit" className="btn btn--primary" disabled={status === 'submitting'}>

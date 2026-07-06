@@ -92,7 +92,7 @@ const JSON_LD = {
 const THEME_INIT = `
 try {
   var stored = localStorage.getItem('cosmonus-theme');
-  var theme = stored === 'light' || stored === 'dark' ? stored : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  var theme = stored === 'light' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', theme);
 } catch (e) {}
 `

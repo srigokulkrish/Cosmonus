@@ -25,11 +25,11 @@ This project is built vibe-coding style — Sri describes outcomes in plain Engl
 
 ## Design system
 
-Editorial, architectural, calm. Light-first (warm white), dark theme fully supported via `data-theme` on `<html>`.
+Editorial, architectural, calm. Dark-first — `data-theme` on `<html>` defaults to dark unless the visitor stored `light`; light theme fully supported.
 
+- **Dark (primary):** `#0a0a0a` background, `#ececec` text — neutral near-black, no blue/violet cast; violet lives only in the accent, never the base/surface colors
 - **Light:** `#ffffff`/`#faf9fb` background, `#141318` text
-- **Dark:** `#0a0a0a` background, `#ececec` text — neutral near-black, no blue/violet cast; violet lives only in the accent, never the base/surface colors
-- **Accent:** brand violet (`#635bff` light / `#8072ff` dark, glows slightly brighter in dark) — used *deliberately*, not everywhere: primary CTA fill, link/nav hover, active nav underline, focus rings, the intelligence-canvas diagram (violet marks the organized/knowledge side, neutral marks raw/scattered data), numbered `.eyebrow__num` marks. Everything else stays neutral grey/black so violet reads as intentional.
+- **Accent:** the Cosmonus brand violet `#635bff` in both themes — used *deliberately*, not everywhere: primary CTA fill, link/nav hover, active nav underline, focus rings, the intelligence-canvas diagram (violet marks the organized/knowledge side, neutral marks raw/scattered data), numbered `.eyebrow__num` marks. Everything else stays neutral grey/black so violet reads as intentional.
 - **CTAs:** `.btn--primary` is violet-filled (`background: var(--accent)`, white text) — not monochrome ink. `.btn--ghost` borders/text tint violet on hover.
 - **Buttons:** `border-radius: 4px` (`--r-sm`), not pill
 - **No gradients, no emoji, no rounded-card-with-left-accent clichés, no stock illustration.** Every visual means something.
