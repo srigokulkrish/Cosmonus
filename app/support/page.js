@@ -10,7 +10,7 @@ export const metadata = {
 const FAQS = [
   {
     q: 'How do I reset my StayOnMap password?',
-    a: 'Use the "Forgot password" link on the StayOnMap sign-in page to get a reset link by email. If it doesn’t arrive, email srigokulkrishnan@gmail.com from the address on your account and we’ll help directly.',
+    a: 'Use the "Forgot password" link on the StayOnMap sign-in page to get a reset link by email. If it doesn’t arrive, email hello@cosmonus.com from the address on your account and we’ll help directly.',
   },
   {
     q: 'How does trust scoring work?',
@@ -18,7 +18,7 @@ const FAQS = [
   },
   {
     q: 'How do I report a fraudulent or misleading listing?',
-    a: 'Email srigokulkrishnan@gmail.com with the listing link or address and what looked wrong. Reports feed directly into the fraud-review process, and a high-risk listing can be suspended automatically once it crosses the risk threshold.',
+    a: 'Email hello@cosmonus.com with the listing link or address and what looked wrong. Reports feed directly into the fraud-review process, and a high-risk listing can be suspended automatically once it crosses the risk threshold.',
   },
   {
     q: 'Is Cosmonus available for custom engineering work?',
@@ -59,7 +59,7 @@ export default function SupportPage() {
                 Anything about Cosmonus, the site, or how we work. We reply within one business
                 day.
               </p>
-              <a href="mailto:srigokulkrishnan@gmail.com" className="btn btn--ghost btn--sm">srigokulkrishnan@gmail.com</a>
+              <a href="mailto:hello@cosmonus.com" className="btn btn--ghost btn--sm">hello@cosmonus.com</a>
             </div>
 
             <div className="support-route">
@@ -80,7 +80,7 @@ export default function SupportPage() {
                 Account, listing, or trust-score questions on the StayOnMap product itself. Reach
                 us the same way — just mention StayOnMap in your message.
               </p>
-              <a href="mailto:srigokulkrishnan@gmail.com" className="btn btn--ghost btn--sm">srigokulkrishnan@gmail.com</a>
+              <a href="mailto:hello@cosmonus.com" className="btn btn--ghost btn--sm">hello@cosmonus.com</a>
             </div>
           </div>
         </div>

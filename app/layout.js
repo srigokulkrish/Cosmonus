@@ -75,6 +75,7 @@ const JSON_LD = {
       url: SITE_URL,
       logo: `${SITE_URL}/images/logo.png`,
       description: SITE_DESC,
+      email: 'hello@cosmonus.com',
       founder: { '@type': 'Person', name: 'Sri Gokul Krishnan', url: 'https://srigokulkrishnan.com' },
       sameAs: ['https://www.linkedin.com/company/cosmonus'],
     },
