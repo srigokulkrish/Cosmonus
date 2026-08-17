@@ -551,7 +551,7 @@ body.no-scroll { overflow: hidden; }
 .media-fill {
   position: relative;
   align-self: stretch;
-  min-height: 480px;
+  min-height: 580px;
   margin-top: calc(var(--section-pad-y) * -1);
   margin-bottom: calc(var(--section-pad-y) * -1);
   margin-right: calc(-1 * (max((100vw - var(--container-w)) / 2, 0px) + var(--gutter)));

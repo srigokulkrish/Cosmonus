@@ -408,9 +408,9 @@ const SYSTEM_LAYERS = [
 ]
 
 function layoutSystems() {
-  const gap = 0.028
-  const top = 0.05
-  const lh = (0.9 - 3 * gap) / 4
+  const gap = 0.048
+  const top = 0.04
+  const lh = (0.92 - 3 * gap) / 4
   return {
     layers: SYSTEM_LAYERS.map((l, i) => ({ ...l, y: top + i * (lh + gap), h: lh })),
     connectors: [0.3, 0.56, 0.82],
@@ -451,15 +451,15 @@ function drawSystems(ctx, w, h, t, c, L) {
     ctx.strokeRect(x0, y0, lw, lhPx)
     ctx.globalAlpha = 1
 
-    const pad = Math.max(8, w * 0.014)
-    const titleH = Math.min(Math.max(14, lhPx * 0.24), 24)
-    tag(ctx, l.name, x0 + pad, y0 + titleH - 2, l.accent ? c.accent : c.fg, c, 8, 'left', l.accent ? 1 : 0.9)
+    const pad = Math.max(10, w * 0.02)
+    const titleH = Math.min(Math.max(16, lhPx * 0.26), 28)
+    tag(ctx, l.name, x0 + pad, y0 + titleH - 4, l.accent ? c.accent : c.fg, c, 8, 'left', l.accent ? 1 : 0.9)
 
     const innerW = lw - pad * 2
-    const gapPx = Math.max(5, w * 0.008)
+    const gapPx = Math.max(8, w * 0.014)
     const chipW = (innerW - gapPx * (l.chips.length - 1)) / l.chips.length
     const barH = Math.min(Math.max(12, lhPx * 0.2), 22)
-    const chipH = Math.min(Math.max(12, lhPx - titleH - barH - 14), 32)
+    const chipH = Math.min(Math.max(12, lhPx - titleH - barH - 18), 34)
     const chipY = y0 + titleH + 2
     l.chips.forEach((chip, j) => {
       const cx = x0 + pad + j * (chipW + gapPx)
@@ -470,7 +470,7 @@ function drawSystems(ctx, w, h, t, c, L) {
       tag(ctx, chip, cx + chipW / 2, chipY + chipH / 2 + 3, l.accent ? c.accent : c.fg, c, 7, 'center', 0.95)
     })
 
-    const barY = chipY + chipH + 4
+    const barY = chipY + chipH + 8
     ctx.strokeStyle = l.accent ? c.accent : c.borderStrong
     ctx.globalAlpha = 0.55
     ctx.strokeRect(x0 + pad, barY, innerW, barH)
