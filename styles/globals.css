@@ -703,8 +703,10 @@ body.no-scroll { overflow: hidden; }
 .feature__list li { font-size: 0.9375rem; color: var(--fg-muted); padding-left: 1.2rem; position: relative; }
 .feature__list li::before { content: ''; position: absolute; left: 0; top: 0.5em; width: 6px; height: 1px; background: var(--accent); }
 
+.feature--wide { grid-template-columns: 1fr 1.55fr; }
+
 @media (max-width: 860px) {
-  .feature { grid-template-columns: 1fr; }
+  .feature, .feature--wide { grid-template-columns: 1fr; }
   .feature__visual { order: -1; }
 }
 

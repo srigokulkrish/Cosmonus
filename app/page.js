@@ -227,7 +227,7 @@ export default function Home() {
             <h2 className="section-title">Built to prove the approach in production.</h2>
           </div>
 
-          <div className="feature" data-reveal>
+          <div className="feature feature--wide" data-reveal>
             <div className="feature__content">
               <div className="eyebrow feature__eyebrow">Product — StayOnMap</div>
               <h3 className="feature__title">The trust problem brokers used to solve, engineered instead.</h3>
@@ -250,7 +250,7 @@ export default function Home() {
             <div className="feature__visual">
               <DiagramCanvas
                 variant="lease"
-                ratio="4/3"
+                ratio="16/10"
                 label="Flow chart from owner to tenant: a listing clears the twelve-signal trust engine, flagged listings drop out, and the lease closes directly with no broker"
                 caption="From listing to lease with no broker in between. Every listing clears the twelve-signal trust engine before a tenant ever sees it — flagged listings never surface."
               />
