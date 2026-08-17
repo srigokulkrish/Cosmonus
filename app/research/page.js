@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import ThemedImage from '@/components/ThemedImage'
+import DiagramCanvas from '@/components/DiagramCanvas'
 
 export const metadata = {
   title: 'Research — Open Questions Behind the Systems We Ship',
@@ -79,11 +79,10 @@ export default function ResearchPage() {
               </ul>
             </div>
             <div data-reveal className="media-fill">
-              <ThemedImage
-                srcDark="/images/diagrams/research-systems-map-dark.png"
-                srcLight="/images/diagrams/research-systems-map-light.png"
-                alt="Layered architecture blueprint of an intelligent system with the reasoning layer highlighted"
-                className="themed-img--fill"
+              <DiagramCanvas
+                variant="systems"
+                label="Layered architecture blueprint of an intelligent system with the reasoning layer highlighted"
+                className="diagram-frame--fill"
               />
             </div>
           </div>

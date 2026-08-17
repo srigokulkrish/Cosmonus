@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import ThemedImage from '@/components/ThemedImage'
+import DiagramCanvas from '@/components/DiagramCanvas'
 
 const STAYONMAP_URL = 'https://www.stayonmap.com/'
 
@@ -54,11 +54,10 @@ export default function ProductsPage() {
               </div>
             </div>
             <div className="feature__visual">
-              <ThemedImage
-                srcDark="/images/diagrams/stayonmap-map-dark.png"
-                srcLight="/images/diagrams/stayonmap-map-light.png"
-                alt="Schematic city map with listing markers, one highlighted with a trust radius"
+              <DiagramCanvas
+                variant="map"
                 ratio="4/3"
+                label="Schematic city map with listing markers, one highlighted with a trust radius"
               />
             </div>
           </div>
