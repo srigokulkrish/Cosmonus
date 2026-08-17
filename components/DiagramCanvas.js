@@ -38,7 +38,7 @@ function dot(ctx, x, y, r, color, alpha = 1) {
 }
 
 function tag(ctx, str, x, y, color, c, size = 8, align = 'left', alpha = 1) {
-  ctx.font = `500 ${size}px ${c.mono}`
+  ctx.font = `500 ${Math.round(size * c.scale)}px ${c.mono}`
   ctx.letterSpacing = '0.08em'
   ctx.textAlign = align
   ctx.globalAlpha = alpha
@@ -97,8 +97,8 @@ function drawMap(ctx, w, h, t, c, L) {
   }
   ctx.globalAlpha = 1
   dot(ctx, fx, fy, 3.5, c.accent)
-  tag(ctx, 'TRUST 0.92', fx + 12, fy - 10, c.accent, c, 9, 'left', 0.9)
-  tag(ctx, 'VERIFIED OWNER', fx + 12, fy + 2, c.muted, c, 8, 'left', 0.7)
+  tag(ctx, 'TRUST 0.92', fx + 12, fy - 10, c.accent, c, 9)
+  tag(ctx, 'VERIFIED OWNER', fx + 12, fy + 4, c.muted, c, 8, 'left', 0.9)
 }
 
 /* ---- trace: evidence nodes converging into one decision ---- */
@@ -135,7 +135,7 @@ function drawTrace(ctx, w, h, t, c, L) {
 
   L.evidence.forEach((e, i) => {
     dot(ctx, e.x * w, e.y * h, 2.2, c.muted, 0.8)
-    tag(ctx, `E0${i + 1}`, e.x * w - 8, e.y * h - 8, c.faint, c, 8, 'left', 0.85)
+    tag(ctx, `E0${i + 1}`, e.x * w - 8, e.y * h - 10, c.muted, c, 8, 'left', 0.9)
   })
   L.mids.forEach((m) => dot(ctx, m.x * w, m.y * h, 2.6, c.muted))
 
@@ -189,7 +189,7 @@ function drawOrch(ctx, w, h, t, c, L) {
     ctx.moveTo(w * 0.06, y * h - 5)
     ctx.lineTo(w * 0.06, y * h + 5)
     ctx.stroke()
-    tag(ctx, `AGENT 0${i + 1}`, w * 0.06, y * h - 9, c.faint, c, 8, 'left', 0.85)
+    tag(ctx, `AGENT 0${i + 1}`, w * 0.06, y * h - 10, c.muted, c, 8, 'left', 0.9)
   })
 
   function fade(xu) {
@@ -344,12 +344,12 @@ function drawSystems(ctx, w, h, t, c, L) {
       ctx,
       L.names[i],
       x + 10,
-      l.y * h + 15,
-      i === L.reasoning ? c.accent : c.faint,
+      l.y * h + 17,
+      i === L.reasoning ? c.accent : c.muted,
       c,
       9,
       'left',
-      i === L.reasoning ? 0.95 : 0.8
+      i === L.reasoning ? 1 : 0.9
     )
   })
 
@@ -459,12 +459,12 @@ function drawFlow(ctx, w, h, t, c, L) {
       ctx,
       node.name,
       x,
-      node.above ? py - 16 : py + 24,
-      active ? c.accent : c.faint,
+      node.above ? py - 18 : py + 26,
+      active ? c.accent : c.muted,
       c,
       8,
       'center',
-      active ? 1 : 0.85
+      active ? 1 : 0.9
     )
   })
 }
@@ -521,6 +521,7 @@ export default function DiagramCanvas({ variant, ratio, className = '', label, c
 
     function draw(t) {
       ctx.clearRect(0, 0, w, h)
+      c.scale = Math.max(1.2, Math.min(1.7, w / 560))
       spec.draw(ctx, w, h, t, c, L)
     }
 
