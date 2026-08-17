@@ -192,15 +192,17 @@ function layoutOrch(r) {
   }
 }
 
+function orchCtrls(lane, L) {
+  return {
+    out: { a: L.queue, c: { x: L.x0 - 0.055, y: lane }, b: { x: L.x0, y: lane } },
+    back: { a: { x: L.x1, y: lane }, c: { x: L.x1 + 0.055, y: lane }, b: L.resolved },
+  }
+}
+
 function orchPos(xu, lane, L) {
-  if (xu < 0.14) {
-    const k = ease(xu / 0.14)
-    return { x: L.queue.x + (L.x0 - L.queue.x) * k, y: 0.5 + (lane - 0.5) * k }
-  }
-  if (xu > 0.86) {
-    const k = ease((xu - 0.86) / 0.14)
-    return { x: L.x1 + (L.resolved.x - L.x1) * k, y: lane + (0.5 - lane) * k }
-  }
+  const k = orchCtrls(lane, L)
+  if (xu < 0.14) return bez(k.out.a, k.out.c, k.out.b, ease(xu / 0.14))
+  if (xu > 0.86) return bez(k.back.a, k.back.c, k.back.b, ease((xu - 0.86) / 0.14))
   return { x: L.x0 + ((xu - 0.14) / 0.72) * (L.x1 - L.x0), y: lane }
 }
 
@@ -209,11 +211,12 @@ function drawOrch(ctx, w, h, t, c, L) {
   ctx.strokeStyle = c.borderStrong
   ctx.globalAlpha = 0.45
   L.lanes.forEach((y) => {
+    const k = orchCtrls(y, L)
     ctx.beginPath()
-    ctx.moveTo(L.queue.x * w, L.queue.y * h)
-    ctx.lineTo(L.x0 * w, y * h)
-    ctx.moveTo(L.x1 * w, y * h)
-    ctx.lineTo(L.resolved.x * w, L.resolved.y * h)
+    ctx.moveTo(k.out.a.x * w, k.out.a.y * h)
+    ctx.quadraticCurveTo(k.out.c.x * w, k.out.c.y * h, k.out.b.x * w, k.out.b.y * h)
+    ctx.moveTo(k.back.a.x * w, k.back.a.y * h)
+    ctx.quadraticCurveTo(k.back.c.x * w, k.back.c.y * h, k.back.b.x * w, k.back.b.y * h)
     ctx.stroke()
   })
   ctx.globalAlpha = 1
@@ -310,7 +313,7 @@ function drawGraph(ctx, w, h, t, c, L) {
   ctx.globalAlpha = 0.5
   ctx.beginPath()
   ctx.moveTo(R.x + 5, R.y)
-  ctx.lineTo((L.nodes[4].x) * w, L.nodes[4].y * h)
+  ctx.quadraticCurveTo((L.resolve.x + 0.12) * w, R.y, L.nodes[4].x * w, L.nodes[4].y * h)
   ctx.stroke()
   ctx.globalAlpha = 1
 
@@ -320,25 +323,21 @@ function drawGraph(ctx, w, h, t, c, L) {
   L.travelers.forEach((tr) => {
     const prog = ((t + tr.off) / 4.6) % 1
     if (prog < 0.48) {
-      const e = ease(prog / 0.48)
-      dot(
-        ctx,
-        (tr.from.x + (L.resolve.x - tr.from.x) * e) * w,
-        (tr.from.y + (L.resolve.y - tr.from.y) * e) * h,
-        1.8,
-        c.muted,
-        Math.min(prog * 12, 1) * 0.9
+      const pos = bez(
+        tr.from,
+        { x: (tr.from.x + L.resolve.x) / 2, y: L.resolve.y },
+        L.resolve,
+        ease(prog / 0.48)
       )
+      dot(ctx, pos.x * w, pos.y * h, 1.8, c.muted, Math.min(prog * 12, 1) * 0.9)
     } else if (prog < 0.92) {
-      const e = ease((prog - 0.48) / 0.44)
-      dot(
-        ctx,
-        (L.resolve.x + (tr.to.x - L.resolve.x) * e) * w,
-        (L.resolve.y + (tr.to.y - L.resolve.y) * e) * h,
-        1.9,
-        c.accent,
-        0.95
+      const pos = bez(
+        L.resolve,
+        { x: L.resolve.x + 0.12, y: L.resolve.y },
+        tr.to,
+        ease((prog - 0.48) / 0.44)
       )
+      dot(ctx, pos.x * w, pos.y * h, 1.9, c.accent, 0.95)
     } else {
       const k = (prog - 0.92) / 0.08
       ctx.globalAlpha = (1 - k) * 0.5
@@ -573,12 +572,12 @@ function drawLease(ctx, w, h, t, c, L) {
   L.signals.forEach((s) => {
     ctx.beginPath()
     ctx.moveTo(s.x * w, h * 0.12)
-    ctx.lineTo(engine.x * w, py - 7)
+    ctx.quadraticCurveTo(s.x * w, h * 0.28, engine.x * w, py - 7)
     ctx.stroke()
   })
   ctx.beginPath()
   ctx.moveTo(engine.x * w, py + 7)
-  ctx.lineTo(L.flagged.x * w, L.flagged.y * h)
+  ctx.quadraticCurveTo((engine.x + 0.06) * w, (L.nodes[0].y + L.flagged.y) / 2 * h, L.flagged.x * w, L.flagged.y * h)
   ctx.stroke()
 
   ctx.strokeStyle = c.accent
@@ -593,15 +592,24 @@ function drawLease(ctx, w, h, t, c, L) {
     const a = 0.45 + 0.4 * (0.5 + 0.5 * Math.sin(t * 2 + s.ph * Math.PI * 2))
     dot(ctx, s.x * w, h * 0.12, 1.8, c.muted, a)
     const sp = ((t / 2.4) + s.ph) % 1
-    const sx = s.x + (engine.x - s.x) * ease(sp)
-    const sy = 0.12 + (L.nodes[0].y - 0.02 - 0.12) * ease(sp)
-    dot(ctx, sx * w, sy * h, 1.5, c.muted, Math.sin(sp * Math.PI) * 0.8)
+    const pos = bez(
+      { x: s.x, y: 0.12 },
+      { x: s.x, y: 0.28 },
+      { x: engine.x, y: L.nodes[0].y - 0.02 },
+      ease(sp)
+    )
+    dot(ctx, pos.x * w, pos.y * h, 1.5, c.muted, Math.sin(sp * Math.PI) * 0.8)
   })
 
   const fp = ((t + 2.6) % L.cycle) / L.cycle
   if (fp < 0.18) {
-    const fy = L.nodes[0].y + 0.02 + (L.flagged.y - L.nodes[0].y - 0.02) * ease(fp / 0.18)
-    dot(ctx, engine.x * w, fy * h, 1.8, c.muted, 0.85)
+    const pos = bez(
+      { x: engine.x, y: L.nodes[0].y + 0.02 },
+      { x: engine.x + 0.06, y: (L.nodes[0].y + L.flagged.y) / 2 },
+      L.flagged,
+      ease(fp / 0.18)
+    )
+    dot(ctx, pos.x * w, pos.y * h, 1.8, c.muted, 0.85)
   }
   dot(ctx, L.flagged.x * w, L.flagged.y * h, 2, c.muted, 0.7)
   tag(ctx, 'FLAGGED', L.flagged.x * w + 10, L.flagged.y * h + 4, c.fg, c, 8, 'left', 0.85)
@@ -681,9 +689,9 @@ function drawScore(ctx, w, h, t, c, L) {
   ctx.globalAlpha = 0.6
   ctx.beginPath()
   ctx.moveTo(score.x * w, py)
-  ctx.lineTo(L.live.x * w, L.live.y * h)
+  ctx.quadraticCurveTo((score.x + 0.14) * w, py, L.live.x * w, L.live.y * h)
   ctx.moveTo(score.x * w, py)
-  ctx.lineTo(L.flagged.x * w, L.flagged.y * h)
+  ctx.quadraticCurveTo((score.x + 0.14) * w, py, L.flagged.x * w, L.flagged.y * h)
   ctx.stroke()
   ctx.globalAlpha = 1
 
@@ -703,9 +711,13 @@ function drawScore(ctx, w, h, t, c, L) {
   } else {
     const b = ease((u - 0.62) / 0.38)
     const target = toFlagged ? L.flagged : L.live
-    const x = score.x + (target.x - score.x) * b
-    const y = L.nodes[0].y + (target.y - L.nodes[0].y) * b
-    dot(ctx, x * w, y * h, 2.4, toFlagged ? c.muted : c.accent, 0.95)
+    const pos = bez(
+      { x: score.x, y: L.nodes[0].y },
+      { x: score.x + 0.14, y: L.nodes[0].y },
+      target,
+      b
+    )
+    dot(ctx, pos.x * w, pos.y * h, 2.4, toFlagged ? c.muted : c.accent, 0.95)
   }
 
   L.nodes.forEach((node) => {
