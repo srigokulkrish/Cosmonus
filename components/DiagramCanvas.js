@@ -101,65 +101,75 @@ function drawMap(ctx, w, h, t, c, L) {
   tag(ctx, 'VERIFIED OWNER', fx + 12, fy + 4, c.muted, c, 8, 'left', 0.9)
 }
 
-/* ---- trace: evidence nodes converging into one decision ---- */
+/* ---- trace: evidence weighed into one decision ---- */
+
+function sq(ctx, x, y, r, c, active, filled) {
+  ctx.fillStyle = c.bg
+  ctx.strokeStyle = active ? c.accent : c.borderStrong
+  ctx.fillRect(x - r, y - r, r * 2, r * 2)
+  ctx.strokeRect(x - r, y - r, r * 2, r * 2)
+  if (filled) {
+    ctx.globalAlpha = 0.9
+    ctx.fillStyle = c.accent
+    ctx.fillRect(x - 2, y - 2, 4, 4)
+    ctx.globalAlpha = 1
+  }
+}
 
 function layoutTrace(r) {
-  const evidence = Array.from({ length: 5 }, (_, i) => ({
-    x: 0.12 + (r() - 0.5) * 0.03,
-    y: 0.14 + (i / 4) * 0.72 + (r() - 0.5) * 0.04,
+  const evidence = Array.from({ length: 4 }, (_, i) => ({
+    x: 0.12,
+    y: 0.16 + (i / 3) * 0.64 + (r() - 0.5) * 0.03,
+    ph: r(),
+    dur: 2.6 + r() * 1.6,
   }))
-  const mids = [{ x: 0.5, y: 0.32 }, { x: 0.5, y: 0.68 }]
-  const decision = { x: 0.87, y: 0.5 }
-  const edges = []
-  evidence.forEach((e, i) => {
-    const m = mids[i % 2]
-    edges.push({ a: e, b: m, ctrl: { x: 0.32, y: (e.y + m.y) / 2 }, ph: r(), dur: 2.6 + r() * 1.4 })
-  })
-  mids.forEach((m) => {
-    edges.push({ a: m, b: decision, ctrl: { x: 0.7, y: (m.y + decision.y) / 2 }, ph: r(), dur: 2.4 + r() })
-  })
-  return { evidence, mids, decision, edges }
+  return { evidence, weigh: { x: 0.5, y: 0.48 }, decision: { x: 0.87, y: 0.48 } }
 }
 
 function drawTrace(ctx, w, h, t, c, L) {
+  const W = { x: L.weigh.x * w, y: L.weigh.y * h }
+  const D = { x: L.decision.x * w, y: L.decision.y * h }
+
   ctx.lineWidth = 1
   ctx.strokeStyle = c.borderStrong
   ctx.globalAlpha = 0.8
-  L.edges.forEach((e) => {
+  L.evidence.forEach((e) => {
     ctx.beginPath()
-    ctx.moveTo(e.a.x * w, e.a.y * h)
-    ctx.quadraticCurveTo(e.ctrl.x * w, e.ctrl.y * h, e.b.x * w, e.b.y * h)
+    ctx.moveTo(e.x * w, e.y * h)
+    ctx.quadraticCurveTo(w * 0.34, e.y * h, W.x - 5, W.y)
     ctx.stroke()
   })
+  ctx.beginPath()
+  ctx.moveTo(W.x, W.y)
+  ctx.lineTo(D.x, D.y)
+  ctx.stroke()
   ctx.globalAlpha = 1
 
   L.evidence.forEach((e, i) => {
-    dot(ctx, e.x * w, e.y * h, 2.2, c.muted, 0.8)
-    tag(ctx, `E0${i + 1}`, e.x * w - 8, e.y * h - 10, c.muted, c, 8, 'left', 0.9)
-  })
-  L.mids.forEach((m) => dot(ctx, m.x * w, m.y * h, 2.6, c.muted))
-
-  L.edges.forEach((e) => {
     const prog = ((t / e.dur) + e.ph) % 1
     const pos = bez(
-      { x: e.a.x * w, y: e.a.y * h },
-      { x: e.ctrl.x * w, y: e.ctrl.y * h },
-      { x: e.b.x * w, y: e.b.y * h },
+      { x: e.x * w, y: e.y * h },
+      { x: w * 0.34, y: e.y * h },
+      { x: W.x - 5, y: W.y },
       ease(prog)
     )
-    dot(ctx, pos.x, pos.y, 1.8, c.accent, Math.sin(prog * Math.PI))
+    dot(ctx, pos.x, pos.y, 1.8, c.muted, Math.sin(prog * Math.PI) * 0.9)
+    sq(ctx, e.x * w, e.y * h, 3, c, false, false)
+    tag(ctx, `E0${i + 1}`, e.x * w - 12, e.y * h + 3, c.muted, c, 8, 'right', 0.9)
   })
 
-  const dx = L.decision.x * w
-  const dy = L.decision.y * h
-  ctx.globalAlpha = 0.35 + 0.2 * Math.sin(t * 2)
+  const dp = (t % 2.4) / 2.4
+  dot(ctx, W.x + (D.x - W.x) * ease(dp), W.y, 2.2, c.accent, Math.sin(dp * Math.PI))
+
+  sq(ctx, W.x, W.y, 5, c, false, false)
+  tag(ctx, 'WEIGH', W.x, W.y + 24, c.muted, c, 8, 'center', 0.9)
+
+  ctx.globalAlpha = 0.3 + 0.2 * Math.sin(t * 2)
   ctx.strokeStyle = c.accent
-  ctx.beginPath()
-  ctx.arc(dx, dy, 9, 0, Math.PI * 2)
-  ctx.stroke()
+  ctx.strokeRect(D.x - 9, D.y - 9, 18, 18)
   ctx.globalAlpha = 1
-  dot(ctx, dx, dy, 4, c.accent)
-  tag(ctx, 'DECISION', dx, dy + 24, c.accent, c, 9, 'center', 0.9)
+  sq(ctx, D.x, D.y, 5, c, true, true)
+  tag(ctx, 'DECISION', D.x, D.y - 18, c.accent, c, 8, 'center')
 }
 
 /* ---- orchestration: agent lanes, one task rerouted between lanes ---- */
@@ -169,75 +179,114 @@ function layoutOrch(r) {
   const tasks = Array.from({ length: 6 }, (_, i) => ({
     lane: i % 4,
     off: r(),
-    sp: 0.05 + r() * 0.045,
+    sp: 0.05 + r() * 0.04,
   }))
-  return { lanes, tasks, reroute: { a: 1, b: 2, off: r(), sp: 0.06 } }
+  return {
+    lanes,
+    tasks,
+    reroute: { a: 1, b: 2, off: r(), sp: 0.055 },
+    queue: { x: 0.07, y: 0.5 },
+    resolved: { x: 0.93, y: 0.5 },
+    x0: 0.17,
+    x1: 0.83,
+  }
+}
+
+function orchPos(xu, lane, L) {
+  if (xu < 0.14) {
+    const k = ease(xu / 0.14)
+    return { x: L.queue.x + (L.x0 - L.queue.x) * k, y: 0.5 + (lane - 0.5) * k }
+  }
+  if (xu > 0.86) {
+    const k = ease((xu - 0.86) / 0.14)
+    return { x: L.x1 + (L.resolved.x - L.x1) * k, y: lane + (0.5 - lane) * k }
+  }
+  return { x: L.x0 + ((xu - 0.14) / 0.72) * (L.x1 - L.x0), y: lane }
 }
 
 function drawOrch(ctx, w, h, t, c, L) {
   ctx.lineWidth = 1
+  ctx.strokeStyle = c.borderStrong
+  ctx.globalAlpha = 0.45
+  L.lanes.forEach((y) => {
+    ctx.beginPath()
+    ctx.moveTo(L.queue.x * w, L.queue.y * h)
+    ctx.lineTo(L.x0 * w, y * h)
+    ctx.moveTo(L.x1 * w, y * h)
+    ctx.lineTo(L.resolved.x * w, L.resolved.y * h)
+    ctx.stroke()
+  })
+  ctx.globalAlpha = 1
+
   L.lanes.forEach((y, i) => {
     ctx.strokeStyle = c.border
     ctx.globalAlpha = 0.9
     ctx.beginPath()
-    ctx.moveTo(w * 0.06, y * h)
-    ctx.lineTo(w * 0.94, y * h)
+    ctx.moveTo(L.x0 * w, y * h)
+    ctx.lineTo(L.x1 * w, y * h)
     ctx.stroke()
     ctx.globalAlpha = 1
-    ctx.strokeStyle = c.borderStrong
-    ctx.beginPath()
-    ctx.moveTo(w * 0.06, y * h - 5)
-    ctx.lineTo(w * 0.06, y * h + 5)
-    ctx.stroke()
-    tag(ctx, `AGENT 0${i + 1}`, w * 0.06, y * h - 10, c.muted, c, 8, 'left', 0.9)
+    tag(ctx, `AGENT 0${i + 1}`, L.x0 * w, y * h - 10, c.muted, c, 8, 'left', 0.9)
   })
 
-  function fade(xu) {
-    return Math.min(xu * 8, (1 - xu) * 8, 1)
-  }
-
+  let arrival = 0
   L.tasks.forEach((task) => {
     const xu = (t * task.sp + task.off) % 1
-    dot(ctx, (0.06 + xu * 0.88) * w, L.lanes[task.lane] * h, 2.4, c.muted, fade(xu) * 0.85)
+    const pos = orchPos(xu, L.lanes[task.lane], L)
+    dot(ctx, pos.x * w, pos.y * h, 2.4, c.muted, 0.85)
+    if (xu > 0.96) arrival = Math.max(arrival, (xu - 0.96) / 0.04)
   })
 
   const R = L.reroute
   const xu = (t * R.sp + R.off) % 1
-  let y
-  if (xu < 0.4) y = L.lanes[R.a]
-  else if (xu > 0.62) y = L.lanes[R.b]
-  else y = L.lanes[R.a] + (L.lanes[R.b] - L.lanes[R.a]) * ease((xu - 0.4) / 0.22)
-  const rx = (0.06 + xu * 0.88) * w
-  dot(ctx, rx, y * h, 2.8, c.accent, fade(xu))
-  if (xu > 0.36 && xu < 0.68) {
-    const a = Math.min((xu - 0.36) / 0.06, (0.68 - xu) / 0.06, 1)
-    tag(ctx, 'EXCEPTION — REROUTED', rx + 8, y * h - 8, c.accent, c, 8, 'left', a * 0.9)
+  let lane
+  if (xu < 0.42) lane = L.lanes[R.a]
+  else if (xu > 0.6) lane = L.lanes[R.b]
+  else lane = L.lanes[R.a] + (L.lanes[R.b] - L.lanes[R.a]) * ease((xu - 0.42) / 0.18)
+  const pos = orchPos(xu, lane, L)
+  dot(ctx, pos.x * w, pos.y * h, 2.8, c.accent)
+  if (xu > 0.38 && xu < 0.66) {
+    const a = Math.min((xu - 0.38) / 0.06, (0.66 - xu) / 0.06, 1)
+    tag(ctx, 'EXCEPTION — REROUTED', pos.x * w + 8, pos.y * h - 8, c.accent, c, 8, 'left', a * 0.9)
   }
+
+  sq(ctx, L.queue.x * w, L.queue.y * h, 5, c, false, false)
+  tag(ctx, 'QUEUE', L.queue.x * w, L.queue.y * h + 24, c.muted, c, 8, 'center', 0.9)
+  if (arrival > 0) {
+    ctx.globalAlpha = (1 - arrival) * 0.5
+    ctx.strokeStyle = c.accent
+    ctx.strokeRect(L.resolved.x * w - 9 - arrival * 5, L.resolved.y * h - 9 - arrival * 5, 18 + arrival * 10, 18 + arrival * 10)
+    ctx.globalAlpha = 1
+  }
+  sq(ctx, L.resolved.x * w, L.resolved.y * h, 5, c, true, true)
+  tag(ctx, 'RESOLVED', L.resolved.x * w, L.resolved.y * h - 18, c.accent, c, 8, 'center')
 }
 
 /* ---- graph: scattered documents resolving into a knowledge graph ---- */
 
 function layoutGraph(r) {
-  const scatter = Array.from({ length: 13 }, () => ({
-    x: 0.06 + r() * 0.3,
-    y: 0.1 + r() * 0.8,
+  const scatter = Array.from({ length: 12 }, () => ({
+    x: 0.05 + r() * 0.19,
+    y: 0.1 + r() * 0.76,
     p: r(),
   }))
   const nodes = Array.from({ length: 8 }, (_, i) => {
     const a = (i / 8) * Math.PI * 2 + (r() - 0.5) * 0.3
-    return { x: 0.72 + Math.cos(a) * 0.13, y: 0.5 + Math.sin(a) * 0.32 }
+    return { x: 0.76 + Math.cos(a) * 0.12, y: 0.48 + Math.sin(a) * 0.3 }
   })
   const edges = nodes.map((_, i) => [i, (i + 1) % 8])
   edges.push([0, 3], [2, 6], [1, 5])
   const travelers = Array.from({ length: 4 }, (_, i) => ({
     from: scatter[Math.floor(r() * scatter.length)],
     to: nodes[Math.floor(r() * nodes.length)],
-    off: i * 1.7 + r(),
+    off: i * 1.9 + r(),
   }))
-  return { scatter, nodes, edges, travelers }
+  return { scatter, nodes, edges, travelers, resolve: { x: 0.44, y: 0.48 } }
 }
 
 function drawGraph(ctx, w, h, t, c, L) {
+  const R = { x: L.resolve.x * w, y: L.resolve.y * h }
+
   L.scatter.forEach((s) => {
     dot(
       ctx,
@@ -247,6 +296,7 @@ function drawGraph(ctx, w, h, t, c, L) {
       c.faint
     )
   })
+  tag(ctx, 'RECORDS', w * 0.145, h * 0.95, c.muted, c, 8, 'center', 0.9)
 
   ctx.lineWidth = 1
   ctx.strokeStyle = c.borderStrong
@@ -257,23 +307,40 @@ function drawGraph(ctx, w, h, t, c, L) {
     ctx.lineTo(L.nodes[b].x * w, L.nodes[b].y * h)
     ctx.stroke()
   })
+  ctx.globalAlpha = 0.5
+  ctx.beginPath()
+  ctx.moveTo(R.x + 5, R.y)
+  ctx.lineTo((L.nodes[4].x) * w, L.nodes[4].y * h)
+  ctx.stroke()
   ctx.globalAlpha = 1
 
   L.nodes.forEach((n) => dot(ctx, n.x * w, n.y * h, 2.6, c.accent))
+  tag(ctx, 'GRAPH', w * 0.76, h * 0.95, c.accent, c, 8, 'center', 0.9)
 
   L.travelers.forEach((tr) => {
-    const prog = ((t + tr.off) / 4.4) % 1
-    if (prog < 0.9) {
-      const e = ease(clamp01(prog / 0.9))
-      const pos = bez(
-        { x: tr.from.x * w, y: tr.from.y * h },
-        { x: w * 0.5, y: ((tr.from.y + tr.to.y) / 2) * h },
-        { x: tr.to.x * w, y: tr.to.y * h },
-        e
+    const prog = ((t + tr.off) / 4.6) % 1
+    if (prog < 0.48) {
+      const e = ease(prog / 0.48)
+      dot(
+        ctx,
+        (tr.from.x + (L.resolve.x - tr.from.x) * e) * w,
+        (tr.from.y + (L.resolve.y - tr.from.y) * e) * h,
+        1.8,
+        c.muted,
+        Math.min(prog * 12, 1) * 0.9
       )
-      dot(ctx, pos.x, pos.y, 1.9, prog < 0.5 ? c.muted : c.accent, 0.9)
+    } else if (prog < 0.92) {
+      const e = ease((prog - 0.48) / 0.44)
+      dot(
+        ctx,
+        (L.resolve.x + (tr.to.x - L.resolve.x) * e) * w,
+        (L.resolve.y + (tr.to.y - L.resolve.y) * e) * h,
+        1.9,
+        c.accent,
+        0.95
+      )
     } else {
-      const k = (prog - 0.9) / 0.1
+      const k = (prog - 0.92) / 0.08
       ctx.globalAlpha = (1 - k) * 0.5
       ctx.strokeStyle = c.accent
       ctx.beginPath()
@@ -282,6 +349,9 @@ function drawGraph(ctx, w, h, t, c, L) {
       ctx.globalAlpha = 1
     }
   })
+
+  sq(ctx, R.x, R.y, 5, c, false, false)
+  tag(ctx, 'RESOLVE', R.x, R.y + 24, c.muted, c, 8, 'center', 0.9)
 }
 
 /* ---- systems: layered blueprint, reasoning layer highlighted ---- */
@@ -656,8 +726,8 @@ function drawScore(ctx, w, h, t, c, L) {
 
 const VARIANTS = {
   map: { seed: 7, layout: layoutMap, draw: drawMap, header: ['Listing map', 'Twelve signals', 'Trust score'] },
-  trace: { seed: 11, layout: layoutTrace, draw: drawTrace, header: ['Evidence', 'Reasoning', 'Decision'] },
-  orchestration: { seed: 5, layout: layoutOrch, draw: drawOrch, header: ['Incoming tasks', 'Agent lanes', 'Resolved'] },
+  trace: { seed: 11, layout: layoutTrace, draw: drawTrace, header: ['Evidence', 'Weighed', 'Decision'] },
+  orchestration: { seed: 5, layout: layoutOrch, draw: drawOrch, header: ['Queue', 'Agent lanes', 'Resolved'] },
   graph: { seed: 13, layout: layoutGraph, draw: drawGraph, header: ['Raw records', 'Resolution', 'Knowledge graph'] },
   systems: { seed: 3, layout: layoutSystems, draw: drawSystems, header: null },
   flow: { seed: 17, layout: layoutFlow, draw: drawFlow, header: ['Problem in', 'Nine stages', 'Production out'] },
