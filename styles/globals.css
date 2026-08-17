@@ -835,6 +835,7 @@ body.no-scroll { overflow: hidden; }
    ============================================================ */
 
 .page-hero { max-width: 760px; }
+.page-hero .hero__actions { margin-top: 2.25rem; }
 .page-hero__title { margin: 1.25rem 0 1.25rem; font-size: clamp(2.25rem, 5vw, 3.75rem); letter-spacing: -0.03em; line-height: 1.04; }
 .page-hero__lede { max-width: 620px; }
 
