@@ -469,6 +469,191 @@ function drawFlow(ctx, w, h, t, c, L) {
   })
 }
 
+/* ---- lease: StayOnMap product flow — owner to tenant through the trust engine ---- */
+
+function layoutLease() {
+  const y = 0.4
+  return {
+    nodes: [
+      { name: 'OWNER', x: 0.08, y, above: true },
+      { name: 'LISTING', x: 0.28, y, above: false },
+      { name: 'TRUST ENGINE', x: 0.5, y, above: true, big: true },
+      { name: 'VERIFIED', x: 0.72, y, above: false },
+      { name: 'TENANT', x: 0.92, y, above: true },
+    ],
+    signals: Array.from({ length: 5 }, (_, i) => ({ x: 0.34 + i * 0.08, ph: i * 0.43 })),
+    flagged: { x: 0.5, y: 0.76 },
+    cycle: 7,
+  }
+}
+
+function drawLease(ctx, w, h, t, c, L) {
+  const py = L.nodes[0].y * h
+  const engine = L.nodes[2]
+
+  ctx.lineWidth = 1
+  ctx.strokeStyle = c.borderStrong
+  ctx.globalAlpha = 0.9
+  ctx.beginPath()
+  ctx.moveTo(L.nodes[0].x * w, py)
+  ctx.lineTo(L.nodes[4].x * w, py)
+  ctx.stroke()
+
+  ctx.globalAlpha = 0.5
+  L.signals.forEach((s) => {
+    ctx.beginPath()
+    ctx.moveTo(s.x * w, h * 0.12)
+    ctx.lineTo(engine.x * w, py - 7)
+    ctx.stroke()
+  })
+  ctx.beginPath()
+  ctx.moveTo(engine.x * w, py + 7)
+  ctx.lineTo(L.flagged.x * w, L.flagged.y * h)
+  ctx.stroke()
+
+  ctx.strokeStyle = c.accent
+  ctx.globalAlpha = 0.3
+  ctx.beginPath()
+  ctx.moveTo(L.nodes[4].x * w, py + 6)
+  ctx.quadraticCurveTo(w * 0.5, h * 1.02, L.nodes[0].x * w, py + 6)
+  ctx.stroke()
+  ctx.globalAlpha = 1
+
+  L.signals.forEach((s) => {
+    const a = 0.45 + 0.4 * (0.5 + 0.5 * Math.sin(t * 2 + s.ph * Math.PI * 2))
+    dot(ctx, s.x * w, h * 0.12, 1.8, c.muted, a)
+    const sp = ((t / 2.4) + s.ph) % 1
+    const sx = s.x + (engine.x - s.x) * ease(sp)
+    const sy = 0.12 + (L.nodes[0].y - 0.02 - 0.12) * ease(sp)
+    dot(ctx, sx * w, sy * h, 1.5, c.muted, Math.sin(sp * Math.PI) * 0.8)
+  })
+
+  const fp = ((t + 2.6) % L.cycle) / L.cycle
+  if (fp < 0.18) {
+    const fy = L.nodes[0].y + 0.02 + (L.flagged.y - L.nodes[0].y - 0.02) * ease(fp / 0.18)
+    dot(ctx, engine.x * w, fy * h, 1.8, c.muted, 0.85)
+  }
+  dot(ctx, L.flagged.x * w, L.flagged.y * h, 2, c.muted, 0.7)
+  tag(ctx, 'FLAGGED', L.flagged.x * w + 10, L.flagged.y * h + 4, c.muted, c, 8, 'left', 0.85)
+
+  const u = (t % L.cycle) / L.cycle
+  let px = null
+  if (u < 0.72) {
+    px = L.nodes[0].x + (u / 0.72) * (L.nodes[4].x - L.nodes[0].x)
+    dot(ctx, px * w, py, 2.6, c.accent)
+  } else {
+    const b = ease((u - 0.72) / 0.28)
+    const pos = bez(
+      { x: L.nodes[4].x * w, y: py + 6 },
+      { x: w * 0.5, y: h * 1.02 },
+      { x: L.nodes[0].x * w, y: py + 6 },
+      b
+    )
+    dot(ctx, pos.x, pos.y, 2.2, c.accent, 0.9)
+  }
+  tag(ctx, 'DIRECT LEASE — NO BROKER', w * 0.5, h * 0.88, c.accent, c, 8, 'center', 0.75)
+
+  L.nodes.forEach((node) => {
+    const x = node.x * w
+    const r = node.big ? 6 : 4
+    const active = (px !== null && Math.abs(px - node.x) < 0.09) || node.big
+    ctx.fillStyle = c.bg
+    ctx.strokeStyle = active ? c.accent : c.borderStrong
+    ctx.fillRect(x - r, py - r, r * 2, r * 2)
+    ctx.strokeRect(x - r, py - r, r * 2, r * 2)
+    if (active && !node.big) {
+      ctx.globalAlpha = 0.9
+      ctx.fillStyle = c.accent
+      ctx.fillRect(x - 2, py - 2, 4, 4)
+      ctx.globalAlpha = 1
+    }
+    tag(
+      ctx,
+      node.name,
+      x,
+      node.above ? py - (node.big ? 16 : 14) - 4 : py + 26,
+      active ? c.accent : c.muted,
+      c,
+      8,
+      'center',
+      active ? 1 : 0.9
+    )
+  })
+}
+
+/* ---- score: listing through twelve signals to live-or-flagged ---- */
+
+function layoutScore() {
+  const y = 0.45
+  return {
+    nodes: [
+      { name: 'LISTING', x: 0.1, y, above: true },
+      { name: 'SIGNALS', x: 0.4, y, above: false },
+      { name: 'SCORE', x: 0.65, y, above: true },
+    ],
+    live: { x: 0.9, y: 0.26 },
+    flagged: { x: 0.9, y: 0.7 },
+    cycle: 4.2,
+  }
+}
+
+function drawScore(ctx, w, h, t, c, L) {
+  const py = L.nodes[0].y * h
+  const score = L.nodes[2]
+
+  ctx.lineWidth = 1
+  ctx.strokeStyle = c.borderStrong
+  ctx.globalAlpha = 0.9
+  ctx.beginPath()
+  ctx.moveTo(L.nodes[0].x * w, py)
+  ctx.lineTo(score.x * w, py)
+  ctx.stroke()
+  ctx.globalAlpha = 0.6
+  ctx.beginPath()
+  ctx.moveTo(score.x * w, py)
+  ctx.lineTo(L.live.x * w, L.live.y * h)
+  ctx.moveTo(score.x * w, py)
+  ctx.lineTo(L.flagged.x * w, L.flagged.y * h)
+  ctx.stroke()
+  ctx.globalAlpha = 1
+
+  for (let i = 0; i < 3; i++) {
+    const a = 0.4 + 0.4 * (0.5 + 0.5 * Math.sin(t * 2.2 + i * 2.1))
+    dot(ctx, (L.nodes[1].x - 0.05 + i * 0.05) * w, h * 0.16, 1.8, c.muted, a)
+  }
+  tag(ctx, '×12', L.nodes[1].x * w, h * 0.16 - 10, c.muted, c, 8, 'center', 0.9)
+
+  const k = Math.floor(t / L.cycle)
+  const toFlagged = k % 4 === 3
+  const u = (t % L.cycle) / L.cycle
+  let px = null
+  if (u < 0.62) {
+    px = L.nodes[0].x + (u / 0.62) * (score.x - L.nodes[0].x)
+    dot(ctx, px * w, py, 2.4, c.accent)
+  } else {
+    const b = ease((u - 0.62) / 0.38)
+    const target = toFlagged ? L.flagged : L.live
+    const x = score.x + (target.x - score.x) * b
+    const y = L.nodes[0].y + (target.y - L.nodes[0].y) * b
+    dot(ctx, x * w, y * h, 2.4, toFlagged ? c.muted : c.accent, 0.95)
+  }
+
+  L.nodes.forEach((node) => {
+    const x = node.x * w
+    const active = px !== null && Math.abs(px - node.x) < 0.1
+    ctx.fillStyle = c.bg
+    ctx.strokeStyle = active ? c.accent : c.borderStrong
+    ctx.fillRect(x - 4, py - 4, 8, 8)
+    ctx.strokeRect(x - 4, py - 4, 8, 8)
+    tag(ctx, node.name, x, node.above ? py - 16 : py + 24, active ? c.accent : c.muted, c, 8, 'center', active ? 1 : 0.9)
+  })
+
+  dot(ctx, L.live.x * w, L.live.y * h, 3, c.accent)
+  tag(ctx, 'LIVE', L.live.x * w, L.live.y * h - 12, c.accent, c, 8, 'center')
+  dot(ctx, L.flagged.x * w, L.flagged.y * h, 2.2, c.muted, 0.8)
+  tag(ctx, 'FLAGGED', L.flagged.x * w, L.flagged.y * h + 18, c.muted, c, 8, 'center', 0.9)
+}
+
 const VARIANTS = {
   map: { seed: 7, layout: layoutMap, draw: drawMap, header: ['Listing map', 'Twelve signals', 'Trust score'] },
   trace: { seed: 11, layout: layoutTrace, draw: drawTrace, header: ['Evidence', 'Reasoning', 'Decision'] },
@@ -476,6 +661,8 @@ const VARIANTS = {
   graph: { seed: 13, layout: layoutGraph, draw: drawGraph, header: ['Raw records', 'Resolution', 'Knowledge graph'] },
   systems: { seed: 3, layout: layoutSystems, draw: drawSystems, header: null },
   flow: { seed: 17, layout: layoutFlow, draw: drawFlow, header: ['Problem in', 'Nine stages', 'Production out'] },
+  lease: { seed: 19, layout: layoutLease, draw: drawLease, header: ['Owner', 'Trust engine', 'Tenant'] },
+  score: { seed: 23, layout: layoutScore, draw: drawScore, header: ['Listing in', 'Twelve signals', 'Live'] },
 }
 
 export default function DiagramCanvas({ variant, ratio, className = '', label, caption }) {

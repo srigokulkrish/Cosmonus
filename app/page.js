@@ -100,7 +100,7 @@ const PROCESS = [
 ]
 
 const PROOF = [
-  { variant: 'map', label: 'Schematic city map with listing markers, one highlighted with a trust radius', title: 'Live trust scoring', desc: 'Every rental listing scored across twelve signals before a tenant ever sees it.' },
+  { variant: 'score', label: 'Flow chart of listing trust scoring: a listing passes twelve signals, is scored, and goes live or is flagged', title: 'Live trust scoring', desc: 'Every rental listing scored across twelve signals before a tenant ever sees it.' },
   { variant: 'trace', label: 'Decision-trace diagram: evidence nodes converging into a single approved decision', title: 'Decision trace', desc: 'Every automated decision resolves to the evidence and logic that produced it.' },
   { variant: 'orchestration', label: 'Swimlane console diagram with one task rerouted between agent lanes', title: 'Agent orchestration', desc: 'Coordinated agents handling exceptions a fixed workflow would drop.' },
   { variant: 'graph', label: 'Scattered document glyphs resolving into an ordered knowledge graph', title: 'Knowledge graph', desc: 'Documents, tickets, and records unified into one queryable structure.' },
@@ -249,10 +249,10 @@ export default function Home() {
             </div>
             <div className="feature__visual">
               <DiagramCanvas
-                variant="map"
+                variant="lease"
                 ratio="4/3"
-                label="Schematic city map with listing markers, one highlighted with a trust radius"
-                caption="Every listing is scored across twelve trust signals before it surfaces. The violet pulse marks a verified listing and its trust radius."
+                label="Flow chart from owner to tenant: a listing clears the twelve-signal trust engine, flagged listings drop out, and the lease closes directly with no broker"
+                caption="From listing to lease with no broker in between. Every listing clears the twelve-signal trust engine before a tenant ever sees it — flagged listings never surface."
               />
             </div>
           </div>
