@@ -48,6 +48,18 @@ function tag(ctx, str, x, y, color, c, size = 8, align = 'left', alpha = 1) {
   ctx.textAlign = 'left'
 }
 
+function comet(ctx, pathFn, p, r, color, alpha = 1) {
+  for (let i = 7; i >= 1; i--) {
+    const q = p - i * 0.02
+    if (q < 0) continue
+    const pos = pathFn(q)
+    dot(ctx, pos.x, pos.y, Math.max(r * (1 - i * 0.11), 0.4), color, alpha * 0.4 * (1 - i / 8))
+  }
+  const head = pathFn(p)
+  dot(ctx, head.x, head.y, r * 2.8, color, alpha * 0.14)
+  dot(ctx, head.x, head.y, r, color, alpha)
+}
+
 /* ---- map: schematic city grid, listings, one pulsing trust radius ---- */
 
 function layoutMap(r) {
@@ -159,8 +171,14 @@ function drawTrace(ctx, w, h, t, c, L) {
   })
 
   const dp = (t % 2.4) / 2.4
-  const dpos = bez(W, { x: (W.x + D.x) / 2, y: W.y - h * 0.09 }, D, ease(dp))
-  dot(ctx, dpos.x, dpos.y, 2.2, c.accent, Math.sin(dp * Math.PI))
+  comet(
+    ctx,
+    (q) => bez(W, { x: (W.x + D.x) / 2, y: W.y - h * 0.09 }, D, ease(q)),
+    dp,
+    2.2,
+    c.accent,
+    Math.sin(dp * Math.PI)
+  )
 
   sq(ctx, W.x, W.y, 5, c, false, false)
   tag(ctx, 'WEIGH', W.x, W.y + 24, c.fg, c, 8, 'center', 0.9)
@@ -243,12 +261,22 @@ function drawOrch(ctx, w, h, t, c, L) {
 
   const R = L.reroute
   const xu = (t * R.sp + R.off) % 1
-  let lane
-  if (xu < 0.42) lane = L.lanes[R.a]
-  else if (xu > 0.6) lane = L.lanes[R.b]
-  else lane = L.lanes[R.a] + (L.lanes[R.b] - L.lanes[R.a]) * ease((xu - 0.42) / 0.18)
-  const pos = orchPos(xu, lane, L)
-  dot(ctx, pos.x * w, pos.y * h, 2.8, c.accent)
+  function rerouteLane(q) {
+    if (q < 0.42) return L.lanes[R.a]
+    if (q > 0.6) return L.lanes[R.b]
+    return L.lanes[R.a] + (L.lanes[R.b] - L.lanes[R.a]) * ease((q - 0.42) / 0.18)
+  }
+  const pos = orchPos(xu, rerouteLane(xu), L)
+  comet(
+    ctx,
+    (q) => {
+      const P = orchPos(q, rerouteLane(q), L)
+      return { x: P.x * w, y: P.y * h }
+    },
+    xu,
+    2.8,
+    c.accent
+  )
   if (xu > 0.38 && xu < 0.66) {
     const a = Math.min((xu - 0.38) / 0.06, (0.66 - xu) / 0.06, 1)
     tag(ctx, 'EXCEPTION — REROUTED', pos.x * w + 8, pos.y * h - 8, c.accent, c, 8, 'left', a * 0.9)
@@ -344,13 +372,17 @@ function drawGraph(ctx, w, h, t, c, L) {
       )
       dot(ctx, pos.x * w, pos.y * h, 1.8, c.muted, Math.min(prog * 12, 1) * 0.9)
     } else if (prog < 0.92) {
-      const pos = bez(
-        L.resolve,
-        { x: L.resolve.x + 0.12, y: L.resolve.y },
-        tr.to,
-        ease((prog - 0.48) / 0.44)
+      comet(
+        ctx,
+        (q) => {
+          const pos = bez(L.resolve, { x: L.resolve.x + 0.12, y: L.resolve.y }, tr.to, ease(q))
+          return { x: pos.x * w, y: pos.y * h }
+        },
+        (prog - 0.48) / 0.44,
+        1.9,
+        c.accent,
+        0.95
       )
-      dot(ctx, pos.x * w, pos.y * h, 1.9, c.accent, 0.95)
     } else {
       const k = (prog - 0.92) / 0.08
       ctx.globalAlpha = (1 - k) * 0.5
@@ -446,7 +478,11 @@ function drawSystems(ctx, w, h, t, c, L) {
     const prog = ((t / 3.6) + k * 0.33) % 1
     const y = 0.92 - prog * 0.84
     const inside = y > rl.y && y < rl.y + rl.h
-    dot(ctx, x * w, y * h, 2, inside ? c.accent : c.muted, 0.9)
+    if (inside) {
+      comet(ctx, (q) => ({ x: x * w, y: (0.92 - q * 0.84) * h }), prog, 2, c.accent, 0.9)
+    } else {
+      dot(ctx, x * w, y * h, 2, c.muted, 0.9)
+    }
   })
 }
 
@@ -496,19 +532,25 @@ function drawFlow(ctx, w, h, t, c, L) {
 
   const u = (t % L.cycle) / L.cycle
   let px = null
-  let backPos = null
   if (u < 0.78) {
-    px = first.x + (u / 0.78) * (last.x - first.x)
-    dot(ctx, px * w, py, 2.6, c.accent)
+    const p = u / 0.78
+    px = first.x + p * (last.x - first.x)
+    comet(ctx, (q) => ({ x: (first.x + q * (last.x - first.x)) * w, y: py }), p, 2.6, c.accent)
   } else {
-    const b = ease((u - 0.78) / 0.22)
-    backPos = bez(
-      { x: last.x * w, y: py + 5 },
-      { x: w * 0.5, y: h * 0.97 },
-      { x: first.x * w, y: py + 5 },
-      b
+    comet(
+      ctx,
+      (q) =>
+        bez(
+          { x: last.x * w, y: py + 5 },
+          { x: w * 0.5, y: h * 0.97 },
+          { x: first.x * w, y: py + 5 },
+          ease(q)
+        ),
+      (u - 0.78) / 0.22,
+      2.2,
+      c.accent,
+      0.9
     )
-    dot(ctx, backPos.x, backPos.y, 2.2, c.accent, 0.9)
   }
 
   const rp = ((t + 1.2) % 3.8) / 3.8
@@ -630,17 +672,24 @@ function drawLease(ctx, w, h, t, c, L) {
   const u = (t % L.cycle) / L.cycle
   let px = null
   if (u < 0.72) {
-    px = L.nodes[0].x + (u / 0.72) * (L.nodes[4].x - L.nodes[0].x)
-    dot(ctx, px * w, py, 2.6, c.accent)
+    const p = u / 0.72
+    px = L.nodes[0].x + p * (L.nodes[4].x - L.nodes[0].x)
+    comet(ctx, (q) => ({ x: (L.nodes[0].x + q * (L.nodes[4].x - L.nodes[0].x)) * w, y: py }), p, 2.6, c.accent)
   } else {
-    const b = ease((u - 0.72) / 0.28)
-    const pos = bez(
-      { x: L.nodes[4].x * w, y: py + 6 },
-      { x: w * 0.5, y: h * 1.02 },
-      { x: L.nodes[0].x * w, y: py + 6 },
-      b
+    comet(
+      ctx,
+      (q) =>
+        bez(
+          { x: L.nodes[4].x * w, y: py + 6 },
+          { x: w * 0.5, y: h * 1.02 },
+          { x: L.nodes[0].x * w, y: py + 6 },
+          ease(q)
+        ),
+      (u - 0.72) / 0.28,
+      2.2,
+      c.accent,
+      0.9
     )
-    dot(ctx, pos.x, pos.y, 2.2, c.accent, 0.9)
   }
   tag(ctx, 'DIRECT LEASE — NO BROKER', w * 0.5, h * 0.88, c.accent, c, 8, 'center', 0.75)
 
@@ -719,18 +768,27 @@ function drawScore(ctx, w, h, t, c, L) {
   const u = (t % L.cycle) / L.cycle
   let px = null
   if (u < 0.62) {
-    px = L.nodes[0].x + (u / 0.62) * (score.x - L.nodes[0].x)
-    dot(ctx, px * w, py, 2.4, c.accent)
+    const p = u / 0.62
+    px = L.nodes[0].x + p * (score.x - L.nodes[0].x)
+    comet(ctx, (q) => ({ x: (L.nodes[0].x + q * (score.x - L.nodes[0].x)) * w, y: py }), p, 2.4, c.accent)
   } else {
-    const b = ease((u - 0.62) / 0.38)
     const target = toFlagged ? L.flagged : L.live
-    const pos = bez(
-      { x: score.x, y: L.nodes[0].y },
-      { x: score.x + 0.14, y: L.nodes[0].y },
-      target,
-      b
-    )
-    dot(ctx, pos.x * w, pos.y * h, 2.4, toFlagged ? c.muted : c.accent, 0.95)
+    const branch = (q) => {
+      const pos = bez(
+        { x: score.x, y: L.nodes[0].y },
+        { x: score.x + 0.14, y: L.nodes[0].y },
+        target,
+        ease(q)
+      )
+      return { x: pos.x * w, y: pos.y * h }
+    }
+    const p = (u - 0.62) / 0.38
+    if (toFlagged) {
+      const pos = branch(p)
+      dot(ctx, pos.x, pos.y, 2.4, c.muted, 0.95)
+    } else {
+      comet(ctx, branch, p, 2.4, c.accent, 0.95)
+    }
   }
 
   L.nodes.forEach((node) => {
