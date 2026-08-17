@@ -98,7 +98,7 @@ function drawMap(ctx, w, h, t, c, L) {
   ctx.globalAlpha = 1
   dot(ctx, fx, fy, 3.5, c.accent)
   tag(ctx, 'TRUST 0.92', fx + 12, fy - 10, c.accent, c, 9)
-  tag(ctx, 'VERIFIED OWNER', fx + 12, fy + 4, c.muted, c, 8, 'left', 0.9)
+  tag(ctx, 'VERIFIED OWNER', fx + 12, fy + 4, c.fg, c, 8, 'left', 0.9)
 }
 
 /* ---- trace: evidence weighed into one decision ---- */
@@ -155,14 +155,14 @@ function drawTrace(ctx, w, h, t, c, L) {
     )
     dot(ctx, pos.x, pos.y, 1.8, c.muted, Math.sin(prog * Math.PI) * 0.9)
     sq(ctx, e.x * w, e.y * h, 3, c, false, false)
-    tag(ctx, `E0${i + 1}`, e.x * w - 12, e.y * h + 3, c.muted, c, 8, 'right', 0.9)
+    tag(ctx, `E0${i + 1}`, e.x * w - 12, e.y * h + 3, c.fg, c, 8, 'right', 0.9)
   })
 
   const dp = (t % 2.4) / 2.4
   dot(ctx, W.x + (D.x - W.x) * ease(dp), W.y, 2.2, c.accent, Math.sin(dp * Math.PI))
 
   sq(ctx, W.x, W.y, 5, c, false, false)
-  tag(ctx, 'WEIGH', W.x, W.y + 24, c.muted, c, 8, 'center', 0.9)
+  tag(ctx, 'WEIGH', W.x, W.y + 24, c.fg, c, 8, 'center', 0.9)
 
   ctx.globalAlpha = 0.3 + 0.2 * Math.sin(t * 2)
   ctx.strokeStyle = c.accent
@@ -226,7 +226,7 @@ function drawOrch(ctx, w, h, t, c, L) {
     ctx.lineTo(L.x1 * w, y * h)
     ctx.stroke()
     ctx.globalAlpha = 1
-    tag(ctx, `AGENT 0${i + 1}`, L.x0 * w, y * h - 10, c.muted, c, 8, 'left', 0.9)
+    tag(ctx, `AGENT 0${i + 1}`, L.x0 * w, y * h - 10, c.fg, c, 8, 'left', 0.9)
   })
 
   let arrival = 0
@@ -251,7 +251,7 @@ function drawOrch(ctx, w, h, t, c, L) {
   }
 
   sq(ctx, L.queue.x * w, L.queue.y * h, 5, c, false, false)
-  tag(ctx, 'QUEUE', L.queue.x * w, L.queue.y * h + 24, c.muted, c, 8, 'center', 0.9)
+  tag(ctx, 'QUEUE', L.queue.x * w, L.queue.y * h + 24, c.fg, c, 8, 'center', 0.9)
   if (arrival > 0) {
     ctx.globalAlpha = (1 - arrival) * 0.5
     ctx.strokeStyle = c.accent
@@ -296,7 +296,7 @@ function drawGraph(ctx, w, h, t, c, L) {
       c.faint
     )
   })
-  tag(ctx, 'RECORDS', w * 0.145, h * 0.95, c.muted, c, 8, 'center', 0.9)
+  tag(ctx, 'RECORDS', w * 0.145, h * 0.95, c.fg, c, 8, 'center', 0.9)
 
   ctx.lineWidth = 1
   ctx.strokeStyle = c.borderStrong
@@ -351,7 +351,7 @@ function drawGraph(ctx, w, h, t, c, L) {
   })
 
   sq(ctx, R.x, R.y, 5, c, false, false)
-  tag(ctx, 'RESOLVE', R.x, R.y + 24, c.muted, c, 8, 'center', 0.9)
+  tag(ctx, 'RESOLVE', R.x, R.y + 24, c.fg, c, 8, 'center', 0.9)
 }
 
 /* ---- systems: layered blueprint, reasoning layer highlighted ---- */
@@ -604,7 +604,7 @@ function drawLease(ctx, w, h, t, c, L) {
     dot(ctx, engine.x * w, fy * h, 1.8, c.muted, 0.85)
   }
   dot(ctx, L.flagged.x * w, L.flagged.y * h, 2, c.muted, 0.7)
-  tag(ctx, 'FLAGGED', L.flagged.x * w + 10, L.flagged.y * h + 4, c.muted, c, 8, 'left', 0.85)
+  tag(ctx, 'FLAGGED', L.flagged.x * w + 10, L.flagged.y * h + 4, c.fg, c, 8, 'left', 0.85)
 
   const u = (t % L.cycle) / L.cycle
   let px = null
@@ -691,7 +691,7 @@ function drawScore(ctx, w, h, t, c, L) {
     const a = 0.4 + 0.4 * (0.5 + 0.5 * Math.sin(t * 2.2 + i * 2.1))
     dot(ctx, (L.nodes[1].x - 0.05 + i * 0.05) * w, h * 0.16, 1.8, c.muted, a)
   }
-  tag(ctx, '×12', L.nodes[1].x * w, h * 0.16 - 10, c.muted, c, 8, 'center', 0.9)
+  tag(ctx, '×12', L.nodes[1].x * w, h * 0.16 - 10, c.fg, c, 8, 'center', 0.9)
 
   const k = Math.floor(t / L.cycle)
   const toFlagged = k % 4 === 3
@@ -715,13 +715,13 @@ function drawScore(ctx, w, h, t, c, L) {
     ctx.strokeStyle = active ? c.accent : c.borderStrong
     ctx.fillRect(x - 4, py - 4, 8, 8)
     ctx.strokeRect(x - 4, py - 4, 8, 8)
-    tag(ctx, node.name, x, node.above ? py - 16 : py + 24, active ? c.accent : c.muted, c, 8, 'center', active ? 1 : 0.9)
+    tag(ctx, node.name, x, node.above ? py - 16 : py + 24, active ? c.accent : c.fg, c, 8, 'center', active ? 1 : 0.9)
   })
 
   dot(ctx, L.live.x * w, L.live.y * h, 3, c.accent)
   tag(ctx, 'LIVE', L.live.x * w, L.live.y * h - 12, c.accent, c, 8, 'center')
   dot(ctx, L.flagged.x * w, L.flagged.y * h, 2.2, c.muted, 0.8)
-  tag(ctx, 'FLAGGED', L.flagged.x * w, L.flagged.y * h + 18, c.muted, c, 8, 'center', 0.9)
+  tag(ctx, 'FLAGGED', L.flagged.x * w, L.flagged.y * h + 18, c.fg, c, 8, 'center', 0.9)
 }
 
 const VARIANTS = {
@@ -771,6 +771,7 @@ export default function DiagramCanvas({ variant, ratio, className = '', label, c
         faint: s.getPropertyValue('--fg-faint').trim(),
         muted: s.getPropertyValue('--fg-muted').trim(),
         accent: s.getPropertyValue('--accent').trim(),
+        fg: s.getPropertyValue('--fg').trim(),
         bg: s.getPropertyValue('--bg').trim(),
         mono: s.getPropertyValue('--font-mono').trim() || 'ui-monospace, monospace',
       }
@@ -778,7 +779,7 @@ export default function DiagramCanvas({ variant, ratio, className = '', label, c
 
     function draw(t) {
       ctx.clearRect(0, 0, w, h)
-      c.scale = Math.max(1.2, Math.min(1.7, w / 560))
+      c.scale = Math.max(1.3, Math.min(1.7, w / 520))
       spec.draw(ctx, w, h, t, c, L)
     }
 

@@ -518,10 +518,10 @@ body.no-scroll { overflow: hidden; }
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.1em;
-  color: var(--fg-faint);
+  color: var(--fg-muted);
   text-transform: uppercase;
 }
-.diagram-frame__label span:nth-child(2) { text-align: center; color: var(--fg-muted); }
+.diagram-frame__label span:nth-child(2) { text-align: center; color: var(--fg); }
 .diagram-frame__label span:last-child { text-align: right; color: var(--accent); }
 .diagram-frame__canvas {
   position: relative;
