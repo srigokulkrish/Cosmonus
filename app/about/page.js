@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const metadata = {
   title: 'About Cosmonus',
-  description: 'Cosmonus is a solo-founder intelligence engineering company. We build systems that understand an operation, reason over its data, and make decisions accountable — designed from first principles, proven in production.',
+  description: 'Cosmonus is a founder-led intelligence engineering company. We build systems that understand an operation, reason over its data, and make decisions accountable — designed from first principles, proven in production.',
   alternates: { canonical: '/about' },
 }
 
@@ -40,7 +40,7 @@ export default function AboutPage() {
           </div>
           <div className="grid-2" data-reveal>
             <p className="body">
-              Every company I worked at had the same gap. The data existed. The answers were in
+              Every company we worked at had the same gap. The data existed. The answers were in
               it. And still, every decision that mattered was made by a person reading a
               dashboard a week too late — because the software could store the business, but
               couldn’t understand it.
@@ -54,36 +54,56 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 02 — The founder */}
+      {/* 02 — The founders */}
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow"><span className="eyebrow__num">02</span> The founder</div>
-            <h2 className="section-title">One person, accountable for the whole system.</h2>
+            <div className="eyebrow"><span className="eyebrow__num">02</span> The founders</div>
+            <h2 className="section-title">Two founders, one standard of accountability.</h2>
           </div>
-          <div className="founder" data-reveal>
-            <div className="founder__identity">
-              <img src="/images/founder.jpg" alt="Sri Gokul Krishnan" className="founder__photo" width="340" height="453" />
-              <h3 className="founder__name">Sri Gokul Krishnan</h3>
-              <p className="founder__role">Founder — design &amp; engineering</p>
-              <p className="founder__location mono">Chennai, India</p>
-              <a href="https://srigokulkrishnan.com" target="_blank" rel="noopener noreferrer" className="founder__link">
-                srigokulkrishnan.com →
-              </a>
+          <div className="founders" data-reveal>
+            <div className="founder">
+              <div className="founder__identity">
+                <img src="/images/founder.jpg" alt="Sri Gokul Krishnan" className="founder__photo" width="340" height="453" />
+                <h3 className="founder__name">Sri Gokul Krishnan</h3>
+                <p className="founder__role">Co-founder — design &amp; engineering</p>
+                <p className="founder__location mono">Chennai, India</p>
+                <a href="https://srigokulkrishnan.com" target="_blank" rel="noopener noreferrer" className="founder__link">
+                  srigokulkrishnan.com →
+                </a>
+              </div>
+              <div className="founder__content">
+                <p className="body">
+                  Nine years as a product designer, spent teaching myself the rest of the stack
+                  because I got tired of waiting on handoffs to see an idea actually run. The tools
+                  change; what doesn’t is starting from what the decision requires, not from
+                  whichever framework is loudest this year.
+                </p>
+                <p className="body">
+                  Cosmonus stays deliberately small — every system that ships has a named owner,
+                  and we’d rather stay small and correct than large and diluted. How that shows up
+                  in the engineering itself is covered on the <Link href="/technology">technology</Link> page.
+                </p>
+              </div>
             </div>
-            <div className="founder__content">
-              <p className="body">
-                Nine years as a product designer, spent teaching myself the rest of the stack
-                because I got tired of waiting on handoffs to see an idea actually run. The tools
-                change; what doesn’t is starting from what the decision requires, not from
-                whichever framework is loudest this year.
-              </p>
-              <p className="body">
-                Cosmonus is a company of one by design, not by constraint — every system that
-                ships has a single point of accountability, and I’d rather stay small and correct
-                than large and diluted. How that shows up in the engineering itself is covered on
-                the <Link href="/technology">technology</Link> page.
-              </p>
+            <div className="founder">
+              <div className="founder__identity">
+                <div className="founder__photo founder__photo--pending" aria-hidden="true">Y</div>
+                <h3 className="founder__name">Yuvraj</h3>
+                <p className="founder__role">Co-founder — operations &amp; business</p>
+              </div>
+              <div className="founder__content">
+                <p className="body">
+                  Runs the operational and commercial side of Cosmonus — partnerships, agreements,
+                  and the day-to-day running of the company — so the engineering stays heads-down
+                  on the systems themselves.
+                </p>
+                <p className="body">
+                  Same conviction, different lens: a system only matters once it survives contact
+                  with a real operation — its budgets, its timelines, and the people who have to
+                  trust it. Yuvraj owns that contact.
+                </p>
+              </div>
             </div>
           </div>
         </div>

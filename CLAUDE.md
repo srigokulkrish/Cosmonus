@@ -1,6 +1,6 @@
 # Cosmonus
 
-Next.js 14 App Router. Solo founder: Sri Gokul Krishnan.
+Next.js 14 App Router. Founders: Sri Gokul Krishnan (design & engineering), Yuvraj (operations & business).
 
 Positioning: Cosmonus engineers intelligent software systems from first principles — software that reads context, reasons over information, automates hard decisions, and improves with use. AI is one component among many (architecture, distributed systems, spatial computing, knowledge systems, design). Philosophically between Palantir's density and Stripe's clarity. Confidence through clarity, never hype.
 
