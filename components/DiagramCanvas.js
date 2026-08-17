@@ -368,12 +368,114 @@ function drawSystems(ctx, w, h, t, c, L) {
   })
 }
 
+/* ---- flow: nine-stage pipeline with feedback loops ---- */
+
+const FLOW_STAGES = ['DISCOVERY', 'DATA MAPPING', 'ARCHITECTURE', 'REASONING', 'PROTOTYPE', 'EVALUATION', 'INTEGRATION', 'HARDENING', 'LEARNING']
+
+function layoutFlow() {
+  const nodes = FLOW_STAGES.map((name, i) => ({
+    name,
+    x: 0.06 + (i / (FLOW_STAGES.length - 1)) * 0.88,
+    y: 0.44,
+    above: i % 2 === 0,
+  }))
+  return { nodes, cycle: 9 }
+}
+
+function drawFlow(ctx, w, h, t, c, L) {
+  const n = L.nodes
+  const first = n[0]
+  const last = n[n.length - 1]
+  const py = L.nodes[0].y * h
+
+  ctx.lineWidth = 1
+  ctx.strokeStyle = c.borderStrong
+  ctx.globalAlpha = 0.9
+  ctx.beginPath()
+  ctx.moveTo(first.x * w, py)
+  ctx.lineTo(last.x * w, py)
+  ctx.stroke()
+
+  const evalN = n[5]
+  const protoN = n[4]
+  ctx.globalAlpha = 0.5
+  ctx.beginPath()
+  ctx.moveTo(evalN.x * w, py - 5)
+  ctx.quadraticCurveTo(((evalN.x + protoN.x) / 2) * w, h * 0.14, protoN.x * w, py - 5)
+  ctx.stroke()
+
+  ctx.strokeStyle = c.accent
+  ctx.globalAlpha = 0.3
+  ctx.beginPath()
+  ctx.moveTo(last.x * w, py + 5)
+  ctx.quadraticCurveTo(w * 0.5, h * 0.97, first.x * w, py + 5)
+  ctx.stroke()
+  ctx.globalAlpha = 1
+
+  const u = (t % L.cycle) / L.cycle
+  let px = null
+  let backPos = null
+  if (u < 0.78) {
+    px = first.x + (u / 0.78) * (last.x - first.x)
+    dot(ctx, px * w, py, 2.6, c.accent)
+  } else {
+    const b = ease((u - 0.78) / 0.22)
+    backPos = bez(
+      { x: last.x * w, y: py + 5 },
+      { x: w * 0.5, y: h * 0.97 },
+      { x: first.x * w, y: py + 5 },
+      b
+    )
+    dot(ctx, backPos.x, backPos.y, 2.2, c.accent, 0.9)
+  }
+
+  const rp = ((t + 1.2) % 3.8) / 3.8
+  if (rp < 0.4) {
+    const pos = bez(
+      { x: evalN.x * w, y: py - 5 },
+      { x: ((evalN.x + protoN.x) / 2) * w, y: h * 0.14 },
+      { x: protoN.x * w, y: py - 5 },
+      ease(rp / 0.4)
+    )
+    dot(ctx, pos.x, pos.y, 1.7, c.muted, 0.8)
+  }
+
+  const seg = (last.x - first.x) / (n.length - 1)
+  n.forEach((node) => {
+    const x = node.x * w
+    const active = px !== null && Math.abs(px - node.x) < seg * 0.5
+    ctx.fillStyle = c.bg
+    ctx.strokeStyle = active ? c.accent : c.borderStrong
+    ctx.globalAlpha = 1
+    ctx.fillRect(x - 4, py - 4, 8, 8)
+    ctx.strokeRect(x - 4, py - 4, 8, 8)
+    if (active) {
+      ctx.globalAlpha = 0.9
+      ctx.fillStyle = c.accent
+      ctx.fillRect(x - 2, py - 2, 4, 4)
+      ctx.globalAlpha = 1
+    }
+    tag(
+      ctx,
+      node.name,
+      x,
+      node.above ? py - 16 : py + 24,
+      active ? c.accent : c.faint,
+      c,
+      8,
+      'center',
+      active ? 1 : 0.85
+    )
+  })
+}
+
 const VARIANTS = {
   map: { seed: 7, layout: layoutMap, draw: drawMap, header: ['Listing map', 'Twelve signals', 'Trust score'] },
   trace: { seed: 11, layout: layoutTrace, draw: drawTrace, header: ['Evidence', 'Reasoning', 'Decision'] },
   orchestration: { seed: 5, layout: layoutOrch, draw: drawOrch, header: ['Incoming tasks', 'Agent lanes', 'Resolved'] },
   graph: { seed: 13, layout: layoutGraph, draw: drawGraph, header: ['Raw records', 'Resolution', 'Knowledge graph'] },
   systems: { seed: 3, layout: layoutSystems, draw: drawSystems, header: null },
+  flow: { seed: 17, layout: layoutFlow, draw: drawFlow, header: ['Problem in', 'Nine stages', 'Production out'] },
 }
 
 export default function DiagramCanvas({ variant, ratio, className = '', label, caption }) {
@@ -412,6 +514,7 @@ export default function DiagramCanvas({ variant, ratio, className = '', label, c
         faint: s.getPropertyValue('--fg-faint').trim(),
         muted: s.getPropertyValue('--fg-muted').trim(),
         accent: s.getPropertyValue('--accent').trim(),
+        bg: s.getPropertyValue('--bg').trim(),
         mono: s.getPropertyValue('--font-mono').trim() || 'ui-monospace, monospace',
       }
     }

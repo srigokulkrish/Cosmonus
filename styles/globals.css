@@ -662,6 +662,11 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 900px) { .principles { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .principles { grid-template-columns: 1fr; } }
 
+.process-flow { margin-bottom: 2.75rem; }
+.process-flow .diagram-frame__canvas { aspect-ratio: 16 / 4.5; }
+@media (max-width: 900px) { .process-flow .diagram-frame__canvas { aspect-ratio: 16 / 6; } }
+@media (max-width: 640px) { .process-flow { display: none; } }
+
 .process { position: relative; display: flex; flex-direction: column; }
 .process__step { display: grid; grid-template-columns: 3rem 1fr; gap: 1.5rem; padding: 1.75rem 0; border-top: 1px solid var(--border); }
 .process__step:first-child { border-top: none; }

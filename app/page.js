@@ -289,6 +289,12 @@ export default function Home() {
             <div className="eyebrow"><span className="eyebrow__num">06</span> Process</div>
             <h2 className="section-title">Nine stages. Each one exists for a reason.</h2>
           </div>
+          <div className="process-flow" data-reveal>
+            <DiagramCanvas
+              variant="flow"
+              label="Flow chart of the nine process stages: a pulse moves from discovery to learning, evaluation loops back to prototype, and learning feeds back into discovery"
+            />
+          </div>
           <div className="process" data-reveal>
             {PROCESS.map((step, i) => (
               <div key={step.title} className="process__step">
