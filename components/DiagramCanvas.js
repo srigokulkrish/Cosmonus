@@ -141,7 +141,7 @@ function drawTrace(ctx, w, h, t, c, L) {
   })
   ctx.beginPath()
   ctx.moveTo(W.x, W.y)
-  ctx.lineTo(D.x, D.y)
+  ctx.quadraticCurveTo((W.x + D.x) / 2, W.y - h * 0.09, D.x, D.y)
   ctx.stroke()
   ctx.globalAlpha = 1
 
@@ -159,7 +159,8 @@ function drawTrace(ctx, w, h, t, c, L) {
   })
 
   const dp = (t % 2.4) / 2.4
-  dot(ctx, W.x + (D.x - W.x) * ease(dp), W.y, 2.2, c.accent, Math.sin(dp * Math.PI))
+  const dpos = bez(W, { x: (W.x + D.x) / 2, y: W.y - h * 0.09 }, D, ease(dp))
+  dot(ctx, dpos.x, dpos.y, 2.2, c.accent, Math.sin(dp * Math.PI))
 
   sq(ctx, W.x, W.y, 5, c, false, false)
   tag(ctx, 'WEIGH', W.x, W.y + 24, c.fg, c, 8, 'center', 0.9)
@@ -305,9 +306,21 @@ function drawGraph(ctx, w, h, t, c, L) {
   ctx.strokeStyle = c.borderStrong
   ctx.globalAlpha = 0.75
   L.edges.forEach(([a, b]) => {
+    const A = L.nodes[a]
+    const B = L.nodes[b]
+    const mx = (A.x + B.x) / 2
+    const my = (A.y + B.y) / 2
+    const len = Math.hypot(B.x - A.x, B.y - A.y) || 1
+    let px = -(B.y - A.y) / len
+    let py = (B.x - A.x) / len
+    if (px * (mx - 0.76) + py * (my - 0.48) < 0) {
+      px = -px
+      py = -py
+    }
+    const k = len * 0.2
     ctx.beginPath()
-    ctx.moveTo(L.nodes[a].x * w, L.nodes[a].y * h)
-    ctx.lineTo(L.nodes[b].x * w, L.nodes[b].y * h)
+    ctx.moveTo(A.x * w, A.y * h)
+    ctx.quadraticCurveTo((mx + px * k) * w, (my + py * k) * h, B.x * w, B.y * h)
     ctx.stroke()
   })
   ctx.globalAlpha = 0.5
