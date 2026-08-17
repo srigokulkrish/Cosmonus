@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import StripedPlaceholder from '@/components/StripedPlaceholder'
+import ThemedImage from '@/components/ThemedImage'
 
 export const metadata = {
   title: 'Research — Open Questions Behind the Systems We Ship',
@@ -64,9 +64,9 @@ export default function ResearchPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section--bleed">
         <div className="container">
-          <div className="grid-2">
+          <div className="grid-2 grid-2--media">
             <div data-reveal>
               <div className="eyebrow"><span className="eyebrow__num">02</span> How we work</div>
               <h2 className="section-title" style={{ margin: '1rem 0 1.5rem' }}>Grounded in the problem, shipped into production.</h2>
@@ -78,8 +78,13 @@ export default function ResearchPage() {
                 {PRINCIPLES.map((p) => <li key={p}>{p}</li>)}
               </ul>
             </div>
-            <div data-reveal>
-              <StripedPlaceholder label="Research / Systems Map" ratio="4/3" />
+            <div data-reveal className="media-fill">
+              <ThemedImage
+                srcDark="/images/diagrams/research-systems-map-dark.png"
+                srcLight="/images/diagrams/research-systems-map-light.png"
+                alt="Layered architecture blueprint of an intelligent system with the reasoning layer highlighted"
+                className="themed-img--fill"
+              />
             </div>
           </div>
         </div>

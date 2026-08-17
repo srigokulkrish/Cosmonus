@@ -2,7 +2,7 @@ import Link from 'next/link'
 import IntelligenceCanvas from '@/components/IntelligenceCanvas'
 import LayeredStack from '@/components/LayeredStack'
 import CapabilitiesList from '@/components/CapabilitiesList'
-import StripedPlaceholder from '@/components/StripedPlaceholder'
+import ThemedImage from '@/components/ThemedImage'
 
 export const metadata = {
   title: 'Cosmonus — Intelligence Engineering',
@@ -100,10 +100,10 @@ const PROCESS = [
 ]
 
 const PROOF = [
-  { label: 'StayOnMap / Map View', title: 'Live trust scoring', desc: 'Every rental listing scored across twelve signals before a tenant ever sees it.' },
-  { label: 'Reasoning / Trace Viewer', title: 'Decision trace', desc: 'Every automated decision resolves to the evidence and logic that produced it.' },
-  { label: 'Orchestration / Console', title: 'Agent orchestration', desc: 'Coordinated agents handling exceptions a fixed workflow would drop.' },
-  { label: 'Knowledge / Graph', title: 'Knowledge graph', desc: 'Documents, tickets, and records unified into one queryable structure.' },
+  { srcDark: '/images/diagrams/stayonmap-map-dark.png', srcLight: '/images/diagrams/stayonmap-map-light.png', alt: 'Schematic city map with listing markers, one highlighted with a trust radius', title: 'Live trust scoring', desc: 'Every rental listing scored across twelve signals before a tenant ever sees it.' },
+  { srcDark: '/images/diagrams/reasoning-trace-dark.png', srcLight: '/images/diagrams/reasoning-trace-light.png', alt: 'Decision-trace diagram: evidence nodes converging into a single approved decision', title: 'Decision trace', desc: 'Every automated decision resolves to the evidence and logic that produced it.' },
+  { srcDark: '/images/diagrams/orchestration-console-dark.png', srcLight: '/images/diagrams/orchestration-console-light.png', alt: 'Swimlane console diagram with one task rerouted between agent lanes', title: 'Agent orchestration', desc: 'Coordinated agents handling exceptions a fixed workflow would drop.' },
+  { srcDark: '/images/diagrams/knowledge-graph-dark.png', srcLight: '/images/diagrams/knowledge-graph-light.png', alt: 'Scattered document glyphs resolving into an ordered knowledge graph', title: 'Knowledge graph', desc: 'Documents, tickets, and records unified into one queryable structure.' },
 ]
 
 export default function Home() {
@@ -248,7 +248,12 @@ export default function Home() {
               </Link>
             </div>
             <div className="feature__visual">
-              <StripedPlaceholder label="StayOnMap / product screen" ratio="4/3" />
+              <ThemedImage
+                srcDark="/images/diagrams/stayonmap-map-dark.png"
+                srcLight="/images/diagrams/stayonmap-map-light.png"
+                alt="Schematic city map with listing markers, one highlighted with a trust radius"
+                ratio="4/3"
+              />
             </div>
           </div>
 
@@ -308,7 +313,7 @@ export default function Home() {
           <div className="proof-grid" data-reveal>
             {PROOF.map((item) => (
               <div key={item.title} className="proof-item">
-                <StripedPlaceholder label={item.label} className="proof-item__frame" />
+                <ThemedImage srcDark={item.srcDark} srcLight={item.srcLight} alt={item.alt} className="proof-item__frame" />
                 <p className="proof-item__caption"><strong>{item.title}</strong> — {item.desc}</p>
               </div>
             ))}

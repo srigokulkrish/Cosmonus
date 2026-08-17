@@ -1,4 +1,5 @@
 import StripedPlaceholder from '@/components/StripedPlaceholder'
+import ThemedImage from '@/components/ThemedImage'
 
 const STAYONMAP_URL = 'https://www.stayonmap.com/'
 
@@ -69,7 +70,12 @@ export default function StayOnMapPage() {
               </div>
             </div>
             <div className="feature__visual">
-              <StripedPlaceholder label="StayOnMap / map homepage" ratio="4/3" />
+              <ThemedImage
+                srcDark="/images/diagrams/stayonmap-map-dark.png"
+                srcLight="/images/diagrams/stayonmap-map-light.png"
+                alt="Schematic city map with listing markers, one highlighted with a trust radius"
+                ratio="4/3"
+              />
             </div>
           </div>
         </div>

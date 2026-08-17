@@ -499,6 +499,41 @@ body.no-scroll { overflow: hidden; }
   text-transform: uppercase;
 }
 
+.themed-img {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--bg);
+}
+.themed-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+html[data-theme='light'] .themed-img__dark { display: none; }
+html[data-theme='dark'] .themed-img__light { display: none; }
+
+.grid-2--media { grid-template-columns: 1fr 1.3fr; align-items: center; }
+.section--bleed { overflow-x: clip; }
+.media-fill {
+  position: relative;
+  align-self: stretch;
+  min-height: 480px;
+  margin-top: calc(var(--section-pad-y) * -1);
+  margin-bottom: calc(var(--section-pad-y) * -1);
+  margin-right: calc(-1 * (max((100vw - var(--container-w)) / 2, 0px) + var(--gutter)));
+}
+.media-fill .themed-img--fill { position: absolute; inset: 0; height: 100%; border-radius: 0; border-top: none; border-bottom: none; }
+.themed-img--fill img { object-fit: cover; }
+@media (max-width: 900px) {
+  .grid-2--media { grid-template-columns: 1fr; }
+  .media-fill { min-height: 0; margin-top: 0; margin-bottom: 0; margin-right: 0; }
+  .media-fill .themed-img--fill { position: static; height: auto; aspect-ratio: 4 / 3; border-radius: var(--r-md); border: 1px solid var(--border); }
+}
+
 /* ============================================================
    Problem section
    ============================================================ */
