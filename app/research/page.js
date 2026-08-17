@@ -81,9 +81,9 @@ export default function ResearchPage() {
             <div data-reveal className="media-fill">
               <DiagramCanvas
                 variant="systems"
-                label="Layered architecture blueprint of an intelligent system with the reasoning layer highlighted"
+                label="First-principles map of an intelligent system: data, retrieval, reasoning, and interface layers with pulses flowing upward through the violet reasoning layer"
                 className="diagram-frame--fill"
-                caption="The layers every intelligent system is built from. Our research concentrates on the reasoning layer — where evidence becomes a decision."
+                caption="The first-principles map of an intelligent system. Data flows up through retrieval into the reasoning layer — understand, reason, plan, decide — and out through the interface. Our research concentrates on the violet layer."
               />
             </div>
           </div>

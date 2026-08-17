@@ -398,88 +398,93 @@ function drawGraph(ctx, w, h, t, c, L) {
   tag(ctx, 'RESOLVE', R.x, R.y + 24, c.fg, c, 8, 'center', 0.9)
 }
 
-/* ---- systems: layered blueprint, reasoning layer highlighted ---- */
+/* ---- systems: first-principles map — data up through reasoning to interface ---- */
 
-function layoutSystems(r) {
-  const gap = 0.035
-  const top = 0.08
-  const height = (0.84 - 3 * gap) / 4
-  const layers = Array.from({ length: 4 }, (_, i) => ({
-    y: top + i * (height + gap),
-    h: height,
-  }))
-  const nodes = layers.flatMap((l, li) =>
-    Array.from({ length: 5 }, (_, i) => ({
-      x: 0.2 + (i / 4) * 0.6 + (r() - 0.5) * 0.03,
-      y: l.y + l.h / 2 + (r() - 0.5) * l.h * 0.4,
-      li,
-      p: r(),
-    }))
-  )
+const SYSTEM_LAYERS = [
+  { name: '04 — INTERFACE LAYER', chips: ['WEB UI', 'API', 'CHAT', 'DASHBOARDS'], bar: 'SESSION & CONTEXT', accent: false },
+  { name: '03 — REASONING LAYER', chips: ['UNDERSTAND', 'REASON', 'PLAN', 'DECIDE'], bar: 'TOOL USE & ORCHESTRATION', accent: true },
+  { name: '02 — RETRIEVAL LAYER', chips: ['REWRITE', 'SEARCH', 'RERANK', 'FILTER'], bar: 'INDEX ABSTRACTION', accent: false },
+  { name: '01 — DATA LAYER', chips: ['INGEST', 'PARSE', 'TRANSFORM', 'VALIDATE'], bar: 'DATA ABSTRACTION', accent: false },
+]
+
+function layoutSystems() {
+  const gap = 0.028
+  const top = 0.05
+  const lh = (0.9 - 3 * gap) / 4
   return {
-    layers,
-    nodes,
-    connectors: [0.3, 0.5, 0.7],
+    layers: SYSTEM_LAYERS.map((l, i) => ({ ...l, y: top + i * (lh + gap), h: lh })),
+    connectors: [0.3, 0.56, 0.82],
     reasoning: 1,
-    names: ['INTERFACE', 'REASONING', 'KNOWLEDGE', 'INFRASTRUCTURE'],
   }
 }
 
 function drawSystems(ctx, w, h, t, c, L) {
+  const x0 = w * 0.06
+  const lw = w * 0.88
+
   ctx.lineWidth = 1
   L.connectors.forEach((x) => {
     ctx.strokeStyle = c.border
     ctx.globalAlpha = 0.6
     ctx.beginPath()
-    ctx.moveTo(x * w, h * 0.08)
-    ctx.lineTo(x * w, h * 0.92)
+    ctx.moveTo(x * w, h * 0.05)
+    ctx.lineTo(x * w, h * 0.95)
     ctx.stroke()
     ctx.globalAlpha = 1
   })
 
-  L.layers.forEach((l, i) => {
-    const x = w * 0.12
-    const lw = w * 0.76
-    if (i === L.reasoning) {
+  L.layers.forEach((l) => {
+    const y0 = l.y * h
+    const lhPx = l.h * h
+    if (l.accent) {
       ctx.globalAlpha = 0.07
       ctx.fillStyle = c.accent
-      ctx.fillRect(x, l.y * h, lw, l.h * h)
+      ctx.fillRect(x0, y0, lw, lhPx)
       ctx.globalAlpha = 0.9
       ctx.strokeStyle = c.accent
     } else {
       ctx.fillStyle = c.panel
-      ctx.fillRect(x, l.y * h, lw, l.h * h)
+      ctx.fillRect(x0, y0, lw, lhPx)
       ctx.strokeStyle = c.borderStrong
       ctx.globalAlpha = 0.9
     }
-    ctx.strokeRect(x, l.y * h, lw, l.h * h)
+    ctx.strokeRect(x0, y0, lw, lhPx)
     ctx.globalAlpha = 1
-    tag(
-      ctx,
-      L.names[i],
-      x + 10,
-      l.y * h + 17,
-      i === L.reasoning ? c.accent : c.muted,
-      c,
-      9,
-      'left',
-      i === L.reasoning ? 1 : 0.9
-    )
-  })
 
-  L.nodes.forEach((n) => {
-    const inReasoning = n.li === L.reasoning
-    const a = 0.4 + 0.3 * (0.5 + 0.5 * Math.sin(t * 1.4 + n.p * Math.PI * 2))
-    dot(ctx, n.x * w, n.y * h, inReasoning ? 2.4 : 2, inReasoning ? c.accent : c.muted, inReasoning ? 0.95 : a)
+    const pad = Math.max(8, w * 0.014)
+    const titleH = Math.min(Math.max(14, lhPx * 0.24), 24)
+    tag(ctx, l.name, x0 + pad, y0 + titleH - 2, l.accent ? c.accent : c.fg, c, 8, 'left', l.accent ? 1 : 0.9)
+
+    const innerW = lw - pad * 2
+    const gapPx = Math.max(5, w * 0.008)
+    const chipW = (innerW - gapPx * (l.chips.length - 1)) / l.chips.length
+    const barH = Math.min(Math.max(12, lhPx * 0.2), 22)
+    const chipH = Math.min(Math.max(12, lhPx - titleH - barH - 14), 32)
+    const chipY = y0 + titleH + 2
+    l.chips.forEach((chip, j) => {
+      const cx = x0 + pad + j * (chipW + gapPx)
+      ctx.strokeStyle = l.accent ? c.accent : c.borderStrong
+      ctx.globalAlpha = l.accent ? 0.85 : 0.7
+      ctx.strokeRect(cx, chipY, chipW, chipH)
+      ctx.globalAlpha = 1
+      tag(ctx, chip, cx + chipW / 2, chipY + chipH / 2 + 3, l.accent ? c.accent : c.fg, c, 7, 'center', 0.95)
+    })
+
+    const barY = chipY + chipH + 4
+    ctx.strokeStyle = l.accent ? c.accent : c.borderStrong
+    ctx.globalAlpha = 0.55
+    ctx.strokeRect(x0 + pad, barY, innerW, barH)
+    ctx.globalAlpha = 1
+    tag(ctx, l.bar, x0 + lw / 2, barY + barH / 2 + 3, l.accent ? c.accent : c.fg, c, 7, 'center', 0.85)
   })
 
   const rl = L.layers[L.reasoning]
   L.connectors.forEach((x, k) => {
     const prog = ((t / 3.6) + k * 0.33) % 1
-    const y = 0.92 - prog * 0.84
+    const y = 0.95 - prog * 0.9
     const inside = y > rl.y && y < rl.y + rl.h
     if (inside) {
-      comet(ctx, (q) => ({ x: x * w, y: (0.92 - q * 0.84) * h }), prog, 2, c.accent, 0.9)
+      comet(ctx, (q) => ({ x: x * w, y: (0.95 - q * 0.9) * h }), prog, 2, c.accent, 0.9)
     } else {
       dot(ctx, x * w, y * h, 2, c.muted, 0.9)
     }
