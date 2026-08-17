@@ -857,8 +857,9 @@ body.no-scroll { overflow: hidden; }
    Founder block (About)
    ============================================================ */
 
-.founders { display: flex; flex-direction: column; gap: clamp(2.5rem, 6vw, 4rem); }
-.founders .founder + .founder { border-top: 1px solid var(--border); padding-top: clamp(2.5rem, 6vw, 4rem); }
+.founders { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 3.5rem); }
+.founders .founder { grid-template-columns: 1fr; gap: 1.75rem; align-content: start; }
+.founders .founder + .founder { border-left: 1px solid var(--border); padding-left: clamp(2rem, 5vw, 3.5rem); }
 .founder { display: grid; grid-template-columns: 260px 1fr; gap: clamp(2rem, 5vw, 4rem); }
 .founder__photo {
   width: 120px; height: 120px;
@@ -884,6 +885,8 @@ body.no-scroll { overflow: hidden; }
 
 @media (max-width: 780px) {
   .founder { grid-template-columns: 1fr; }
+  .founders { grid-template-columns: 1fr; gap: 2.5rem; }
+  .founders .founder + .founder { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2.5rem; }
 }
 
 /* Three-up variant of .principles (About values) */
