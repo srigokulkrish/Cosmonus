@@ -37,6 +37,17 @@ function dot(ctx, x, y, r, color, alpha = 1) {
   ctx.globalAlpha = 1
 }
 
+function tag(ctx, str, x, y, color, c, size = 8, align = 'left', alpha = 1) {
+  ctx.font = `500 ${size}px ${c.mono}`
+  ctx.letterSpacing = '0.08em'
+  ctx.textAlign = align
+  ctx.globalAlpha = alpha
+  ctx.fillStyle = color
+  ctx.fillText(str, x, y)
+  ctx.globalAlpha = 1
+  ctx.textAlign = 'left'
+}
+
 /* ---- map: schematic city grid, listings, one pulsing trust radius ---- */
 
 function layoutMap(r) {
@@ -86,6 +97,8 @@ function drawMap(ctx, w, h, t, c, L) {
   }
   ctx.globalAlpha = 1
   dot(ctx, fx, fy, 3.5, c.accent)
+  tag(ctx, 'TRUST 0.92', fx + 12, fy - 10, c.accent, c, 9, 'left', 0.9)
+  tag(ctx, 'VERIFIED OWNER', fx + 12, fy + 2, c.muted, c, 8, 'left', 0.7)
 }
 
 /* ---- trace: evidence nodes converging into one decision ---- */
@@ -120,7 +133,10 @@ function drawTrace(ctx, w, h, t, c, L) {
   })
   ctx.globalAlpha = 1
 
-  L.evidence.forEach((e) => dot(ctx, e.x * w, e.y * h, 2.2, c.muted, 0.8))
+  L.evidence.forEach((e, i) => {
+    dot(ctx, e.x * w, e.y * h, 2.2, c.muted, 0.8)
+    tag(ctx, `E0${i + 1}`, e.x * w - 8, e.y * h - 8, c.faint, c, 8, 'left', 0.85)
+  })
   L.mids.forEach((m) => dot(ctx, m.x * w, m.y * h, 2.6, c.muted))
 
   L.edges.forEach((e) => {
@@ -143,6 +159,7 @@ function drawTrace(ctx, w, h, t, c, L) {
   ctx.stroke()
   ctx.globalAlpha = 1
   dot(ctx, dx, dy, 4, c.accent)
+  tag(ctx, 'DECISION', dx, dy + 24, c.accent, c, 9, 'center', 0.9)
 }
 
 /* ---- orchestration: agent lanes, one task rerouted between lanes ---- */
@@ -159,7 +176,7 @@ function layoutOrch(r) {
 
 function drawOrch(ctx, w, h, t, c, L) {
   ctx.lineWidth = 1
-  L.lanes.forEach((y) => {
+  L.lanes.forEach((y, i) => {
     ctx.strokeStyle = c.border
     ctx.globalAlpha = 0.9
     ctx.beginPath()
@@ -172,6 +189,7 @@ function drawOrch(ctx, w, h, t, c, L) {
     ctx.moveTo(w * 0.06, y * h - 5)
     ctx.lineTo(w * 0.06, y * h + 5)
     ctx.stroke()
+    tag(ctx, `AGENT 0${i + 1}`, w * 0.06, y * h - 9, c.faint, c, 8, 'left', 0.85)
   })
 
   function fade(xu) {
@@ -189,7 +207,12 @@ function drawOrch(ctx, w, h, t, c, L) {
   if (xu < 0.4) y = L.lanes[R.a]
   else if (xu > 0.62) y = L.lanes[R.b]
   else y = L.lanes[R.a] + (L.lanes[R.b] - L.lanes[R.a]) * ease((xu - 0.4) / 0.22)
-  dot(ctx, (0.06 + xu * 0.88) * w, y * h, 2.8, c.accent, fade(xu))
+  const rx = (0.06 + xu * 0.88) * w
+  dot(ctx, rx, y * h, 2.8, c.accent, fade(xu))
+  if (xu > 0.36 && xu < 0.68) {
+    const a = Math.min((xu - 0.36) / 0.06, (0.68 - xu) / 0.06, 1)
+    tag(ctx, 'EXCEPTION — REROUTED', rx + 8, y * h - 8, c.accent, c, 8, 'left', a * 0.9)
+  }
 }
 
 /* ---- graph: scattered documents resolving into a knowledge graph ---- */
@@ -279,7 +302,13 @@ function layoutSystems(r) {
       p: r(),
     }))
   )
-  return { layers, nodes, connectors: [0.3, 0.5, 0.7], reasoning: 1 }
+  return {
+    layers,
+    nodes,
+    connectors: [0.3, 0.5, 0.7],
+    reasoning: 1,
+    names: ['INTERFACE', 'REASONING', 'KNOWLEDGE', 'INFRASTRUCTURE'],
+  }
 }
 
 function drawSystems(ctx, w, h, t, c, L) {
@@ -311,6 +340,17 @@ function drawSystems(ctx, w, h, t, c, L) {
     }
     ctx.strokeRect(x, l.y * h, lw, l.h * h)
     ctx.globalAlpha = 1
+    tag(
+      ctx,
+      L.names[i],
+      x + 10,
+      l.y * h + 15,
+      i === L.reasoning ? c.accent : c.faint,
+      c,
+      9,
+      'left',
+      i === L.reasoning ? 0.95 : 0.8
+    )
   })
 
   L.nodes.forEach((n) => {
@@ -329,14 +369,14 @@ function drawSystems(ctx, w, h, t, c, L) {
 }
 
 const VARIANTS = {
-  map: { seed: 7, layout: layoutMap, draw: drawMap },
-  trace: { seed: 11, layout: layoutTrace, draw: drawTrace },
-  orchestration: { seed: 5, layout: layoutOrch, draw: drawOrch },
-  graph: { seed: 13, layout: layoutGraph, draw: drawGraph },
-  systems: { seed: 3, layout: layoutSystems, draw: drawSystems },
+  map: { seed: 7, layout: layoutMap, draw: drawMap, header: ['Listing map', 'Twelve signals', 'Trust score'] },
+  trace: { seed: 11, layout: layoutTrace, draw: drawTrace, header: ['Evidence', 'Reasoning', 'Decision'] },
+  orchestration: { seed: 5, layout: layoutOrch, draw: drawOrch, header: ['Incoming tasks', 'Agent lanes', 'Resolved'] },
+  graph: { seed: 13, layout: layoutGraph, draw: drawGraph, header: ['Raw records', 'Resolution', 'Knowledge graph'] },
+  systems: { seed: 3, layout: layoutSystems, draw: drawSystems, header: null },
 }
 
-export default function DiagramCanvas({ variant, ratio, className = '', label }) {
+export default function DiagramCanvas({ variant, ratio, className = '', label, caption }) {
   const canvasRef = useRef(null)
 
   useEffect(() => {
@@ -372,6 +412,7 @@ export default function DiagramCanvas({ variant, ratio, className = '', label })
         faint: s.getPropertyValue('--fg-faint').trim(),
         muted: s.getPropertyValue('--fg-muted').trim(),
         accent: s.getPropertyValue('--accent').trim(),
+        mono: s.getPropertyValue('--font-mono').trim() || 'ui-monospace, monospace',
       }
     }
 
@@ -404,6 +445,7 @@ export default function DiagramCanvas({ variant, ratio, className = '', label })
     }
   }, [variant])
 
+  const header = VARIANTS[variant].header
   return (
     <div
       className={`diagram-frame ${className}`}
@@ -411,7 +453,15 @@ export default function DiagramCanvas({ variant, ratio, className = '', label })
       role="img"
       aria-label={label}
     >
-      <canvas ref={canvasRef} aria-hidden="true" />
+      {header && (
+        <div className="diagram-frame__label" aria-hidden="true">
+          {header.map((t) => <span key={t}>{t}</span>)}
+        </div>
+      )}
+      <div className="diagram-frame__canvas">
+        <canvas ref={canvasRef} aria-hidden="true" />
+      </div>
+      {caption && <p className="diagram-frame__caption">{caption}</p>}
     </div>
   )
 }

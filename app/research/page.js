@@ -83,6 +83,7 @@ export default function ResearchPage() {
                 variant="systems"
                 label="Layered architecture blueprint of an intelligent system with the reasoning layer highlighted"
                 className="diagram-frame--fill"
+                caption="The layers every intelligent system is built from. Our research concentrates on the reasoning layer — where evidence becomes a decision."
               />
             </div>
           </div>

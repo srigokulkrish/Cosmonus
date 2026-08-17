@@ -252,6 +252,7 @@ export default function Home() {
                 variant="map"
                 ratio="4/3"
                 label="Schematic city map with listing markers, one highlighted with a trust radius"
+                caption="Every listing is scored across twelve trust signals before it surfaces. The violet pulse marks a verified listing and its trust radius."
               />
             </div>
           </div>
