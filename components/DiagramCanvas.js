@@ -38,8 +38,8 @@ function dot(ctx, x, y, r, color, alpha = 1) {
 }
 
 function tag(ctx, str, x, y, color, c, size = 8, align = 'left', alpha = 1) {
-  ctx.font = `500 ${Math.round(size * c.scale)}px ${c.mono}`
-  ctx.letterSpacing = '0.08em'
+  ctx.font = `600 ${Math.round(size * c.scale)}px ${c.nunito}`
+  ctx.letterSpacing = '0.04em'
   ctx.textAlign = align
   ctx.globalAlpha = alpha
   ctx.fillStyle = color
@@ -862,6 +862,7 @@ export default function DiagramCanvas({ variant, ratio, className = '', label, c
         fg: s.getPropertyValue('--fg').trim(),
         bg: s.getPropertyValue('--bg').trim(),
         mono: s.getPropertyValue('--font-mono').trim() || 'ui-monospace, monospace',
+        nunito: s.getPropertyValue('--font-nunito').trim() || 'Nunito, sans-serif',
       }
     }
 

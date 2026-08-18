@@ -1,6 +1,6 @@
 import 'lenis/dist/lenis.css'
 import '../styles/globals.css'
-import { Schibsted_Grotesk, JetBrains_Mono } from 'next/font/google'
+import { Schibsted_Grotesk, JetBrains_Mono, Tangerine, Nunito, Space_Grotesk } from 'next/font/google'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import SmoothScroll from '../components/SmoothScroll'
@@ -16,6 +16,27 @@ const mono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400', '500'],
   variable: '--font-mono',
+  display: 'swap',
+})
+
+const tangerine = Tangerine({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-tangerine',
+  display: 'swap',
+})
+
+const nunito = Nunito({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-nunito',
+  display: 'swap',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-space-grotesk',
   display: 'swap',
 })
 
@@ -101,7 +122,7 @@ try {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="dark" className={`${grotesk.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${grotesk.variable} ${mono.variable} ${tangerine.variable} ${nunito.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
       </head>
