@@ -812,6 +812,173 @@ function drawScore(ctx, w, h, t, c, L) {
   tag(ctx, 'FLAGGED', L.flagged.x * w, L.flagged.y * h + 18, c.fg, c, 8, 'center', 0.9)
 }
 
+/* ---- intersection: tracked vehicles through a junction, one rule firing ---- */
+
+function layoutIntersection(r) {
+  const lanes = [
+    { axis: 'h', pos: 0.42, dir: -1 },
+    { axis: 'h', pos: 0.58, dir: 1 },
+    { axis: 'v', pos: 0.46, dir: 1 },
+    { axis: 'v', pos: 0.54, dir: -1 },
+  ]
+  const vehicles = Array.from({ length: 7 }, (_, i) => ({
+    lane: i % 4,
+    ph: r(),
+    speed: 0.055 + r() * 0.03,
+  }))
+  return { lanes, vehicles, violator: { pos: 0.42, ph: 0.32, speed: 0.075 }, ped: { x: 0.24, ph: r() } }
+}
+
+function drawIntersection(ctx, w, h, t, c, L) {
+  const s = c.scale
+  const ix0 = 0.4 * w
+  const ix1 = 0.6 * w
+  const iy0 = 0.34 * h
+  const iy1 = 0.66 * h
+
+  ctx.lineWidth = 1
+  ctx.strokeStyle = c.borderStrong
+  ctx.globalAlpha = 1
+  ;[iy0, iy1].forEach((y) => {
+    ctx.beginPath()
+    ctx.moveTo(w * 0.03, y)
+    ctx.lineTo(ix0, y)
+    ctx.moveTo(ix1, y)
+    ctx.lineTo(w * 0.97, y)
+    ctx.stroke()
+  })
+  ;[ix0, ix1].forEach((x) => {
+    ctx.beginPath()
+    ctx.moveTo(x, h * 0.04)
+    ctx.lineTo(x, iy0)
+    ctx.moveTo(x, iy1)
+    ctx.lineTo(x, h * 0.96)
+    ctx.stroke()
+  })
+
+  ctx.setLineDash([3 * s, 5 * s])
+  ctx.globalAlpha = 0.6
+  ctx.beginPath()
+  ctx.moveTo(w * 0.03, h * 0.5)
+  ctx.lineTo(ix0, h * 0.5)
+  ctx.moveTo(ix1, h * 0.5)
+  ctx.lineTo(w * 0.97, h * 0.5)
+  ctx.moveTo(w * 0.5, h * 0.04)
+  ctx.lineTo(w * 0.5, iy0)
+  ctx.moveTo(w * 0.5, iy1)
+  ctx.lineTo(w * 0.5, h * 0.96)
+  ctx.stroke()
+  ctx.setLineDash([])
+
+  ctx.globalAlpha = 0.7
+  ctx.strokeStyle = c.borderStrong
+  for (let k = 0; k < 5; k++) {
+    const y = iy0 + ((k + 0.5) / 5) * (iy1 - iy0)
+    ctx.beginPath()
+    ctx.moveTo(ix0 - 0.045 * w, y)
+    ctx.lineTo(ix0 - 0.015 * w, y)
+    ctx.moveTo(ix1 + 0.015 * w, y)
+    ctx.lineTo(ix1 + 0.045 * w, y)
+    ctx.stroke()
+  }
+  for (let k = 0; k < 5; k++) {
+    const x = ix0 + ((k + 0.5) / 5) * (ix1 - ix0)
+    ctx.beginPath()
+    ctx.moveTo(x, iy0 - 0.06 * h)
+    ctx.lineTo(x, iy0 - 0.02 * h)
+    ctx.moveTo(x, iy1 + 0.02 * h)
+    ctx.lineTo(x, iy1 + 0.06 * h)
+    ctx.stroke()
+  }
+
+  ctx.globalAlpha = 0.9
+  ctx.lineWidth = 1.5
+  ctx.beginPath()
+  ctx.moveTo(ix0, h * 0.5)
+  ctx.lineTo(ix0, iy1)
+  ctx.moveTo(ix1, iy0)
+  ctx.lineTo(ix1, h * 0.5)
+  ctx.moveTo(ix0, iy0)
+  ctx.lineTo(w * 0.5, iy0)
+  ctx.moveTo(w * 0.5, iy1)
+  ctx.lineTo(ix1, iy1)
+  ctx.stroke()
+  ctx.lineWidth = 1
+  ctx.globalAlpha = 1
+
+  tag(ctx, 'STOP LINE', ix0 - 0.06 * w, iy1 + 14 * s, c.faint, c, 7, 'right', 0.9)
+  tag(ctx, 'CROSSWALK', ix1 + 0.06 * w, iy1 + 14 * s, c.faint, c, 7, 'left', 0.9)
+
+  ctx.strokeStyle = c.borderStrong
+  ctx.globalAlpha = 0.55
+  const ch = 3 * s
+  L.lanes.forEach((lane) => {
+    ;[0.15, 0.27, 0.73, 0.85].forEach((q) => {
+      const along = 0.03 + q * 0.94
+      ctx.beginPath()
+      if (lane.axis === 'h') {
+        const x = along * w
+        const y = lane.pos * h
+        ctx.moveTo(x - ch * lane.dir, y - ch)
+        ctx.lineTo(x, y)
+        ctx.lineTo(x - ch * lane.dir, y + ch)
+      } else {
+        const x = lane.pos * w
+        const y = along * h
+        ctx.moveTo(x - ch, y - ch * lane.dir)
+        ctx.lineTo(x, y)
+        ctx.lineTo(x + ch, y - ch * lane.dir)
+      }
+      ctx.stroke()
+    })
+  })
+  ctx.globalAlpha = 1
+
+  const vl = 11 * s
+  const vw = 5.5 * s
+  function vehicleAt(lane, p) {
+    const q = lane.dir > 0 ? p : 1 - p
+    const along = 0.03 + q * 0.94
+    return lane.axis === 'h' ? { x: along * w, y: lane.pos * h } : { x: lane.pos * w, y: along * h }
+  }
+  function car(x, y, horizontal, color, alpha) {
+    ctx.globalAlpha = alpha
+    ctx.fillStyle = color
+    if (horizontal) ctx.fillRect(x - vl / 2, y - vw / 2, vl, vw)
+    else ctx.fillRect(x - vw / 2, y - vl / 2, vw, vl)
+    ctx.globalAlpha = 1
+  }
+
+  L.vehicles.forEach((v) => {
+    const lane = L.lanes[v.lane]
+    const p = (v.ph + t * v.speed) % 1
+    const pos = vehicleAt(lane, p)
+    car(pos.x, pos.y, lane.axis === 'h', c.muted, 0.65)
+  })
+
+  const py = 0.32 + (((L.ped.ph + t * 0.045) % 1) * 0.36)
+  dot(ctx, L.ped.x * w, py * h, 1.6 * s, c.muted, 0.7)
+
+  const vp = (L.violator.ph + t * L.violator.speed) % 1
+  const pathFn = (q) => ({ x: (0.03 + q * 0.94) * w, y: L.violator.pos * h })
+  comet(ctx, pathFn, vp, 1.6 * s, c.accent, 0.9)
+  const head = pathFn(vp)
+  car(head.x, head.y, true, c.accent, 1)
+  ctx.strokeStyle = c.accent
+  ctx.globalAlpha = 0.8
+  ctx.strokeRect(head.x - vl / 2 - 4 * s, head.y - vw / 2 - 4 * s, vl + 8 * s, vw + 8 * s)
+  ctx.globalAlpha = 1
+  ctx.globalAlpha = 0.5
+  ctx.beginPath()
+  ctx.moveTo(head.x, head.y - vw / 2 - 4 * s)
+  ctx.lineTo(head.x, iy0 - 20 * s)
+  ctx.stroke()
+  ctx.globalAlpha = 1
+  const lx = Math.min(Math.max(head.x, w * 0.16), w * 0.84)
+  tag(ctx, 'WRONG-WAY', lx, iy0 - 34 * s, c.accent, c, 9, 'center')
+  tag(ctx, 'TRACK 14 · HEADING +178°', lx, iy0 - 23 * s, c.fg, c, 7, 'center', 0.9)
+}
+
 const VARIANTS = {
   map: { seed: 7, layout: layoutMap, draw: drawMap, header: ['Listing map', 'Twelve signals', 'Trust score'] },
   trace: { seed: 11, layout: layoutTrace, draw: drawTrace, header: ['Evidence', 'Weighed', 'Decision'] },
@@ -821,6 +988,7 @@ const VARIANTS = {
   flow: { seed: 17, layout: layoutFlow, draw: drawFlow, header: ['Problem in', 'Nine stages', 'Production out'] },
   lease: { seed: 19, layout: layoutLease, draw: drawLease, header: ['Owner', 'Trust engine', 'Tenant'] },
   score: { seed: 23, layout: layoutScore, draw: drawScore, header: ['Listing in', 'Twelve signals', 'Live'] },
+  intersection: { seed: 29, layout: layoutIntersection, draw: drawIntersection, header: ['Camera feed', 'Tracks + rules', 'Event'] },
 }
 
 export default function DiagramCanvas({ variant, ratio, className = '', label, caption }) {
