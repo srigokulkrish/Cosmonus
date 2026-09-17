@@ -14,6 +14,7 @@ export default function sitemap() {
     // Products
     { url: '/products',                  priority: 0.85, changeFrequency: 'monthly' },
     { url: '/products/stayonmap',        priority: 0.8,  changeFrequency: 'monthly' },
+    { url: '/products/traffic-intelligence', priority: 0.8, changeFrequency: 'monthly' },
 
     // Company
     { url: '/about',                     priority: 0.7,  changeFrequency: 'monthly' },

@@ -5,7 +5,7 @@ const STAYONMAP_URL = 'https://www.stayonmap.com/'
 
 export const metadata = {
   title: 'Products',
-  description: 'We prove the approach in production before applying it to client work. StayOnMap, a broker-free rental marketplace, is our first product.',
+  description: 'We build intelligence for real-world problems and prove it in production under our own name. StayOnMap, a broker-free rental marketplace, and Cosmonus Traffic Intelligence, roads that notice.',
   alternates: { canonical: '/products' },
 }
 
@@ -16,11 +16,12 @@ export default function ProductsPage() {
         <div className="container">
           <div className="page-hero">
             <div className="eyebrow">Products</div>
-            <h1 className="page-hero__title">We prove it on our own products first.</h1>
+            <h1 className="page-hero__title">Intelligence built for real-world problems.</h1>
             <p className="body-lg page-hero__lede">
-              Anyone can claim a system reasons well. We put ours in production under our own
-              name, in a market that punishes a bad decision immediately, and let anyone inspect
-              the result before trusting us with theirs.
+              Anyone can claim a system reasons well. We pick problems where a bad decision has a
+              real cost — a tenant who trusts the wrong listing, a driver who runs a red light —
+              and put our systems in production under our own name, where anyone can inspect the
+              result before trusting us with theirs.
             </p>
           </div>
         </div>
@@ -65,11 +66,47 @@ export default function ProductsPage() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="container">
+          <div className="feature" data-reveal>
+            <div className="feature__content">
+              <div className="eyebrow feature__eyebrow">Product — Cosmonus Traffic Intelligence · in development</div>
+              <h2 className="feature__title">Roads that notice.</h2>
+              <p className="body feature__body">
+                A city has thousands of traffic cameras and almost no one watching them. Cosmonus
+                Traffic Intelligence tracks every vehicle and pedestrian in real-world coordinates,
+                tests each movement against explicit rules, and files every violation, collision,
+                or hit-and-run with its clip, its track, and the reason it fired.
+              </p>
+              <ul className="feature__list">
+                <li>Eleven violation and incident classes in the first version</li>
+                <li>Detection at the camera; a foundation model reviews only flagged events</li>
+                <li>Every event keeps the evidence and the rule behind it</li>
+              </ul>
+              <div className="hero__actions">
+                <Link href="/products/traffic-intelligence" className="btn btn--primary">
+                  <span>See Traffic Intelligence</span>
+                  <span className="btn__arrow" aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+            <div className="feature__visual">
+              <DiagramCanvas
+                variant="intersection"
+                ratio="4/3"
+                label="Schematic junction seen from above, tracked vehicles moving through lanes, one wrong-way vehicle highlighted in violet with its track number and heading"
+                caption="Every vehicle is a track with a heading and a speed in real metres. When one contradicts its lane, the rule fires, and the event carries the evidence with it."
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section section--tight">
         <div className="container">
           <div className="section-head" style={{ marginBottom: 0 }} data-reveal>
             <div className="eyebrow">What’s next</div>
-            <h2 className="section-title">More products are in progress. This page grows as they ship.</h2>
+            <h2 className="section-title">Two products, one approach. This page grows as more ship.</h2>
             <p className="body">
               We build products for the same reason we build client systems: a decision worth
               engineering, proven where it can’t hide. Have one worth building?

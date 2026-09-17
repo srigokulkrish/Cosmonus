@@ -258,7 +258,9 @@ export default function Home() {
           </div>
 
           <p className="body" style={{ marginTop: '2.5rem', fontSize: '0.875rem' }}>
-            StayOnMap is the first product built on this approach. More are in progress.
+            StayOnMap is the first product built on this approach.{' '}
+            <Link href="/products/traffic-intelligence">Cosmonus Traffic Intelligence</Link>, roads
+            that notice, is the second and in development.
           </p>
         </div>
       </section>
