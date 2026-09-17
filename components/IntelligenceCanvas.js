@@ -185,26 +185,54 @@ export default function IntelligenceCanvas() {
       raf = requestAnimationFrame(loop)
     }
 
+    let visible = false
+
+    function start() {
+      if (raf || reduced) return
+      last = 0
+      raf = requestAnimationFrame(loop)
+    }
+
+    function stop() {
+      if (!raf) return
+      cancelAnimationFrame(raf)
+      raf = 0
+    }
+
     refreshColors()
     resize()
+    draw(false)
+
     const ro = new ResizeObserver(resize)
     ro.observe(canvas.parentElement)
     const mo = new MutationObserver(() => {
       refreshColors()
-      if (reduced) draw(false)
+      if (reduced || !visible) draw(false)
     })
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
 
-    if (reduced) {
-      draw(false)
-    } else {
-      raf = requestAnimationFrame(loop)
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting
+        if (visible) start()
+        else stop()
+      },
+      { rootMargin: '150px' }
+    )
+    io.observe(canvas)
+
+    const onVisibility = () => {
+      if (document.hidden) stop()
+      else if (visible) start()
     }
+    document.addEventListener('visibilitychange', onVisibility)
 
     return () => {
-      cancelAnimationFrame(raf)
+      stop()
       ro.disconnect()
       mo.disconnect()
+      io.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
     }
   }, [])
 

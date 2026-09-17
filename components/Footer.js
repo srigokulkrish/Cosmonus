@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FOOTER_COMPANY, FOOTER_PRODUCTS, FOOTER_LEGAL } from '../lib/nav'
+import { FOOTER_COMPANY, FOOTER_WORK, FOOTER_LEGAL } from '../lib/nav'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -7,24 +7,10 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer-cta">
-          <h2>Have a decision worth engineering?</h2>
-          <div className="footer-cta__actions">
-            <Link href="/contact" className="btn btn--primary">
-              <span>Start a conversation</span>
-              <span className="btn__arrow" aria-hidden="true">→</span>
-            </Link>
-            <Link href="/technology" className="btn btn--ghost">How we build</Link>
-          </div>
-        </div>
-
-        <div className="divider" />
-
         <div className="footer-grid">
           <div>
             <div className="footer-brand__word">
-              <img src="/images/logo-white.png" alt="Cosmonus" width="231" height="30" className="brand-logo brand-logo--white" />
-              <img src="/images/logo-dark.png" alt="Cosmonus" width="231" height="30" className="brand-logo brand-logo--dark" />
+              <span className="brand-logo" role="img" aria-label="Cosmonus" />
             </div>
             <p className="footer-brand__tagline">
               We engineer intelligent software systems from first principles — software that reads context, reasons over information, and improves with use.
@@ -45,9 +31,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h6 className="footer-col-head">Product</h6>
+            <h6 className="footer-col-head">Work</h6>
             <ul className="footer-list">
-              {FOOTER_PRODUCTS.map((l) => (
+              {FOOTER_WORK.map((l) => (
                 <li key={l.href}><Link href={l.href}>{l.label}</Link></li>
               ))}
             </ul>

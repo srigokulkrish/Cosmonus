@@ -38,7 +38,7 @@ function dot(ctx, x, y, r, color, alpha = 1) {
 }
 
 function tag(ctx, str, x, y, color, c, size = 8, align = 'left', alpha = 1) {
-  ctx.font = `600 ${Math.round(size * c.scale)}px ${c.nunito}`
+  ctx.font = `600 ${Math.round(size * c.scale)}px ${c.face}`
   ctx.letterSpacing = '0.04em'
   ctx.textAlign = align
   ctx.globalAlpha = alpha
@@ -991,7 +991,7 @@ const VARIANTS = {
   intersection: { seed: 29, layout: layoutIntersection, draw: drawIntersection, header: ['Camera feed', 'Tracks + rules', 'Event'] },
 }
 
-export default function DiagramCanvas({ variant, ratio, className = '', label, caption }) {
+export default function DiagramCanvas({ variant, ratio, className = '', label, caption, chrome = false }) {
   const canvasRef = useRef(null)
 
   useEffect(() => {
@@ -1005,6 +1005,7 @@ export default function DiagramCanvas({ variant, ratio, className = '', label, c
     let L = null
     let raf = 0
     let c = null
+    let visible = false
 
     function resize() {
       const rect = canvas.parentElement.getBoundingClientRect()
@@ -1015,7 +1016,7 @@ export default function DiagramCanvas({ variant, ratio, className = '', label, c
       canvas.height = h * dpr
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       L = spec.layout(rng(spec.seed))
-      if (reduced) draw(2.3)
+      if (reduced || !visible) draw(2.3)
     }
 
     function refreshColors() {
@@ -1030,7 +1031,7 @@ export default function DiagramCanvas({ variant, ratio, className = '', label, c
         fg: s.getPropertyValue('--fg').trim(),
         bg: s.getPropertyValue('--bg').trim(),
         mono: s.getPropertyValue('--font-mono').trim() || 'ui-monospace, monospace',
-        nunito: s.getPropertyValue('--font-nunito').trim() || 'Nunito, sans-serif',
+        face: s.getPropertyValue('--font-grotesk').trim() || 'system-ui, sans-serif',
       }
     }
 
@@ -1045,32 +1046,60 @@ export default function DiagramCanvas({ variant, ratio, className = '', label, c
       raf = requestAnimationFrame(loop)
     }
 
+    function start() {
+      if (raf || reduced) return
+      raf = requestAnimationFrame(loop)
+    }
+
+    function stop() {
+      if (!raf) return
+      cancelAnimationFrame(raf)
+      raf = 0
+    }
+
     refreshColors()
     resize()
+
     const ro = new ResizeObserver(resize)
     ro.observe(canvas.parentElement)
+
     const mo = new MutationObserver(() => {
       refreshColors()
-      if (reduced) draw(2.3)
+      if (reduced || !visible) draw(2.3)
     })
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
 
-    if (!reduced) raf = requestAnimationFrame(loop)
+    // Only animate while on screen — a diagram 6000px down shouldn't hold the main thread.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting
+        if (visible) start()
+        else stop()
+      },
+      { rootMargin: '150px' }
+    )
+    io.observe(canvas)
+
+    const onVisibility = () => {
+      if (document.hidden) stop()
+      else if (visible) start()
+    }
+    document.addEventListener('visibilitychange', onVisibility)
 
     return () => {
-      cancelAnimationFrame(raf)
+      stop()
       ro.disconnect()
       mo.disconnect()
+      io.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
     }
   }, [variant])
 
-  const header = VARIANTS[variant].header
+  const header = chrome ? VARIANTS[variant].header : null
   return (
     <div
-      className={`diagram-frame ${className}`}
+      className={`diagram-frame ${chrome ? '' : 'diagram-frame--bare'} ${className}`}
       style={ratio ? { aspectRatio: ratio } : undefined}
-      role="img"
-      aria-label={label}
     >
       {header && (
         <div className="diagram-frame__label" aria-hidden="true">
@@ -1078,7 +1107,8 @@ export default function DiagramCanvas({ variant, ratio, className = '', label, c
         </div>
       )}
       <div className="diagram-frame__canvas">
-        <canvas ref={canvasRef} aria-hidden="true" />
+        {/* role lives on the canvas, not the frame — otherwise it makes the caption presentational */}
+        <canvas ref={canvasRef} role="img" aria-label={label} />
       </div>
       {caption && <p className="diagram-frame__caption">{caption}</p>}
     </div>

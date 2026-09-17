@@ -1,10 +1,11 @@
 import Link from 'next/link'
+import { pageMeta } from '@/lib/metadata'
 
-export const metadata = {
+export const metadata = pageMeta({
   title: 'Careers',
   description: 'Cosmonus has no open roles right now. If closing the gap between the data that exists and the decision that doesn’t get made well is a problem you want to spend years on, we want to hear from you.',
-  alternates: { canonical: '/careers' },
-}
+  path: '/careers',
+})
 
 export default function CareersPage() {
   return (

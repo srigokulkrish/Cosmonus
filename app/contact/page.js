@@ -1,5 +1,6 @@
 import ContactForm from '@/components/ContactForm'
 import FAQAccordion from '@/components/FAQAccordion'
+import { pageMeta } from '@/lib/metadata'
 
 const TRUST_ITEMS = ['Reply within 24h', 'Talk to an engineer directly', 'No commitment required']
 
@@ -18,11 +19,11 @@ const FAQS = [
   { q: 'Who should be our point of contact?', a: 'Ideally someone who can describe how the decision gets made today — technical or not. We can find the architecture; we need the operational truth first.' },
 ]
 
-export const metadata = {
+export const metadata = pageMeta({
   title: 'Contact',
   description: 'Tell us the decision your business makes slowly, expensively, or by gut. We reply within one business day, engineer to engineer.',
-  alternates: { canonical: '/contact' },
-}
+  path: '/contact',
+})
 
 export default function ContactPage() {
   return (

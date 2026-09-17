@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import StripedPlaceholder from '@/components/StripedPlaceholder'
 import DiagramCanvas from '@/components/DiagramCanvas'
+import { pageMeta } from '@/lib/metadata'
 
 const STATS = [
   { value: '11', label: 'Violation and incident classes in the first version' },
@@ -46,11 +47,11 @@ const SCREENS = [
   { label: 'Traffic Intelligence / Camera Setup', title: 'Camera setup', desc: 'Calibration and zone drawing, done once per camera.' },
 ]
 
-export const metadata = {
-  title: 'Cosmonus Traffic Intelligence — Roads That Notice',
+export const metadata = pageMeta({
+  title: 'Traffic Intelligence — Roads That Notice',
   description: 'Cosmonus Traffic Intelligence turns traffic camera feeds into accountable events: red-light and stop-line violations, wrong-way driving, collisions, hit-and-run, and abnormal driving, each with its evidence attached.',
-  alternates: { canonical: '/products/traffic-intelligence' },
-}
+  path: '/work/traffic-intelligence',
+})
 
 function DetectionRow({ d, n }) {
   return (
@@ -84,7 +85,7 @@ export default function TrafficIntelligencePage() {
                   <span>Talk to us about a deployment</span>
                   <span className="btn__arrow" aria-hidden="true">→</span>
                 </Link>
-                <Link href="/products/stayonmap" className="btn btn--ghost">See StayOnMap, our first product</Link>
+                <Link href="/work/stayonmap" className="btn btn--ghost">See StayOnMap, our first product</Link>
               </div>
             </div>
             <div className="feature__visual">
@@ -146,7 +147,7 @@ export default function TrafficIntelligencePage() {
 
       <section className="section">
         <div className="container">
-          <div className="section-head">
+          <div className="section-head section-head--split">
             <div className="eyebrow"><span className="eyebrow__num">02</span> What it detects</div>
             <h2 className="section-title">Eleven things the first version is built to see.</h2>
             <p className="body">
@@ -168,7 +169,7 @@ export default function TrafficIntelligencePage() {
 
       <section className="section">
         <div className="container">
-          <div className="section-head">
+          <div className="section-head section-head--split">
             <div className="eyebrow"><span className="eyebrow__num">03</span> How it works</div>
             <h2 className="section-title">Four layers. The model is the last one, not the first.</h2>
             <p className="body">
@@ -218,6 +219,21 @@ export default function TrafficIntelligencePage() {
                 <span className="stack-row__tech">{s.tech}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--tight">
+        <div className="container">
+          <div className="section-head section-head--cta" style={{ marginBottom: 0 }} data-reveal>
+            <div className="eyebrow">Build with us</div>
+            <h2 className="section-title">__TITLE__</h2>
+            <div className="hero__actions" style={{ marginTop: '0.5rem' }}>
+              <Link href="/contact" className="btn btn--primary">
+                <span>Start a conversation</span>
+                <span className="btn__arrow" aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

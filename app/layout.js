@@ -1,10 +1,11 @@
 import 'lenis/dist/lenis.css'
 import '../styles/globals.css'
-import { Schibsted_Grotesk, JetBrains_Mono, Tangerine, Nunito, Space_Grotesk } from 'next/font/google'
+import { Schibsted_Grotesk, JetBrains_Mono } from 'next/font/google'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import SmoothScroll from '../components/SmoothScroll'
 import CxReveal from '../components/CxReveal'
+import RouteProgress from '../components/RouteProgress'
 
 const grotesk = Schibsted_Grotesk({
   subsets: ['latin'],
@@ -19,28 +20,7 @@ const mono = JetBrains_Mono({
   display: 'swap',
 })
 
-const tangerine = Tangerine({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-tangerine',
-  display: 'swap',
-})
-
-const nunito = Nunito({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-nunito',
-  display: 'swap',
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
-})
-
-const SITE_URL = 'https://cosmonus.com'
+const SITE_URL = 'https://www.cosmonus.com'
 const SITE_DESC = 'Cosmonus engineers intelligent software systems from first principles — software that reads context, reasons over information, automates hard decisions, and improves with use.'
 
 export const metadata = {
@@ -122,7 +102,7 @@ try {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="dark" className={`${grotesk.variable} ${mono.variable} ${tangerine.variable} ${nunito.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${grotesk.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
       </head>
@@ -134,8 +114,10 @@ export default function RootLayout({ children }) {
         <div className="site-shell">
           <SmoothScroll />
           <CxReveal />
+          <RouteProgress />
+          <a href="#main" className="skip-link">Skip to content</a>
           <Header />
-          <main className="site-main">{children}</main>
+          <main className="site-main" id="main" tabIndex={-1}>{children}</main>
           <Footer />
         </div>
       </body>

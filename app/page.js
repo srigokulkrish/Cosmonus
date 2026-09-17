@@ -1,115 +1,69 @@
 import Link from 'next/link'
 import IntelligenceCanvas from '@/components/IntelligenceCanvas'
 import LayeredStack from '@/components/LayeredStack'
-import CapabilitiesList from '@/components/CapabilitiesList'
 import DiagramCanvas from '@/components/DiagramCanvas'
+import { pageMeta } from '@/lib/metadata'
 
-export const metadata = {
+export const metadata = pageMeta({
   title: 'Cosmonus — Intelligence Engineering',
-  description: 'Cosmonus engineers intelligent software systems from first principles — software that reads context, reasons over information, automates hard decisions, and improves with use.',
-  alternates: { canonical: '/' },
-}
+  description: 'We engineer intelligent software for organizations whose hardest decisions still depend on a person reading five systems at once. Reasoning systems, knowledge systems, spatial intelligence, and the architecture that carries them.',
+  path: '/',
+})
 
 const STACK_LAYERS = [
   {
-    name: 'Data',
+    name: 'Signals',
     tag: 'Ingestion',
-    body: 'Ingests the operation as it actually happens — messy, partial, arriving from a dozen systems that were never built to talk to each other.',
+    body: 'The operation as it actually arrives — partial, contradictory, spread across a dozen systems that were never built to talk to each other.',
+    detail: 'Schemas drift between releases. The same customer exists under three different identifiers. Half the records arrive late and a few never arrive at all. This layer settles those disagreements before anything above it is asked to trust them.',
   },
   {
-    name: 'Context & memory',
+    name: 'Context',
     tag: 'State',
-    body: 'Holds what happened before. A decision made without memory of the last one repeats the same mistake in a new session.',
+    body: 'What happened before. A decision made without memory of the last one repeats the same mistake in a new session.',
+    detail: 'Session state, case history, and entity resolution across time — so that “this customer” and “that account” stay the same thing as records pile up over months rather than drifting into two.',
   },
   {
     name: 'Reasoning',
     tag: 'Inference',
-    body: 'Weighs evidence, resolves conflicting signals, and works through the cases that don’t match a rule anyone wrote in advance.',
+    body: 'Weighing evidence, resolving conflicting signals, and working through the cases that match no rule anyone wrote in advance.',
+    detail: 'A model proposes; explicit rules and constraints bound what it is allowed to conclude. That pairing is what makes an output traceable to a reason rather than to a probability — the difference between a system you can deploy and one you can only demo.',
   },
   {
-    name: 'Decisions',
+    name: 'Decision',
     tag: 'Action',
-    body: 'Commits to an action, records why, and stays accountable when someone asks to see the reasoning behind it later.',
+    body: 'Committing to an action, recording why, and staying accountable when someone asks to see the reasoning months later.',
+    detail: 'The record has to survive someone asking why six months on, with the model retrained twice since — and it has to support a rollback when the world proves the call wrong.',
   },
 ]
 
-const CAPABILITIES = [
+const CAPABILITY_GROUPS = [
   {
-    title: 'Reasoning engines',
-    body: 'Removes the person manually cross-checking five systems before every judgment call, by encoding how that judgment should actually be made.',
+    title: 'Reasoning & decision systems',
+    body: 'Encoding how a judgment should actually be made, so the person cross-checking five systems before every call stops being the bottleneck.',
+    items: ['Reasoning engines', 'Agent orchestration', 'Forecasting', 'Workflow automation'],
   },
   {
-    title: 'Agent orchestration',
-    body: 'Removes the queue of repetitive decisions waiting on someone with the right context, by giving software that context directly.',
-  },
-  {
-    title: 'Knowledge systems',
-    body: 'Removes information trapped in documents, tickets, and one person’s memory, by turning it into something a system can search and reason over.',
+    title: 'Knowledge & data unification',
+    body: 'Turning information trapped in documents, tickets, and one person’s memory into something a system can search, relate, and reason over.',
+    items: ['Knowledge graphs', 'Data integration', 'Entity resolution'],
   },
   {
     title: 'Spatial & location intelligence',
-    body: 'Removes operational data that has a location attached but no way to reason over where things actually are, relative to each other.',
+    body: 'Making position, geometry, and movement into structured facts a system can query — not just coordinates sitting in a column.',
+    items: ['Geospatial reasoning', 'Movement & tracking', 'Real-world coordinates'],
   },
   {
-    title: 'Distributed systems architecture',
-    body: 'Removes the system that works fine until it needs to scale past one server, one region, or one team.',
+    title: 'Production architecture & oversight',
+    body: 'The part that decides whether any of the above survives contact with a real operation at 2am, and whether anyone can defend it afterwards.',
+    items: ['Distributed systems', 'Explainability & audit', 'Human oversight interfaces'],
   },
-  {
-    title: 'Forecasting & prediction',
-    body: 'Removes decisions made on last quarter’s numbers, by reasoning over what is actually happening right now.',
-  },
-  {
-    title: 'Workflow automation with judgment',
-    body: 'Removes automation that breaks the moment a case doesn’t fit the happy path, by giving it a way to handle the exception instead of failing on it.',
-  },
-  {
-    title: 'Explainability & audit',
-    body: 'Removes the black box nobody can defend to a regulator, an auditor, or a customer who asks why.',
-  },
-  {
-    title: 'Integration & data unification',
-    body: 'Removes the same fact living in six systems with six different answers, by giving the business one version it can trust.',
-  },
-  {
-    title: 'Interfaces for human oversight',
-    body: 'Removes the system nobody trusts, by giving people a clear view into what it decided and why, and a way to intervene.',
-  },
-]
-
-const PRINCIPLES = [
-  { title: 'First principles, not frameworks', body: 'We start from what the decision actually requires, not from whichever library made the headlines this year.' },
-  { title: 'Context before code', body: 'We understand how a business runs before we draw an architecture diagram for it.' },
-  { title: 'Reasoning must show its work', body: 'A system that can’t explain a decision isn’t ready to make one.' },
-  { title: 'Production is the only proof', body: 'A demo proves a slide works. Production proves a system does.' },
-  { title: 'Architecture is a decision, not a default', body: 'We choose the database, the runtime, the topology — deliberately, for this problem.' },
-  { title: 'Intelligence compounds', body: 'Every case a system sees should make the next one easier, not just wait for the next release.' },
-  { title: 'Accountability is a feature', body: 'Every automated decision keeps a trail back to the data and reasoning behind it.' },
-  { title: 'Simplicity survives contact with reality', body: 'The simplest system that correctly handles the hard cases outlives the clever one that doesn’t.' },
-]
-
-const PROCESS = [
-  { title: 'Discovery', reason: 'Understand the decision before touching a keyboard — who makes it today, on what information, and what it costs when it’s wrong.' },
-  { title: 'Data mapping', reason: 'Most reasoning failures are data failures in disguise. We trace where the truth actually lives before we trust it.' },
-  { title: 'Architecture', reason: 'Intelligence performs only as well as what carries it, so we design the system it runs on before we design the system itself.' },
-  { title: 'Reasoning design', reason: 'We decide how the system weighs evidence and handles disagreement before a single model gets involved.' },
-  { title: 'Prototype', reason: 'A working sketch against real data surfaces the hard cases faster than a specification ever will.' },
-  { title: 'Evaluation', reason: 'We test the reasoning against cases designed to break it, not just the ones designed to pass.' },
-  { title: 'Integration', reason: 'Intelligence has to reach the systems people already use, or it never actually gets used.' },
-  { title: 'Production hardening', reason: 'The difference between a prototype and a system is what happens when something goes wrong at 2am.' },
-  { title: 'Continuous learning', reason: 'We keep watching the system in production and feeding back what it got right and what it got wrong.' },
-]
-
-const PROOF = [
-  { variant: 'score', label: 'Flow chart of listing trust scoring: a listing passes twelve signals, is scored, and goes live or is flagged', title: 'Live trust scoring', desc: 'Every rental listing scored across twelve signals before a tenant ever sees it.' },
-  { variant: 'trace', label: 'Decision-trace diagram: evidence nodes converging into a single approved decision', title: 'Decision trace', desc: 'Every automated decision resolves to the evidence and logic that produced it.' },
-  { variant: 'orchestration', label: 'Swimlane console diagram with one task rerouted between agent lanes', title: 'Agent orchestration', desc: 'Coordinated agents handling exceptions a fixed workflow would drop.' },
-  { variant: 'graph', label: 'Scattered document glyphs resolving into an ordered knowledge graph', title: 'Knowledge graph', desc: 'Documents, tickets, and records unified into one queryable structure.' },
 ]
 
 export default function Home() {
   return (
     <>
-      {/* Hero */}
+      {/* 01 — Hero */}
       <section className="section section--hero">
         <div className="container">
           <div className="hero__inner">
@@ -118,21 +72,26 @@ export default function Home() {
               <span className="hero__title-line">Software follows instructions.</span>
               <span className="hero__title-line">Intelligence understands the world.</span>
             </h1>
-            <p className="body-lg hero__lede">
-              <span className="hero__lede-line">Software has always followed instructions: store this, retrieve that, execute in order.</span>
-              <span className="hero__lede-line">We build the layer above that — systems that read context, reason over incomplete information, and make decisions they can account for.</span>
-              <span className="hero__lede-line">Architecture, distributed systems, spatial computing, and knowledge systems, with AI as one component among many.</span>
-            </p>
+            <div className="hero__copy">
+              <p className="body-lg hero__lede">
+                We engineer intelligent software for organizations whose hardest decisions still
+                depend on a person reading five systems at once.
+              </p>
+              <p className="body hero__support">
+                Reasoning systems, knowledge systems, spatial intelligence, and the production
+                architecture that carries them. AI is one component, chosen deliberately, among many.
+              </p>
+            </div>
             <div className="hero__actions">
-              <Link href="/technology" className="btn btn--primary">
-                <span>Read the technology</span>
+              <Link href="/contact" className="btn btn--primary">
+                <span>Start a conversation</span>
                 <span className="btn__arrow" aria-hidden="true">→</span>
               </Link>
-              <Link href="/products/stayonmap" className="btn btn--ghost">See it in production</Link>
+              <Link href="/work" className="btn btn--ghost">See what we&rsquo;ve built</Link>
             </div>
           </div>
 
-          <div className="hero-visual" data-reveal>
+          <div className="hero-visual">
             <div className="hero-visual__frame">
               <div className="hero-visual__label">
                 <span>Raw information</span>
@@ -142,61 +101,157 @@ export default function Home() {
               <div className="hero-visual__canvas-wrap">
                 <IntelligenceCanvas />
               </div>
-              <p className="hero-visual__caption">
-                Unstructured signals enter on the left. The intelligence layer organizes,
-                relates, and reasons over them — and structured, decision-ready knowledge
-                emerges on the right.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 01 — The Problem */}
+      {/* 02 — What we engineer */}
       <section className="section">
         <div className="container">
-          <div className="section-head">
-            <div className="eyebrow"><span className="eyebrow__num">01</span> The problem</div>
-            <h2 className="section-title">Most software only remembers. It doesn’t understand.</h2>
-          </div>
-
-          <div className="problem-grid">
-            <div className="problem-col problem-col--dim" data-reveal>
-              <div className="problem-col__kicker eyebrow">Software records</div>
-              <h3 className="problem-col__title">What most systems do</h3>
-              <ul>
-                <li>Stores what happened, exactly as it was entered</li>
-                <li>Executes fixed rules, regardless of the case in front of it</li>
-                <li>Waits for a person to notice something and act</li>
-                <li>Breaks quietly when the world changes shape</li>
-                <li>Needs a human to interpret what it actually means</li>
-              </ul>
-            </div>
-            <div className="problem-grid__rule" />
-            <div className="problem-col" data-reveal>
-              <div className="problem-col__kicker eyebrow">Intelligence understands</div>
-              <h3 className="problem-col__title">What we build instead</h3>
-              <ul>
-                <li>Reads the surrounding context before it acts</li>
-                <li>Reasons over incomplete or conflicting information</li>
-                <li>Adapts as the ground truth shifts underneath it</li>
-                <li>Explains the decision it made, and why</li>
-                <li>Gets more capable with every case it sees</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 02 — The Intelligence Layer */}
-      <section className="section">
-        <div className="container">
-          <div className="section-head section-head--wide">
-            <div className="eyebrow"><span className="eyebrow__num">02</span> The intelligence layer</div>
-            <h2 className="section-title">Four layers between raw input and a decision that holds.</h2>
+          <div className="section-head section-head--split">
+            <div className="eyebrow"><span className="eyebrow__num">01</span> What we engineer</div>
+            <h2 className="section-title">Four kinds of system. Most projects need more than one.</h2>
             <p className="body">
-              Every system we build sits on the same four layers, whether it is forecasting demand,
-              routing a fleet, or approving a claim. Open each one below.
+              Software that only records is cheap and everywhere. What stays expensive is software
+              that reads context, reasons over incomplete information, and can explain the decision
+              it made afterwards.
+            </p>
+          </div>
+          <div className="cap-groups" data-reveal>
+            {CAPABILITY_GROUPS.map((g, i) => (
+              <div key={g.title} className="cap-group">
+                <span className="cap-group__n mono">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="cap-group__title">{g.title}</h3>
+                <p className="cap-group__body">{g.body}</p>
+                <ul className="cap-group__items">
+                  {g.items.map((it) => <li key={it}>{it}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 03 — Selected systems */}
+      <section className="section">
+        <div className="container">
+          <div className="section-head section-head--split">
+            <div className="eyebrow"><span className="eyebrow__num">02</span> Selected systems</div>
+            <h2 className="section-title">We put our own name on the hard ones first.</h2>
+            <p className="body">
+              Anyone can claim a system reasons well. We pick problems where a bad decision has a
+              real cost, ship them under our own name, and let anyone inspect the result.
+            </p>
+          </div>
+
+          <div data-reveal>
+            <article className="case">
+              <div className="case__content">
+                <div className="case__meta">
+                  <span className="case__index">01 /</span>
+                  <span className="case__name">StayOnMap</span>
+                  <span className="case__status case__status--live">In production</span>
+                </div>
+                <h3 className="case__title">Rental infrastructure without brokers.</h3>
+                <p className="body case__body">
+                  India&rsquo;s rental market runs on brokers because nobody solved trust between two
+                  strangers. StayOnMap replaces that judgment with an engineered one, so owners and
+                  tenants connect directly on a live map with no intermediary.
+                </p>
+                <div className="case__spec">
+                  <div className="case__spec-row">
+                    <span className="case__spec-k">Discovery</span>
+                    <span className="case__spec-v">Map-first, every listing placed in real coordinates</span>
+                  </div>
+                  <div className="case__spec-row">
+                    <span className="case__spec-k">Trust</span>
+                    <span className="case__spec-v">Twelve live signals compounding into one score per listing</span>
+                  </div>
+                  <div className="case__spec-row">
+                    <span className="case__spec-k">Fraud</span>
+                    <span className="case__spec-v">An agent that flags a listing before a tenant ever visits</span>
+                  </div>
+                  <div className="case__spec-row">
+                    <span className="case__spec-k">Closing</span>
+                    <span className="case__spec-v">Direct owner-to-tenant chat, scheduling, and lease</span>
+                  </div>
+                </div>
+                <div className="case__actions">
+                  <Link href="/work/stayonmap" className="btn btn--ghost">
+                    <span>Explore the system</span>
+                    <span className="btn__arrow" aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </div>
+              <div className="case__visual">
+                <DiagramCanvas
+                  variant="lease"
+                  ratio="4/3"
+                  label="Flow chart from owner to tenant: a listing clears the twelve-signal trust engine, flagged listings drop out, and the lease closes directly with no broker"
+                />
+              </div>
+            </article>
+
+            <article className="case">
+              <div className="case__content">
+                <div className="case__meta">
+                  <span className="case__index">02 /</span>
+                  <span className="case__name">Traffic Intelligence</span>
+                  <span className="case__status">In development</span>
+                </div>
+                <h3 className="case__title">Roads that notice.</h3>
+                <p className="body case__body">
+                  A city has thousands of traffic cameras and almost no one watching them. Every
+                  vehicle becomes a track with a heading and a speed in real metres, tested against
+                  explicit rules rather than a model&rsquo;s hunch.
+                </p>
+                <div className="case__spec">
+                  <div className="case__spec-row">
+                    <span className="case__spec-k">Detection</span>
+                    <span className="case__spec-v">Runs at the camera; a foundation model reviews only what fires</span>
+                  </div>
+                  <div className="case__spec-row">
+                    <span className="case__spec-k">Reasoning</span>
+                    <span className="case__spec-v">Spatial rules over tracks, not frame-by-frame classification</span>
+                  </div>
+                  <div className="case__spec-row">
+                    <span className="case__spec-k">Coverage</span>
+                    <span className="case__spec-v">Eleven violation and incident classes in the first version</span>
+                  </div>
+                  <div className="case__spec-row">
+                    <span className="case__spec-k">Evidence</span>
+                    <span className="case__spec-v">Every event keeps its clip, its track, and the rule behind it</span>
+                  </div>
+                </div>
+                <div className="case__actions">
+                  <Link href="/work/traffic-intelligence" className="btn btn--ghost">
+                    <span>Explore the system</span>
+                    <span className="btn__arrow" aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </div>
+              <div className="case__visual">
+                <DiagramCanvas
+                  variant="intersection"
+                  ratio="4/3"
+                  label="Schematic junction seen from above, tracked vehicles moving through lanes, one wrong-way vehicle highlighted in violet with its track number and heading"
+                />
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* 04 — The intelligence architecture */}
+      <section className="section">
+        <div className="container">
+          <div className="section-head section-head--split">
+            <div className="eyebrow"><span className="eyebrow__num">03</span> The architecture</div>
+            <h2 className="section-title">Four layers between a raw signal and a decision that holds.</h2>
+            <p className="body">
+              Every system we build sits on the same four layers, whether it is scoring a listing,
+              routing a fleet, or reading a junction. The layer that fails is almost never the model.
             </p>
           </div>
           <div data-reveal>
@@ -205,156 +260,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 03 — What We Build */}
+      {/* 05 — How we work */}
       <section className="section">
         <div className="container">
-          <div className="section-head">
-            <div className="eyebrow"><span className="eyebrow__num">03</span> What we build</div>
-            <h2 className="section-title">Ten capabilities. Each one removes a specific cost.</h2>
-            <p className="body">Expand any capability for the problem it exists to remove.</p>
-          </div>
-          <div data-reveal>
-            <CapabilitiesList items={CAPABILITIES} />
-          </div>
-        </div>
-      </section>
-
-      {/* 04 — Products */}
-      <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <div className="eyebrow"><span className="eyebrow__num">04</span> Products</div>
-            <h2 className="section-title">Built to prove the approach in production.</h2>
-          </div>
-
-          <div className="feature feature--wide" data-reveal>
-            <div className="feature__content">
-              <div className="eyebrow feature__eyebrow">Product — StayOnMap</div>
-              <h3 className="feature__title">The trust problem brokers used to solve, engineered instead.</h3>
-              <p className="body feature__body">
-                India’s rental market runs on brokers because nobody solved trust. StayOnMap
-                treats every listing as a decision to be reasoned over — twelve live signals
-                compounding into a trust score, an agent watching for fraud — so owners and
-                tenants can connect directly, on a live map, without an intermediary.
-              </p>
-              <ul className="feature__list">
-                <li>Live trust scoring across twelve signals per listing</li>
-                <li>An autonomous agent that flags fraud before a tenant ever visits</li>
-                <li>Direct owner-to-tenant leases, chat, and scheduling — no broker</li>
-              </ul>
-              <Link href="/products/stayonmap" className="btn btn--ghost">
-                <span>See StayOnMap</span>
+          <div className="section-head section-head--split">
+            <div className="eyebrow"><span className="eyebrow__num">04</span> How we work</div>
+            <h2 className="section-title">Architecture and data first. Model selection is a week of the project.</h2>
+            <p className="body">
+              We start from what the decision actually requires — who makes it today, on what
+              information, and what it costs when it&rsquo;s wrong — before drawing an architecture for
+              it. Most reasoning failures are data failures wearing a disguise.
+            </p>
+            <p className="body">
+              Every automated decision keeps a trail back to the evidence and logic that produced
+              it. A system that can&rsquo;t explain a decision isn&rsquo;t ready to make one.
+            </p>
+            <div className="hero__actions" style={{ marginTop: '0.75rem' }}>
+              <Link href="/approach" className="btn btn--ghost">
+                <span>Read the full approach</span>
                 <span className="btn__arrow" aria-hidden="true">→</span>
               </Link>
             </div>
-            <div className="feature__visual">
-              <DiagramCanvas
-                variant="lease"
-                ratio="16/10"
-                label="Flow chart from owner to tenant: a listing clears the twelve-signal trust engine, flagged listings drop out, and the lease closes directly with no broker"
-                caption="From listing to lease with no broker in between. Every listing clears the twelve-signal trust engine before a tenant ever sees it — flagged listings never surface."
-              />
-            </div>
-          </div>
-
-          <p className="body" style={{ marginTop: '2.5rem', fontSize: '0.875rem' }}>
-            StayOnMap is the first product built on this approach.{' '}
-            <Link href="/products/traffic-intelligence">Cosmonus Traffic Intelligence</Link>, roads
-            that notice, is the second and in development.
-          </p>
-        </div>
-      </section>
-
-      {/* 05 — Engineering Philosophy */}
-      <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <div className="eyebrow"><span className="eyebrow__num">05</span> Engineering philosophy</div>
-            <h2 className="section-title">Eight principles that don’t change per project.</h2>
-          </div>
-          <div className="principles" data-reveal>
-            {PRINCIPLES.map((p, i) => (
-              <div key={p.title} className="principle">
-                <span className="principle__num mono">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="principle__title">{p.title}</h3>
-                <p className="principle__body">{p.body}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* 06 — Process */}
-      <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <div className="eyebrow"><span className="eyebrow__num">06</span> Process</div>
-            <h2 className="section-title">Nine stages. Each one exists for a reason.</h2>
-          </div>
-          <div className="process-flow" data-reveal>
-            <DiagramCanvas
-              variant="flow"
-              label="Flow chart of the nine process stages: a pulse moves from discovery to learning, evaluation loops back to prototype, and learning feeds back into discovery"
-            />
-          </div>
-          <div className="process" data-reveal>
-            {PROCESS.map((step, i) => (
-              <div key={step.title} className="process__step">
-                <span className="process__step-num mono">{String(i + 1).padStart(2, '0')}</span>
-                <div>
-                  <h3 className="process__step-title">{step.title}</h3>
-                  <p className="process__step-reason">{step.reason}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 07 — Proof */}
-      <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <div className="eyebrow"><span className="eyebrow__num">07</span> Proof</div>
-            <h2 className="section-title">What this looks like once it’s running.</h2>
-          </div>
-          <div className="proof-grid" data-reveal>
-            {PROOF.map((item) => (
-              <div key={item.title} className="proof-item">
-                <DiagramCanvas variant={item.variant} label={item.label} className="proof-item__frame" />
-                <p className="proof-item__caption"><strong>{item.title}</strong> — {item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 08 — Vision */}
-      <section className="section">
-        <div className="container">
-          <div className="section-head section-head--wide">
-            <div className="eyebrow"><span className="eyebrow__num">08</span> Vision</div>
-            <h2 className="section-title">Software is becoming something that understands, not just something that executes.</h2>
-            <p className="body">
-              For fifty years, software has meant instructions: precise, literal, and blind to
-              anything the instructions didn’t anticipate. That is changing. The systems worth
-              building now read context the way a capable person would, reason through cases no
-              one wrote a rule for, and stay accountable for the decisions they make.
-            </p>
-            <p className="body">
-              Cosmonus exists to engineer that layer — deliberately, from first principles,
-              for organizations whose decisions are too important to leave to a static rulebook.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
+      {/* 06 — Final CTA */}
       <section className="section section--tight">
         <div className="container">
-          <div className="section-head" style={{ marginBottom: 0 }} data-reveal>
+          <div className="section-head section-head--cta" style={{ marginBottom: 0 }} data-reveal>
             <div className="eyebrow">Cosmonus</div>
-            <h2 className="section-title">Bring us a decision. We’ll tell you what it takes to engineer it.</h2>
+            <h2 className="section-title">Bring us a decision. We&rsquo;ll tell you what it takes to engineer it.</h2>
             <div className="hero__actions" style={{ marginTop: '0.5rem' }}>
               <Link href="/contact" className="btn btn--primary">
                 <span>Start a conversation</span>

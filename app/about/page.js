@@ -1,10 +1,12 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { pageMeta } from '@/lib/metadata'
 
-export const metadata = {
-  title: 'About Cosmonus',
+export const metadata = pageMeta({
+  title: 'About',
   description: 'Cosmonus is a founder-led intelligence engineering company. We build systems that understand an operation, reason over its data, and make decisions accountable — designed from first principles, proven in production.',
-  alternates: { canonical: '/about' },
-}
+  path: '/about',
+})
 
 const VALUES = [
   { title: 'Rigor', body: 'We understand a problem before we write code for it. A system that reasons about your business has to be built by someone who reasoned about it first.' },
@@ -51,6 +53,19 @@ export default function AboutPage() {
               conviction running in production, not a thesis in a deck.
             </p>
           </div>
+
+          <div className="approach-intro" data-reveal style={{ marginTop: 'clamp(2.5rem, 5vw, 3.5rem)' }}>
+            <p className="body">
+              For fifty years, software has meant instructions: precise, literal, and blind to
+              anything the instructions didn’t anticipate. That is changing. The systems worth
+              building now read context the way a capable person would, reason through cases no one
+              wrote a rule for, and stay accountable for the decisions they make.
+            </p>
+            <p className="body">
+              We exist to engineer that layer — deliberately, from first principles, for
+              organizations whose decisions are too important to leave to a static rulebook.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -64,7 +79,7 @@ export default function AboutPage() {
           <div className="founders" data-reveal>
             <div className="founder">
               <div className="founder__identity">
-                <img src="/images/founder.jpg" alt="Sri Gokul Krishnan" className="founder__photo" width="340" height="453" />
+                <Image src="/images/founder.jpg" alt="Sri Gokul Krishnan" className="founder__photo" width={120} height={120} />
                 <h3 className="founder__name">Sri Gokul Krishnan</h3>
                 <p className="founder__role">Co-founder — design &amp; engineering</p>
                 <p className="founder__location mono">Chennai, India</p>
@@ -82,7 +97,7 @@ export default function AboutPage() {
                 <p className="body">
                   Cosmonus stays deliberately small — every system that ships has a named owner,
                   and we’d rather stay small and correct than large and diluted. How that shows up
-                  in the engineering itself is covered on the <Link href="/technology">technology</Link> page.
+                  in the engineering itself is covered on the <Link href="/approach">approach</Link> page.
                 </p>
               </div>
             </div>
@@ -131,15 +146,14 @@ export default function AboutPage() {
       {/* Closing CTA */}
       <section className="section section--tight">
         <div className="container">
-          <div className="section-head" style={{ marginBottom: 0 }} data-reveal>
+          <div className="section-head section-head--cta" style={{ marginBottom: 0 }} data-reveal>
             <div className="eyebrow">Work with us</div>
             <h2 className="section-title">We’re not hiring right now — but if this is the problem you want to spend years on, we want to hear from you.</h2>
             <div className="hero__actions" style={{ marginTop: '0.5rem' }}>
-              <Link href="/careers" className="btn btn--primary">
-                <span>Read careers</span>
+              <Link href="/contact" className="btn btn--primary">
+                <span>Introduce yourself</span>
                 <span className="btn__arrow" aria-hidden="true">→</span>
               </Link>
-              <Link href="/contact" className="btn btn--ghost">Contact us</Link>
             </div>
           </div>
         </div>

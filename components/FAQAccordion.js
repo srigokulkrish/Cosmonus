@@ -1,20 +1,23 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 
 export default function FAQAccordion({ items }) {
   const [open, setOpen] = useState(null)
+  const uid = useId()
 
   return (
     <div className="sol-faq">
       {items.map((f, i) => {
         const isOpen = open === i
+        const bodyId = `${uid}-faq-${i}`
         return (
           <div key={f.q} className={`sol-faq__item${isOpen ? ' is-open' : ''}`}>
             <button
               type="button"
               className="sol-faq__q"
               aria-expanded={isOpen}
+              aria-controls={bodyId}
               onClick={() => setOpen(isOpen ? null : i)}
             >
               <span className="sol-faq__q-text">{f.q}</span>
@@ -30,7 +33,7 @@ export default function FAQAccordion({ items }) {
               </svg>
             </button>
             {isOpen && (
-              <div className="sol-faq__body">
+              <div className="sol-faq__body" id={bodyId}>
                 <p className="sol-faq__a">{f.a}</p>
               </div>
             )}

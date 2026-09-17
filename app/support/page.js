@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import FAQAccordion from '@/components/FAQAccordion'
+import { pageMeta } from '@/lib/metadata'
 
-export const metadata = {
+export const metadata = pageMeta({
   title: 'Support',
   description: 'Get help with cosmonus.com or StayOnMap, or reach the right person for a project inquiry.',
-  alternates: { canonical: '/support' },
-}
+  path: '/support',
+})
 
 const FAQS = [
   {

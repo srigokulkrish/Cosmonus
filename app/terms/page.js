@@ -1,8 +1,10 @@
-export const metadata = {
+import { pageMeta } from '@/lib/metadata'
+
+export const metadata = pageMeta({
   title: 'Terms of Use',
   description: 'The terms that govern use of cosmonus.com and Cosmonus products, including StayOnMap.',
-  alternates: { canonical: '/terms' },
-}
+  path: '/terms',
+})
 
 export default function TermsPage() {
   return (
@@ -13,7 +15,8 @@ export default function TermsPage() {
           <h1 className="page-hero__title">Terms of Use</h1>
         </div>
 
-        <div className="legal-doc" style={{ marginTop: 'clamp(2.5rem, 5vw, 4rem)' }}>
+        <div className="legal-layout" style={{ marginTop: 'clamp(2.5rem, 5vw, 4rem)' }}>
+          <div className="legal-doc">
           <p className="legal-doc__updated mono">Last updated — January 2026</p>
 
           <p>
@@ -23,21 +26,21 @@ export default function TermsPage() {
             professionally drafted legal advice.
           </p>
 
-          <h2>1. Acceptance of terms</h2>
+          <h2 id="1-acceptance-of-terms">1. Acceptance of terms</h2>
           <p>
             By visiting cosmonus.com, creating a StayOnMap account, or otherwise using anything we
             build, you agree to these terms. If you don&apos;t agree, please don&apos;t use the
             service.
           </p>
 
-          <h2>2. Description of service</h2>
+          <h2 id="2-description-of-service">2. Description of service</h2>
           <p>
             Cosmonus is an engineering studio. Cosmonus.com describes the systems we build for
             clients; StayOnMap is our own product — a broker-free rental marketplace connecting
             property owners and tenants directly, with trust and fraud scoring built in.
           </p>
 
-          <h2>3. Use of StayOnMap</h2>
+          <h2 id="3-use-of-stayonmap">3. Use of StayOnMap</h2>
           <ul>
             <li>You&apos;re responsible for the accuracy of any listing or profile information you post</li>
             <li>Fraudulent, misleading, or duplicate listings are prohibited</li>
@@ -45,7 +48,7 @@ export default function TermsPage() {
             <li>You&apos;re responsible for your own conduct in messages, visits, and lease agreements arranged through the platform</li>
           </ul>
 
-          <h2>4. Acceptable use</h2>
+          <h2 id="4-acceptable-use">4. Acceptable use</h2>
           <p>You agree not to:</p>
           <ul>
             <li>Scrape, copy, or systematically extract data from the site or product</li>
@@ -54,46 +57,64 @@ export default function TermsPage() {
             <li>Use the service for any unlawful purpose</li>
           </ul>
 
-          <h2>5. Intellectual property</h2>
+          <h2 id="5-intellectual-property">5. Intellectual property</h2>
           <p>
             The Cosmonus name, site content, and product design belong to Cosmonus. Listing
             content you post remains yours; by posting it, you give us the right to display it
             within the product.
           </p>
 
-          <h2>6. Disclaimers</h2>
+          <h2 id="6-disclaimers">6. Disclaimers</h2>
           <p>
             Cosmonus.com and StayOnMap are provided as-is. Automated trust and risk scoring is a
             signal, not a guarantee — it reduces exposure to fraud, but it is not infallible, and
             we don&apos;t warrant that any listing, score, or reasoning output is error-free.
           </p>
 
-          <h2>7. Limitation of liability</h2>
+          <h2 id="7-limitation-of-liability">7. Limitation of liability</h2>
           <p>
             To the fullest extent permitted by law, Cosmonus is not liable for indirect,
             incidental, or consequential damages arising from your use of the site or product,
             including disputes between tenants and owners arranged through StayOnMap.
           </p>
 
-          <h2>8. Termination</h2>
+          <h2 id="8-termination">8. Termination</h2>
           <p>
             We may suspend or terminate access to StayOnMap for accounts that violate these terms,
             particularly around fraud or abuse, with or without notice depending on severity.
           </p>
 
-          <h2>9. Governing law</h2>
+          <h2 id="9-governing-law">9. Governing law</h2>
           <p>These terms are governed by the laws of India.</p>
 
-          <h2>10. Changes to these terms</h2>
+          <h2 id="10-changes-to-these-terms">10. Changes to these terms</h2>
           <p>
             We may update these terms as the product changes. Continued use after an update means
             you accept the revised terms.
           </p>
 
-          <h2>11. Contact</h2>
+          <h2 id="11-contact">11. Contact</h2>
           <p>
             Questions about these terms: <a href="mailto:hello@cosmonus.com">hello@cosmonus.com</a>.
           </p>
+          </div>
+
+          <nav className="legal-toc" aria-label="On this page">
+            <p className="legal-toc__head">On this page</p>
+            <ul>
+              <li><a href="#1-acceptance-of-terms">1. Acceptance of terms</a></li>
+              <li><a href="#2-description-of-service">2. Description of service</a></li>
+              <li><a href="#3-use-of-stayonmap">3. Use of StayOnMap</a></li>
+              <li><a href="#4-acceptable-use">4. Acceptable use</a></li>
+              <li><a href="#5-intellectual-property">5. Intellectual property</a></li>
+              <li><a href="#6-disclaimers">6. Disclaimers</a></li>
+              <li><a href="#7-limitation-of-liability">7. Limitation of liability</a></li>
+              <li><a href="#8-termination">8. Termination</a></li>
+              <li><a href="#9-governing-law">9. Governing law</a></li>
+              <li><a href="#10-changes-to-these-terms">10. Changes to these terms</a></li>
+              <li><a href="#11-contact">11. Contact</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
     </section>

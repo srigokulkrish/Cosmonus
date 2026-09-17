@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { PRIMARY_NAV } from '../lib/nav'
@@ -10,6 +10,8 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const panelRef = useRef(null)
+  const toggleRef = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -24,25 +26,57 @@ export default function Header() {
 
   useEffect(() => {
     document.body.classList.toggle('no-scroll', menuOpen)
+    window.dispatchEvent(new Event(menuOpen ? 'cx:scroll-lock' : 'cx:scroll-unlock'))
     if (!menuOpen) return
-    const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false) }
+
+    const panel = panelRef.current
+    const focusables = panel.querySelectorAll('a[href], button:not([disabled])')
+    focusables[0]?.focus()
+
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        toggleRef.current?.focus()
+        return
+      }
+      if (e.key !== 'Tab' || focusables.length === 0) return
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [menuOpen])
 
   const isActive = (href) => pathname === href || (href !== '/' && pathname.startsWith(href))
 
+  const closeMenu = () => {
+    setMenuOpen(false)
+    toggleRef.current?.focus()
+  }
+
   return (
     <header className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
       <div className="container nav__inner">
         <Link href="/" className="nav__brand" aria-label="Cosmonus home">
-          <img src="/images/logo-white.png" alt="Cosmonus" width="231" height="30" className="brand-logo brand-logo--white" />
-          <img src="/images/logo-dark.png" alt="Cosmonus" width="231" height="30" className="brand-logo brand-logo--dark" />
+          <span className="brand-logo" role="img" aria-label="Cosmonus" />
         </Link>
 
         <nav className="nav__links" aria-label="Primary">
           {PRIMARY_NAV.map((l) => (
-            <Link key={l.href} href={l.href} className={`nav__link${isActive(l.href) ? ' is-active' : ''}`}>
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`nav__link${isActive(l.href) ? ' is-active' : ''}`}
+              aria-current={isActive(l.href) ? 'page' : undefined}
+            >
               {l.label}
             </Link>
           ))}
@@ -52,6 +86,7 @@ export default function Header() {
           <ThemeToggle />
           <Link href="/contact" className="btn btn--primary btn--sm">Contact</Link>
           <button
+            ref={toggleRef}
             type="button"
             className="nav__toggle"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -75,20 +110,29 @@ export default function Header() {
         </div>
       </div>
 
-      <div id="nav-mobile" className={`nav-mobile${menuOpen ? ' is-open' : ''}`} aria-hidden={!menuOpen}>
+      <div
+        id="nav-mobile"
+        ref={panelRef}
+        className={`nav-mobile${menuOpen ? ' is-open' : ''}`}
+        aria-hidden={!menuOpen}
+      >
         <div className="nav-mobile__body">
           {PRIMARY_NAV.map((l) => (
-            <Link key={l.href} href={l.href} className={`nav-mobile__link${isActive(l.href) ? ' is-active' : ''}`} onClick={() => setMenuOpen(false)}>
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`nav-mobile__link${isActive(l.href) ? ' is-active' : ''}`}
+              aria-current={isActive(l.href) ? 'page' : undefined}
+              onClick={closeMenu}
+            >
               {l.label}
-              <span className="mono" style={{ color: 'var(--fg-faint)', fontSize: '0.8rem' }}>→</span>
+              <span className="mono nav-mobile__arrow" aria-hidden="true">→</span>
             </Link>
           ))}
-          <Link href="/contact" className="nav-mobile__link" onClick={() => setMenuOpen(false)}>
-            Contact
-          </Link>
           <div className="nav-mobile__cta">
-            <Link href="/contact" className="btn btn--primary" onClick={() => setMenuOpen(false)}>
-              Talk to us
+            <Link href="/contact" className="btn btn--primary" onClick={closeMenu}>
+              <span>Start a conversation</span>
+              <span className="btn__arrow" aria-hidden="true">→</span>
             </Link>
           </div>
         </div>

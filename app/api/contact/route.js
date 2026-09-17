@@ -22,8 +22,13 @@ export async function POST(request) {
     return Response.json({ error: 'Please enter a valid email address.' }, { status: 400 })
   }
 
-  const resend = new Resend(process.env.RESEND_API_KEY)
   const to = process.env.CONTACT_TO_EMAIL
+  if (!to || !process.env.RESEND_API_KEY) {
+    console.error('Contact form is not configured: set RESEND_API_KEY and CONTACT_TO_EMAIL.')
+    return Response.json({ error: 'Something went wrong sending your message. Please email us directly.' }, { status: 503 })
+  }
+
+  const resend = new Resend(process.env.RESEND_API_KEY)
 
   const lines = [
     `Name: ${name}`,

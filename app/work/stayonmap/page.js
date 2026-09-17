@@ -1,5 +1,7 @@
+import Link from 'next/link'
 import StripedPlaceholder from '@/components/StripedPlaceholder'
 import DiagramCanvas from '@/components/DiagramCanvas'
+import { pageMeta } from '@/lib/metadata'
 
 const STAYONMAP_URL = 'https://www.stayonmap.com/'
 
@@ -40,11 +42,11 @@ const STACK = [
   { layer: 'Reasoning', tech: 'Claude (Anthropic) — trust and fraud signals' },
 ]
 
-export const metadata = {
-  title: 'StayOnMap — The Trust Problem Brokers Used to Solve',
+export const metadata = pageMeta({
+  title: 'StayOnMap — Broker-Free Rentals',
   description: 'StayOnMap is Cosmonus engineering in production: a broker-free rental marketplace with live trust scoring, autonomous fraud detection, and direct owner-to-tenant leases.',
-  alternates: { canonical: '/products/stayonmap' },
-}
+  path: '/work/stayonmap',
+})
 
 export default function StayOnMapPage() {
   return (
@@ -66,7 +68,7 @@ export default function StayOnMapPage() {
                   <span>Open StayOnMap</span>
                   <span className="btn__arrow" aria-hidden="true">→</span>
                 </a>
-                <a href="/contact" className="btn btn--ghost">Build something like this</a>
+                <Link href="/contact" className="btn btn--ghost">Build something like this</Link>
               </div>
             </div>
             <div className="feature__visual">
@@ -168,8 +170,40 @@ export default function StayOnMapPage() {
 
       <section className="section">
         <div className="container">
-          <div className="section-head">
-            <div className="eyebrow"><span className="eyebrow__num">04</span> How it works</div>
+          <div className="section-head section-head--split">
+            <div className="eyebrow"><span className="eyebrow__num">04</span> Inside the trust engine</div>
+            <h2 className="section-title">Twelve signals in. One score, and the reasoning behind it, out.</h2>
+            <p className="body">
+              A trust score nobody can interrogate is just a number. Every listing carries both the
+              score and the evidence that produced it, so a suspension can be explained to the owner
+              it affects.
+            </p>
+          </div>
+          <div className="proof-grid" data-reveal>
+            <div className="proof-item">
+              <DiagramCanvas
+                variant="score"
+                className="proof-item__frame"
+                label="Flow chart of listing trust scoring: a listing passes twelve signals, is scored, and goes live or is flagged"
+              />
+              <p className="proof-item__caption"><strong>Live trust scoring</strong> &mdash; every listing scored across twelve signals before a tenant ever sees it.</p>
+            </div>
+            <div className="proof-item">
+              <DiagramCanvas
+                variant="trace"
+                className="proof-item__frame"
+                label="Decision-trace diagram: evidence nodes converging into a single approved decision"
+              />
+              <p className="proof-item__caption"><strong>Decision trace</strong> &mdash; every automated suspension resolves back to the evidence and logic that produced it.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-head section-head--split">
+            <div className="eyebrow"><span className="eyebrow__num">05</span> How it works</div>
             <h2 className="section-title">Two user types. One account.</h2>
             <p className="body">Every account is both tenant and owner — owner tools appear the moment you post a first listing.</p>
           </div>
@@ -199,7 +233,7 @@ export default function StayOnMapPage() {
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow"><span className="eyebrow__num">05</span> Technology</div>
+            <div className="eyebrow"><span className="eyebrow__num">06</span> Technology</div>
             <h2 className="section-title">Built for real-world scale.</h2>
           </div>
           <div className="stack-table" data-reveal>
@@ -209,6 +243,21 @@ export default function StayOnMapPage() {
                 <span className="stack-row__tech">{s.tech}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--tight">
+        <div className="container">
+          <div className="section-head section-head--cta" style={{ marginBottom: 0 }} data-reveal>
+            <div className="eyebrow">Build with us</div>
+            <h2 className="section-title">__TITLE__</h2>
+            <div className="hero__actions" style={{ marginTop: '0.5rem' }}>
+              <Link href="/contact" className="btn btn--primary">
+                <span>Start a conversation</span>
+                <span className="btn__arrow" aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

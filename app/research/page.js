@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import DiagramCanvas from '@/components/DiagramCanvas'
+import { pageMeta } from '@/lib/metadata'
 
-export const metadata = {
+export const metadata = pageMeta({
   title: 'Research — Open Questions Behind the Systems We Ship',
   description: 'The unfinished questions we work on: keeping a knowledge model correct as the world changes, trusting agents to act, reasoning at the edge, and turning vision and space into structured fact.',
-  alternates: { canonical: '/research' },
-}
+  path: '/research',
+})
 
 const AREAS = [
   { title: 'Knowledge graphs', body: 'Keeping a model of an operation correct as reality shifts underneath it — resolving entities, reconciling conflicting sources, and expiring stale relationships without losing history.' },
@@ -81,6 +82,7 @@ export default function ResearchPage() {
             <div data-reveal className="media-fill">
               <DiagramCanvas
                 variant="systems"
+                chrome
                 label="First-principles map of an intelligent system: data, retrieval, reasoning, and interface layers with pulses flowing upward through the violet reasoning layer"
                 className="diagram-frame--fill"
                 caption="The first-principles map of an intelligent system. Data flows up through retrieval into the reasoning layer — understand, reason, plan, decide — and out through the interface. Our research concentrates on the violet layer."
@@ -92,7 +94,7 @@ export default function ResearchPage() {
 
       <section className="section">
         <div className="container">
-          <div className="section-head section-head--wide">
+          <div className="section-head section-head--split">
             <div className="eyebrow"><span className="eyebrow__num">03</span> Open problems</div>
             <h2 className="section-title">Questions the field hasn’t settled.</h2>
             <p className="body">
@@ -115,7 +117,7 @@ export default function ResearchPage() {
 
       <section className="section section--tight">
         <div className="container">
-          <div className="section-head" style={{ marginBottom: 0 }} data-reveal>
+          <div className="section-head section-head--cta" style={{ marginBottom: 0 }} data-reveal>
             <div className="eyebrow">Work on this</div>
             <h2 className="section-title">Help push these questions forward, or bring us one of your own.</h2>
             <div className="hero__actions" style={{ marginTop: '0.5rem' }}>
