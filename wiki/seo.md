@@ -27,6 +27,12 @@ or an HTML file — either keeps working after the new site replaces the old one
 needed, put the tag's content value in `GOOGLE_SITE_VERIFICATION` (see `.env.example`) and rebuild; the layout emits
 it only when set. After launch: submit https://www.cosmonus.com/sitemap.xml in Search Console.
 
+## Redirects from the old site
+`next.config.ts` sends the previous cosmonus.com URLs to their new pages with permanent (308) redirects:
+/work → /product, /work/stayonmap → /product/stayonmap, other /work/* → /product, /products(/*) → /product,
+/approach and /about → /company/about, /careers → /company/careers, /research(/*) → /company/research,
+/support → /contact, /technology → /intelligence. /contact, /privacy and /terms kept their paths.
+
 ## Differences from the old site
 - Titles/descriptions describe the new site ("Building Real-World Intelligence."), not "Intelligence Engineering".
 - Share image is 1200×630 (old: the 1000×1000 icon); keywords updated to the new site's subjects.

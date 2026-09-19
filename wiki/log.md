@@ -253,3 +253,8 @@
   (session scratchpad, not installed): About, Animation banner, Explainer card, StayOnMap, Video banner, Product film.
   Re-encoded H.264 CRF 23, same resolution, no audio (all play muted), index at the front for faster start.
   Sizes 461 MB → 71 MB for those six. Originals kept in the scratchpad (`originals-before-trim/`).
+
+## [2026-09-19] deploy | Pushed to a preview branch
+- Found production on Vercel, built from github.com/srigokulkrish/Cosmonus (public). Added 308 redirects for the old
+  site's URLs, a merged .gitignore (keeps `raw/`, `.claude/`, env files out), then pushed the site as branch `redesign`
+  (1b92232) on top of the old `main`. `main` untouched until the owner merges. See deploy.md.
