@@ -5,8 +5,9 @@ Source: `raw/handoff/HANDOFF.md` §Tokens. Implemented as Tailwind v4 `@theme` t
 ## Tokens
 - Colours: `ink #0F0F0F`, `ink-2 #2B2B29`, `muted #5C5C58` (never lighten — 4.5:1), `line #E4E4E1`,
   panels `light #ECECE9` / `mid #D9D9D4` / `dark #111110` / `card #161615`, `node #141413`, footer `#0B0B0B`,
-  `accent #635BFF` (Cosmonus violet; was the handoff's orange #FF4A1C until 2026-09-19) — 8px marker dots only
-  (`components/ui/Dot.tsx`, the Studio tab dot).
+  `accent #635BFF` (Cosmonus violet; was the handoff's orange #FF4A1C until 2026-09-19) — 8px marker dots
+  (`components/ui/Dot.tsx`, the Studio tab dot) and, since 2026-09-20, the menu "<Section> overview" links, the one
+  place accent is used as text (4.7:1 on white). Nowhere else.
 - `soft #EEF0F2` — secondary button and chip fill.
 - `Cosmonus violet #635BFF` — the original cosmonus.com brand colour (its buttons). Used only inside the mesh
   gradient on the home Agents band (`MeshBackdrop palette="cosmonus"`: four colours only — blue #2F6BFF, violet #635BFF,
@@ -55,11 +56,16 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
 - Constants carry columns + column gap only; add the row gap at the use site (`gap-y-10` cards, `gap-y-5` bordered cards).
 
 ## Banners and image placeholders (owner-requested, 2026-09-19)
-- **Every banner is a video** (owner decision): `InnerHero` takes `video="/media/<page>/banner.mp4"` (and `BannerVideo`
+- **Every banner is a video** (owner decision, restated 2026-09-20 — no exceptions): `InnerHero` takes
+  `video="/media/<page>/banner.mp4"` (and `BannerVideo`
   takes optional `webm`/`poster`); it plays muted and looping (`components/ui/BannerVideo.tsx`), with a
   soft shade from the bottom-left for the title; paused on the poster under reduced motion. Until files exist the
   flat tone shows. Prompts for all 22: the "image requirements & ChatGPT prompts" doc
   (https://claude.ai/code/artifact/397c720e-5500-42a8-a9d2-7a8a4a4bfa0a).
+- **`Showcase`** (`components/capability/Showcase.tsx`, formerly `VideoShowcase`) takes stills or clips in one
+  row — an `.mp4`/`.webm` src loops, anything else is a `next/image`; `shape: "landscape"` gives a 3:2 crop for
+  stills, the default `portrait` 4:5 keeps the Video page as it was. Used by Video (films) and Image Generation
+  ("Selected frames").
 - **Every banner is the home banner's size:** `BANNER` in `components/ui/Hero.tsx` (full viewport height under the
   bar, 600–760px on desktop; 560px min on phones), used by the home hero and `InnerHero`. Inner h1 64px, home 72px.
 - **No text-only link or process sections.** Each now carries image placeholders until real media arrives:
@@ -75,7 +81,12 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
   heading, one line and a button left, an image placeholder filling the right half (`asset` labels it).
 - **Real images:** files go in `public/media/<page>/<slot>.<ext>` (names from the prompts doc). `MediaPanel` takes
   `src` + `alt` and renders `next/image` (fill, object-cover, `sizes`) in the same slot; without `src` it stays the
-  placeholder. First one in: `/media/home/studio-animation.png` (home Studio showcase, Animation tab).
+  placeholder. Media cards, `Steps` and `Band` all take `image`/`alt` the same way. First one in:
+  `/media/home/studio-animation.png` (home Studio showcase, Animation tab).
+- **Content may name a file before it exists.** Capability-page media runs through `inPublic` (`lib/media.ts`),
+  which drops a path whose file is not in `public/` — so the slot keeps its labelled placeholder instead of
+  showing a broken image, and lights up on the build after the file is dropped in. A `Showcase` row waits until
+  all of its images exist, so a part-filled row never ships.
 - `MediaPanel` placeholders show a small picture glyph above the mono label; `toneAt(i)` cycles dark/light/mid.
 
 ## Responsive rules
@@ -96,7 +107,11 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
 - **Mega-menu panels share one layout:** left column (mono label, title, description, "<Section> overview" link;
   `PanelIntro`), then two columns of the section's pages — three columns in all. Product shows them as cards (below);
   Studio, Company, Intelligence and Agents show compact quick links (`QuickLinks`) in the same two columns: name,
-  one-line description, small arrow, each under a 1px line rule.
+  one-line description, small arrow, each closed by a 1px line rule below it (`border-b`, matching the mobile menu).
+- **"<Section> overview" links** (`PanelIntro`, and the same link in the mobile menu) are accent violet, so the way
+  through to a landing page reads differently from the quick links beside it. On the desktop panel a 1px rule wipes
+  in from the left on hover and focus (`scale-x` from `origin-left`, 300ms, the site easing); under
+  `prefers-reduced-motion` it appears without the wipe. The mobile one keeps the shared `row`/`rowname` underline.
 - **Product menu:** three columns (title + description + overview link, then one large card per product). Cards use
   product brand colours, the only large colour fills on the site: `stayonmap #0D8A5F`, `happenous #E8421A`
   (provisional reddish orange until the owner picks the final colour; change the token in `globals.css`).

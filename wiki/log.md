@@ -258,3 +258,33 @@
 - Found production on Vercel, built from github.com/srigokulkrish/Cosmonus (public). Added 308 redirects for the old
   site's URLs, a merged .gitignore (keeps `raw/`, `.claude/`, env files out), then pushed the site as branch `redesign`
   (1b92232) on top of the old `main`. `main` untouched until the owner merges. See deploy.md.
+
+## [2026-09-20] design | Real images on the Image Generation page
+- Owner: generated stills fill the image page, and a "Selected frames" row of three finished images now follows the
+  cards — `VideoShowcase` is now `Showcase` and takes stills or clips (`shape: "landscape"` for stills).
+- Ten `image-generation/*.jpg` stills are named and wired in `content/capabilities.ts` (3 cards, 3 steps, band,
+  3 frames), with alt text; `Steps` and `Band` gained `image`/`alt`. Prompts added to the prompts doc.
+- Banners stay video everywhere (owner restated it): a still banner was built and then reverted, so `InnerHero`,
+  `BannerVideo.tsx` and `Capability.heroVideo` are unchanged, and this page keeps `banner.mp4`.
+- New `lib/media.ts` (`inPublic`): a path whose file is not in `public/` keeps its placeholder, so naming files ahead
+  of time never ships a broken image. typecheck, lint and build pass.
+
+## [2026-09-20] media | Company banner video
+- Owner supplied footage for `/company`: saved as `public/media/company/banner.mp4` and wired as
+  `company.hero.video` in `content/sections.ts` (`SectionPage` passes it to `InnerHero`).
+- Marked done in `media-brief.md`. 9 of 22 banners now have a file. typecheck, lint and build pass.
+- Re-encoded to meet the rules: trimmed to the first 20 s, audio stripped (banners play muted), H.264 two-pass
+  1500 kbps, 1920x1080 at 24 fps, faststart. 50 MB -> 3.58 MB, SSIM 0.903 against the source.
+
+## [2026-09-20] design | Mega-menu rule moved below each quick link
+- Owner: the line should close a menu item, not open it. `QuickLinks` in `components/site/Header.tsx` now uses
+  `border-b ... pt-3 pb-4` instead of `border-t ... pt-4 pb-3`, so the rule sits under each row.
+- Matches the mobile menu, which already used `border-b`. Noted in `design-system.md`. typecheck, lint and build pass.
+
+## [2026-09-20] design | Menu overview links in accent violet, with a wiping rule
+- Owner: the "<Section> overview" links should stand apart from the quick links. `PanelIntro`
+  (`components/site/Header.tsx`) is now `text-accent` with a 1px rule that wipes in from the left on hover and
+  focus (`origin-left scale-x-0` → `scale-x-100`, 300ms); `motion-reduce` drops the wipe, not the rule.
+- The mobile menu's overview link took the same colour, keeping its shared `row`/`rowname` underline.
+- This is the first use of accent as text — `design-system.md` updated, since the rule was "marker dots only".
+  Violet on white is 4.7:1, so it passes AA at 15px. typecheck, lint and build pass.

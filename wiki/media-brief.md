@@ -61,7 +61,7 @@ Animated diagrams are the most engaging option here: one idea per loop, drawn on
 | --- | --- | --- |
 | **Studio** `/studio` | 16:9 studio showreel loop: fast cuts across web, motion, imagery and film | Reuse the four home Studio tab assets |
 | **Product** `/product` | Both products in use, outdoors: someone checking StayOnMap on a street, a group meeting through Happenous | StayOnMap map recording · Happenous candid footage (reuse from home) |
-| **Company** `/company` | Cinematic real-world footage (can reuse the home hero at a different moment) | About: team or place footage · Research: a field-test still · Careers: the team at work, candid |
+| **Company** `/company` | **Done** — `company/banner.mp4` (owner, 2026-09-20) | About: team or place footage · Research: a field-test still · Careers: the team at work, candid |
 | **Intelligence** `/intelligence` | Aerial or top-down map footage that slowly resolves into a stylised map layer | One animated diagram per discipline (reuse from each capability page) |
 | **Agents** `/agents` *(light hero)* | A clean recording of an agent run: a message comes in, steps tick off, a result is handed back for review | One diagram per agent page (reuse) |
 
@@ -72,6 +72,15 @@ Animated diagrams are the most engaging option here: one idea per loop, drawn on
 | **Animation** | A looping motion piece in the site's style | Motion identity loop (wordmark and grid lines animating) | Product film still | Explainer still: a route or a score forming |
 | **Image Generation** | One strong art-directed generated image, full bleed | Contact sheet: a grid of variations with the pick circled | Image series: 3–4 images sharing one visual system | Concept frames: rough frames for a product idea |
 | **Video** | 16:9 reel cut | A generated shot, labelled as generated | Before/after grade split-screen (drag or wipe) | Launch film still |
+
+**Image Generation carries the most stills** (owner, 2026-09-20). Its banner is a video like every other page's
+(`banner.mp4`), but everything below it is a still, and it gained a "Selected frames" row of three finished images
+after the cards. Its ten stills are named and wired already — drop them into `public/media/image-generation/` and
+they appear on the next build:
+`card-art-direction.jpg` · `card-visual-systems.jpg` · `card-concept-frames.jpg` ·
+`step-1.jpg` · `step-2.jpg` · `step-3.jpg` · `band.jpg` ·
+`frame-lane.jpg` · `frame-rooftops.jpg` · `frame-doorway.jpg`.
+Prompts for all of them are in the prompts doc (see §5).
 
 ### Intelligence pages (dark heroes)
 | Page | Hero | Card 1 | Card 2 | Card 3 |
@@ -144,6 +153,11 @@ Privacy, Terms and the 404 page need no media.
 
 ## 5. Wiring (for developers)
 - Placeholders are `MediaPanel` components (`components/ui/MediaPanel.tsx`), and their labels live in `content/*.ts`.
-- To go live, add a `media: { src, poster, alt }` field and render `<video muted loop playsInline autoPlay poster>` or `next/image`.
+- Prompts for every file: the "image requirements & ChatGPT prompts" doc
+  (https://claude.ai/code/artifact/397c720e-5500-42a8-a9d2-7a8a4a4bfa0a). File names there are the ones content uses.
+- **Content names the file before it exists.** A capability page's media paths run through `inPublic`
+  (`lib/media.ts`), which keeps the labelled placeholder until the file is actually in `public/`, so nothing
+  renders as a broken image while a picture is still being made. A showcase row waits until every image in it lands.
+- Banners stay video (`InnerHero` + `BannerVideo`). Cards, steps and the closing band take `image` + `alt`;
+  `Showcase` (`components/capability/Showcase.tsx`) takes videos or stills in one row.
 - Pause video under `prefers-reduced-motion`, and give stills meaningful `alt` text.
-- Heroes currently render no media. Add a background video layer inside `InnerHero` (`components/ui/Hero.tsx`) and the home hero (`app/page.tsx`), with a scrim behind the title.
