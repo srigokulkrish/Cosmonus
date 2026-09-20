@@ -16,10 +16,32 @@ project, so the old tags were read from the live site's `<head>`.
 - `app/opengraph-image.tsx` — the 1200×630 share image (wordmark + tagline on the navy/violet gradient), used by
   every page's Open Graph and Twitter tags.
 - `app/sitemap.ts` — every indexable page with lastModified (build time), changeFrequency and priority
-  (home 1.0, section landings 0.8, their pages 0.7, research notes 0.6, contact 0.5). `app/robots.ts` allows all and
-  points to the sitemap.
+  (home 1.0, section landings 0.8, their pages 0.7, research notes and blog posts 0.6, contact 0.5). 37 URLs.
+  `app/robots.ts` allows all and points to the sitemap.
 - Research notes (`app/company/research/[slug]`) are `og:type=article` with Article JSON-LD.
+- `app/company/blog/[slug]/opengraph-image.tsx` — **a share card per post**: the post's own title, tag and reading
+  time on the brand gradient, so a shared link says what the post is. Pages opt in with `image: "fromFile"` in
+  `pageMetadata`, which leaves `openGraph.images` unset so Next uses the route's own file. Satori needs an explicit
+  `display` on any element with more than one child — that is why every div in there carries one.
+- `breadcrumbJsonLd()` in `lib/seo.ts` + `components/site/JsonLd.tsx` — BreadcrumbList on every page below the top
+  level: the five section landings and ten capability pages (via `SectionPage`/`CapabilityPage`, which now take the
+  route `path`), both index pages and every note and post. Google can show "Cosmonus › Company › Blog" instead of
+  a bare URL.
+- `/company/blog` also carries `Blog` structured data listing all its posts, so a result for the index can surface
+  individual posts.
 - Privacy and Terms stay `noindex, follow` (with canonicals) and are not in the sitemap.
+
+## Blog SEO (2026-09-21)
+- **Titles**: a post's `<title>` is its own title plus " — Cosmonus". The earlier " — Blog" / " — Research" middle
+  was dropped — it pushed titles past the ~60 characters a result shows, for no gain.
+- **Descriptions**: each post's `summary` is its meta description. Three were over 160 characters and were tightened;
+  keep new summaries under that or they are truncated in results. Longest is now 155.
+- **Headings**: card titles are real `h2`/`h3` elements, so each index has a crawlable outline.
+- **Internal links**: 18 links between posts, written `[text](/company/blog/slug)` in the copy. Cross-references that
+  name another subject now link to it — good for readers, and the kind of linking that makes a section legible.
+- **Reading time** is computed, so it can never be stale or wrong.
+- **Not done**: `datePublished` / `dateModified` on BlogPosting. We display no dates and have none from the owner —
+  see open-questions.md. This is the only known gap.
 
 ## Google Search Console
 The old site's `<head>` has no `google-site-verification` tag, so the domain was most likely verified by DNS record

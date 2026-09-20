@@ -61,7 +61,7 @@ Animated diagrams are the most engaging option here: one idea per loop, drawn on
 | --- | --- | --- |
 | **Studio** `/studio` | 16:9 studio showreel loop: fast cuts across web, motion, imagery and film | Reuse the four home Studio tab assets |
 | **Product** `/product` | Both products in use, outdoors: someone checking StayOnMap on a street, a group meeting through Happenous | StayOnMap map recording · Happenous candid footage (reuse from home) |
-| **Company** `/company` | **Done** — `company/banner.mp4` (owner, 2026-09-20) | About: team or place footage · Research: a field-test still · Careers: the team at work, candid |
+| **Company** `/company` | **Done** — `company/banner.mp4` (owner, 2026-09-20) | Four cards now: About team or place footage · Research a field-test still · Blog a desk or whiteboard · Careers the team at work, candid |
 | **Intelligence** `/intelligence` | Aerial or top-down map footage that slowly resolves into a stylised map layer | One animated diagram per discipline (reuse from each capability page) |
 | **Agents** `/agents` *(light hero)* | A clean recording of an agent run: a message comes in, steps tick off, a result is handed back for review | One diagram per agent page (reuse) |
 
@@ -114,7 +114,22 @@ Prompts for all of them are in the prompts doc (see §5).
 | --- | --- | --- |
 | **About** | Cinematic real-world footage: the places our products are for | "The three parts" cards can reuse the product, studio and research covers |
 | **Research** | Field footage or an abstract film: someone checking a map on a real street | Note covers, below |
+| **Blog** | **None needed** — the blog index opens with a masthead, not a banner (owner, 2026-09-21) | Post covers, below. The featured post's cover (currently AI models) runs large as the lead story, so shoot it to hold at 420px tall |
 | **Careers** | The team at work, candid: whiteboards, desks, a field test (only with the team's consent) | — |
+
+### Blog post covers
+| Post | Cover |
+| --- | --- |
+| AI models: what they are, and what they are not | A sentence being continued one word at a time |
+| Embeddings: turning meaning into numbers | Words placed on a map by meaning, similar ones clustered |
+| Vector databases: a filing cabinet organised by meaning | Shelves arranged by similarity rather than by label |
+| RAG: letting a model look things up | An open book beside a question, the relevant passage marked |
+| MCP: one plug shape for models and tools | Many cables going into one standard socket |
+| System One models: when the answer is a decision, not a paragraph | A page of prose beside a ticked box and a confidence figure |
+| Prompt engineering: saying exactly what you want | The same request written twice, once vague and once exact |
+| Context engineering: packing the right things in the bag | A bag packed for an errand: a list, money, a photo |
+| Loop engineering: what happens after the first try | The same step attempted three times, each a little different |
+| Harness engineering: the kitchen around the cook | A kitchen set up for a beginner: tools within reach, sharp things away |
 
 ### Research note covers
 | Note | Cover |

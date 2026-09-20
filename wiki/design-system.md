@@ -48,7 +48,12 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
   (media cards, steps, bordered/link/note cards, research, "More in", "Built on").
 - **`SideLayout` + `SideHead`:** heading in the first third, content across the other two. Used by Intro, Story,
   Status key, FAQ, Explainer (media + 2×2 parts), Points, Band, legal sections, Contact (prompts | form),
-  research-note body (area | text), home Intelligence and section indexes with four pages.
+  home Intelligence and section indexes with four pages.
+- **One exception — article bodies** (research notes and blog posts): owner, 2026-09-21, "too much space to the area"
+  and "too much white space on the right". A one-word meta label does not earn a third of the page, so the page puts
+  a fixed 168px column at `lg` with a 40px gap beside the text. Research notes read at `max-w-[960px]`
+  (`components/ui/ArticleBody.tsx`); body type steps up to 20px at `lg` and the what/why/when/how rows to 17px so the
+  longer line stays readable. At 1280 the text fills the wrap; the cap only bites above ~1440. Below `lg` they stack.
 - **Sets of four go 2×2 inside the two thirds (`PAIRS`)**, so each card is exactly one third wide — no 4-column rows.
 - **Halves (`HALVES`)** only for large media pairs: the two products (home + Product index) and the two audiences.
 - Row lists (`RowLink`) follow the thirds from lg: name in the first third, description + arrow in the other two.
@@ -77,6 +82,7 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
     and Research "Areas" were removed as duplicates.
   - `MoreStrip` ("More in …") and `LinkGroups` ("Built on"): `ImageLinkCard`s on the thirds.
   - Research note "More research": `NoteCards`. The research index (`NoteList`) keeps filterable text rows.
+  - Blog does **not** mirror them — see "The blog is its own layout" below.
 - `Band` (the closing call-to-action on home, section, capability and product pages) is a rounded soft-grey panel:
   heading, one line and a button left, an image placeholder filling the right half (`asset` labels it).
 - **Real images:** files go in `public/media/<page>/<slot>.<ext>` (names from the prompts doc). `MediaPanel` takes
@@ -149,3 +155,32 @@ One curve everywhere: `cubic-bezier(0.22, 1, 0.36, 1)` (`EASE` in Header.tsx).
   (pages landed part-scrolled, hero under the bar) and animated Back/Forward. Only same-page `#anchor` links are
   smoothed, by `components/site/SmoothAnchors.tsx`; `scroll-padding-top: 76px` keeps targets clear of the bar.
 - Everything drops to instant under `prefers-reduced-motion`.
+
+## The blog is its own layout (owner, 2026-09-21)
+"Blog UI can be different, it should not replicate the research theme." `/company/blog` and its posts are the one
+part of the site on neither the section nor the note template. Components live in `components/blog/`.
+
+- **No banner.** The index opens with a masthead — dot + mono "BLOG", a 60px title, a lead — not a full-viewport
+  film. It is the only page with no hero, and it is why the blog needs no `blog/banner.mp4`.
+- **A lead story.** `FeaturedPost` gives the featured post a half-and-half block: a tall cover beside the text,
+  "START HERE" in mono above a 42px title. The rest are `PostCard`s on the thirds, under a rule.
+- **Posts read in one centred column** (`max-w-[860px]`, 20px from `lg`), not text beside a meta column. The cover
+  breaks out wider than the text (`max-w-[1100px]`) — the one place a post leaves its column.
+- **A standfirst:** the first paragraph of a post sets at 23px in `text-ink`, then the body drops to normal size.
+- **Callouts, not rules.** The what/why/when/how rows sit in a `bg-panel-light` `rounded-card` panel. The research
+  status key keeps the open ruled rows; the two should not converge.
+- **Meta is `tag · N min read`**, computed by `readingTime()`. No author names, no dates.
+- Headings get more air than a note's (`mt-12` at `lg`, 34px); paragraphs sit on `gap-7`.
+- Tag buttons appear only when a second tag exists, so a one-tag blog is not asked to filter itself.
+- **Sources block**: a post with `sources` gets a bordered `rounded-card` panel above "Read next" — mono "SOURCES",
+  then each link with a `↗`, opening in a new tab. Only posts leaning on outside facts have one.
+- **Inline links** in post copy take the shared `row`/`rowname` hover underline, so a link in a paragraph behaves
+  like every other link on the site rather than being a blue exception.
+- Card titles are real headings (`h2` featured, `h3` in grids) — the index has a proper outline for search engines
+  and screen readers, not a wall of spans.
+
+## Status key: no rule above the first row (owner, 2026-09-21)
+The border above "In progress" doubled up with the section rule already above "How to read a note". `StatusKey`
+drops the first row's `border-t` and top padding (`first:border-t-0 first:pt-0`). Rules between rows and the closing
+rule are unchanged. The blog's callout rows do the same inside their panel.
+

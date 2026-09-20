@@ -1,3 +1,4 @@
+import type { ArticleSection } from "@/components/ui/ArticleBody";
 import type { Tone } from "@/components/ui/MediaPanel";
 
 /**
@@ -14,7 +15,7 @@ export type NoteArea = "Spatial Intelligence" | "Trust Score" | "Agents" | "Stud
 
 export type NoteStatus = "In progress" | "Conceptual" | "Published";
 
-export type NoteSection = { heading?: string; paragraphs: string[] };
+export type NoteSection = ArticleSection;
 
 export type Note = {
   slug: string;

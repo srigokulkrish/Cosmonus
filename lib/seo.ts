@@ -15,6 +15,7 @@ export function pageMetadata({
   description,
   path,
   type = "website",
+  image,
 }: {
   /** Page name; the layout's template adds " — Cosmonus". Omit for the home page. */
   title?: string;
@@ -22,7 +23,13 @@ export function pageMetadata({
   /** Route path, e.g. "/studio/web". Becomes the canonical URL. */
   path: string;
   type?: "website" | "article";
+  /**
+   * "fromFile" leaves the share image out, so Next uses the route's own `opengraph-image` file instead —
+   * how a blog post gets a share card carrying its own title. Otherwise the site-wide image is used.
+   */
+  image?: "fromFile";
 }): Metadata {
+  const shareImages = image === "fromFile" ? {} : { images: [SHARE_IMAGE] };
   const shareTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
   return {
     ...(title ? { title } : {}),
@@ -35,7 +42,7 @@ export function pageMetadata({
       url: path,
       title: shareTitle,
       description,
-      images: [SHARE_IMAGE],
+      ...shareImages,
     },
     twitter: {
       card: "summary_large_image",
@@ -43,7 +50,7 @@ export function pageMetadata({
       creator: site.twitter,
       title: shareTitle,
       description,
-      images: [SHARE_IMAGE.url],
+      ...(image === "fromFile" ? {} : { images: [SHARE_IMAGE.url] }),
     },
   };
 }
@@ -78,3 +85,23 @@ export function siteJsonLd() {
     ],
   };
 }
+
+/**
+ * BreadcrumbList structured data. Google uses it to show a readable trail ("Cosmonus › Company › Blog")
+ * in place of the bare URL, so every page below the top level is worth giving one. Pass the trail without
+ * the home page — it is added here.
+ */
+export function breadcrumbJsonLd(trail: { name: string; path: string }[]) {
+  const items = [{ name: site.name, path: "/" }, ...trail];
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: `${site.url}${item.path === "/" ? "" : item.path}`,
+    })),
+  };
+}
+

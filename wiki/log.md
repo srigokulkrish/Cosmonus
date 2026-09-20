@@ -288,3 +288,42 @@
 - The mobile menu's overview link took the same colour, keeping its shared `row`/`rowname` underline.
 - This is the first use of accent as text — `design-system.md` updated, since the rule was "marker dots only".
   Violet on white is 4.7:1, so it passes AA at 15px. typecheck, lint and build pass.
+
+## [2026-09-21] build | Blog section under Company
+- Owner: Research is for what we learn about our own products and process, so explainers do not belong there. New
+  `/company/blog` and `/company/blog/[slug]`, with posts in a new `content/blog.ts`. Research keeps its four notes.
+- A `Post` carries a `tag` instead of `kind · area · status`; `Engineering` and `Fundamentals` are the two tags.
+- Wired into the Company mega menu, mobile menu and footer (`lib/site.ts`), the `/company` index — now four cards, so
+  `SectionPage` switches it to the 2×2 `PAIRS` layout on its own — the About rows, "More in" strips and the sitemap.
+
+## [2026-09-21] design | The blog gets its own UI
+- Owner: "Blog UI can be different, it should not replicate the research theme." `components/blog/*`: masthead
+  instead of a banner, `FeaturedPost` lead story, `PostCard`s on the thirds; posts in one centred 860px column with
+  the cover breaking out wider, a 23px standfirst, and the what/why/when/how rows in a soft callout panel.
+- Meta is `tag · N min read` from `readingTime()`. No author or date anywhere — we have none, and they are not ours
+  to invent. Research keeps `ui/ArticleBody` and its own template.
+- Also: research-note body off the thirds (168px meta column, text to 960px) and `StatusKey`'s first row lost the
+  rule above it — both owner requests about wasted space.
+
+## [2026-09-21] content | Ten blog posts: four crafts, six fundamentals
+- Four on the crafts (prompt, context, loop, harness engineering) and six fundamentals (AI models, embeddings,
+  vector databases, RAG, MCP, System One models). Analogy first, an "In short" what/why/when/how block, a section per
+  question, a "Where it stops" naming the honest limit, and a real "when not to use this".
+- **Every post stands alone** (owner): no ordinals, no "the third of four", no references to a previous or next post.
+  A reader landing from search gets the whole picture in the opening.
+- `system-one-models-jev` covers TypeSafe AI's Jev — **not** Typeface, a different company; checked before writing.
+  Handles "cannot hallucinate" honestly (it guarantees schema, not truth) and labels TypeSafe's benchmarks as their
+  own. New `Post.sources` panel and inline `[text](href)` links in copy for attribution.
+
+## [2026-09-21] seo | Per-post share cards, breadcrumbs, titles and internal links
+- `app/company/blog/[slug]/opengraph-image.tsx` generates a share card per post (title + tag + reading time on the
+  brand gradient); `pageMetadata` grew `image: "fromFile"` so Next uses it instead of the site-wide image.
+- `breadcrumbJsonLd()` + `components/site/JsonLd.tsx`: BreadcrumbList on all 15 section/capability pages (both
+  templates now take their route `path`), both index pages, and every note and post. `/company/blog` also emits
+  `Blog` data listing its posts.
+- Dropped the redundant " — Blog" / " — Research" from titles, tightened three descriptions that were over 160
+  characters, made card titles real `h2`/`h3`, and added 18 internal links between posts.
+- Sitemap is 37 URLs; 56 static pages build. Remaining gap: no `datePublished` (we show no dates) — open-questions.
+- **Note for next time: do not run Prettier on this repo.** It has no config and was hand-formatted at ~140 columns;
+  `npx prettier --write` reflowed 60+ untouched files to 80 and had to be reverted.
+

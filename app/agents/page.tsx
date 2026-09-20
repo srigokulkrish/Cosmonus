@@ -4,5 +4,5 @@ import { agents as content } from "@/content/sections";
 export const metadata = sectionMetadata(content, "/agents");
 
 export default function AgentsPage() {
-  return <SectionPage content={content} />;
+  return <SectionPage content={content} path="/agents" />;
 }

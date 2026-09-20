@@ -6,7 +6,9 @@ import { MediaPanel } from "@/components/ui/MediaPanel";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Band, HALVES, Intro, PAIRS, SectionHead, SideHead, SideLayout, Steps, THIRDS } from "@/components/ui/Section";
 import type { SectionContent, SectionIndexItem } from "@/content/sections";
-import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
+import { menus } from "@/lib/site";
 
 /** `metadata` for a section landing route (layout adds "— Cosmonus"). */
 export function sectionMetadata(c: SectionContent, path: string): Metadata {
@@ -39,11 +41,13 @@ function IndexCard({ item, index, tall }: { item: SectionIndexItem; index: numbe
  * Section landing template (Studio, Product, Company, Intelligence, Agents):
  * hero → two-column intro → index of the section's pages → one section of substance → band to a sibling section.
  */
-export function SectionPage({ content: c }: { content: SectionContent }) {
+export function SectionPage({ content: c, path }: { content: SectionContent; path?: string }) {
   const n = c.index.items.length;
   const cards = c.index.items.map((item, i) => <IndexCard key={item.href} item={item} index={i} tall={n === 2} />);
+  const menu = path ? menus.find((m) => m.href === path) : undefined;
   return (
     <>
+      {menu && <JsonLd data={breadcrumbJsonLd([{ name: menu.label, path: menu.href }])} />}
       <InnerHero tone={c.hero.tone} title={c.hero.title} lead={c.hero.lead} video={c.hero.video} />
       <Intro {...c.intro} />
 

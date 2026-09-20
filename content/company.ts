@@ -11,6 +11,7 @@ import type { Step, StripLink } from "@/components/ui/Section";
 const strip = {
   about: { name: "About", href: "/company/about", desc: "Who we are and why." },
   research: { name: "Research", href: "/company/research", desc: "What we are learning." },
+  blog: { name: "Blog", href: "/company/blog", desc: "Things worth explaining, in plain language." },
   careers: { name: "Careers", href: "/company/careers", desc: "Work on the real world." },
 } satisfies Record<string, StripLink>;
 
@@ -37,6 +38,7 @@ export const about = {
       { name: "Intelligence", href: "/intelligence/spatial", desc: "Spatial intelligence and Trust Score." },
       { name: "Agents", href: "/agents/workflow", desc: "Systems that turn understanding into finished work." },
       { name: "Research", href: "/company/research", desc: "What we are learning, published as we go." },
+      { name: "Blog", href: "/company/blog", desc: "The ideas behind how we build, explained in plain language." },
     ] satisfies Row[],
   },
   why: {
@@ -121,7 +123,30 @@ export const research = {
   },
   // The note rows themselves come from content/research.ts.
   notes: { title: "Notes", allLabel: "All notes" },
-  more: [strip.about, strip.careers],
+  more: [strip.about, strip.blog],
+};
+
+/**
+ * Blog is the teaching side of the company: ideas and terms explained for anyone who wants to learn them.
+ * Research is the other side — what we are finding out about our own products and process.
+ *
+ * The blog does not use the section template: no banner film, a masthead instead, a lead story and a card
+ * grid (see wiki/design-system.md). So this block has no `hero`/`intro` — it has a masthead.
+ */
+export const blog = {
+  meta: {
+    title: "Blog",
+    description: "Plain explanations of the ideas behind the way we build.",
+  },
+  masthead: {
+    label: "Blog",
+    title: "Written to be understood, not to sound clever.",
+    lead: "Explanations of the ideas behind AI engineering and the ways of working behind what we build. Each post starts from the beginning, assumes you have not read the others, and uses ordinary words wherever ordinary words will do.",
+  },
+  featuredLabel: "Start here",
+  listTitle: "More posts",
+  allLabel: "All posts",
+  more: [strip.research, strip.careers],
 };
 
 export const careers = {

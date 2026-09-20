@@ -6,7 +6,9 @@ import { InnerHero } from "@/components/ui/Hero";
 import { Band, Intro, MediaCards, MoreStrip, Steps } from "@/components/ui/Section";
 import { getCapability, type Capability, type CapabilitySection } from "@/content/capabilities";
 import { inPublic } from "@/lib/media";
-import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
+import { menus } from "@/lib/site";
 
 /** `metadata` for a capability route: title = page name (layout adds "— Cosmonus"), description = lead. */
 export function capabilityMetadata(section: CapabilitySection, slug: string): Metadata {
@@ -20,7 +22,7 @@ export function capabilityMetadata(section: CapabilitySection, slug: string): Me
  * sections written for the build — numbered process steps → "Where it shows up" rows → principles cards →
  * closing band — and finally the "More in …" strip. Each written section renders only when present.
  */
-export function CapabilityPage({ capability: c }: { capability: Capability }) {
+export function CapabilityPage({ capability: c, path }: { capability: Capability; path?: string }) {
   // "Where it shows up" only lists places outside this page's "More in …" strip; with fewer than two left it is dropped.
   const moreHrefs = new Set(c.more.links.map((l) => l.href));
   const showsUp = (c.showsUp ?? []).filter((r) => !moreHrefs.has(r.href));
@@ -28,8 +30,11 @@ export function CapabilityPage({ capability: c }: { capability: Capability }) {
   const cards = c.cards.map((card) => ({ ...card, video: inPublic(card.video), image: inPublic(card.image) }));
   const steps = c.process?.steps.map((s) => ({ ...s, image: inPublic(s.image) }));
   const showcase = (c.showcase ?? []).filter((g) => g.items.every((i) => inPublic(i.src)));
+  // Breadcrumb: the section this page belongs to, then the page itself.
+  const menu = path ? menus.find((m) => path.startsWith(`${m.href}/`)) : undefined;
   return (
     <>
+      {menu && path && <JsonLd data={breadcrumbJsonLd([{ name: menu.label, path: menu.href }, { name: c.title, path }])} />}
       <InnerHero tone={c.heroTone} title={c.title} lead={c.lead} video={inPublic(c.heroVideo)} videoZoom={c.heroVideoZoom} />
       <Intro label={c.intro.label} title={c.intro.title} body={c.intro.body} />
       <MediaCards title={c.cardsTitle} cards={cards} />
@@ -54,5 +59,5 @@ export function CapabilityPage({ capability: c }: { capability: Capability }) {
 
 /** Route helper: renders the capability for a section/slug. */
 export function renderCapability(section: CapabilitySection, slug: string) {
-  return <CapabilityPage capability={getCapability(section, slug)} />;
+  return <CapabilityPage capability={getCapability(section, slug)} path={`/${section}/${slug}`} />;
 }

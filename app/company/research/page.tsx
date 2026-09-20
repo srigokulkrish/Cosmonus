@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import { NoteList } from "@/components/company/NoteList";
 import { StatusKey } from "@/components/company/StatusKey";
 import { InnerHero } from "@/components/ui/Hero";
@@ -12,6 +13,12 @@ export const metadata: Metadata = pageMetadata({ ...research.meta, path: "/compa
 export default function ResearchPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Company", path: "/company" },
+          { name: "Research", path: "/company/research" },
+        ])}
+      />
       <InnerHero tone="dark" {...research.hero} />
       <Intro {...research.intro} />
       <StatusKey {...research.statusKey} />

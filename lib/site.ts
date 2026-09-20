@@ -54,10 +54,11 @@ export const menus: Menu[] = [
     href: "/company",
     label: "Company",
     title: "Cosmonus",
-    desc: "Who we are, what we are learning, and how to join us.",
+    desc: "Who we are, what we are learning, what we can explain, and how to join us.",
     links: [
       { name: "About", href: "/company/about", desc: "Who we are and why" },
       { name: "Research", href: "/company/research", desc: "What we are learning" },
+      { name: "Blog", href: "/company/blog", desc: "Ideas explained in plain language" },
       { name: "Careers", href: "/company/careers", desc: "Work on the real world" },
     ],
   },

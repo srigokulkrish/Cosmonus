@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { NoteCards } from "@/components/company/NoteCards";
+import { JsonLd } from "@/components/site/JsonLd";
+import { ArticleBody } from "@/components/ui/ArticleBody";
 import { ButtonLink } from "@/components/ui/Button";
 import { MediaPanel } from "@/components/ui/MediaPanel";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { areaHref, getNote, notes } from "@/content/research";
-import { pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -20,7 +22,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const note = getNote((await params).slug);
   return note
-    ? pageMetadata({ title: `${note.title} — Research`, description: note.summary, path: `/company/research/${note.slug}`, type: "article" })
+    ? pageMetadata({ title: note.title, description: note.summary, path: `/company/research/${note.slug}`, type: "article" })
     : {};
 }
 
@@ -32,6 +34,13 @@ export default async function ResearchNotePage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Company", path: "/company" },
+          { name: "Research", path: "/company/research" },
+          { name: note.title, path: `/company/research/${note.slug}` },
+        ])}
+      />
       {/* Article structured data */}
       <script
         type="application/ld+json"
@@ -71,28 +80,16 @@ export default async function ResearchNotePage({ params }: Props) {
         <MediaPanel tone={note.cover.tone} label={note.cover.label} labelSize="text-[13px]" className="h-[260px] rounded-card sm:h-[400px] lg:h-[520px]" />
       </div>
 
-      {/* Body: on the thirds — note details in the first third, the text across the other two. */}
-      <article className="wrap grid grid-cols-1 gap-x-5 gap-y-10 pt-14 lg:grid-cols-3 lg:pt-20">
-        <aside className="flex flex-col gap-1.5 lg:pr-10">
+      {/* Body: a narrow meta column beside the text, so the reading column keeps its width.
+          Off the thirds deliberately — a one-word label does not earn a third of the page. */}
+      <article className="wrap flex flex-col gap-10 pt-14 lg:flex-row lg:gap-10 lg:pt-20">
+        <aside className="flex flex-col gap-1.5 lg:w-[168px] lg:shrink-0">
           <MonoLabel>Area</MonoLabel>
           <Link href={areaHref[note.area]} className="row inline-flex min-h-11 items-center self-start text-base font-medium">
             <span className="rowname">{note.area}</span>
           </Link>
         </aside>
-        <div className="flex max-w-[720px] flex-col gap-6 text-lg leading-[1.6] text-ink-2 lg:col-span-2">
-          {note.body.map((section, i) => (
-            <section key={i} className="flex flex-col gap-6">
-              {section.heading && (
-                <h2 className="m-0 mt-6 text-[26px] leading-[1.2] font-medium tracking-[-0.02em] text-ink lg:text-[28px]">{section.heading}</h2>
-              )}
-              {section.paragraphs.map((p, j) => (
-                <p key={j} className="m-0 text-pretty">
-                  {p}
-                </p>
-              ))}
-            </section>
-          ))}
-        </div>
+        <ArticleBody sections={note.body} />
       </article>
 
       {/* More research */}
