@@ -104,7 +104,7 @@ export const studio: SectionContent = {
   },
   band: {
     title: "What the studio makes it for.",
-    body: "StayOnMap and Happenous are where the studio's work meets the people it is for.",
+    body: "StayOnMap is where the studio's work meets the people it is for. Happenous is being built.",
     href: "/product",
     action: "See the products",
   },
@@ -113,7 +113,7 @@ export const studio: SectionContent = {
 export const product: SectionContent = {
   meta: {
     title: "Product",
-    description: "StayOnMap and Happenous: two products built on the idea that software should know where you are and what is around you.",
+    description: "StayOnMap, and Happenous in build: two products on the idea that software should know where you are and what is around you.",
   },
   hero: {
     tone: "dark",
@@ -140,7 +140,7 @@ export const product: SectionContent = {
         name: "Happenous",
         href: "/product/happenous",
         title: "Life happens outside the feed.",
-        desc: "An activity-based social network. Built around what people are actually doing, and who they could do it with — not around what keeps them scrolling.",
+        desc: "An activity-based social network, in build. Organised around what people are actually doing, and who they could do it with — not around what keeps them scrolling.",
         tone: "light",
         asset: "[ HAPPENOUS — people doing things, outdoors, candid ]",
       },
@@ -254,7 +254,7 @@ export const company: SectionContent = {
 export const intelligence: SectionContent = {
   meta: {
     title: "Intelligence",
-    description: "How Cosmonus systems understand place and trust.",
+    description: "How Cosmonus systems understand the physical world: spatial intelligence for where things are, and Trust Score for how far a claim can be relied on.",
   },
   hero: {
     tone: "dark",

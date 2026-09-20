@@ -163,6 +163,15 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
   through to a landing page reads differently from the quick links beside it. On the desktop panel a 1px rule wipes
   in from the left on hover and focus (`scale-x` from `origin-left`, 300ms, the site easing); under
   `prefers-reduced-motion` it appears without the wipe. The mobile one keeps the shared `row`/`rowname` underline.
+- **An open menu frosts the page behind it** (owner, 2026-09-21): a `fixed` scrim under the bar
+  (`top-[60px] bottom-0`) with `bg-white/15 backdrop-blur-xs backdrop-saturate-150`, fading in and out with the
+  panel. It makes the panel the thing in focus rather than a card floating over busy hero footage.
+  **4px, not 24px** (owner, 2026-09-21, settled after two passes down from `xl`): heavy blur reads as fog and
+  hides the page instead of setting it back. Glass is a *little* blur plus a light tint and some saturation — the
+  page stays readable, just clearly behind. Turn it up and it stops looking like glass.
+  Two things it must keep: it is **`pointer-events-none`**, because the header wrapper closes the menu on mouse
+  leave and a scrim that swallowed the pointer would hold every menu open across the whole page; and it sits
+  **before the panel in the DOM**, so the panel paints over it. Desktop only — the mobile menu is a full sheet.
 - **Product menu:** three columns (title + description + overview link, then one large card per product). Cards use
   product brand colours, the only large colour fills on the site: `stayonmap #0D8A5F`, `happenous #E8421A`
   (provisional reddish orange until the owner picks the final colour; change the token in `globals.css`).

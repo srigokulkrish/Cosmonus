@@ -31,6 +31,27 @@ project, so the old tags were read from the live site's `<head>`.
   individual posts.
 - Privacy and Terms stay `noindex, follow` (with canonicals) and are not in the sitemap.
 
+## Site-wide audit (2026-09-21)
+Owner asked for every page to carry real facts and for the site to be properly SEO'd. What changed:
+- **Meta descriptions**: 13 pages had descriptions under 70 characters — the capability pages and two index
+  pages were falling back to their one-line `lead`, wasting most of a ~155-character snippet. Each now has a
+  written description that restates what that page actually says. `Capability` gained an optional
+  `metaDescription`; it still defaults to the lead. **No page is under 70 characters now** — re-check with the
+  audit below if you add one.
+- **FAQPage structured data** on both product pages (`faqJsonLd` in `lib/seo.ts`): six questions on StayOnMap,
+  three on Happenous. It **drops any answer still holding a `[BRACKETED]` placeholder** — a placeholder is honest
+  on the page, where a reader can see it is unfilled, but in structured data it is a claim handed to Google.
+- **Keywords** in `lib/site.ts` now include what the blog actually publishes about (AI engineering, prompt and
+  context engineering, RAG, vector databases, embeddings, MCP), not only the products.
+
+To re-run the description audit after adding pages:
+`grep -o '<meta name="description" content="[^"]*"' .next/server/app/**/*.html` and check the lengths.
+
+## Titles still over 60 characters
+Five blog posts and one research note run past the ~60 characters a result shows, so they are truncated. The
+subject is first in every one, so the truncation costs little; if it ever matters, add a short `seoTitle` rather
+than shortening the headings people actually read.
+
 ## Blog SEO (2026-09-21)
 - **Titles**: a post's `<title>` is its own title plus " — Cosmonus". The earlier " — Blog" / " — Research" middle
   was dropped — it pushed titles past the ~60 characters a result shows, for no gain.

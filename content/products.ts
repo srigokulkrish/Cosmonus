@@ -11,7 +11,6 @@
 import type { ExplainerPart } from "@/components/product/Explainer";
 import type { FaqItem } from "@/components/product/Faq";
 import type { LinkGroup } from "@/components/product/LinkGroups";
-import type { Point } from "@/components/product/Points";
 import type { SplitColumn } from "@/components/product/Split";
 import type { Tone } from "@/components/ui/MediaPanel";
 import type { MediaCardData, Step, StripLink } from "@/components/ui/Section";
@@ -60,7 +59,6 @@ export type StayOnMapContent = ProductContent & {
 
 export type HappenousContent = ProductContent & {
   why: { label: string; title: string; paragraphs: string[] };
-  can: { title: string; lead: string; points: Point[] };
   builtOn: BuiltOn;
   faq: Faq;
 };
@@ -218,47 +216,47 @@ export const stayonmap: StayOnMapContent = {
 export const happenous: HappenousContent = {
   meta: {
     title: "Happenous",
-    description: "Life happens outside the feed. An activity-based social network.",
+    description: "An activity-based social network, in build. Organised around what people are doing, not around a feed.",
   },
   hero: {
     tone: "light",
     title: "Life happens outside the feed.",
-    lead: "An activity-based social network.",
+    lead: "An activity-based social network, in build.",
   },
   intro: {
     label: "Happenous",
     title: "Built around doing, not scrolling.",
-    body: "Most social products are organised around content. Happenous is organised around activity: what people are actually doing, and who they could do it with.",
+    body: "Most social products are organised around content. Happenous is being built around activity instead: what people are actually doing, and who they could do it with. It is not open yet — happenous.com is a holding page, and this describes what we are making rather than something you can use today.",
   },
   different: {
-    title: "What makes it different",
+    title: "The idea",
     cards: [
       {
         tone: "dark",
         asset: "[ UI — activity card ]",
         title: "Activities, not posts",
-        body: "The unit of Happenous is something to do, with a place and a time attached.",
+        body: "The unit of Happenous is something to do, with a place and a time attached — not a post.",
       },
       {
         tone: "light",
         asset: "[ UI — nearby view ]",
         title: "People nearby",
-        body: "Activities appear around you, so you find people through what they are doing nearby — not through follower counts.",
+        body: "The plan is to surface activities around you, so people are found through what they are doing nearby rather than through follower counts.",
       },
       {
         tone: "mid",
         asset: "[ PHOTO — people together ]",
         title: "Out of the app",
-        body: "The point is time spent together, not time spent in the app.",
+        body: "The point is time spent together, not time spent in the app. That is the test we are designing against.",
       },
     ],
   },
   how: {
-    title: "How it works",
+    title: "How it is meant to work",
     steps: [
       { title: "Pick something to do", body: "Find something happening near you — a run, a film, a workshop — or make it happen: choose what, where, when and how many people." },
-      { title: "See who is in", body: "See who has joined, then talk to the group in the activity chat or message one person directly." },
-      { title: "Go", body: "Meet up and do it. Afterwards, only the people who were there can add photos and videos to the activity's memory." },
+      { title: "See who is in", body: "See who has joined, then talk it through before you meet." },
+      { title: "Go", body: "Meet up and do it. Afterwards, the people who were there keep what it produced." },
     ],
   },
   why: {
@@ -266,58 +264,42 @@ export const happenous: HappenousContent = {
     title: "Why activities, not feeds",
     paragraphs: [
       "A feed is made to be scrolled. It rewards whatever keeps you looking, and it measures people by how many others follow them.",
-      "An activity asks something different: turn up. It has a place and a time, so the people who join it are the people nearby who want to do the same thing. You find them through what they are doing, not through follower counts.",
-      "That is why Happenous is organised around doing. The point is time spent together, not time spent in the app.",
-    ],
-  },
-  can: {
-    title: "What you can do",
-    lead: "Everything in Happenous leads to the same place: a plan that actually happens.",
-    points: [
-      { label: "Join", title: "Find something nearby", body: "See what is happening around you — a run, a film, a workshop — and join the things you want to do." },
-      { label: "Host", title: "Make it happen", body: "Start your own activity: choose what, where, when and how many people." },
-      { label: "Chat", title: "Talk it through", body: "Talk to everyone who has joined in the activity chat, or message one person directly." },
-      { label: "Remember", title: "Keep the memory", body: "Afterwards, the people who were there can add photos and videos to the activity's memory." },
+      "An activity asks something different: turn up. It has a place and a time, so the people who join it are the people nearby who want to do the same thing. You would find them through what they are doing, not through follower counts.",
+      "That is the argument the product is being built on. Whether it holds is something we will only know once people are using it.",
     ],
   },
   builtOn: {
     title: "Built on",
     lead: "Happenous starts where our intelligence work does: a place, a time and the people nearby.",
-    groups: [
-      { label: "Capabilities", links: [capability.spatial] },
-    ],
+    groups: [{ label: "Capabilities", links: [capability.spatial] }],
   },
   faq: {
     title: "Questions",
     items: [
       {
+        q: "Can I use Happenous now?",
+        a: "No. It is still being built, and happenous.com is a holding page. Nothing on this page describes something you can use today.",
+      },
+      {
+        q: "When does it open?",
+        a: "[LAUNCH TIMING — owner to confirm]. We would rather leave this blank than give a date we are not sure of.",
+      },
+      {
         q: "What counts as an activity?",
         a: "Something to do, with a place and a time attached — a run, a film, a workshop. It is the unit of Happenous, in place of a post.",
       },
       {
-        q: "Can I host my own activity?",
-        a: "Yes. Choose what, where, when and how many people, and make it happen.",
-      },
-      {
-        q: "How do I talk to people before we meet?",
-        a: "See who has joined, then talk to the group in the activity chat or message one person directly.",
-      },
-      {
-        q: "Do I need followers?",
-        a: "No. You find people through what they are doing nearby, not through follower counts.",
-      },
-      {
-        q: "Who can add photos and videos to an activity?",
-        a: "Only the people who were there. Afterwards, they can add photos and videos to the activity's memory.",
+        q: "Why activities instead of a feed?",
+        a: "A feed rewards whatever keeps you looking. An activity asks you to turn up, which is a different thing to design for.",
       },
     ],
   },
   visit: {
-    title: "Get outside.",
-    body: "Find something happening near you — a run, a film, a workshop — or start your own and see who joins.",
+    title: "Not open yet.",
+    body: "Happenous is still being built. happenous.com is a holding page for now — there is nothing to join there yet.",
     asset: "[ HAPPENOUS — people out doing something together ]",
     href: "https://www.happenous.com",
-    action: "Visit Happenous",
+    action: "See happenous.com",
   },
   more: {
     label: "More in Product",

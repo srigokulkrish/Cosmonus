@@ -481,3 +481,54 @@
   `.write-in` animation with its `@property --pen`. They existed only for that title, and a font downloaded for
   invisible text is a request for nothing. The tile assembly stays.
 - typecheck, lint and build pass.
+
+## [2026-09-21] content | Happenous reframed as pre-launch; site-wide facts audit
+- Owner: every page must carry real facts. Audited all copy for invented people, numbers, customers, partners,
+  dates and superlatives — **none found**; the copy was already disciplined there. One product was not.
+- **happenous.com serves "We're under construction"**, yet `/product/happenous` described activity chat, direct
+  messaging, post-event photo memories and host limits as working, and its FAQ answered "Can I host my own
+  activity?" with "Yes." Owner confirmed it is pre-launch. The page now states it is not open, describes the idea
+  and how it is *meant* to work, and its launch date is a visible `[LAUNCH TIMING]` placeholder.
+- Removed the "What you can do" section: it listed user capabilities for a product nobody can use and duplicated
+  the steps above it. Also corrected "the working screens of StayOnMap and Happenous … shipped front end" on
+  `/studio/web`, which claimed a front end that does not exist, and the menu blurb, home card, Product index and
+  Studio "where it shows up" rows, which all now say "in build".
+- **StayOnMap confirmed live by the owner**, copy unchanged. Recorded a trap in `content.md`: its documented
+  source, cosmonus.com/work/stayonmap, now 308-redirects into this site, so checking it only reflects our own
+  copy back. It can no longer verify anything.
+
+## [2026-09-21] seo | Real descriptions on every page, FAQ structured data
+- 13 pages had meta descriptions under 70 characters, falling back to a one-line lead and wasting most of the
+  snippet. All now have written descriptions restating that page's own copy; `Capability` gained an optional
+  `metaDescription`. Nothing is under 70 characters any more.
+- Added `faqJsonLd` and FAQPage data to both product pages — six questions on StayOnMap, three on Happenous. It
+  filters out answers still holding a `[BRACKETED]` placeholder, so an unfilled fact is never handed to Google.
+- Keywords in `lib/site.ts` extended to what the blog publishes about. typecheck, lint and build pass.
+
+## [2026-09-21] design | Page frosts behind an open mega menu
+- Owner: the background should be glossy blur when a dropdown opens. Added a scrim in
+  `components/site/Header.tsx` — `fixed`, starting at `top-[60px]` so the bar keeps its own frost,
+  `bg-white/15 backdrop-blur-xs backdrop-saturate-150`, fading with the panel on the same easing.
+- Started at `backdrop-blur-xl` (24px), which the owner said was too much, then 8px, and settled at **4px**
+  (`backdrop-blur-xs`) with a light tint and some saturation. Heavy blur reads as fog and hides the page instead
+  of setting it back; glass is a *little* blur. The bar keeps its own 24px — that is a different job, making text
+  legible over scrolling content rather than pushing a layer back.
+- `pointer-events-none` matters: the header wrapper closes the menu on `onMouseLeave`, so a scrim that took the
+  pointer would count as "still inside the menu" and hold it open wherever the cursor went on the page.
+- Sits before the panel in the DOM so the panel paints over it, and is `lg:` only — the mobile menu is already a
+  full-screen sheet. Falls back to a flat white tint where `backdrop-filter` is unsupported, like the bar does.
+- typecheck, lint and build pass.
+
+## [2026-09-21] fix | Banner films no longer compete with the page load
+- Owner: some pages' video takes time to load. Measured it: `public/media` is 173 MB, and `/company/careers`
+  alone ships a **57 MB** banner — about 114 s on a 4 Mbps connection. `/studio/animation` is 32 MB across three
+  clips, `/company/about` 25 MB, `/studio` 22 MB.
+- `BannerVideo` had `preload="auto"`, which asks the browser to pull the whole file immediately, competing with
+  the fonts, CSS and markup. It now requests nothing until `load` has fired **and** the browser is idle
+  (`requestIdleCallback`, 2 s timeout), and renders no `<source>` until then — confirmed absent from the server
+  HTML, so the first paint cannot be blocked by it.
+- Skipped entirely under `navigator.connection.saveData` or a 2G `effectiveType`; the banner's flat tone is the
+  fallback and is a perfectly good banner. A `<source>` added after mount needs an explicit `load()` call, which
+  is why that effect exists.
+- **This does not fix the real problem.** The files need re-encoding to ~2–4 MB each, which needs `ffmpeg` — not
+  installed here. Sizes and targets recorded in `media-brief.md`. typecheck, lint and build pass.

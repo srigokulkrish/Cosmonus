@@ -100,7 +100,7 @@ export const about = {
 export const research = {
   meta: {
     title: "Research",
-    description: "What we are learning about real-world intelligence.",
+    description: "Notes on what we are learning about place, trust and agents — research, experiments and company news, each labelled with how far the work has got.",
   },
   hero: {
     video: "/media/research/banner.mp4",
@@ -136,7 +136,7 @@ export const research = {
 export const blog = {
   meta: {
     title: "Blog",
-    description: "Plain explanations of the ideas behind the way we build.",
+    description: "Plain explanations of AI engineering: models, embeddings, vector databases, RAG, MCP, and prompt, context, loop and harness engineering.",
   },
   masthead: {
     label: "Blog",

@@ -106,6 +106,11 @@ function more(section: CapabilitySection, slug: string) {
 
 type Entry = Omit<Capability, "more" | "metaDescription" | "heroTone" | "intro"> & {
   intro: { title: string; body: string };
+  /**
+   * The page's meta description. Defaults to the lead, which is a phrase — too short to fill a result
+   * snippet (Google shows ~155 characters). Write 120–155 that restate what the page actually says.
+   */
+  metaDescription?: string;
   /** Overrides the section default below (Image Generation, whose banner is a bright still). */
   heroTone?: Capability["heroTone"];
 };
@@ -117,7 +122,7 @@ function build(e: Entry): Capability {
     heroTone: e.heroTone ?? (e.section === "agents" ? "light" : "dark"),
     intro: { label: e.title, ...e.intro },
     more: more(e.section, e.slug),
-    metaDescription: e.lead,
+    metaDescription: e.metaDescription ?? e.lead,
   };
 }
 
@@ -125,6 +130,8 @@ const entries: Entry[] = [
   // ——— Studio ———
   {
     slug: "web",
+    metaDescription:
+      "Sites and product interfaces designed and built in-house: marketing sites, product screens and the map-heavy surfaces our products are met through.",
     section: "studio",
     title: "Web",
     lead: "Sites and product interfaces, designed and built in-house.",
@@ -135,7 +142,7 @@ const entries: Entry[] = [
     cardsTitle: "What we make",
     cards: [
       { tone: "dark", asset: "[ WEBSITE — full-page capture ]", title: "Websites", body: "Editorial, fast sites for Cosmonus and its products — this one included." },
-      { tone: "light", asset: "[ PRODUCT UI — app screens ]", title: "Product interfaces", body: "The working screens of StayOnMap and Happenous, from first sketch to shipped front end." },
+      { tone: "light", asset: "[ PRODUCT UI — app screens ]", title: "Product interfaces", body: "The working screens of our products, from first sketch to shipped front end." },
       { tone: "mid", asset: "[ MAP VIEW — recording ]", title: "Interactive maps", body: "Map views that stay readable when they are dense with real places and real listings." },
     ],
     process: {
@@ -148,7 +155,7 @@ const entries: Entry[] = [
     },
     showsUp: [
       { name: "StayOnMap", href: "/product/stayonmap", desc: "Map search, listings and a TrustScore that has to be readable at a glance." },
-      { name: "Happenous", href: "/product/happenous", desc: "Activity cards and the nearby view: screens meant to get people out of the app." },
+      { name: "Happenous", href: "/product/happenous", desc: "Activity cards and the nearby view: screens being designed to get people out of the app." },
       noteRow("a-new-site-from-our-own-studio", "How this site was organised, designed and built in-house."),
     ],
     principles: {
@@ -168,6 +175,8 @@ const entries: Entry[] = [
   },
   {
     slug: "animation",
+    metaDescription:
+      "Motion that explains how a system works — a route forming, a score resolving, an agent taking its next step. Animation that carries meaning, never decoration.",
     section: "studio",
     title: "Animation",
     heroVideo: "/media/animation/banner.mp4",
@@ -220,6 +229,8 @@ const entries: Entry[] = [
   },
   {
     slug: "image-generation",
+    metaDescription:
+      "Generative imagery held to an art director's standard: a brief and a point of view first, then art direction, selection and a great deal of editing.",
     section: "studio",
     title: "Image Generation",
     // The one still banner on the site: the page about making images shows one (owner, 2026-09-21).
@@ -337,6 +348,8 @@ const entries: Entry[] = [
   },
   {
     slug: "video",
+    metaDescription:
+      "Film for products that live outdoors. We combine generated and shot footage, then edit and grade it into launch films and the loops used across this site.",
     section: "studio",
     title: "Video",
     heroVideo: "/media/video/banner.mp4",
@@ -387,7 +400,7 @@ const entries: Entry[] = [
     },
     band: {
       title: "Made for products that live outdoors.",
-      body: "Happenous is about time spent together outside the app — the kind of product our films are made for.",
+      body: "Happenous is about time spent together outside the app — the kind of product our films are made for. It is still being built.",
       href: "/product/happenous",
       action: "See Happenous",
     },
@@ -396,6 +409,8 @@ const entries: Entry[] = [
   // ——— Intelligence ———
   {
     slug: "spatial",
+    metaDescription:
+      "Spatial intelligence is our work on giving software a sense of place: where something is, what surrounds it, and why the same question changes with the street.",
     section: "intelligence",
     title: "Spatial Intelligence",
     lead: "Knowing where things are, and why it matters.",
@@ -440,6 +455,8 @@ const entries: Entry[] = [
   },
   {
     slug: "trust-score",
+    metaDescription:
+      "Trust Score is our approach to making reliability legible — a readable signal for how far a listing, a place or a claim can be relied on, with its reasons.",
     section: "intelligence",
     title: "Trust Score",
     lead: "A readable signal for how far something can be relied on.",
@@ -484,6 +501,8 @@ const entries: Entry[] = [
   // ——— Agents ———
   {
     slug: "workflow",
+    metaDescription:
+      "A workflow agent takes responsibility for a whole job rather than a single reply: it gathers context, plans the steps, uses its tools and hands back a result.",
     section: "agents",
     title: "Workflow Agents",
     lead: "Agents that carry one task from start to finish.",
@@ -526,6 +545,8 @@ const entries: Entry[] = [
   },
   {
     slug: "automation",
+    metaDescription:
+      "Not everything needs an agent. Where a task is well understood we automate it plainly and reliably, and keep agents for the parts that need judgement.",
     section: "agents",
     title: "Automation",
     lead: "Routine work, handled the same way every time.",
@@ -569,6 +590,8 @@ const entries: Entry[] = [
   },
   {
     slug: "experiments",
+    metaDescription:
+      "Prototypes and the open questions behind them, published honestly. Some become products or research and many do not; each is labelled with how far it has got.",
     section: "agents",
     title: "Experiments",
     lead: "Prototypes and open questions.",
@@ -613,6 +636,8 @@ const entries: Entry[] = [
   },
   {
     slug: "systems",
+    metaDescription:
+      "Agents are one part of a system. Around them sit databases, queues and services that do exactly what they are told. We design the whole, not just the agent.",
     section: "agents",
     title: "Conventional & Multi-tool Systems",
     lead: "Classic software and agents that use many tools, working together.",

@@ -30,11 +30,11 @@ const products: { name: string; href: string; site: { href: string; label: strin
   {
     name: "Happenous",
     href: "/product/happenous",
-    site: { href: "https://www.happenous.com", label: "Open happenous.com" },
+    site: { href: "https://www.happenous.com", label: "See happenous.com" },
     tone: "light",
     asset: "[ HAPPENOUS — people doing things, outdoors, candid ]",
     title: "Life happens outside the feed.",
-    body: "An activity-based social network. Built around what people are actually doing, and who they could do it with — not around what keeps them scrolling.",
+    body: "An activity-based social network, in build. Organised around what people are actually doing, and who they could do it with — not around what keeps them scrolling.",
   },
 ];
 

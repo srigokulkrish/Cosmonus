@@ -14,7 +14,21 @@ All copy is typed data in `content/`:
 - Buttons say where they go ("View open roles", "Visit StayOnMap"); never "Get started"/"Book demo".
 - Media stays as `MediaPanel` placeholders with `[ LABEL ]` until real footage exists. No stock imagery.
 
+## Product status (owner, 2026-09-21)
+- **StayOnMap is live and its facts still hold** — confirmed by the owner. Written in the present tense.
+- **Happenous is pre-launch.** happenous.com serves "We're under construction". The page used to describe activity
+  chat, direct messaging, post-event photo memories and host limits as working features, and its FAQ answered
+  "Can I host my own activity?" with "Yes." All of that is gone. The page now says plainly that it is not open,
+  describes the idea and how it is *meant* to work, and its launch date is a visible `[BRACKETED]` placeholder.
+  The "What you can do" section was removed outright: it listed user capabilities for a product nobody can use,
+  and duplicated the steps above it. Menu blurb, home card, Product index and the Studio "where it shows up" rows
+  all say "in build" too. **Keep Happenous in this tense until the owner says it has launched.**
+
 ## StayOnMap source of truth
+- **Careful:** the documented source, https://www.cosmonus.com/work/stayonmap, is now a 308 redirect *into this
+  site* (see next.config.ts), so it can no longer verify anything — checking it just reflects our own copy back.
+  stayonmap.com serves only the tagline. The facts below are as recorded on 2026-09-19 and re-confirmed by the
+  owner on 2026-09-21; if they are ever questioned again, only the owner can settle them.
 - Since 2026-09-19 StayOnMap facts come from the owner's live case study, https://www.cosmonus.com/work/stayonmap
   (India's broker market; twelve live trust sub-scores; separate risk score that auto-suspends; opt-in fraud agent;
   decision trace; map pins with live rent; visit requests; private chat; digital lease; one account is tenant and owner;

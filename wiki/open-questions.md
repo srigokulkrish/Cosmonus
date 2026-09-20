@@ -16,5 +16,6 @@
 ## Decisions
 - Is "Conventional & Multi-tool Systems" one page (as built) or two?
 - Do the About principles and Careers copy sound right? (Written for the build.)
-- Are the Happenous features in its steps live?
+- ~~Are the Happenous features in its steps live?~~ **Answered 2026-09-21: no, Happenous is pre-launch.** The
+  page has been reframed; see content.md. What is still needed: **when it opens** (`[LAUNCH TIMING]` in its FAQ).
 - Final Happenous brand colour (currently provisional `#E8421A` in `app/globals.css`).

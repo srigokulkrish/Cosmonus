@@ -105,3 +105,24 @@ export function breadcrumbJsonLd(trail: { name: string; path: string }[]) {
   };
 }
 
+/**
+ * FAQPage structured data, for a page that really does carry a list of questions and answers.
+ *
+ * Items whose answer still holds a `[BRACKETED]` owner placeholder are left out: a placeholder is honest on
+ * the page, where a reader can see it is unfilled, but in structured data it is a claim handed to a search
+ * engine. Returns null when nothing is left, so a page emits no FAQ data rather than an empty one.
+ */
+export function faqJsonLd(items: { q: string; a: string }[]) {
+  const answered = items.filter((i) => !/\[[A-Z]/.test(i.a));
+  if (answered.length === 0) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: answered.map((i) => ({
+      "@type": "Question",
+      name: i.q,
+      acceptedAnswer: { "@type": "Answer", text: i.a },
+    })),
+  };
+}
+

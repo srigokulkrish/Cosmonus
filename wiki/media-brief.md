@@ -56,6 +56,27 @@ Animated diagrams are the most engaging option here: one idea per loop, drawn on
 | Product card — Happenous | Candid outdoor footage of people doing an activity together (a run, a game, a workshop) | Video loop | Human warmth next to the map card |
 | Research cards | Use the research note covers (see Research) | Stills | |
 
+### Video weight — the files are far too big (2026-09-21)
+`public/media` is **173 MB**. Banners are served as plain MP4s, so the whole file is fetched; there is no
+adaptive streaming. Worst offenders, and what they cost a visitor on a typical 4G connection:
+
+| Page | Video | 4 Mbps |
+| --- | --- | --- |
+| `/company/careers` | **57 MB** | ~114 s |
+| `/studio/animation` | 32 MB (banner + two cards) | ~64 s |
+| `/company/about` | 25 MB | ~50 s |
+| `/studio` | 22 MB | ~44 s |
+| `/` (home) | 10 MB | ~20 s |
+
+**Target: a banner loop should be about 2–4 MB** — 1920×1080 or 1280×720, H.264 at roughly 2–3 Mbps, 8–12
+seconds, no audio track. `company/banner.mp4` (4 MB) and `research/banner.mp4` (2 MB) are the right shape; the
+rest were exported straight from the source. Re-encoding is the only real fix — it needs `ffmpeg`, which is not
+installed on the build machine, so it has not been done.
+
+Code-side mitigation is already in place (`components/ui/BannerVideo.tsx`): nothing is requested until the page
+has loaded and the browser is idle, and nothing at all under Save-Data or on 2G. That stops video competing with
+first paint; it does not make a 57 MB file small.
+
 ### Section landing pages
 | Page | Hero | Cards |
 | --- | --- | --- |

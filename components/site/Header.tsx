@@ -203,6 +203,23 @@ export function Header() {
         </div>
       </header>
 
+      {/* Glass behind an open menu: the page frosts over while the panel is up, so the panel reads as the
+          thing in focus rather than as a card floating on busy footage. It starts under the bar (top-[60px]),
+          which keeps its own frost, and it is `pointer-events-none` — the wrapper closes the menu on mouse
+          leave, so a scrim that swallowed the pointer would hold every menu open across the whole page. */}
+      <AnimatePresence>
+        {panel && (
+          <motion.div
+            key="scrim"
+            aria-hidden="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.28, ease: EASE } }}
+            exit={{ opacity: 0, transition: { duration: 0.18, ease: EASE } }}
+            className="pointer-events-none fixed inset-x-0 top-[60px] bottom-0 hidden bg-white/15 backdrop-blur-xs backdrop-saturate-150 supports-[not(backdrop-filter:blur(1px))]:bg-white/60 lg:block"
+          />
+        )}
+      </AnimatePresence>
+
       {/* Desktop mega menu: overlays the hero, does not shift the page. The wrapper's top padding
           bridges the gap under the bar so the pointer can travel into the panel. */}
       <AnimatePresence>
