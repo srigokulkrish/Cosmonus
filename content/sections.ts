@@ -179,6 +179,7 @@ export const company: SectionContent = {
   },
   hero: {
     tone: "dark",
+    video: "/media/company/banner.mp4",
     title: "The company behind the work.",
     lead: "Who we are, what we are learning, and how to join us.",
   },
