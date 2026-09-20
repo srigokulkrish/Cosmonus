@@ -218,3 +218,80 @@
     animation-duration: 0.01ms !important;
   }
 }
+
+/* The Image Generation banner assembles: the picture arrives as a grid of tiles clearing in a scattered order,
+   the way a sampler resolves a canvas in patches. It runs once — no loop, no hover (owner, 2026-09-21).
+
+   The tiles are covers in the banner's own panel colour sitting over the picture, not slices of the picture.
+   That keeps the hero a single optimised `next/image` (see BannerImage: `sizes`, `quality`, `priority`) instead
+   of 60 elements each fetching the full file.
+
+   Tile count is fixed at 60 so the same children fit every arrangement — 6x10 on a phone, where the banner is
+   taller than it is wide, and 10x6 from `md` up. The order is a fixed shuffle (see BannerImage), not a ring or a
+   sweep, so it reads the same whichever arrangement is on screen.
+
+   Each cover scales very slightly as it fades: neighbours overlap for a moment instead of leaving hairline
+   seams between cells. */
+.tile-grid {
+  --cols: 6;
+  --rows: 10;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  pointer-events: none;
+}
+@media (width >= 48rem) {
+  .tile-grid {
+    --cols: 10;
+    --rows: 6;
+  }
+}
+.tile-grid > span {
+  background: var(--color-panel-light);
+  animation: tile-clear 1100ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes tile-clear {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+
+/* A scattered third of the tiles do it in two beats instead of one: the cover lifts to leave the picture
+   frosted in that square, then the frost clears. The picture comes in unevenly, the way a sampler resolves
+   some regions before others, rather than every square behaving identically.
+
+   These stay at opacity 1 throughout and fade their *background* instead — `backdrop-filter` is not applied by
+   an element that has been faded out, so animating opacity would take the frost away with it. The transparent
+   end is mixed from the panel token rather than plain `transparent`, so the colour cannot drift on the way. */
+.tile-grid > span.frosted {
+  animation: tile-frost 1600ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes tile-frost {
+  0% {
+    background-color: var(--color-panel-light);
+    backdrop-filter: blur(14px);
+    transform: scale(1);
+  }
+  45% {
+    background-color: color-mix(in srgb, var(--color-panel-light), transparent 100%);
+    backdrop-filter: blur(14px);
+  }
+  100% {
+    background-color: color-mix(in srgb, var(--color-panel-light), transparent 100%);
+    backdrop-filter: blur(0);
+    transform: scale(1.04);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* No assembly to watch: the picture is simply there. */
+  .tile-grid {
+    display: none;
+  }
+}

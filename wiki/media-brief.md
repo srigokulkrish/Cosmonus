@@ -70,16 +70,23 @@ Animated diagrams are the most engaging option here: one idea per loop, drawn on
 | --- | --- | --- | --- | --- |
 | **Web** | Screen capture of a Cosmonus-built interface, slow scroll | Full-page capture of this website | StayOnMap / Happenous app screens | Map view recording (reuse the StayOnMap one) |
 | **Animation** | A looping motion piece in the site's style | Motion identity loop (wordmark and grid lines animating) | Product film still | Explainer still: a route or a score forming |
-| **Image Generation** | One strong art-directed generated image, full bleed | Contact sheet: a grid of variations with the pick circled | Image series: 3–4 images sharing one visual system | Concept frames: rough frames for a product idea |
+| **Image Generation** | **Done** — `banner.webp` (owner, 2026-09-21). The one still banner on the site | Contact sheet: a grid of variations with the pick circled | Image series: 3–4 images sharing one visual system | Concept frames: rough frames for a product idea |
 | **Video** | 16:9 reel cut | A generated shot, labelled as generated | Before/after grade split-screen (drag or wipe) | Launch film still |
 
-**Image Generation carries the most stills** (owner, 2026-09-20). Its banner is a video like every other page's
-(`banner.mp4`), but everything below it is a still, and it gained a "Selected frames" row of three finished images
+**Image Generation carries the most stills** (owner, 2026-09-20). Its banner is now a still too — the only one on
+the site (`banner.webp`, owner 2026-09-21) — and everything below it is a still, and it gained a "Selected frames" row of three finished images
 after the cards. Its ten stills are named and wired already — drop them into `public/media/image-generation/` and
 they appear on the next build:
 `card-art-direction.jpg` · `card-visual-systems.jpg` · `card-concept-frames.jpg` ·
 `step-1.jpg` · `step-2.jpg` · `step-3.jpg` · `band.jpg` ·
 `frame-lane.jpg` · `frame-rooftops.jpg` · `frame-doorway.jpg`.
+
+**Banner stills — the specs** (measured from `BANNER` in `components/ui/Hero.tsx`, for whoever makes the next one):
+export **2:1 landscape, 2560×1280**, and expect `object-cover`. The box is 1560×760 at desktop (~97% of a 2:1 image
+visible) but only 350×560 on a phone, where it goes portrait and shows just the **central 31% of the width** — so
+the subject has to sit in the middle third. Keep the lower left quiet: the h1 and lead sit there under a
+`from-black/60` shade. No text in the image. `banner.webp` is 1774×887, which is fine at 1× and a little soft on a
+2× display.
 Prompts for all of them are in the prompts doc (see §5).
 
 ### Intelligence pages (dark heroes)

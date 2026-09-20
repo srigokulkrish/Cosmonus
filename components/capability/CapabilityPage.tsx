@@ -35,7 +35,18 @@ export function CapabilityPage({ capability: c, path }: { capability: Capability
   return (
     <>
       {menu && path && <JsonLd data={breadcrumbJsonLd([{ name: menu.label, path: menu.href }, { name: c.title, path }])} />}
-      <InnerHero tone={c.heroTone} title={c.title} lead={c.lead} video={inPublic(c.heroVideo)} videoZoom={c.heroVideoZoom} />
+      <InnerHero
+        tone={c.heroTone}
+        title={c.title}
+        lead={c.heroLead === false ? undefined : c.lead}
+        video={inPublic(c.heroVideo)}
+        videoZoom={c.heroVideoZoom}
+        image={inPublic(c.heroImage)}
+        align={c.heroAlign}
+        scrim={c.heroScrim}
+        assemble={c.heroAssemble}
+        titleHidden={c.heroTitleHidden}
+      />
       <Intro label={c.intro.label} title={c.intro.title} body={c.intro.body} />
       <MediaCards title={c.cardsTitle} cards={cards} />
       {showcase.map((g) => <Showcase key={g.label} group={g} />)}
@@ -52,7 +63,7 @@ export function CapabilityPage({ capability: c, path }: { capability: Capability
           imageAlt={c.band.imageAlt}
         />
       )}
-      <MoreStrip label={c.more.label} links={c.more.links} />
+      <MoreStrip label={c.more.label} links={c.more.links.map((l) => ({ ...l, image: inPublic(l.image) }))} />
     </>
   );
 }

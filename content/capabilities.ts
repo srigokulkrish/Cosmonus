@@ -22,6 +22,18 @@ export type Capability = {
   /** The banner video (MP4 in public/), once it exists; `heroVideoZoom` crops letterbox bars recorded into it. */
   heroVideo?: string;
   heroVideoZoom?: number;
+  /** A still banner instead of a film — Image Generation only (owner, 2026-09-21). */
+  heroImage?: string;
+  /** Banner copy at the top instead of the bottom. */
+  heroAlign?: "top" | "bottom";
+  /** Drop the shade over the banner. Only where the copy sits on a clear part of the picture. */
+  heroScrim?: boolean;
+  /** Assemble the still banner from tiles that clear from the middle outwards. */
+  heroAssemble?: boolean;
+  /** Keep the banner title out of the picture (it stays in the document). */
+  heroTitleHidden?: boolean;
+  /** Set false to leave the lead out of the banner. It is still the page's meta description. */
+  heroLead?: boolean;
   lead: string;
   intro: { label: string; title: string; body: string };
   cardsTitle: string;
@@ -55,6 +67,8 @@ const studioMore: Record<string, StripLink> = {
     name: "Image Generation",
     href: "/studio/image-generation",
     desc: "Generative imagery, held to an art director's standard.",
+    // The page's own banner, so the strip card shows the work rather than a label.
+    image: "/media/image-generation/banner.webp",
   },
   video: { name: "Video", href: "/studio/video", desc: "Generated and shot footage, cut into films." },
 };
@@ -92,13 +106,15 @@ function more(section: CapabilitySection, slug: string) {
 
 type Entry = Omit<Capability, "more" | "metaDescription" | "heroTone" | "intro"> & {
   intro: { title: string; body: string };
+  /** Overrides the section default below (Image Generation, whose banner is a bright still). */
+  heroTone?: Capability["heroTone"];
 };
 
 function build(e: Entry): Capability {
   return {
     ...e,
     // Boards: dark hero (with grid/contour lines) for Studio and Intelligence, light hero (no lines) for Agents.
-    heroTone: e.section === "agents" ? "light" : "dark",
+    heroTone: e.heroTone ?? (e.section === "agents" ? "light" : "dark"),
     intro: { label: e.title, ...e.intro },
     more: more(e.section, e.slug),
     metaDescription: e.lead,
@@ -164,7 +180,14 @@ const entries: Entry[] = [
     cardsTitle: "What we make",
     cards: [
       { tone: "dark", asset: "[ MOTION IDENTITY — loop ]", video: "/media/animation/card-motion-identity.mp4", title: "Motion identity", body: "How the Cosmonus brands move: timing, easing and transitions that stay consistent everywhere." },
-      { tone: "light", asset: "[ PRODUCT FILM — still ]", title: "Product films", body: "Short films that show a product doing its job in the real world." },
+      // Reuses the Video page's product film rather than a second copy of the same footage (8.5 MB).
+      {
+        tone: "light",
+        asset: "[ PRODUCT FILM — still ]",
+        video: "/media/video/product-film.mp4",
+        title: "Product films",
+        body: "Short films that show a product doing its job in the real world.",
+      },
       { tone: "mid", asset: "[ EXPLAINER — still ]", video: "/media/animation/card-explainer.mp4", title: "Explainers", body: "Animated walk-throughs of ideas like TrustScore and spatial intelligence." },
     ],
     process: {
@@ -199,7 +222,16 @@ const entries: Entry[] = [
     slug: "image-generation",
     section: "studio",
     title: "Image Generation",
-    heroVideo: "/media/image-generation/banner.mp4",
+    // The one still banner on the site: the page about making images shows one (owner, 2026-09-21).
+    // Copy sits at the top over the empty part of the picture, with no shade over it — so the text
+    // goes dark (heroTone "light") rather than white, which would be unreadable on the yellow.
+    heroImage: "/media/image-generation/banner.webp",
+    heroAlign: "top",
+    heroScrim: false,
+    heroAssemble: true,
+    heroTitleHidden: true,
+    heroLead: false,
+    heroTone: "light",
     lead: "Generative imagery, held to an art director's standard.",
     intro: {
       title: "A model is a camera. It still needs a point of view.",
@@ -320,13 +352,6 @@ const entries: Entry[] = [
           { src: "/media/video/sport-cycling-offroad.mp4", title: "Cycling, off-road" },
           { src: "/media/video/sport-skiing.mp4", title: "Skiing" },
         ],
-      },
-      {
-        label: "Product",
-        title: "Product films.",
-        lead: "A product on camera: its shape, its surfaces and how it moves.",
-        layout: "feature",
-        items: [{ src: "/media/video/product-film.mp4", title: "Product film" }],
       },
     ],
     intro: {

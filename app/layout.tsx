@@ -11,6 +11,7 @@ import "./globals.css";
 // The original cosmonus.com pairing: Schibsted Grotesk for everything, JetBrains Mono for labels.
 const grotesk = Schibsted_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"], variable: "--font-grotesk", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono-face", display: "swap" });
+// The third face, used in exactly one place: the Image Generation banner title (owner, 2026-09-21).
 
 // Site-wide SEO (mirrors the original cosmonus.com). Each page adds its own title, description, canonical and
 // share tags through pageMetadata() in lib/seo.ts.

@@ -1,4 +1,4 @@
-import { BANNER } from "@/components/ui/Hero";
+import { BANNER, BANNER_PAD } from "@/components/ui/Hero";
 import { THIRDS } from "@/components/ui/Section";
 
 /**
@@ -14,7 +14,7 @@ export default function Loading() {
       </p>
       <div aria-hidden="true">
         <section className="frame pt-2 pb-5">
-          <div className={`${BANNER} skeleton gap-5`}>
+          <div className={`${BANNER} ${BANNER_PAD} skeleton gap-5`}>
             <span className="block h-14 w-3/4 max-w-[640px] rounded-lg bg-white/60 lg:h-16" />
             <span className="block h-5 w-2/3 max-w-[520px] rounded-md bg-white/60" />
           </div>

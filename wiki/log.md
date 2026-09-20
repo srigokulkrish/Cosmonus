@@ -327,3 +327,157 @@
 - **Note for next time: do not run Prettier on this repo.** It has no config and was hand-formatted at ~140 columns;
   `npx prettier --write` reflowed 60+ untouched files to 80 and had to be reverted.
 
+## [2026-09-21] design | Image Generation gets a still banner
+- Owner supplied a 2:1 banner image and asked for it on that page only. `InnerHero` now takes an `image` as well as
+  a `video`; new `components/ui/BannerImage.tsx` renders it as a `next/image` with `fill` and `priority`, wearing
+  the same bottom-left shade as `BannerVideo` so the two look identical behind the title.
+- `Capability` gained `heroImage`; `image-generation` swapped its never-delivered `heroVideo` for
+  `heroImage: "/media/image-generation/banner.webp"`. A page sets one or the other; the film wins if both exist.
+  Every other banner is unchanged and still a film — checked in the build output.
+- Converted 2.60 MB PNG → 316 KB WebP with `sharp` at quality 84, kept at its native 1774×887. First real banner
+  image on the site.
+- Banner export specs written into `media-brief.md` (2:1, 2560×1280, subject in the central third — a phone shows
+  only 31% of the width). typecheck, lint and build pass; 56 pages.
+
+## [2026-09-21] design | Image Generation banner: top copy, no shade, frosted with a wandering window
+- Owner: move the copy up and in, drop the dark shade, and frost the picture so it clears on hover.
+  `heroAlign: "top"`, `heroScrim: false`, `heroGlass: true` on that entry alone; every other banner is untouched.
+- With the shade gone the copy had to go dark, so Image Generation is the one Studio page on `heroTone: "light"`.
+  Padding cut from `pt-32` / 6.25% to `pt-16 lg:pt-20` / 3.25% (`BANNER_PAD_TOP`). `BANNER` is now the box only and
+  padding/alignment are composed at the use site, because Tailwind cannot reliably override a shared class string.
+- `.glass-drift` (`app/globals.css`) masks a hole in the frost that starts on the face and wanders on a 32s loop;
+  hover fades the frost out. Hover-only (`[@media(hover:hover)]`) so touch devices never see a blurred picture, and
+  `prefers-reduced-motion` parks the window on the face.
+- **Fixed the soft banner**: `sizes="100vw"` was wrong for a cover-cropped fixed-height box — at 390px the browser
+  fetched ~828px for 2240 device pixels (≈3–6× upscale). Now declares the painted width,
+  `(max-width: 1023px) 1120px, 1560px`. Added `images.qualities: [75, 90]` to `next.config.ts`, without which Next
+  silently ignored `quality={90}`. typecheck, lint and build pass.
+
+## [2026-09-21] fix | Banner frost reads as a moving box; now reveals from the middle out
+- Owner: "the square box keeps moving". `.glass-drift` sized its mask at 62% × 115% with `no-repeat`, so
+  everything outside that box was unmasked — the frost only existed inside a rectangle that slid around, which is
+  what was visible. Replaced with `.glass-reveal`: `mask-size: 100% 100%` (frost everywhere) and only the hole's
+  radius animates, opening on the face and growing past the edges before closing again, 16s.
+- The radius animates through an `@property --reveal` registration; a percentage inside a gradient stop is not
+  interpolable otherwise and the reveal would step between keyframes. Unsupported browsers keep `--reveal: 0%`,
+  a plain frost that still clears on hover.
+- Banner copy moved up again: `pt-16 lg:pt-20` → `pt-8 lg:pt-10`. typecheck, lint and build pass.
+
+## [2026-09-21] design | Banner reveal slowed, hover removed
+- Owner: the reveal was too fast and the picture should not clear on hover. `.glass-reveal` is now 40s (was 16s),
+  and the hover behaviour is gone from `components/ui/BannerImage.tsx` — no `group-hover`, no transition.
+- With hover gone the `[@media(hover:hover)]` guard went too: it existed only so a touch device would not be stuck
+  with a blur it could never clear, and the reveal now does that job on every device. Dropped the `group` class
+  from `InnerHero`, which had no other use.
+- typecheck, lint and build pass.
+
+## [2026-09-21] fix | Banner reveal stalled as a disc; now uncovers the whole picture and holds
+- Owner: "the visibility stops after a circle". The gradient used `circle closest-side`, whose 100% radius is the
+  distance to the *nearest* edge — 319px at desktop against a 896px farthest corner — so even at `--reveal: 135%`
+  it covered only about half of what it needed and the corners stayed frosted. Now `farthest-corner`, where 100%
+  means "everything covered".
+- It also no longer loops back to frosted: one run, `14s ease-out both`, ending fully uncovered and holding there.
+- `prefers-reduced-motion` now sets `--reveal: 118%` instead of just stopping the animation, otherwise the
+  picture would be left permanently frosted. Same fallback applies where `@property` is unsupported.
+- typecheck, lint and build pass.
+
+## [2026-09-21] fix | Banner reveal: centred, no flash, and the lead removed
+- Owner saw the reveal "for a moment in the middle" before it started. The soft edge was a fixed offset,
+  `#000 calc(var(--reveal) + 16%)`, so at radius 0 the mask was already transparent at the centre and a clear blob
+  was painted on the first frame. Now proportional — `calc(var(--reveal) * 1.35)` — so radius 0 is genuinely
+  closed and the edge softens as the circle grows.
+- Reveal re-centred on the picture (`at 50% 50%`, was `50% 42%`) and eased at both ends,
+  `cubic-bezier(0.65, 0, 0.35, 1)`, so it neither jumps open nor snaps shut.
+- New `heroLead: false` on the capability: the Image Generation banner drops "Generative imagery, held to an art
+  director's standard." from under the h1. The sentence is unchanged as the page's meta description and in the
+  "More in Studio" strip — checked both in the build output. typecheck, lint and build pass.
+
+## [2026-09-21] design | Image Generation banner assembles from tiles
+- Owner: the circular reveal "looks standard". Replaced with `.tile-grid`: 60 covers in the banner's panel colour
+  that clear from the middle outwards over ~3.4s, so the picture arrives a piece at a time. Chosen over a
+  resolve-from-noise and a contact-sheet-to-pick treatment because it uses the grid language `HeroLines` already
+  draws and needs no second image.
+- Covers sit **over** the picture rather than being slices of it, so the hero stays a single optimised
+  `next/image` — the `sizes`, `quality` and `priority` work from earlier still applies.
+- 60 tiles fit both arrangements (6×10 phone, 10×6 from `md`); delays come from the 10×6 one. Each cover scales
+  to 1.06 while fading so neighbours overlap instead of leaving seams. `prefers-reduced-motion` hides the grid.
+- `heroGlass` → `heroAssemble`; `.glass-reveal` and the `@property --reveal` registration are gone.
+  typecheck, lint and build pass; 60 tiles and the keyframes confirmed in the build output.
+
+## [2026-09-21] design | Handwriting title on the Image Generation banner
+- Owner asked for the banner title in a cursive hand, then chose **Great Vibes**. Loaded as `--font-script` in
+  `app/layout.tsx` and `globals.css` — the site's third face, after Schibsted Grotesk and JetBrains Mono.
+- Used in one place only: `heroScript: true` on the `image-generation` capability, which swaps the h1's classes in
+  `InnerHero`. Everything else keeps the grotesk — checked against the Animation page in the build output.
+- The script h1 needs its own treatment: `tracking-normal` rather than `-0.025em`, `leading-[1.25]` so flourishes
+  and descenders clear, `font-normal` (Great Vibes ships one weight), and 104px against the grotesk's 64px — its
+  x-height is small enough that matched pixel values read far smaller.
+- typecheck, lint and build pass.
+
+## [2026-09-21] design | Banner title written on, and sized down
+- Owner: smaller, and animate it like writing. Title down from 104px to 88px at `lg` (66/48 below), and new
+  `.write-in` in `app/globals.css`: a left-to-right mask with a soft leading edge, 2.4s, 0.4s after the tiles
+  start so the picture is on its way in first.
+- On a joined cursive a left-to-right wipe reads as a pen crossing the line. A true stroke animation would need
+  the letterforms as SVG paths, which a webfont cannot provide, so this gets the impression from the font itself.
+- `--pen` starts at -8% so `calc(var(--pen) + 8%)` is 0% on the first frame and nothing shows. Starting at 0%
+  would paint a sliver of the first letter before the animation ran — the same trap the banner reveal fell into.
+- `prefers-reduced-motion` shows the words outright. typecheck, lint and build pass.
+
+## [2026-09-21] design | Smoother writing, and frosted tiles in the banner assembly
+- Owner: smoother, and blur some tiles before revealing. `.write-in` is now 3.2s (was 2.4s) on
+  `cubic-bezier(0.22, 0.12, 0.32, 1)` — nearly even through the middle, softened at the ends — with the leading
+  edge widened from 8% to 16%. `--pen`'s negative start moved to -16% to match the edge, or the first-frame
+  sliver returns.
+- A scattered third of the tiles (20 of 60, picked by a hash so they never stripe) now clear in two beats:
+  the cover fades to leave that square frosted, then the frost clears. `.frosted` / `tile-frost` in
+  `app/globals.css`.
+- Those tiles hold `opacity: 1` and fade `background-color` instead, because an element faded to zero does not
+  apply its `backdrop-filter` — animating opacity would take the frost with it. The transparent end is
+  `color-mix`ed from the panel token rather than plain `transparent`, so the colour cannot drift.
+- typecheck, lint and build pass; 20 frosted tiles and a scattered distribution confirmed in the build output.
+
+## [2026-09-21] design | Banner tiles clear in a random order
+- Owner: a scattered reveal has more life than middle-outwards. `tileDelay` in `components/ui/BannerImage.tsx`
+  now reads a fixed shuffle instead of distance from the centre.
+- Shuffled once from a fixed seed, never `Math.random()`: the delays are inline styles rendered on the server and
+  again on the client, so anything non-deterministic would mismatch on hydration.
+- Ranking the shuffle (slot 0..59) rather than using raw random delays keeps the tiles starting at an even rate
+  instead of clumping. It also drops the dependency on the tile arrangement — the centre-out version was measured
+  on the 10×6 desktop grid and only read correctly there; a shuffle looks the same on a phone's 6×10.
+- typecheck, lint and build pass; 60 unique delays over 0–2.56s confirmed in the build output.
+
+## [2026-09-21] content | Product film moved off the Video page
+- Owner: removed the "Product / Product films." showcase group from `/studio/video`. Its showcase is now just
+  "Sport, filmed where it happens.".
+- `/media/video/product-film.mp4` stays in `public/`: it is now the clip on the Animation page's "Product films"
+  card, which was a placeholder until 2026-09-21. The 32 MB `product film.mp4` in the repo root is untouched and
+  still unwired — it needs compressing before it could be used (no ffmpeg on the machine).
+
+## [2026-09-21] design | "More in …" cards can carry a real picture
+- `StripLink` gained an optional `image`, rendered by `ImageLinkCard` through `MediaPanel`; the `[ NAME ]`
+  placeholder stays as the fallback. Capability pages pass the strip through `inPublic`, so the rule that content
+  may name a file before it exists still holds.
+- First use: the Image Generation card in "More in Studio" shows that page's own banner, so the card shows the
+  work instead of a label. It appears on the Web, Animation and Video pages; Image Generation's own strip excludes
+  itself, as it always did. typecheck, lint and build pass.
+
+## [2026-09-21] design | Banner script face is Tangerine
+- Owner chose Tangerine over Great Vibes. Swapped in `app/layout.tsx` and the `--font-script` token; the face is
+  still used in exactly one place, the Image Generation banner h1.
+- Set at its real **700**, not 400: Tangerine's hairline weight disappears over a picture, and 700 is a shipped
+  weight rather than a synthesised one.
+- Size up from 88px to **128px** at `lg` (96/68 below). Tangerine's x-height is about a third of the grotesk's at
+  the same pixel value, so the number had to grow for the title to read the same size on the page.
+- typecheck, lint and build pass.
+
+## [2026-09-21] design | Image Generation banner title removed from the picture
+- Owner: the title disappears at small widths, so take it off the banner. New `heroTitleHidden` renders the h1
+  `sr-only` — still in the document for the page outline and for search, just not drawn.
+- The cause was the crop, not the type: a phone shows only the middle ~31% of the picture, which is dark hair,
+  and the copy is `text-ink` because this banner drops its shade. A shade below `lg`, or light copy at small
+  widths, would fix it if a visible title is wanted back.
+- Removed with it: the Tangerine webfont, the `--font-script` token, the `heroScript`/`script` props and the
+  `.write-in` animation with its `@property --pen`. They existed only for that title, and a font downloaded for
+  invisible text is a request for nothing. The tile assembly stays.
+- typecheck, lint and build pass.

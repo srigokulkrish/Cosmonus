@@ -61,11 +61,56 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
 - Constants carry columns + column gap only; add the row gap at the use site (`gap-y-10` cards, `gap-y-5` bordered cards).
 
 ## Banners and image placeholders (owner-requested, 2026-09-19)
-- **Every banner is a video** (owner decision, restated 2026-09-20 — no exceptions): `InnerHero` takes
+- **Every banner is a video** (owner decision, restated 2026-09-20), **with one exception**: `InnerHero` takes
   `video="/media/<page>/banner.mp4"` (and `BannerVideo`
   takes optional `webm`/`poster`); it plays muted and looping (`components/ui/BannerVideo.tsx`), with a
   soft shade from the bottom-left for the title; paused on the poster under reduced motion. Until files exist the
-  flat tone shows. Prompts for all 22: the "image requirements & ChatGPT prompts" doc
+  flat tone shows.
+- **The exception is Image Generation** (owner, 2026-09-21): a still, not a film — `heroImage` on the capability
+  entry, rendered by `components/ui/BannerImage.tsx` (`next/image`, `fill`, `priority`, `quality={90}`). A page sets
+  `heroVideo` or `heroImage`; if both are present the film wins. Do not spread this to other pages — the page about
+  making images is the one place a still argues for itself. That banner alone also has:
+  - `heroAlign: "top"` — copy at the top of the box, tucked closer to the corner (`BANNER_PAD_TOP`).
+  - `heroScrim: false` — no shade. Which is why it is the one Studio page on `heroTone: "light"`: with the shade
+    gone, white type on that yellow is unreadable, so the copy is `text-ink`.
+  - `heroLead: false` — no lead under the h1. The sentence is still the page's `metaDescription` and still the
+    page's description in the "More in Studio" strip; it is only kept off the banner.
+  - `heroTitleHidden: true` — the banner shows the picture and nothing else. The h1 is still in the document
+    (`sr-only`), so the page keeps its outline and its heading for search; it is only not drawn. Owner,
+    2026-09-21: the title vanished at small widths. The cause is the crop — a phone shows only the middle ~31% of
+    the picture, which here is dark hair, and the copy is `text-ink` because the banner drops its shade. Dark on
+    dark. Fixable (a shade below `lg`, or light copy at small widths) if a visible title is ever wanted back.
+    A script face and a written-on reveal lived here for a few hours; both were removed with the visible title,
+    since a webfont loaded for text nobody sees is a download for nothing.
+  - `heroAssemble: true` — the picture arrives a piece at a time: 60 tiles in the banner's own panel colour
+    clear in a **scattered order**, the way a sampler resolves a canvas in patches (`.tile-grid`,
+    `app/globals.css`).
+    Owner asked for something less standard than a wipe (2026-09-21); this uses the grid language `HeroLines`
+    already draws. It runs **once**, with **no hover** and no loop, so it reads the same everywhere, and
+    `prefers-reduced-motion` drops the grid entirely — the picture is simply there.
+    The tiles are **covers over** the picture, not slices of it, so the hero stays one optimised `next/image`
+    rather than 60 elements each fetching the full file. The count is fixed at 60 so the same children fit both
+    arrangements (6×10 on a phone where the banner is taller than wide, 10×6 from `md`). The order is a fixed
+    shuffle seeded once in `BannerImage`, never `Math.random()` — the delays are inline styles rendered on the
+    server and again on the client, so anything non-deterministic mismatches on hydration. Ranking the shuffle
+    rather than taking raw random delays keeps the tiles starting at an even rate, and it means the order no
+    longer depends on the arrangement: the earlier centre-out stagger was measured on the 10×6 grid and only read
+    correctly there. Each cover scales to 1.06 as it fades,
+    so neighbours overlap for a moment instead of leaving hairline seams.
+    A scattered **third of the tiles** (`.frosted`, picked by a hash so they never stripe) do it in two beats
+    instead of one: the cover fades to leave the picture *frosted* in that square, then the frost clears. The
+    image resolves unevenly, the way a sampler settles some regions before others. Those tiles hold `opacity: 1`
+    throughout and fade their **background-color** instead — an element that has been faded out does not apply
+    its `backdrop-filter`, so animating opacity would carry the frost away with it. The transparent end is mixed
+    from the panel token with `color-mix`, not plain `transparent`, so the colour cannot drift on the way out.
+- **`BANNER` is the box only** (size, radius, overflow). Padding and alignment are set at the use site —
+  `BANNER_PAD` for the usual bottom-left copy on the 6.25% content line, `BANNER_PAD_TOP` for the one top-aligned
+  banner. Tailwind cannot reliably override a class from a shared string, so these are composed, not fought.
+- **`sizes` on a banner still is not `100vw`.** The box is a fixed height, so `object-cover` paints the image wider
+  than the viewport once it turns portrait: at 390px the box is 350×560 but a 2:1 image is painted 1120px across.
+  `100vw` there fetches an ~828px file for 2240 device pixels and looks soft. `BannerImage` declares the painted
+  width instead: `(max-width: 1023px) 1120px, 1560px`. Non-default `quality` also needs `images.qualities` in
+  `next.config.ts` or Next silently serves 75. Prompts for all 22: the "image requirements & ChatGPT prompts" doc
   (https://claude.ai/code/artifact/397c720e-5500-42a8-a9d2-7a8a4a4bfa0a).
 - **`Showcase`** (`components/capability/Showcase.tsx`, formerly `VideoShowcase`) takes stills or clips in one
   row — an `.mp4`/`.webm` src loops, anything else is a `next/image`; `shape: "landscape"` gives a 3:2 crop for

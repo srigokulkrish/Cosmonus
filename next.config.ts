@@ -6,6 +6,10 @@ import type { NextConfig } from "next";
  * wildcards. See wiki/seo.md.
  */
 const nextConfig: NextConfig = {
+  // Next only serves the qualities listed here; anything else silently falls back to 75. The banner still
+  // (`components/ui/BannerImage.tsx`) asks for 90 because it is re-encoding an already-compressed WebP and
+  // is the largest thing on its page.
+  images: { qualities: [75, 90] },
   async redirects() {
     return [
       { source: "/work/stayonmap", destination: "/product/stayonmap", permanent: true },

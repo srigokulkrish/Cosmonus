@@ -5,7 +5,7 @@ import { AgentsFlow } from "@/components/home/AgentsFlow";
 import { StudioTabs } from "@/components/home/StudioTabs";
 import { Arrow, ButtonLink, Chevron } from "@/components/ui/Button";
 import { BannerVideo } from "@/components/ui/BannerVideo";
-import { BANNER } from "@/components/ui/Hero";
+import { BANNER, BANNER_PAD } from "@/components/ui/Hero";
 import { MeshBackdrop } from "@/components/ui/MeshBackdrop";
 import { MediaPanel, type Tone } from "@/components/ui/MediaPanel";
 import { Band, HALVES, PAIRS, SectionHead, SideHead, SideLayout, THIRDS } from "@/components/ui/Section";
@@ -96,7 +96,7 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section id="top" className="frame pt-2 pb-5">
-        <div className={`${BANNER} gap-5 bg-panel-dark text-white`}>
+        <div className={`${BANNER} ${BANNER_PAD} gap-5 bg-panel-dark text-white`}>
           <BannerVideo src="/media/home/banner.mp4" />
           <h1 className="relative m-0 text-[40px] leading-[1.05] font-normal tracking-[-0.025em] text-balance sm:text-[56px] lg:text-[72px]">
             Building Real-World

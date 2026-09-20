@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { BannerImage } from "./BannerImage";
 import { BannerVideo } from "./BannerVideo";
 
 /** Grid + contour lines drawn over the dark hero panels. */
@@ -42,12 +43,20 @@ export function HeroLines({ variant = "inner" }: { variant?: "home" | "inner" })
  * bar (600–760px) on desktop, 560px minimum on phones. Copy sits bottom-left, inset 6.25% onto the content line.
  */
 export const BANNER =
-  "relative flex min-h-[560px] flex-col items-start justify-end overflow-hidden rounded-hero px-6 pt-32 pb-10 md:px-[6.25%] lg:h-[calc(100svh-84px)] lg:max-h-[760px] lg:min-h-[600px] lg:pb-14";
+  "relative flex min-h-[560px] flex-col items-start overflow-hidden rounded-hero lg:h-[calc(100svh-84px)] lg:max-h-[760px] lg:min-h-[600px]";
+
+/** Banner copy inset 6.25% so it starts on the content line, sitting at the bottom. The usual case. */
+export const BANNER_PAD = "justify-end px-6 pt-32 pb-10 md:px-[6.25%] lg:pb-14";
+
+/** Copy at the top and tucked closer to the corner — Image Generation only (owner, 2026-09-21). */
+const BANNER_PAD_TOP = "justify-start px-5 pt-8 pb-10 md:px-[3.25%] lg:pt-10 lg:pb-14";
 
 /**
  * Inner-page hero: a banner on the frame, the same size as the home banner.
- * Runway-style: copy sits bottom-left, regular weight. Every banner is a video: pass `video` (the MP4 path,
+ * Runway-style: copy sits bottom-left, regular weight. Banners are films: pass `video` (the MP4 path,
  * e.g. "/media/web/banner.mp4") once the file exists; until then the flat tone (and grid lines) show.
+ * `image` is the one exception (Image Generation — owner, 2026-09-21): a still in place of a film. A page
+ * sets one or the other; if both arrive, the film wins.
  */
 export function InnerHero({
   tone = "dark",
@@ -55,12 +64,31 @@ export function InnerHero({
   lead,
   video,
   videoZoom,
+  image,
+  align = "bottom",
+  scrim = true,
+  assemble = false,
+  titleHidden = false,
   children,
 }: {
   tone?: "dark" | "light";
   title: ReactNode;
   lead?: ReactNode;
   video?: string;
+  /** A still banner instead of a film. Used only where a page has no film to show. */
+  image?: string;
+  /** Where the copy sits in the banner. Bottom everywhere except Image Generation. */
+  align?: "top" | "bottom";
+  /** The shade that keeps the title readable. Drop it only when the copy clears the picture. */
+  scrim?: boolean;
+  /** Assemble a still banner from tiles that clear from the middle outwards. */
+  assemble?: boolean;
+  /**
+   * Keep the title out of the picture but in the document. The h1 still exists for the page outline and for
+   * search; it is only not drawn. Image Generation only (owner, 2026-09-21) — its banner crops to the middle
+   * of the picture on a phone, where dark copy landed on dark hair and became unreadable.
+   */
+  titleHidden?: boolean;
   /** Scale the banner video up from the centre to crop letterbox bars recorded into it (e.g. 1.35). */
   videoZoom?: number;
   children?: ReactNode;
@@ -69,10 +97,22 @@ export function InnerHero({
   return (
     <section className="frame pt-2 pb-5">
       <div
-        className={`${BANNER} gap-5 ${dark ? "bg-panel-dark text-white" : "bg-panel-light text-ink"}`}
+        className={`${BANNER} gap-5 ${align === "top" ? BANNER_PAD_TOP : BANNER_PAD} ${dark ? "bg-panel-dark text-white" : "bg-panel-light text-ink"}`}
       >
-        {video ? <BannerVideo src={video} tone={tone} zoom={videoZoom} /> : dark && <HeroLines />}
-        <h1 className="relative m-0 max-w-[1000px] text-[36px] leading-[1.05] font-normal tracking-[-0.025em] text-balance sm:text-5xl lg:text-[64px]">
+        {video ? (
+          <BannerVideo src={video} tone={tone} zoom={videoZoom} />
+        ) : image ? (
+          <BannerImage src={image} tone={tone} scrim={scrim} assemble={assemble} />
+        ) : (
+          dark && <HeroLines />
+        )}
+        <h1
+          className={
+            titleHidden
+              ? "sr-only"
+              : "relative m-0 max-w-[1000px] text-[36px] leading-[1.05] font-normal tracking-[-0.025em] text-balance sm:text-5xl lg:text-[64px]"
+          }
+        >
           {title}
         </h1>
         {lead && (

@@ -211,7 +211,13 @@ export function Band({
   );
 }
 
-export type StripLink = { name: string; href: string; desc: string };
+export type StripLink = {
+  name: string;
+  href: string;
+  desc: string;
+  /** The real picture for this card, once it exists in public/; the placeholder shows until then. */
+  image?: string;
+};
 
 /** Link with a 1px ink top rule: the "More in …" strip and the home Agents row. */
 export function RuleLink({ name, href, desc, nameSize = "text-xl" }: StripLink & { nameSize?: string }) {
@@ -224,10 +230,17 @@ export function RuleLink({ name, href, desc, nameSize = "text-xl" }: StripLink &
 }
 
 /** A linked image card: placeholder image, name (underlines on hover) with an arrow, muted description. */
-export function ImageLinkCard({ name, href, desc, index = 0 }: StripLink & { index?: number }) {
+export function ImageLinkCard({ name, href, desc, image, index = 0 }: StripLink & { index?: number }) {
   return (
     <Link href={href} className="row group flex flex-col gap-4">
-      <MediaPanel tone={toneAt(index)} label={`[ ${name.toUpperCase()} ]`} decorative className="h-[220px] rounded-media" />
+      <MediaPanel
+        tone={toneAt(index)}
+        label={`[ ${name.toUpperCase()} ]`}
+        src={image}
+        decorative
+        className="h-[220px] rounded-media"
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+      />
       <span className="flex items-start justify-between gap-4">
         <span className="flex flex-col gap-1.5">
           <span className="rowname text-xl font-medium tracking-[-0.01em]">{name}</span>
