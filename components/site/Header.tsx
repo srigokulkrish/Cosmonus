@@ -274,7 +274,12 @@ function MegaPanel({
 
 const brandBg = { stayonmap: "bg-stayonmap", happenous: "bg-happenous" } as const;
 
-/** Left column of every menu panel: mono label, title, description, and the section overview link. */
+/**
+ * Left column of every menu panel: mono label, title, description, and the section overview link.
+ * The overview link is the one accent-coloured piece of text on the site (violet, 4.7:1 on white), so the way
+ * out of the panel reads differently from the quick links beside it. Its rule wipes in from the left on hover
+ * and focus, and simply appears when the visitor has asked for reduced motion.
+ */
 function PanelIntro({ panel }: { panel: (typeof menus)[number] }) {
   return (
     <div className="flex flex-col justify-between gap-6 py-3 pr-4">
@@ -283,8 +288,14 @@ function PanelIntro({ panel }: { panel: (typeof menus)[number] }) {
         <div className="text-[28px] leading-[1.15] font-normal tracking-[-0.02em] text-balance">{panel.title}</div>
         <p className="m-0 text-[15px] leading-[1.5] text-pretty text-muted">{panel.desc}</p>
       </div>
-      <Link href={panel.href} className="row flex h-11 items-center self-start text-[15px] font-medium">
-        <span className="rowname">{panel.label} overview</span>
+      <Link href={panel.href} className="group flex h-11 items-center self-start text-[15px] font-medium text-accent">
+        <span className="relative">
+          {panel.label} overview
+          <span
+            aria-hidden="true"
+            className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100 motion-reduce:transition-none"
+          />
+        </span>
       </Link>
     </div>
   );
@@ -303,14 +314,14 @@ function ProductCards({ panel }: { panel: (typeof menus)[number] }) {
 
 /**
  * Every other menu: compact quick links in two columns that line up with the Product cards —
- * name, one-line description and a small arrow, each under a 1px line rule.
+ * name, one-line description and a small arrow, each closed by a 1px line rule below it.
  */
 function QuickLinks({ panel }: { panel: (typeof menus)[number] }) {
   return (
     <ul className="m-0 grid list-none content-start grid-cols-2 gap-x-6 gap-y-2 p-0 py-3">
       {panel.links.map((l) => (
         <li key={l.href}>
-          <Link href={l.href} className="row group flex items-start justify-between gap-4 border-t border-line pt-4 pb-3">
+          <Link href={l.href} className="row group flex items-start justify-between gap-4 border-b border-line pt-3 pb-4">
             <span className="flex flex-col gap-1">
               <span className="rowname text-[17px] font-medium">{l.name}</span>
               <span className="text-sm leading-[1.45] text-muted">{l.desc}</span>
@@ -434,7 +445,8 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                     className="overflow-hidden"
                   >
                 <div className="flex flex-col gap-1 pb-5">
-                  <Link href={m.href} onClick={onClose} className="row flex min-h-11 items-center py-2">
+                  {/* Accent-coloured like its desktop counterpart in `PanelIntro`; the underline is the shared row hover. */}
+                  <Link href={m.href} onClick={onClose} className="row flex min-h-11 items-center py-2 text-accent">
                     <span className="rowname text-[17px] font-medium">{m.label} overview</span>
                   </Link>
                   {m.links.map((l) => (
