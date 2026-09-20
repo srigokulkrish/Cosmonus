@@ -6,7 +6,7 @@
 // from the boards: it follows wiki/content.md (no invented facts; exploration is labelled as such).
 
 import type { BorderedCardData } from "@/components/company/BorderedCards";
-import type { ShowcaseGroup } from "@/components/capability/VideoShowcase";
+import type { ShowcaseGroup } from "@/components/capability/Showcase";
 import type { Row } from "@/components/company/RowList";
 import type { MediaCardData, Step, StripLink } from "@/components/ui/Section";
 import { getNote } from "@/content/research";
@@ -26,7 +26,7 @@ export type Capability = {
   intro: { label: string; title: string; body: string };
   cardsTitle: string;
   cards: MediaCardData[];
-  /** Real footage shown after the cards (the Video page's Sport and Product work). */
+  /** Finished work shown after the cards: the Video page's films, the Image Generation page's frames. */
   showcase?: ShowcaseGroup[];
   /** "Process" (Studio) / "How it works" (Intelligence) / "How we work" (Agents): three numbered steps. */
   process?: { title: string; steps: Step[] };
@@ -35,7 +35,7 @@ export type Capability = {
   /** "Principles", "What we avoid" or (Agents) "What a person checks": three bordered cards. */
   principles?: { title: string; cards: BorderedCardData[] };
   /** Closing band before the "More in …" strip. The action says where it goes. */
-  band?: { title: string; body: string; href: string; action: string };
+  band?: { title: string; body: string; href: string; action: string; image?: string; imageAlt?: string };
   more: { label: string; links: StripLink[] };
   metaDescription: string;
 };
@@ -199,6 +199,7 @@ const entries: Entry[] = [
     slug: "image-generation",
     section: "studio",
     title: "Image Generation",
+    heroVideo: "/media/image-generation/banner.mp4",
     lead: "Generative imagery, held to an art director's standard.",
     intro: {
       title: "A model is a camera. It still needs a point of view.",
@@ -206,16 +207,78 @@ const entries: Entry[] = [
     },
     cardsTitle: "What we make",
     cards: [
-      { tone: "dark", asset: "[ CONTACT SHEET ]", title: "Art direction", body: "Briefs, references and selection: deciding what an image is for before it is made." },
-      { tone: "light", asset: "[ IMAGE SERIES ]", title: "Visual systems", body: "Repeatable looks, so a hundred images feel like one family." },
-      { tone: "mid", asset: "[ CONCEPT FRAMES ]", title: "Concept frames", body: "Fast frames for exploring a film, a product or a place before it exists." },
+      {
+        tone: "dark",
+        asset: "[ CONTACT SHEET ]",
+        title: "Art direction",
+        body: "Briefs, references and selection: deciding what an image is for before it is made.",
+        image: "/media/image-generation/card-art-direction.jpg",
+        alt: "A written brief on a cork board beside reference photographs of a street at dawn and a sheet of small image options.",
+      },
+      {
+        tone: "light",
+        asset: "[ IMAGE SERIES ]",
+        title: "Visual systems",
+        body: "Repeatable looks, so a hundred images feel like one family.",
+        image: "/media/image-generation/card-visual-systems.jpg",
+        alt: "Six photographs of different city corners in a grid, all sharing the same morning light, lens and muted palette.",
+      },
+      {
+        tone: "mid",
+        asset: "[ CONCEPT FRAMES ]",
+        title: "Concept frames",
+        body: "Fast frames for exploring a film, a product or a place before it exists.",
+        image: "/media/image-generation/card-concept-frames.jpg",
+        alt: "Three loose painted concept frames side by side: a street market, a doorway with a bicycle, a rooftop at dusk.",
+      },
+    ],
+    showcase: [
+      {
+        label: "Selected frames",
+        title: "Three frames, one visual system.",
+        lead: "Made for this site: the same lens, light and grade, so they read as one family rather than three prompts.",
+        layout: "thirds",
+        shape: "landscape",
+        items: [
+          {
+            src: "/media/image-generation/frame-lane.jpg",
+            title: "First light, old city lane",
+            alt: "A narrow lane at first light, laundry lines overhead and a bicycle leaning against a blue wall.",
+          },
+          {
+            src: "/media/image-generation/frame-rooftops.jpg",
+            title: "Rooftops before the lights",
+            alt: "Rooftops, water tanks and trees at dusk, a few windows just beginning to glow.",
+          },
+          {
+            src: "/media/image-generation/frame-doorway.jpg",
+            title: "A doorway on a quiet street",
+            alt: "An open doorway on a quiet street in soft morning light, steps worn smooth and a shutter half raised.",
+          },
+        ],
+      },
     ],
     process: {
       title: "Process",
       steps: [
-        { title: "Write the brief", body: "What the image is for, where it will sit and what it must not look like — decided before the first prompt." },
-        { title: "Generate wide, select hard", body: "Many frames are made and few are kept. Selection is where most of the work happens." },
-        { title: "Edit into a family", body: "Chosen images are corrected and graded until they belong to one visual system, not to the model that made them." },
+        {
+          title: "Write the brief",
+          body: "What the image is for, where it will sit and what it must not look like — decided before the first prompt.",
+          image: "/media/image-generation/step-1.jpg",
+          alt: "A printed page of writing on a clean desk with a pen laid across it, seen from above.",
+        },
+        {
+          title: "Generate wide, select hard",
+          body: "Many frames are made and few are kept. Selection is where most of the work happens.",
+          image: "/media/image-generation/step-2.jpg",
+          alt: "A laptop screen filled with a grid of small image thumbnails, three of them outlined as picks.",
+        },
+        {
+          title: "Edit into a family",
+          body: "Chosen images are corrected and graded until they belong to one visual system, not to the model that made them.",
+          image: "/media/image-generation/step-3.jpg",
+          alt: "Three photographs of the same street laid in a row on a table, all matched to one warm, muted grade.",
+        },
       ],
     },
     showsUp: [
@@ -236,6 +299,8 @@ const entries: Entry[] = [
       body: "If you are building a visual system and want to talk about directing image models, write to us.",
       href: "/contact?topic=collaboration",
       action: "Talk to us about imagery",
+      image: "/media/image-generation/band.jpg",
+      imageAlt: "An empty narrow lane in an old city at first light, a single bicycle against a blue wall, soft haze.",
     },
   },
   {
@@ -250,7 +315,7 @@ const entries: Entry[] = [
         title: "Sport, filmed where it happens.",
         lead: "Cycling and skiing: fast outdoor motion, cut into short loops.",
         layout: "thirds",
-        clips: [
+        items: [
           { src: "/media/video/sport-cycling.mp4", title: "Cycling" },
           { src: "/media/video/sport-cycling-offroad.mp4", title: "Cycling, off-road" },
           { src: "/media/video/sport-skiing.mp4", title: "Skiing" },
@@ -261,7 +326,7 @@ const entries: Entry[] = [
         title: "Product films.",
         lead: "A product on camera: its shape, its surfaces and how it moves.",
         layout: "feature",
-        clips: [{ src: "/media/video/product-film.mp4", title: "Product film" }],
+        items: [{ src: "/media/video/product-film.mp4", title: "Product film" }],
       },
     ],
     intro: {

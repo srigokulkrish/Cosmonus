@@ -82,11 +82,14 @@ export function Intro({ label, title, body }: { label: string; title: ReactNode;
   );
 }
 
-/** `video` / `image`: the real media (in public/) once it exists; until then `asset` labels the placeholder. */
-export type MediaCardData = { tone: Tone; asset: string; title: string; body: ReactNode; video?: string; image?: string };
+/**
+ * `video` / `image`: the real media (in public/) once it exists; until then `asset` labels the placeholder.
+ * `alt` describes the image for screen readers (the placeholder label stands in until one is written).
+ */
+export type MediaCardData = { tone: Tone; asset: string; title: string; body: ReactNode; video?: string; image?: string; alt?: string };
 
 /** Media card: 280px media slot (video, image or placeholder), h3, muted paragraph. */
-export function MediaCard({ tone, asset, title, body, video, image }: MediaCardData) {
+export function MediaCard({ tone, asset, title, body, video, image, alt }: MediaCardData) {
   return (
     <article className="flex flex-col gap-5">
       {video ? (
@@ -94,7 +97,7 @@ export function MediaCard({ tone, asset, title, body, video, image }: MediaCardD
           <LoopVideo src={video} label={title} />
         </div>
       ) : (
-        <MediaPanel tone={tone} label={asset} src={image} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+        <MediaPanel tone={tone} label={asset} src={image} alt={alt} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
       )}
       <div className="flex flex-col gap-2.5">
         <h3 className="m-0 text-2xl leading-[1.2] font-medium tracking-[-0.02em]">{title}</h3>
@@ -118,8 +121,11 @@ export function MediaCards({ title, cards }: { title: string; cards: MediaCardDa
   );
 }
 
-/** `asset` labels the step's image placeholder; without one, a label is made from the step title. */
-export type Step = { title: string; body: ReactNode; asset?: string };
+/**
+ * `asset` labels the step's image placeholder; without one, a label is made from the step title.
+ * `image` (+ `alt`) replaces the placeholder with the real picture once it exists.
+ */
+export type Step = { title: string; body: ReactNode; asset?: string; image?: string; alt?: string };
 
 /** Numbered steps as image cards on the thirds: placeholder image, accent dot + "01", h3, muted body. */
 export function Steps({ title, steps }: { title: string; steps: Step[] }) {
@@ -129,7 +135,14 @@ export function Steps({ title, steps }: { title: string; steps: Step[] }) {
       <ol className={`m-0 list-none p-0 ${THIRDS} gap-y-12`}>
         {steps.map((s, i) => (
           <li key={i} className="flex flex-col gap-5">
-            <MediaPanel tone={toneAt(i)} label={s.asset ?? `[ STEP ${String(i + 1).padStart(2, "0")} — ${s.title} ]`} className="h-[240px] rounded-media" />
+            <MediaPanel
+              tone={toneAt(i)}
+              label={s.asset ?? `[ STEP ${String(i + 1).padStart(2, "0")} — ${s.title} ]`}
+              src={s.image}
+              alt={s.alt}
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="h-[240px] rounded-media"
+            />
             <div className="flex flex-col gap-2.5">
               <div className="flex items-center gap-2.5 font-mono text-xs text-muted">
                 <Dot />
@@ -147,8 +160,8 @@ export function Steps({ title, steps }: { title: string; steps: Step[] }) {
 
 /**
  * Closing band (Runway-style call-to-action panel): a rounded soft-grey panel on the content column — heading, one
- * line and a single button on the left, an image placeholder filling the right half. Stacks on phones.
- * The button says where it goes. `asset` labels the image slot.
+ * line and a single button on the left, an image filling the right half. Stacks on phones.
+ * The button says where it goes. `asset` labels the slot until `image` (+ `imageAlt`) exists.
  */
 export function Band({
   title,
@@ -156,6 +169,8 @@ export function Band({
   href,
   action,
   asset,
+  image,
+  imageAlt,
   external = false,
   arrow = false,
 }: {
@@ -164,6 +179,8 @@ export function Band({
   href: string;
   action: string;
   asset?: string;
+  image?: string;
+  imageAlt?: string;
   external?: boolean;
   arrow?: boolean;
 }) {
@@ -180,7 +197,15 @@ export function Band({
             {action}
           </ButtonLink>
         </div>
-        <MediaPanel tone="dark" label={label} labelSize="text-[13px]" className="min-h-[260px] md:min-h-full" />
+        <MediaPanel
+          tone="dark"
+          label={label}
+          labelSize="text-[13px]"
+          src={image}
+          alt={imageAlt}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="min-h-[260px] md:min-h-full"
+        />
       </div>
     </section>
   );
