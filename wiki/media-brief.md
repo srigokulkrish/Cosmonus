@@ -77,6 +77,20 @@ Code-side mitigation is already in place (`components/ui/BannerVideo.tsx`): noth
 has loaded and the browser is idle, and nothing at all under Save-Data or on 2G. That stops video competing with
 first paint; it does not make a 57 MB file small.
 
+### Source footage lives in `raw/footage/`, never in the repo (2026-09-23)
+The `videos` commit put ~172 MB of OpenArt exports in the repo **root** — `0.mp4`, `openart-source.mp4` and
+`openart-source(1..3).mp4`. No code referenced them; they were the uncut sources the `public/media` banners were
+cut from. The repo is public, so they were published too.
+
+That commit held only those five files, so it was dropped from history with
+`git rebase --onto 329e6ce 95e3753 main` and force-pushed. `.git` went from **383 MB to 212 MB**. Rewriting
+changed every SHA after `329e6ce`; a stale clone has to be re-cloned. A pre-rewrite bundle is at
+`~/Desktop/Cosmonus-prerewrite-backup.bundle`.
+
+Originals are now in `raw/footage/`, which `.gitignore` already excludes. `.gitignore` also ignores root-level
+`*.mp4`, `*.mov`, `*.webm`, `*.png`, `*.jpg` and `*.jpeg`, so a file dropped in the root cannot be committed by
+accident. **Put new footage in `raw/footage/`; only the cut, re-encoded result belongs in `public/media`.**
+
 ### Section landing pages
 | Page | Hero | Cards |
 | --- | --- | --- |

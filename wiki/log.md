@@ -532,3 +532,16 @@
   is why that effect exists.
 - **This does not fix the real problem.** The files need re-encoding to ~2–4 MB each, which needs `ffmpeg` — not
   installed here. Sizes and targets recorded in `media-brief.md`. typecheck, lint and build pass.
+
+## [2026-09-23] cleanup | Raw source footage stripped from the repo and its history
+- The `videos` commit (`95e3753`) had put ~172 MB of OpenArt exports in the repo **root** — `0.mp4`,
+  `openart-source.mp4`, `openart-source(1..3).mp4`. Nothing referenced them, and the repo is public. It held
+  only those five files, so it was dropped with `git rebase --onto 329e6ce 95e3753 main` rather than reverted;
+  a revert would have left the blobs in history. `.git`: **383 MB → 212 MB**.
+- Every SHA after `329e6ce` changed and `main` was force-pushed, so any other clone must be re-cloned.
+  `origin/redesign` never reached that commit and was left alone. Pre-rewrite backup:
+  `~/Desktop/Cosmonus-prerewrite-backup.bundle` (381 MB, verified complete), old HEAD `844950f`.
+- Originals moved to `raw/footage/` (already gitignored) and `CLAUDE.md` gained that row in the layout.
+  `.gitignore` now ignores root-level `*.mp4`, `*.mov`, `*.webm`, `*.png`, `*.jpg`, `*.jpeg` so it cannot recur.
+  **`public/media` is untouched and still 173 MB** — the ffmpeg re-encode in `media-brief.md` is still open.
+  typecheck, lint and build pass.
