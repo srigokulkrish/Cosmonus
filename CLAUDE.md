@@ -9,6 +9,7 @@ Tailwind v4 · Framer Motion.
 raw/        Immutable sources. Never edit; add new material here.
   handoff/    Design handoff: HANDOFF.md, PROMPT.md, design/*.dc.html boards (1440px source of truth)
   references/ Reference screenshots of other sites the design drew on
+  footage/    Raw video and image sources (OpenArt exports, stills). Originals only — never the repo root
 wiki/       LLM-maintained knowledge about this project, compiled from raw/ and the code.
   index.md    Catalog of every wiki page — read this first
   log.md      Append-only change log

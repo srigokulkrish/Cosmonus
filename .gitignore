@@ -22,6 +22,15 @@ build/
 # Design handoff and reference screenshots of other sites: kept locally, not published (the repo is public)
 /raw/
 
+# Raw footage and image sources belong in raw/footage/, never in the repo root. ~172 MB of OpenArt
+# source clips were committed here once and had to be stripped from history; these rules stop a repeat.
+/*.mp4
+/*.mov
+/*.webm
+/*.png
+/*.jpg
+/*.jpeg
+
 # OS
 .DS_Store
 Thumbs.db
