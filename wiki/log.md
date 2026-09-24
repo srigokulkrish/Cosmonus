@@ -545,3 +545,7 @@
   `.gitignore` now ignores root-level `*.mp4`, `*.mov`, `*.webm`, `*.png`, `*.jpg`, `*.jpeg` so it cannot recur.
   **`public/media` is untouched and still 173 MB** — the ffmpeg re-encode in `media-brief.md` is still open.
   typecheck, lint and build pass.
+
+## [2026-09-25] fix | "How an agent works" stepper waits until it is on screen
+- Owner: the stepper was already on step 03 (Agent) by the time they scrolled to it. The 5 s auto-advance ran from
+  page load. It now runs only while the panel is at least 40% in view (`useInView`), so visitors arrive at step 01.

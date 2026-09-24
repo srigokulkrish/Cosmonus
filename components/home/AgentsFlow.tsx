@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import { Arrow } from "@/components/ui/Button";
 import { MediaPanel, toneAt } from "@/components/ui/MediaPanel";
@@ -26,7 +26,8 @@ const STEP_MS = 5000;
 /**
  * How an agent works: a stepper on a soft-grey panel. Five steps across the top with a progress rule that fills to
  * the current one; below, the current step large (number, name, description, next button) beside its diagram.
- * Advances on its own every 5 s, pauses on hover/focus, never under prefers-reduced-motion. Tabs pattern:
+ * Advances on its own every 5 s, only while the panel is on screen (so a visitor arrives at step 01, not wherever the
+ * timer got to during scrolling); pauses on hover/focus, never under prefers-reduced-motion. Tabs pattern:
  * arrow keys, Home and End move between steps.
  */
 export function AgentsFlow() {
@@ -35,14 +36,16 @@ export function AgentsFlow() {
   const reduce = useReducedMotion();
   const base = useId();
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(panelRef, { amount: 0.4 });
   const node = nodes[active];
   const n = nodes.length;
 
   useEffect(() => {
-    if (reduce || paused) return;
+    if (reduce || paused || !inView) return;
     const t = setTimeout(() => setActive((i) => (i + 1) % n), STEP_MS);
     return () => clearTimeout(t);
-  }, [active, paused, reduce, n]);
+  }, [active, paused, reduce, inView, n]);
 
   function go(i: number, focus = false) {
     const next = (i + n) % n;
@@ -67,6 +70,7 @@ export function AgentsFlow() {
       />
 
       <div
+        ref={panelRef}
         className="rounded-hero bg-panel-light p-5 sm:p-8 lg:p-12"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
