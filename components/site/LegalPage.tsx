@@ -17,7 +17,7 @@ export function LegalPage({
   label: string;
   title: string;
   lead: ReactNode;
-  /** Keep as the "[DATE]" placeholder until the owner supplies the real date. */
+  /** The day the text last changed, written out ("19 September 2026"). Update it with any edit to the sections. */
   updated: string;
   sections: LegalSection[];
 }) {

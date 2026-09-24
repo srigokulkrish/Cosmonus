@@ -24,6 +24,8 @@ export type Post = {
   title: string;
   /** One sentence. Used as the lead, the row description and the meta description. */
   summary: string;
+  /** ISO date the post went live. Shown on every blog surface and sent to Google as datePublished. */
+  published: string;
   cover: { tone: Tone; label: string };
   body: PostSection[];
   /** Outside material a post relies on. Required whenever a post states facts that are not ours. */
@@ -33,6 +35,7 @@ export type Post = {
 export const posts: Post[] = [
   {
     slug: "ai-models",
+    published: "2026-09-21",
     tag: "Fundamentals",
     title: "AI models: what they are, and what they are not",
     summary:
@@ -115,6 +118,7 @@ export const posts: Post[] = [
   },
   {
     slug: "embeddings",
+    published: "2026-09-21",
     tag: "Fundamentals",
     title: "Embeddings: turning meaning into numbers",
     summary:
@@ -198,6 +202,7 @@ export const posts: Post[] = [
   },
   {
     slug: "vector-databases",
+    published: "2026-09-21",
     tag: "Fundamentals",
     title: "Vector databases: a filing cabinet organised by meaning",
     summary:
@@ -271,6 +276,7 @@ export const posts: Post[] = [
   },
   {
     slug: "rag",
+    published: "2026-09-21",
     tag: "Fundamentals",
     title: "RAG: letting a model look things up",
     summary:
@@ -355,6 +361,7 @@ export const posts: Post[] = [
   },
   {
     slug: "mcp",
+    published: "2026-09-21",
     tag: "Fundamentals",
     title: "MCP: one plug shape for models and tools",
     summary:
@@ -437,6 +444,7 @@ export const posts: Post[] = [
   },
   {
     slug: "system-one-models-jev",
+    published: "2026-09-21",
     tag: "Fundamentals",
     title: "System One models: when the answer is a decision, not a paragraph",
     summary:
@@ -590,6 +598,7 @@ export const posts: Post[] = [
   // The four crafts, listed in the order they build on each other.
   {
     slug: "prompt-engineering",
+    published: "2026-09-21",
     tag: "Engineering",
     title: "Prompt engineering: saying exactly what you want",
     summary:
@@ -673,6 +682,7 @@ export const posts: Post[] = [
   },
   {
     slug: "context-engineering",
+    published: "2026-09-21",
     tag: "Engineering",
     title: "Context engineering: packing the right things in the bag",
     summary:
@@ -756,6 +766,7 @@ export const posts: Post[] = [
   },
   {
     slug: "loop-engineering",
+    published: "2026-09-21",
     tag: "Engineering",
     title: "Loop engineering: what happens after the first try",
     summary:
@@ -846,6 +857,7 @@ export const posts: Post[] = [
   },
   {
     slug: "harness-engineering",
+    published: "2026-09-21",
     tag: "Engineering",
     title: "Harness engineering: the kitchen around the cook",
     summary: "The tools, permissions, memory and failure paths that surround a model, and why they decide what is possible at all.",
@@ -929,6 +941,13 @@ export const posts: Post[] = [
 
 export function getPost(slug: string): Post | undefined {
   return posts.find((p) => p.slug === slug);
+}
+
+/** "21 Sep 2026" — the short date form every blog surface uses. */
+export function formatDate(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return `${d} ${months[m - 1]} ${y}`;
 }
 
 /** Minutes to read, from the post's own word count at 200 wpm. Derived, never hand-written. */

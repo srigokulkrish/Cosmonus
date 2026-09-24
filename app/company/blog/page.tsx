@@ -41,6 +41,7 @@ export default function BlogPage() {
             headline: p.title,
             description: p.summary,
             articleSection: p.tag,
+            datePublished: p.published,
             url: `${site.url}/company/blog/${p.slug}`,
             author: { "@id": `${site.url}/#organization` },
           })),

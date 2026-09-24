@@ -81,7 +81,7 @@ export default function PrivacyPage() {
       label="Legal"
       title="Privacy"
       lead="This site is here to describe our work, not to watch you read it. Here is exactly what it does and does not collect."
-      updated="[DATE]"
+      updated="19 September 2026"
       sections={sections}
     />
   );

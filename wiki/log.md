@@ -575,3 +575,44 @@
   no visible difference. `BannerImage` uses `preload` instead of Next 16's deprecated `priority` (same behaviour).
 - `BannerVideo` now waits for `load` **and** idle, as documented (it started at `load`); `LoopVideo` skips
   downloading under Save-Data / 2G like the banners. typecheck, lint and build pass; all routes still static.
+
+## [2026-09-25] fix | Poster frames, cheaper mesh, and Lighthouse numbers that mean something
+- **Posters.** Every banner film now shows its first frame at once: `poster.avif` beside each `banner.mp4`
+  (nine files, 11–118 KB, 393 KB in all; recipe and table in `media-brief.md`), found by `posterFor` in
+  `lib/media.ts`, passed by `InnerHero` and the home page, drawn by `BannerVideo` as a preloaded
+  `fetchpriority="high"` `<img>` under the video (the video is invisible until it can play, so the `poster`
+  attribute would have hidden it). The film fades in over the same frame — SSIM 0.88–0.998 against frame 1.
+- **Numbers.** Lighthouse 13, mobile, 3 runs, median. With its default *simulated* throttling the site sits at
+  91–98 before and after (LCP ~3.1–3.5 s either way) — on localhost every script finishes before the first paint,
+  so the simulator counts the JS bundle as an LCP dependency whatever the banner does. With
+  `--throttling-method=devtools` (real 1.6 Mbps / 4× CPU) the change shows: `/` 79 → 96 (LCP 4.43 → 1.91 s),
+  `/company/careers` 79 → 96 (4.42 → 2.29 s), `/company/about` 75 → 90 (5.39 → 3.23 s), `/studio` 77 → 93
+  (4.29 → 1.89 s); after-only: `/studio/animation` 97 (1.72 s), `/studio/video` 90 (1.75 s),
+  `/product/stayonmap` 92 (1.70 s), `/company/blog` 99 (1.79 s). Before, the LCP element was the film's first
+  frame, requested only after load + idle; now it is the poster, discoverable in the HTML. Reports in the
+  session scratchpad, `lighthouse/`.
+- **Mesh** (`MeshBackdrop`). Measured on the home Agents band with a Chrome trace (headless, software GPU): the
+  main thread was idle (24 ms in 6 s) but the compositor was 99% busy and the page ran at 10 fps; with the fields
+  paused, 60 fps. Each field is now an outer span that moves and an inner span that carries the blur, so Chrome
+  reuses the blurred surface instead of re-blurring every frame: 45–55 fps, output pixel-identical (SSIM 0.9999 on
+  the band and the Product cards; screenshots in the scratchpad, `mesh/`). Also paused while off screen
+  (`.mesh-paused` via IntersectionObserver); reduced motion already switched it off. The drawing was not changed.
+- **About banner at 6 MB** (encoded to the scratchpad, not swapped in): Lighthouse cannot tell it from the 3.8 MB
+  file (score 91 vs 90, LCP 3.22 vs 3.23 s) because the film loads after the page settles — but at 2.4 Mbps it does
+  not start on a 1.6 Mbps connection until 11.1 s (3.8 MB: 4.1 s); on 9 Mbps 4G, 1.1 s vs 1.0 s. See
+  `open-questions.md`.
+- Also measured and left alone: the `.page-in` arrival fade hides the page from Chrome's LCP until it ends
+  (compositor-driven, so nothing repaints for 420 ms), but under real throttling switching it off moved LCP by
+  only 0.02–0.2 s, so the design stays. `experimental.inlineCss` was mixed (FCP +0.1 s, TBT −30 ms) and stays
+  off. typecheck, lint and build pass; all routes static.
+
+## [2026-09-25] content | Owner closed the open facts: dates, Happenous timing and colour
+- Privacy and Terms "Last updated" is now 19 September 2026 — the day the text was written (commit 1b92232).
+- Blog posts carry `published: "2026-09-21"` (the day they went live, commit 2de2a64), shown in the meta line as
+  `Tag · 21 Sep 2026 · N min read` via `formatDate()` in a `<time>`, and sent as `datePublished` in both
+  BlogPosting blocks. No `dateModified` — edits are not tracked. Author stays the organisation.
+- Happenous FAQ: "Later in 2026. This page will say so when there is a date." (owner). The first draft promised a
+  launch-notification list; the content reviewer caught that the contact form is a mailto and the privacy page
+  says emails are used only to reply, so it was cut. `#E8421A` confirmed as the Happenous colour.
+- Owner also confirmed: Conventional & Multi-tool Systems stays one page; About and Careers copy approved.
+- typecheck, lint and build pass.

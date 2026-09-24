@@ -97,7 +97,7 @@ export default function HomePage() {
       {/* HERO */}
       <section id="top" className="frame pt-2 pb-5">
         <div className={`${BANNER} ${BANNER_PAD} gap-5 bg-panel-dark text-white`}>
-          <BannerVideo src="/media/home/banner.mp4" />
+          <BannerVideo src="/media/home/banner.mp4" poster="/media/home/poster.avif" />
           <h1 className="relative m-0 text-[40px] leading-[1.05] font-normal tracking-[-0.025em] text-balance sm:text-[56px] lg:text-[72px]">
             Building Real-World
             <br />

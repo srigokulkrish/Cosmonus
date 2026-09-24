@@ -22,7 +22,7 @@
   --color-soft: #eef0f2;
   /* Product brand colours: used only on the product cards in the Product menu. */
   --color-stayonmap: #0d8a5f;
-  --color-happenous: #e8421a; /* provisional reddish orange until the final Happenous colour is chosen */
+  --color-happenous: #e8421a; /* Happenous brand colour (owner confirmed 2026-09-25) */
 
   --font-sans: var(--font-grotesk), "Schibsted Grotesk", "Helvetica Neue", Helvetica, sans-serif;
   --font-mono: var(--font-mono-face), "JetBrains Mono", ui-monospace, monospace;
@@ -183,6 +183,8 @@
 .mesh-b { animation-name: mesh-drift-b; animation-duration: 11s; }
 .mesh-c { animation-name: mesh-drift-c; animation-duration: 17s; }
 .mesh-d { animation-name: mesh-drift-d; animation-duration: 19s; }
+/* Off screen (MeshBackdrop's IntersectionObserver): the fields hold still so the blurs are not redrawn unseen. */
+.mesh-paused .mesh-field { animation-play-state: paused; }
 
 /* Loading skeleton (app/loading.tsx): a soft light sweep across grey blocks. */
 @keyframes skeleton-sweep {

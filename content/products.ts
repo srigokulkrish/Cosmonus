@@ -282,7 +282,7 @@ export const happenous: HappenousContent = {
       },
       {
         q: "When does it open?",
-        a: "[LAUNCH TIMING — owner to confirm]. We would rather leave this blank than give a date we are not sure of.",
+        a: "Later in 2026. This page will say so when there is a date.",
       },
       {
         q: "What counts as an activity?",

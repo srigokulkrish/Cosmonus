@@ -1,22 +1,28 @@
 "use client";
 
 import { useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /**
  * Banner background video: muted, looping, inline, covering the banner. `src` is the MP4 (H.264) in public/,
- * e.g. "/media/home/banner.mp4"; `webm` and `poster` are optional extras. Decorative: the banner's heading carries
+ * e.g. "/media/home/banner.mp4"; `webm` is an optional extra. Decorative: the banner's heading carries
  * the meaning. A soft shade from the bottom-left keeps the title readable over any footage. `zoom` (e.g. 1.35)
  * scales the footage up from the centre to crop away black letterbox bars recorded into the video.
  *
- * Loading: the file is not requested until the page has finished loading and the browser is idle, so a banner
+ * `poster` is the film's first frame (`poster.avif` beside the file, ~10–120 KB). It is drawn as its own picture
+ * underneath the video, not as the video's `poster` attribute, because the video is invisible until it can play
+ * and would hide its own poster with it. It is the largest thing painted on the page, so it is preloaded with
+ * high priority — a banner is always above the fold. The film then fades in over it from the same frame, so
+ * there is no jump; if the film never loads, the still is the banner.
+ *
+ * Loading: the film is not requested until the page has finished loading and the browser is idle, so a banner
  * film never competes with the page's own first paint, and it is not requested at all under Save-Data or on a
- * 2G connection. The banner's flat tone (and its grid lines) is what shows until then, and what stays if the
- * film never loads.
+ * 2G connection. The poster (or, without one, the banner's flat tone) is what shows until then, and what
+ * stays if the film never loads.
  *
  * Smoothness: the video fades in only once it can play (no black flash while it buffers); it pauses while
- * scrolled out of view and resumes when back; under prefers-reduced-motion it stays paused on its first frame
- * (or the poster).
+ * scrolled out of view and resumes when back; under prefers-reduced-motion it stays paused on its first frame.
  */
 export function BannerVideo({
   src,
@@ -85,14 +91,30 @@ export function BannerVideo({
     return () => io.disconnect();
   }, [reduce]);
 
+  const zoomStyle = zoom !== 1 ? { transform: `scale(${zoom})` } : undefined;
+
   return (
     <>
+      {poster && (
+        // The file is already the finished AVIF at the film's own size, so it is served as-is rather than
+        // re-encoded by the image optimizer: the frame must match the film's first frame exactly.
+        <Image
+          src={poster}
+          alt=""
+          aria-hidden="true"
+          fill
+          unoptimized
+          preload
+          fetchPriority="high"
+          className="object-cover"
+          style={zoomStyle}
+        />
+      )}
       <video
         ref={ref}
         aria-hidden="true"
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${ready ? "opacity-100" : "opacity-0"}`}
-        style={zoom !== 1 ? { transform: `scale(${zoom})` } : undefined}
-        poster={poster}
+        style={zoomStyle}
         muted
         loop
         playsInline

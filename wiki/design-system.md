@@ -15,7 +15,10 @@ Source: `raw/handoff/HANDOFF.md` §Tokens. Implemented as Tailwind v4 `@theme` t
 - `MeshBackdrop` (`components/ui/MeshBackdrop.tsx`) — shared atmospheric mesh-gradient background with palettes
   `stayonmap`, `happenous`, `cosmonus`; `dim` adds a shade for large areas of white text. The colour fields drift
   continuously (`.mesh-field` + `mesh-drift-a…d` keyframes in globals.css: 3-point loops, 11–19 s, up to ~⅓ of a field's size; the light field stays on the right), off under
-  reduced motion; hover adds a small extra shift on the product cards.
+  reduced motion and paused while scrolled off screen (`.mesh-paused`, set by an IntersectionObserver); hover adds
+  a small extra shift on the product cards. Each field is two spans: the outer one moves, the inner one carries the
+  64px blur and never changes, so Chrome reuses the blurred surface instead of re-blurring every frame (2026-09-25:
+  10 → 45 fps under Chrome's software GPU, pixel-identical output).
 - Radii: chip 8 · buttons 8 (`rounded-lg`) · btn 10 (menu panels) · media 12 · card 14 · hero 16. Only shadow: mega menu.
 - Widths (measured from runway.com, which uses exactly this):
   - `frame` — max 1600px, centred, 20px side padding. Header bar, banners (heroes), the home Agents band, mega menu.
@@ -64,8 +67,10 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
 - **Every banner is a video** (owner decision, restated 2026-09-20), **with one exception**: `InnerHero` takes
   `video="/media/<page>/banner.mp4"` (and `BannerVideo`
   takes optional `webm`/`poster`); it plays muted and looping (`components/ui/BannerVideo.tsx`), with a
-  soft shade from the bottom-left for the title; paused on the poster under reduced motion. Until files exist the
-  flat tone shows.
+  soft shade from the bottom-left for the title; paused on its first frame under reduced motion. The film's first
+  frame sits beside it as `poster.avif` (found by `posterFor` in `lib/media.ts`, 2026-09-25) and is drawn at once
+  as a preloaded `<img>` under the video, so the picture is there before the film is requested and the film fades
+  in over it without a jump. Until a film exists the flat tone shows.
 - **The exception is Image Generation** (owner, 2026-09-21): a still, not a film — `heroImage` on the capability
   entry, rendered by `components/ui/BannerImage.tsx` (`next/image`, `fill`, `preload`, `quality={90}`). A page sets
   `heroVideo` or `heroImage`; if both are present the film wins. Do not spread this to other pages — the page about
@@ -175,7 +180,7 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
   **before the panel in the DOM**, so the panel paints over it. Desktop only — the mobile menu is a full sheet.
 - **Product menu:** three columns (title + description + overview link, then one large card per product). Cards use
   product brand colours, the only large colour fills on the site: `stayonmap #0D8A5F`, `happenous #E8421A`
-  (provisional reddish orange until the owner picks the final colour; change the token in `globals.css`).
+  (reddish orange, confirmed by the owner 2026-09-25; the token lives in `globals.css`).
   Background (owner request; replaced the line art, then a short-lived glass panel): an atmospheric mesh gradient
   (`MeshBackdrop`) — four oversized radial colour fields blurred 64px (StayOnMap greens #6FE0AE→#04301F, Happenous
   oranges #FFB27A→#4A1004), a white light bloom, dark edge falloff and SVG film grain; fields drift on hover. Copy
@@ -231,7 +236,8 @@ part of the site on neither the section nor the note template. Components live i
 - **A standfirst:** the first paragraph of a post sets at 23px in `text-ink`, then the body drops to normal size.
 - **Callouts, not rules.** The what/why/when/how rows sit in a `bg-panel-light` `rounded-card` panel. The research
   status key keeps the open ruled rows; the two should not converge.
-- **Meta is `tag · N min read`**, computed by `readingTime()`. No author names, no dates.
+- **Meta is `tag · 21 Sep 2026 · N min read`**: `formatDate(post.published)` in a `<time>`, `readingTime()` for the
+  minutes. Author is the organisation (JSON-LD), never a person's name.
 - Headings get more air than a note's (`mt-12` at `lg`, 34px); paragraphs sit on `gap-7`.
 - Tag buttons appear only when a second tag exists, so a one-tag blog is not asked to filter itself.
 - **Sources block**: a post with `sources` gets a bordered `rounded-card` panel above "Read next" — mono "SOURCES",

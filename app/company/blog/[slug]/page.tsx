@@ -62,6 +62,7 @@ export default async function BlogPostPage({ params }: Props) {
             description: post.summary,
             articleSection: post.tag,
             keywords: post.tag,
+            datePublished: post.published,
             wordCount: post.body
               .flatMap((b) => b.paragraphs)
               .join(" ")

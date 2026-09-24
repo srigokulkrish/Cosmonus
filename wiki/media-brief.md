@@ -26,7 +26,8 @@ come from the world and the products, not from graphics. People on camera must h
 **Video**
 - **Format:** MP4 (H.264) plus WebM, muted, looping, 6–12 s.
 - **File size:** under 4 MB per hero and under 1.5 MB per card.
-- **Poster:** every video needs a poster frame, delivered as AVIF or JPG.
+- **Poster:** every banner film has its first frame beside it as `poster.avif` (made from the film itself — see
+  "Poster frames" below). New footage needs none supplied; it is cut from the film once the film is final.
 - **Reduced motion:** the site shows the poster instead of the video for visitors who ask for reduced motion.
 
 **Heroes carry white or dark title text.** Keep the middle-bottom of the frame calm and low-contrast. We will add a
@@ -89,6 +90,34 @@ previous version (0.92–0.996) and by eye on 1:1 crops.
 
 Code-side, `BannerVideo` requests nothing until the page has loaded **and** the browser is idle, and
 `BannerVideo` and `LoopVideo` request nothing at all under Save-Data or on 2G.
+
+### Poster frames — every banner film shows its first frame at once (2026-09-25)
+Owner approved. Each banner film has `poster.avif` in its folder: the film's own first frame, so the picture is
+there before the film has even been requested and the film fades in over it from the same frame (no jump). Wired
+automatically: `posterFor()` in `lib/media.ts` maps `…/banner.mp4` → `…/poster.avif` if the file exists;
+`InnerHero` passes it, the home page passes it by hand. `BannerVideo` draws it as its own `<img>` under the
+video (the video is invisible until it can play, so the `<video poster>` attribute would have hidden it too),
+preloaded with `fetchpriority="high"` — a banner is always above the fold. Nine files, 393 KB in total.
+
+| File | Size | CRF | SSIM vs film frame 1 |
+| --- | --- | --- | --- |
+| `about/poster.avif` | 118 KB | 38 | 0.915 (dense aerial: the one file at the top of the 60–120 KB band) |
+| `company/poster.avif` | 81 KB | 28 | 0.882 (fine asphalt grain smoothed; identical at 1:1 by eye) |
+| `careers/poster.avif` | 59 KB | 24 | 0.967 |
+| `home/poster.avif` | 37 KB | 20 | 0.994 |
+| `studio/poster.avif` | 34 KB | 20 | 0.955 |
+| `stayonmap/poster.avif` | 23 KB | 16 | 0.986 |
+| `research/poster.avif` | 16 KB | 16 | 0.996 |
+| `video/poster.avif` | 14 KB | 16 | 0.990 (1280 wide — the film is 1280×720, so a 1920 poster would add nothing) |
+| `animation/poster.avif` | 11 KB | 16 | 0.998 |
+
+**Recipe** (ffmpeg 8, libaom): straight from the film, no intermediate PNG, so the colour stays in the film's
+own YUV/bt709 space —
+`ffmpeg -i banner.mp4 -frames:v 1 -c:v libaom-av1 -still-picture 1 -cpu-used 2 -crf <N> -pix_fmt yuv420p
+-colorspace bt709 -color_primaries bt709 -color_trc bt709 poster.avif`. Start at CRF 16 and raise it until the
+file is under ~120 KB; check with an SSIM against frame 1
+(`ffmpeg -i poster.avif -i banner.mp4 -frames:v 1 -lavfi "[0:v]format=yuv420p[a];[1:v]format=yuv420p[b];[a][b]ssim" -f null -`).
+Decode is not a cost: a 1920×1080 AVIF decodes in 16–30 ms in Chrome, even at 4× CPU throttling.
 
 ### Source footage lives in `raw/footage/`, never in the repo (2026-09-23)
 The `videos` commit put ~172 MB of OpenArt exports in the repo **root** — `0.mp4`, `openart-source.mp4` and

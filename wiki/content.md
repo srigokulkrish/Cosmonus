@@ -19,7 +19,7 @@ All copy is typed data in `content/`:
 - **Happenous is pre-launch.** happenous.com serves "We're under construction". The page used to describe activity
   chat, direct messaging, post-event photo memories and host limits as working features, and its FAQ answered
   "Can I host my own activity?" with "Yes." All of that is gone. The page now says plainly that it is not open,
-  describes the idea and how it is *meant* to work, and its launch date is a visible `[BRACKETED]` placeholder.
+  describes the idea and how it is *meant* to work, and its FAQ gives the owner's timing ("later in 2026", owner 2026-09-25).
   The "What you can do" section was removed outright: it listed user capabilities for a product nobody can use,
   and duplicated the steps above it. Menu blurb, home card, Product index and the Studio "where it shows up" rows
   all say "in build" too. **Keep Happenous in this tense until the owner says it has launched.**
@@ -51,9 +51,10 @@ Two different jobs, both under Company:
   `masthead` (label/title/lead), not a `hero`/`intro` — the blog has no banner.
 - Two tags, and the split is meaningful: **Fundamentals** is the vocabulary of AI engineering (the pieces you build
   with), **Engineering** is the practice (how they are put to work). The featured slot says "Start here", not
-  "Latest" — we keep no dates, so we do not imply a chronology.
-- Reading time is computed, not written: `readingTime()` counts the post's own words at 200 wpm. No author names and
-  no dates anywhere on the blog — we have none the owner has given us, and they are not ours to invent.
+  "Latest" — the featured post is the one to read first, not the newest.
+- Reading time is computed, not written: `readingTime()` counts the post's own words at 200 wpm. Each post carries
+  `published` (ISO), the day it went live — all ten are 2026-09-21, the blog's launch. It shows in the meta line via
+  `formatDate()` and goes to Google as `datePublished` (no `dateModified`: we do not track edits). Author is the organisation; no person's name.
 
 ### Fundamentals (6 posts)
 - `ai-models`, `embeddings`, `vector-databases`, `rag`, `mcp` — prompted by the owner sharing roadmap.sh/ai-engineer

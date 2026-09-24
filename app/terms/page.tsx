@@ -80,7 +80,7 @@ export default function TermsPage() {
       label="Legal"
       title="Terms"
       lead="The short version: this site describes our work, our products have their own terms, and we would rather you ask than guess."
-      updated="[DATE]"
+      updated="19 September 2026"
       sections={sections}
     />
   );

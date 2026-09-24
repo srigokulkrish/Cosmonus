@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { posterFor } from "@/lib/media";
 import { BannerImage } from "./BannerImage";
 import { BannerVideo } from "./BannerVideo";
 
@@ -55,8 +56,9 @@ const BANNER_PAD_TOP = "justify-start px-5 pt-8 pb-10 md:px-[3.25%] lg:pt-10 lg:
  * Inner-page hero: a banner on the frame, the same size as the home banner.
  * Runway-style: copy sits bottom-left, regular weight. Banners are films: pass `video` (the MP4 path,
  * e.g. "/media/web/banner.mp4") once the file exists; until then the flat tone (and grid lines) show.
- * `image` is the one exception (Image Generation — owner, 2026-09-21): a still in place of a film. A page
- * sets one or the other; if both arrive, the film wins.
+ * A `poster.avif` beside the film (its first frame — `posterFor`) is painted straight away, before the film
+ * is requested. `image` is the one exception (Image Generation — owner, 2026-09-21): a still in place of a
+ * film. A page sets one or the other; if both arrive, the film wins.
  */
 export function InnerHero({
   tone = "dark",
@@ -100,7 +102,7 @@ export function InnerHero({
         className={`${BANNER} gap-5 ${align === "top" ? BANNER_PAD_TOP : BANNER_PAD} ${dark ? "bg-panel-dark text-white" : "bg-panel-light text-ink"}`}
       >
         {video ? (
-          <BannerVideo src={video} tone={tone} zoom={videoZoom} />
+          <BannerVideo src={video} poster={posterFor(video)} tone={tone} zoom={videoZoom} />
         ) : image ? (
           <BannerImage src={image} tone={tone} scrim={scrim} assemble={assemble} />
         ) : (

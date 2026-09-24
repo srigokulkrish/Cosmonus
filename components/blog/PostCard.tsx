@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { MediaPanel } from "@/components/ui/MediaPanel";
 import type { Post } from "@/content/blog";
-import { readingTime } from "@/content/blog";
+import { formatDate, readingTime } from "@/content/blog";
 
-/** "Engineering · 6 min read" — the line every blog surface carries instead of the research kind/area/status. */
+/** "Engineering · 21 Sep 2026 · 6 min read" — the line every blog surface carries instead of the research kind/area/status. */
 export function PostMeta({ post, className = "" }: { post: Post; className?: string }) {
   return (
     <span className={`font-mono text-xs text-muted ${className}`}>
-      {post.tag} · {readingTime(post)} min read
+      {post.tag} · <time dateTime={post.published}>{formatDate(post.published)}</time> · {readingTime(post)} min read
     </span>
   );
 }
