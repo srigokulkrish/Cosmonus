@@ -9,7 +9,9 @@ const nextConfig: NextConfig = {
   // Next only serves the qualities listed here; anything else silently falls back to 75. The banner still
   // (`components/ui/BannerImage.tsx`) asks for 90 because it is re-encoding an already-compressed WebP and
   // is the largest thing on its page.
-  images: { qualities: [75, 90] },
+  // AVIF first, WebP for browsers that do not accept it. Next scales AVIF quality to match WebP visually
+  // (q90 → 56); the Image Generation banner goes 359 KB → 167 KB at 1920w with no visible difference.
+  images: { qualities: [75, 90], formats: ["image/avif", "image/webp"] },
   async redirects() {
     return [
       { source: "/work/stayonmap", destination: "/product/stayonmap", permanent: true },

@@ -52,3 +52,6 @@ yarn-error.log*
 *.tsbuildinfo
 .vercel
 next-env.d.ts
+
+# Installers downloaded into the repo root
+*.deb

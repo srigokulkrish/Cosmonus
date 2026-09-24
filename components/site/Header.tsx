@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { MeshBackdrop } from "@/components/ui/MeshBackdrop";
 import { menuForPath, menus, type MenuId } from "@/lib/site";
@@ -150,94 +150,99 @@ export function Header() {
     return "text-ink";
   };
 
+  // `m` + `LazyMotion` with the `domAnimation` features instead of `motion`: this header is on every page, and
+  // everything it animates (opacity, x/y, height, exit) is in that smaller set. Pages that need layout
+  // animations (the home Studio tabs) still load the full `motion` themselves.
   return (
-    <div ref={rootRef} className="sticky top-0 z-40" onMouseLeave={scheduleClose} onMouseEnter={cancelClose}>
-      {/* White bar with a light frost; stays put while the page scrolls underneath. */}
-      <header className="bg-white/95 backdrop-blur-xl supports-[not(backdrop-filter:blur(1px))]:bg-white">
-        <div className="frame flex h-[60px] items-center justify-between">
-          <Link href="/" aria-label="Cosmonus home" className="flex h-11 items-center lg:w-[220px]">
-            <Logo />
-          </Link>
-
-          <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
-            {menus.map((m) => (
-              <button
-                key={m.id}
-                type="button"
-                data-menu={m.id}
-                aria-expanded={open === m.id}
-                aria-controls="mega-menu"
-                onClick={(e) => {
-                  clearTimer();
-                  // detail === 0 means keyboard activation.
-                  focusPanel.current = e.detail === 0;
-                  prefetchMenu(m.id);
-                  setOpen(open === m.id ? null : m.id);
-                }}
-                onPointerEnter={(e) => {
-                  if (e.pointerType === "mouse") hoverOpen(m.id);
-                }}
-                className={`flex h-11 items-center gap-1.5 border-0 bg-transparent px-3.5 text-base font-medium transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${labelColor(m.id)}`}
-              >
-                <span>{m.label}</span>
-                <Chevron open={open === m.id} />
-              </button>
-            ))}
-          </nav>
-
-          <div className="hidden w-[220px] justify-end lg:flex">
-            <Link href="/contact" className="flex h-9 items-center rounded-lg bg-ink px-3.5 text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-ink-2">
-              Contact
+    <LazyMotion features={domAnimation}>
+      <div ref={rootRef} className="sticky top-0 z-40" onMouseLeave={scheduleClose} onMouseEnter={cancelClose}>
+        {/* White bar with a light frost; stays put while the page scrolls underneath. */}
+        <header className="bg-white/95 backdrop-blur-xl supports-[not(backdrop-filter:blur(1px))]:bg-white">
+          <div className="frame flex h-[60px] items-center justify-between">
+            <Link href="/" aria-label="Cosmonus home" className="flex h-11 items-center lg:w-[220px]">
+              <Logo />
             </Link>
+
+            <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
+              {menus.map((m) => (
+                <button
+                  key={m.id}
+                  type="button"
+                  data-menu={m.id}
+                  aria-expanded={open === m.id}
+                  aria-controls="mega-menu"
+                  onClick={(e) => {
+                    clearTimer();
+                    // detail === 0 means keyboard activation.
+                    focusPanel.current = e.detail === 0;
+                    prefetchMenu(m.id);
+                    setOpen(open === m.id ? null : m.id);
+                  }}
+                  onPointerEnter={(e) => {
+                    if (e.pointerType === "mouse") hoverOpen(m.id);
+                  }}
+                  className={`flex h-11 items-center gap-1.5 border-0 bg-transparent px-3.5 text-base font-medium transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${labelColor(m.id)}`}
+                >
+                  <span>{m.label}</span>
+                  <Chevron open={open === m.id} />
+                </button>
+              ))}
+            </nav>
+
+            <div className="hidden w-[220px] justify-end lg:flex">
+              <Link href="/contact" className="flex h-9 items-center rounded-lg bg-ink px-3.5 text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-ink-2">
+                Contact
+              </Link>
+            </div>
+
+            <button
+              type="button"
+              className="flex h-9 items-center rounded-lg bg-soft px-3.5 text-[14px] font-semibold transition-colors duration-200 hover:bg-line lg:hidden"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setMobileOpen(true)}
+            >
+              Menu
+            </button>
           </div>
+        </header>
 
-          <button
-            type="button"
-            className="flex h-9 items-center rounded-lg bg-soft px-3.5 text-[14px] font-semibold transition-colors duration-200 hover:bg-line lg:hidden"
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMobileOpen(true)}
-          >
-            Menu
-          </button>
-        </div>
-      </header>
+        {/* Glass behind an open menu: the page frosts over while the panel is up, so the panel reads as the
+            thing in focus rather than as a card floating on busy footage. It starts under the bar (top-[60px]),
+            which keeps its own frost, and it is `pointer-events-none` — the wrapper closes the menu on mouse
+            leave, so a scrim that swallowed the pointer would hold every menu open across the whole page. */}
+        <AnimatePresence>
+          {panel && (
+            <m.div
+              key="scrim"
+              aria-hidden="true"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 0.28, ease: EASE } }}
+              exit={{ opacity: 0, transition: { duration: 0.18, ease: EASE } }}
+              className="pointer-events-none fixed inset-x-0 top-[60px] bottom-0 hidden bg-white/15 backdrop-blur-xs backdrop-saturate-150 supports-[not(backdrop-filter:blur(1px))]:bg-white/60 lg:block"
+            />
+          )}
+        </AnimatePresence>
 
-      {/* Glass behind an open menu: the page frosts over while the panel is up, so the panel reads as the
-          thing in focus rather than as a card floating on busy footage. It starts under the bar (top-[60px]),
-          which keeps its own frost, and it is `pointer-events-none` — the wrapper closes the menu on mouse
-          leave, so a scrim that swallowed the pointer would hold every menu open across the whole page. */}
-      <AnimatePresence>
-        {panel && (
-          <motion.div
-            key="scrim"
-            aria-hidden="true"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.28, ease: EASE } }}
-            exit={{ opacity: 0, transition: { duration: 0.18, ease: EASE } }}
-            className="pointer-events-none fixed inset-x-0 top-[60px] bottom-0 hidden bg-white/15 backdrop-blur-xs backdrop-saturate-150 supports-[not(backdrop-filter:blur(1px))]:bg-white/60 lg:block"
-          />
-        )}
-      </AnimatePresence>
+        {/* Desktop mega menu: overlays the hero, does not shift the page. The wrapper's top padding
+            bridges the gap under the bar so the pointer can travel into the panel. */}
+        <AnimatePresence>
+          {panel && (
+            <m.div
+              key="mega"
+              initial={{ opacity: 0, y: reduce ? 0 : -6 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 0.28, ease: EASE } }}
+              exit={{ opacity: 0, y: reduce ? 0 : -4, transition: { duration: 0.18, ease: EASE } }}
+              className="frame absolute top-full left-1/2 hidden -translate-x-1/2 pt-1 lg:block"
+            >
+              <MegaPanel panelRef={panelRef} panel={panel} reduce={!!reduce} />
+            </m.div>
+          )}
+        </AnimatePresence>
 
-      {/* Desktop mega menu: overlays the hero, does not shift the page. The wrapper's top padding
-          bridges the gap under the bar so the pointer can travel into the panel. */}
-      <AnimatePresence>
-        {panel && (
-          <motion.div
-            key="mega"
-            initial={{ opacity: 0, y: reduce ? 0 : -6 }}
-            animate={{ opacity: 1, y: 0, transition: { duration: 0.28, ease: EASE } }}
-            exit={{ opacity: 0, y: reduce ? 0 : -4, transition: { duration: 0.18, ease: EASE } }}
-            className="frame absolute top-full left-1/2 hidden -translate-x-1/2 pt-1 lg:block"
-          >
-            <MegaPanel panelRef={panelRef} panel={panel} reduce={!!reduce} />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>{mobileOpen && <MobileMenu key="mobile" onClose={closeMobile} />}</AnimatePresence>
-    </div>
+        <AnimatePresence>{mobileOpen && <MobileMenu key="mobile" onClose={closeMobile} />}</AnimatePresence>
+      </div>
+    </LazyMotion>
   );
 }
 
@@ -263,7 +268,7 @@ function MegaPanel({
   }, []);
 
   return (
-    <motion.div
+    <m.div
       ref={panelRef}
       id="mega-menu"
       initial={false}
@@ -273,7 +278,7 @@ function MegaPanel({
     >
       <div ref={inner}>
         <AnimatePresence mode="wait" initial={false}>
-          <motion.div
+          <m.div
             key={panel.id}
             initial={{ opacity: 0, x: reduce ? 0 : 6 }}
             animate={{ opacity: 1, x: 0, transition: { duration: 0.22, ease: EASE } }}
@@ -282,10 +287,10 @@ function MegaPanel({
           >
             <PanelIntro panel={panel} />
             {panel.id === "product" ? <ProductCards panel={panel} /> : <QuickLinks panel={panel} />}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -418,7 +423,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
   }, [onClose]);
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: reduce ? 0 : -8 }}
       animate={{ opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE } }}
@@ -438,24 +443,24 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         </button>
       </div>
       <nav aria-label="Primary" className="flex flex-col px-5 pb-10">
-        {menus.map((m) => {
-          const isOpen = expanded === m.id;
+        {menus.map((menu) => {
+          const isOpen = expanded === menu.id;
           return (
-            <div key={m.id} className="border-b border-line">
+            <div key={menu.id} className="border-b border-line">
               <button
                 type="button"
                 aria-expanded={isOpen}
-                aria-controls={`m-${m.id}`}
-                onClick={() => setExpanded(isOpen ? null : m.id)}
+                aria-controls={`m-${menu.id}`}
+                onClick={() => setExpanded(isOpen ? null : menu.id)}
                 className="flex min-h-16 w-full items-center justify-between border-0 bg-transparent text-left text-2xl font-medium tracking-[-0.02em]"
               >
-                {m.label}
+                {menu.label}
                 <Chevron open={isOpen} />
               </button>
               <AnimatePresence initial={false}>
                 {isOpen && (
-                  <motion.div
-                    id={`m-${m.id}`}
+                  <m.div
+                    id={`m-${menu.id}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1, transition: { duration: reduce ? 0 : 0.32, ease: EASE } }}
                     exit={{ height: 0, opacity: 0, transition: { duration: reduce ? 0 : 0.24, ease: EASE } }}
@@ -463,17 +468,17 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                   >
                 <div className="flex flex-col gap-1 pb-5">
                   {/* Accent-coloured like its desktop counterpart in `PanelIntro`; the underline is the shared row hover. */}
-                  <Link href={m.href} onClick={onClose} className="row flex min-h-11 items-center py-2 text-accent">
-                    <span className="rowname text-[17px] font-medium">{m.label} overview</span>
+                  <Link href={menu.href} onClick={onClose} className="row flex min-h-11 items-center py-2 text-accent">
+                    <span className="rowname text-[17px] font-medium">{menu.label} overview</span>
                   </Link>
-                  {m.links.map((l) => (
+                  {menu.links.map((l) => (
                     <Link key={l.href} href={l.href} onClick={onClose} className="row flex min-h-11 flex-col justify-center gap-0.5 py-2">
                       <span className="rowname text-[17px] font-medium">{l.name}</span>
                       <span className="text-sm text-muted">{l.desc}</span>
                     </Link>
                   ))}
                 </div>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
@@ -483,6 +488,6 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           Contact
         </Link>
       </nav>
-    </motion.div>
+    </m.div>
   );
 }

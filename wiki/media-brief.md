@@ -56,26 +56,39 @@ Animated diagrams are the most engaging option here: one idea per loop, drawn on
 | Product card — Happenous | Candid outdoor footage of people doing an activity together (a run, a game, a workshop) | Video loop | Human warmth next to the map card |
 | Research cards | Use the research note covers (see Research) | Stills | |
 
-### Video weight — the files are far too big (2026-09-21)
-`public/media` is **173 MB**. Banners are served as plain MP4s, so the whole file is fetched; there is no
-adaptive streaming. Worst offenders, and what they cost a visitor on a typical 4G connection:
+### Video weight — re-encoded, 173 MB → 38 MB (2026-09-25)
+`public/media` was **173 MB**; it is now **38 MB**. Banners are served as plain MP4s (no adaptive streaming), so
+the file size is what a visitor downloads. Every video was re-encoded except `company/banner.mp4`, which already
+met the target. Originals of the replaced files are in the session scratchpad (`media-before-optimize/`).
 
-| Page | Video | 4 Mbps |
-| --- | --- | --- |
-| `/company/careers` | **57 MB** | ~114 s |
-| `/studio/animation` | 32 MB (banner + two cards) | ~64 s |
-| `/company/about` | 25 MB | ~50 s |
-| `/studio` | 22 MB | ~44 s |
-| `/` (home) | 10 MB | ~20 s |
+| File | Before | After | Notes |
+| --- | --- | --- | --- |
+| `careers/banner.mp4` | 59.4 MB | 3.41 MB | 50 Mbps export; audio track dropped |
+| `about/banner.mp4` | 26.2 MB | 3.78 MB | dense aerial city: slightly softer at 1:1 (SSIM 0.92), no blocks |
+| `studio/banner.mp4` | 22.9 MB | 3.53 MB | |
+| `animation/banner.mp4` | 12.2 MB | 3.79 MB | kept 60 fps and the letterbox (the page zooms it 1.35×) |
+| `animation/card-explainer.mp4` | 11.2 MB | 1.91 MB | 1920×1080 → 1280×720 (a 280px-tall card) |
+| `home/banner.mp4` | 10.0 MB | 3.55 MB | |
+| `stayonmap/banner.mp4` | 9.2 MB | 3.81 MB | |
+| `animation/card-motion-identity.mp4` | 8.9 MB | 1.91 MB | audio track dropped |
+| `video/product-film.mp4` | 8.5 MB | 1.90 MB | |
+| `video/banner.mp4` | 4.20 MB | 3.51 MB | |
+| `research/banner.mp4` | 1.23 MB | 1.06 MB | was H.264 **High 4:4:4** (yuv444p) — most browsers cannot decode that; now yuv420p |
+| `video/sport-*.mp4` (3) | 1.98 MB | 1.96 MB | were **HEVC** (Firefox cannot play it, Chrome only with hardware decode); now H.264, 720 wide |
 
-**Target: a banner loop should be about 2–4 MB** — 1920×1080 or 1280×720, H.264 at roughly 2–3 Mbps, 8–12
-seconds, no audio track. `company/banner.mp4` (4 MB) and `research/banner.mp4` (2 MB) are the right shape; the
-rest were exported straight from the source. Re-encoding is the only real fix — it needs `ffmpeg`, which is not
-installed on the build machine, so it has not been done.
+**Recipe** (ffmpeg 8, two-pass x264, from the published file — only `company/banner.mp4` has an original in
+`raw/footage/` (`0.mp4`), and it did not need redoing): same resolution and frame rate as before unless noted,
+`-an`, `-preset veryslow -profile:v high -level:v 4.0` (4.2 for the 60 fps banner, 3.1 for 720p),
+`-x264-params aq-mode=3` (holds dark gradients without banding), `-maxrate 2× -bufsize 4×`, bt709 tags,
+`-movflags +faststart`. Bitrates: 2.8–2.9 Mbps for 10 s banners, 1.3–1.5 Mbps for 20 s banners, 0.75–1 Mbps for
+card clips — sized to land each banner ≤ 4 MB and each clip ≤ 2 MB. Every file was checked by SSIM against the
+previous version (0.92–0.996) and by eye on 1:1 crops.
 
-Code-side mitigation is already in place (`components/ui/BannerVideo.tsx`): nothing is requested until the page
-has loaded and the browser is idle, and nothing at all under Save-Data or on 2G. That stops video competing with
-first paint; it does not make a 57 MB file small.
+**Targets for new footage:** banner ≤ 4 MB (1920×1080 or 1280×720, ≤ 20 s, no audio), in-page clip ≤ 2 MB
+(1280×720 is plenty for a 280px card), H.264 High, yuv420p, level ≤ 4.2 — never HEVC or 4:4:4.
+
+Code-side, `BannerVideo` requests nothing until the page has loaded **and** the browser is idle, and
+`BannerVideo` and `LoopVideo` request nothing at all under Save-Data or on 2G.
 
 ### Source footage lives in `raw/footage/`, never in the repo (2026-09-23)
 The `videos` commit put ~172 MB of OpenArt exports in the repo **root** — `0.mp4`, `openart-source.mp4` and

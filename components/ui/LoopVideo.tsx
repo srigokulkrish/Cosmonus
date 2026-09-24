@@ -17,10 +17,13 @@ export function LoopVideo({ src, className = "", label }: { src: string; classNa
   const [near, setNear] = useState(false);
   const [ready, setReady] = useState(false);
 
-  // Start loading when the clip is close to the viewport.
+  // Start loading when the clip is close to the viewport. Never under Save-Data or on a 2G connection, the same
+  // rule as BannerVideo: the box's flat panel tone stays, and the caption beside it still names the clip.
   useEffect(() => {
     const v = ref.current;
     if (!v || near) return;
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    if (conn?.saveData || /2g$/.test(conn?.effectiveType ?? "")) return;
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

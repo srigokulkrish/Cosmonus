@@ -67,7 +67,7 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
   soft shade from the bottom-left for the title; paused on the poster under reduced motion. Until files exist the
   flat tone shows.
 - **The exception is Image Generation** (owner, 2026-09-21): a still, not a film — `heroImage` on the capability
-  entry, rendered by `components/ui/BannerImage.tsx` (`next/image`, `fill`, `priority`, `quality={90}`). A page sets
+  entry, rendered by `components/ui/BannerImage.tsx` (`next/image`, `fill`, `preload`, `quality={90}`). A page sets
   `heroVideo` or `heroImage`; if both are present the film wins. Do not spread this to other pages — the page about
   making images is the one place a still argues for itself. That banner alone also has:
   - `heroAlign: "top"` — copy at the top of the box, tucked closer to the corner (`BANNER_PAD_TOP`).
@@ -148,6 +148,7 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
 
 ## Departures from the handoff (owner-requested, 2026-09-19)
 - **Fonts:** Schibsted Grotesk + JetBrains Mono (the original cosmonus.com pair) instead of Hanken Grotesk + Geist Mono.
+  Upright styles only (400/500/600 and mono 400/500): nothing is set in italic, so the italic face is not loaded.
 - **Logo:** the original cosmonus.com wordmark image, `public/logo-white.png` (231×30, white on transparent, downloaded
   from https://www.cosmonus.com/images/logo-white.png). `Logo` in `components/site/Header.tsx` draws it as a CSS mask
   filled with `currentColor` (123×16px), so it is ink in the header/mobile menu and white in the footer. The parent
@@ -195,9 +196,16 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
   three cards, with a light sweep (`.skeleton`; still under reduced motion).
 - **Video:** banners fade in once playable (the banner tone shows meanwhile) and pause off-screen; in-page clips
   (`LoopVideo`) download nothing until ~300px from view, play only while a third is visible, fade in when ready.
+  Banner films start only after `load` **and** browser idle; neither kind downloads under Save-Data or on 2G.
+- **Images:** `next/image` serves AVIF, falling back to WebP (`images.formats` in `next.config.ts`). A banner
+  still that should load first takes `preload` — Next 16 deprecated `priority`, which did the same thing.
 
 ## Motion
 One curve everywhere: `cubic-bezier(0.22, 1, 0.36, 1)` (`EASE` in Header.tsx).
+- Framer Motion is used as `m` inside `LazyMotion`, never `motion`: `Header` and `AgentsFlow` take `domAnimation`
+  (opacity, transforms, height, exit); `StudioTabs` needs `domMax` for its `layoutId` dot and loads it
+  asynchronously from `components/home/motion-features.ts`. A `motion.*` anywhere pulls the whole library into
+  that page again.
 - Mega menu: 90ms hover intent, 160ms close grace (separate open/close timers); 280ms fade-in, panel height
   glides and content cross-fades when switching menus; keyboard open moves focus in; Escape/outside click close.
 - Mobile menu fades/slides in; accordion sections animate height.

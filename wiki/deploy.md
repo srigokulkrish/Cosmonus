@@ -10,5 +10,6 @@
 - **This folder is not the git repo.** On 2026-09-19 the site was copied into a clone of the repo on branch `redesign`
   (commit 1b92232, on top of the old site's 65ff9a6) and pushed for a preview. To keep working with git, clone the repo
   and copy changes in, or turn this folder into a clone (`git init`, add the remote, fetch, and check out `redesign`).
-- Large file: `public/media/careers/banner.mp4` is ~57 MB (GitHub warns over 50 MB; hard limit 100 MB). Re-encode it
-  if more large media is added, or move media to Git LFS / a CDN.
+- Media size: every video in `public/media` is now ≤ 4 MB (38 MB in all, re-encoded 2026-09-25; the 57 MB Careers
+  banner is 3.4 MB). GitHub warns over 50 MB and refuses over 100 MB — encode new footage to the targets in
+  `media-brief.md` before it is committed.

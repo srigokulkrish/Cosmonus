@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, LazyMotion, domAnimation, m, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import { Arrow } from "@/components/ui/Button";
 import { MediaPanel, toneAt } from "@/components/ui/MediaPanel";
@@ -61,92 +61,96 @@ export function AgentsFlow() {
     }
   }
 
+  // `m` inside `LazyMotion` rather than `motion`, so this page shares the feature code the header already loads;
+  // `domAnimation` is enough: opacity, y, width and exit.
   return (
-    <div className="flex flex-col gap-10">
-      <SectionHead
-        eyebrow="How an agent works"
-        title="From a signal to a result someone can check."
-        lead="Five steps, from something happening in the real world to finished work a person reviews."
-      />
+    <LazyMotion features={domAnimation}>
+      <div className="flex flex-col gap-10">
+        <SectionHead
+          eyebrow="How an agent works"
+          title="From a signal to a result someone can check."
+          lead="Five steps, from something happening in the real world to finished work a person reviews."
+        />
 
-      <div
-        ref={panelRef}
-        className="rounded-hero bg-panel-light p-5 sm:p-8 lg:p-12"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onFocus={() => setPaused(true)}
-        onBlur={() => setPaused(false)}
-      >
-        {/* Step rail */}
-        <div role="tablist" aria-label="How an agent works" className="grid grid-cols-5 gap-2 sm:gap-4">
-          {nodes.map((s, i) => {
-            const selected = i === active;
-            const done = i <= active;
-            return (
-              <button
-                key={s.num}
-                ref={(el) => {
-                  tabRefs.current[i] = el;
-                }}
-                type="button"
-                role="tab"
-                id={`${base}-tab-${i}`}
-                aria-selected={selected}
-                aria-controls={`${base}-panel`}
-                tabIndex={selected ? 0 : -1}
-                onClick={() => go(i)}
-                onKeyDown={onKeyDown}
-                className={`group flex min-h-11 flex-col items-start gap-3 bg-transparent p-0 text-left transition-colors duration-300 ${
-                  selected ? "text-ink" : "text-muted hover:text-ink"
-                }`}
-              >
-                <span className="relative block h-[3px] w-full overflow-hidden rounded-full bg-rule/60">
-                  <motion.span
-                    className="absolute inset-y-0 left-0 rounded-full bg-ink"
-                    initial={false}
-                    animate={{ width: done ? "100%" : "0%" }}
-                    transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
-                  />
-                </span>
-                <span className="flex flex-col gap-1">
-                  <span className="font-mono text-xs">{s.num}</span>
-                  <span className="hidden text-lg leading-tight font-medium tracking-[-0.01em] sm:block lg:text-xl">{s.name}</span>
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Current step */}
-        <div role="tabpanel" id={`${base}-panel`} aria-labelledby={`${base}-tab-${active}`} className="mt-8 lg:mt-12">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={node.num}
-              initial={{ opacity: 0, y: reduce ? 0 : 8 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.3, ease: EASE } }}
-              exit={{ opacity: 0, transition: { duration: reduce ? 0 : 0.15, ease: "linear" } }}
-              className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center md:gap-10"
-            >
-              <div className="flex flex-col items-start gap-5">
-                <MonoLabel dot={active === 2}>
-                  Step {node.num} of 0{n}
-                </MonoLabel>
-                <h3 className="m-0 text-[44px] leading-none font-normal tracking-[-0.025em] lg:text-[64px]">{node.name}</h3>
-                <p className="m-0 max-w-[460px] text-lg leading-normal text-pretty text-ink-2 lg:text-xl">{node.body}</p>
+        <div
+          ref={panelRef}
+          className="rounded-hero bg-panel-light p-5 sm:p-8 lg:p-12"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
+        >
+          {/* Step rail */}
+          <div role="tablist" aria-label="How an agent works" className="grid grid-cols-5 gap-2 sm:gap-4">
+            {nodes.map((s, i) => {
+              const selected = i === active;
+              const done = i <= active;
+              return (
                 <button
+                  key={s.num}
+                  ref={(el) => {
+                    tabRefs.current[i] = el;
+                  }}
                   type="button"
-                  onClick={() => go(active + 1)}
-                  className="mt-2 inline-flex h-10 items-center gap-2 rounded-lg bg-white px-4 text-[15px] font-semibold text-ink transition-colors duration-200 hover:bg-soft"
+                  role="tab"
+                  id={`${base}-tab-${i}`}
+                  aria-selected={selected}
+                  aria-controls={`${base}-panel`}
+                  tabIndex={selected ? 0 : -1}
+                  onClick={() => go(i)}
+                  onKeyDown={onKeyDown}
+                  className={`group flex min-h-11 flex-col items-start gap-3 bg-transparent p-0 text-left transition-colors duration-300 ${
+                    selected ? "text-ink" : "text-muted hover:text-ink"
+                  }`}
                 >
-                  <span>{active === n - 1 ? "Start again" : `Next: ${nodes[active + 1].name}`}</span>
-                  <Arrow />
+                  <span className="relative block h-[3px] w-full overflow-hidden rounded-full bg-rule/60">
+                    <m.span
+                      className="absolute inset-y-0 left-0 rounded-full bg-ink"
+                      initial={false}
+                      animate={{ width: done ? "100%" : "0%" }}
+                      transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
+                    />
+                  </span>
+                  <span className="flex flex-col gap-1">
+                    <span className="font-mono text-xs">{s.num}</span>
+                    <span className="hidden text-lg leading-tight font-medium tracking-[-0.01em] sm:block lg:text-xl">{s.name}</span>
+                  </span>
                 </button>
-              </div>
-              <MediaPanel tone={toneAt(active)} label={node.asset} labelSize="text-[13px]" className="h-[260px] rounded-media sm:h-[340px] lg:h-[400px]" />
-            </motion.div>
-          </AnimatePresence>
+              );
+            })}
+          </div>
+
+          {/* Current step */}
+          <div role="tabpanel" id={`${base}-panel`} aria-labelledby={`${base}-tab-${active}`} className="mt-8 lg:mt-12">
+            <AnimatePresence mode="wait" initial={false}>
+              <m.div
+                key={node.num}
+                initial={{ opacity: 0, y: reduce ? 0 : 8 }}
+                animate={{ opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.3, ease: EASE } }}
+                exit={{ opacity: 0, transition: { duration: reduce ? 0 : 0.15, ease: "linear" } }}
+                className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center md:gap-10"
+              >
+                <div className="flex flex-col items-start gap-5">
+                  <MonoLabel dot={active === 2}>
+                    Step {node.num} of 0{n}
+                  </MonoLabel>
+                  <h3 className="m-0 text-[44px] leading-none font-normal tracking-[-0.025em] lg:text-[64px]">{node.name}</h3>
+                  <p className="m-0 max-w-[460px] text-lg leading-normal text-pretty text-ink-2 lg:text-xl">{node.body}</p>
+                  <button
+                    type="button"
+                    onClick={() => go(active + 1)}
+                    className="mt-2 inline-flex h-10 items-center gap-2 rounded-lg bg-white px-4 text-[15px] font-semibold text-ink transition-colors duration-200 hover:bg-soft"
+                  >
+                    <span>{active === n - 1 ? "Start again" : `Next: ${nodes[active + 1].name}`}</span>
+                    <Arrow />
+                  </button>
+                </div>
+                <MediaPanel tone={toneAt(active)} label={node.asset} labelSize="text-[13px]" className="h-[260px] rounded-media sm:h-[340px] lg:h-[400px]" />
+              </m.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
-    </div>
+    </LazyMotion>
   );
 }

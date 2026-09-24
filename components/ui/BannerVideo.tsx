@@ -45,16 +45,21 @@ export function BannerVideo({
     const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
     if (conn?.saveData || /2g$/.test(conn?.effectiveType ?? "")) return;
     const start = () => setLoad(true);
-    if (document.readyState !== "complete") {
-      window.addEventListener("load", start, { once: true });
-      return () => window.removeEventListener("load", start);
-    }
-    if (typeof window.requestIdleCallback === "function") {
-      const id = window.requestIdleCallback(start, { timeout: 2000 });
-      return () => window.cancelIdleCallback(id);
-    }
-    const id = window.setTimeout(start, 300);
-    return () => window.clearTimeout(id);
+    // `load` first, then idle — on a first visit `load` fires while hydration is still busy, so starting the
+    // film right there (as this used to) still competed with it.
+    let idle = 0;
+    let timer = 0;
+    const whenIdle = () => {
+      if (typeof window.requestIdleCallback === "function") idle = window.requestIdleCallback(start, { timeout: 2000 });
+      else timer = window.setTimeout(start, 300);
+    };
+    if (document.readyState === "complete") whenIdle();
+    else window.addEventListener("load", whenIdle, { once: true });
+    return () => {
+      window.removeEventListener("load", whenIdle);
+      if (idle) window.cancelIdleCallback(idle);
+      if (timer) window.clearTimeout(timer);
+    };
   }, []);
 
   // A <source> added after mount is not picked up until the element is told to look again.

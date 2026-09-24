@@ -50,7 +50,7 @@ function isFrosted(i: number) {
 /**
  * A still behind a banner, for the one page whose hero is a picture rather than a film
  * (Image Generation — owner, 2026-09-21). Decorative: the banner's heading carries the meaning,
- * exactly as with `BannerVideo`. `priority` because a banner is the page's largest paint.
+ * exactly as with `BannerVideo`. `preload` (Next 16's name for the deprecated `priority`) because a banner is the page's largest paint.
  *
  * `sizes` is not `100vw`, and that matters. The banner is a fixed-height box, so `object-cover`
  * paints the image much wider than the viewport once the box turns portrait: at 390px wide the box
@@ -82,7 +82,7 @@ export function BannerImage({
         alt=""
         aria-hidden="true"
         fill
-        priority
+        preload
         quality={90}
         sizes="(max-width: 1023px) 1120px, 1560px"
         className="object-cover"

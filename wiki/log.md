@@ -549,3 +549,29 @@
 ## [2026-09-25] fix | "How an agent works" stepper waits until it is on screen
 - Owner: the stepper was already on step 03 (Agent) by the time they scrolled to it. The 5 s auto-advance ran from
   page load. It now runs only while the panel is at least 40% in view (`useInView`), so visitors arrive at step 01.
+
+## [2026-09-25] tooling | `web-optimizer` agent
+- Added `.claude/agents/web-optimizer.md`: measures each route (media, JS, HTML), fixes the biggest wins first,
+  re-measures, and logs before → after here. Leaves design and copy as they are; the owner commits.
+- Notes that `ffmpeg`, `cwebp` and a headless browser are not installed, so re-encodes go to `media-brief.md`.
+
+## [2026-09-25] fix | Every video re-encoded: `public/media` 173 MB → 38 MB
+- 14 files re-encoded with ffmpeg (two-pass x264 veryslow, same size and frame rate, no audio, faststart); every
+  banner is now ≤ 4 MB and every in-page clip ≤ 2 MB. Careers 59.4 → 3.4 MB, About 26.2 → 3.8, Studio 22.9 → 3.5,
+  Animation banner 12.2 → 3.8, Explainer card 11.2 → 1.9 (now 1280×720), Home 10.0 → 3.5. Per page:
+  `/company/careers` 59.4 → 3.4 MB, `/studio/animation` 41.2 → 9.8, `/company/about` 26.2 → 3.8, `/studio` 22.9 → 3.5
+  (film only). File-by-file table and the exact recipe in `media-brief.md`. No path changed.
+- Two playback bugs fixed on the way: `research/banner.mp4` was H.264 High 4:4:4 (most browsers cannot decode it)
+  and the three `video/sport-*.mp4` clips were HEVC (Firefox cannot play them). All are H.264 yuv420p now.
+- Checked by SSIM (0.92–0.996) and 1:1 crops. About is the one visibly softer file at 1:1 — see `open-questions.md`.
+  Originals of every replaced file: session scratchpad, `media-before-optimize/`.
+
+## [2026-09-25] fix | Lighter JS, fonts and banner still on every page
+- Framer Motion as `m` + `LazyMotion` (`Header`, `AgentsFlow`: `domAnimation`; `StudioTabs`: `domMax`, loaded
+  async from `components/home/motion-features.ts`). First-load JS, gzip: 190.4 → 183.6 KB on most pages,
+  201.2 → 194.6 KB on home, 198.7 → 191.9 KB on the blog index. Same animations.
+- Dropped the unused Schibsted Grotesk italic (`app/layout.tsx`): preloaded fonts 128 → 78 KB on every page.
+- `images.formats` now AVIF then WebP: the Image Generation banner is 359 → 167 KB at 1920w (78 KB at 1200w),
+  no visible difference. `BannerImage` uses `preload` instead of Next 16's deprecated `priority` (same behaviour).
+- `BannerVideo` now waits for `load` **and** idle, as documented (it started at `load`); `LoopVideo` skips
+  downloading under Save-Data / 2G like the banners. typecheck, lint and build pass; all routes still static.
