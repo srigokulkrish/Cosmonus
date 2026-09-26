@@ -23,7 +23,7 @@ export type ProductContent = {
   intro: { label: string; title: string; body: string };
   different: { title: string; cards: MediaCardData[] };
   how: { title: string; steps: Step[] };
-  visit: { title: string; body: string; href: string; action: string; asset: string };
+  visit: { title: string; body: string; href: string; action: string; asset: string; image?: string; imageAlt?: string };
   more: { label: string; links: StripLink[] };
 };
 
@@ -31,13 +31,13 @@ export type ProductContent = {
 function noteLink(slug: string): StripLink {
   const n = getNote(slug);
   if (!n) throw new Error(`Unknown research note: ${slug}`);
-  return { name: n.title, href: `/company/research/${n.slug}`, desc: `${n.kind} · ${n.status}` };
+  return { name: n.title, href: `/company/research/${n.slug}`, desc: `${n.kind} · ${n.status}`, image: n.cover.image };
 }
 
 const capability = {
-  spatial: { name: "Spatial Intelligence", href: "/intelligence/spatial", desc: "Knowing where things are, and why it matters." },
-  trust: { name: "Trust Score", href: "/intelligence/trust-score", desc: "A readable signal for how far something can be relied on." },
-  workflow: { name: "Workflow Agents", href: "/agents/workflow", desc: "Agents that carry one task from start to finish." },
+  spatial: { name: "Spatial Intelligence", href: "/intelligence/spatial", desc: "Knowing where things are, and why it matters.", image: "/media/intelligence/index-spatial.jpg" },
+  trust: { name: "Trust Score", href: "/intelligence/trust-score", desc: "A readable signal for how far something can be relied on.", image: "/media/trust-score/band.jpg" },
+  workflow: { name: "Workflow Agents", href: "/agents/workflow", desc: "Agents that carry one task from start to finish.", image: "/media/agents/index-workflow.jpg" },
 } satisfies Record<string, StripLink>;
 
 type BuiltOn = { title: string; lead: string; groups: LinkGroup[] };
@@ -49,7 +49,7 @@ export type StayOnMapContent = ProductContent & {
     label: string;
     title: string;
     lead: string;
-    media: { tone: Tone; asset: string };
+    media: { tone: Tone; asset: string; image?: string; alt?: string };
     parts: ExplainerPart[];
     link: { href: string; action: string };
   };
@@ -85,19 +85,19 @@ export const stayonmap: StayOnMapContent = {
     cards: [
       {
         tone: "dark",
-        asset: "[ UI — map homepage, pins with live rent ]",
+        asset: "[ UI — map homepage, pins with live rent ]", image: "/media/studio/step-3.jpg", alt: "A hand holding up a phone with a map on a busy street at dusk.",
         title: "Map-first",
         body: "The full-screen map is the product. Property pins show live rent prices and update as you pan and zoom.",
       },
       {
         tone: "light",
-        asset: "[ UI — trust score on a listing ]",
+        asset: "[ UI — trust score on a listing ]", image: "/media/trust-score/card-signals.jpg", alt: "Documents, keys and a phone laid out in a row on a desk.",
         title: "Trust, engineered",
         body: "Every listing is scored across twelve live trust signals before it surfaces, and high-risk listings are suspended before a tenant ever visits.",
       },
       {
         tone: "mid",
-        asset: "[ UI — tenant–owner chat ]",
+        asset: "[ UI — tenant–owner chat ]", image: "/media/trust-score/band.jpg", alt: "A tenant and an owner shaking hands at an apartment doorway.",
         title: "No broker, no commission",
         body: "Owners list directly and tenants connect directly. Chat, visits and the lease all happen between the two of them.",
       },
@@ -106,9 +106,9 @@ export const stayonmap: StayOnMapContent = {
   how: {
     title: "How it works",
     steps: [
-      { title: "Browse the map", body: "Open the map in your area and see property pins with live rent prices." },
-      { title: "Request a visit", body: "Open a pin for the full details — BHK, furnishing, amenities, rules and photos — then ask to visit on a date and time." },
-      { title: "Chat and sign", body: "Talk to the owner directly and sign the lease digitally." },
+      { title: "Browse the map", image: "/media/stayonmap/step-1.jpg", alt: "A young man on a residential street studying a map on his phone.", body: "Open the map in your area and see property pins with live rent prices." },
+      { title: "Request a visit", image: "/media/stayonmap/step-2.jpg", alt: "Two people at an apartment building gate, arriving for a visit.", body: "Open a pin for the full details — BHK, furnishing, amenities, rules and photos — then ask to visit on a date and time." },
+      { title: "Chat and sign", image: "/media/stayonmap/step-3.jpg", alt: "Keys and a phone on the sill of an empty, sunlit apartment.", body: "Talk to the owner directly and sign the lease digitally." },
     ],
   },
   audiences: {
@@ -139,7 +139,7 @@ export const stayonmap: StayOnMapContent = {
     label: "Trust engine",
     title: "Twelve signals in. One score, and the reasoning behind it, out.",
     lead: "A trust score nobody can interrogate is just a number. Every listing carries both the score and the evidence that produced it, so a suspension can be explained to the owner it affects.",
-    media: { tone: "light", asset: "[ UI — trust score with its decision trace, listing detail ]" },
+    media: { tone: "light", asset: "[ UI — trust score with its decision trace, listing detail ]", image: "/media/about/step-4.jpg", alt: "Two people reading a printed page together, one pointing to a line." },
     parts: [
       {
         title: "Twelve live signals",
@@ -203,13 +203,13 @@ export const stayonmap: StayOnMapContent = {
   visit: {
     title: "See it on the map.",
     body: "Browse live rent prices across the city, request a visit and talk to the owner directly — no broker in between.",
-    asset: "[ STAYONMAP — live map with rent pins, screen recording ]",
+    asset: "[ STAYONMAP — live map with rent pins, screen recording ]", image: "/media/spatial/band.jpg", imageAlt: "A hand tracing a route on a paper city map.",
     href: "https://www.stayonmap.com",
     action: "Visit StayOnMap",
   },
   more: {
     label: "More in Product",
-    links: [{ name: "Happenous", href: "/product/happenous", desc: "Life happens outside the feed." }],
+    links: [{ name: "Happenous", href: "/product/happenous", image: "/media/home/product-happenous.jpg", desc: "Life happens outside the feed." }],
   },
 };
 
@@ -233,20 +233,20 @@ export const happenous: HappenousContent = {
     cards: [
       {
         tone: "dark",
-        asset: "[ UI — activity card ]",
+        asset: "[ UI — activity card ]", image: "/media/home/product-happenous.jpg", alt: "Friends playing football in a city park in the early evening light.",
         title: "Activities, not posts",
         body: "The unit of Happenous is something to do, with a place and a time attached — not a post.",
       },
       {
         tone: "light",
-        asset: "[ UI — nearby view ]",
+        asset: "[ UI — nearby view ]", image: "/media/video/card-launch.jpg", alt: "Friends laughing in a park under fairy lights at dusk.",
         title: "People nearby",
         body: "The plan is to surface activities around you, so people are found through what they are doing nearby rather than through follower counts.",
       },
       {
         tone: "mid",
         asset: "[ PHOTO — people together ]",
-        title: "Out of the app",
+        title: "Out of the app", image: "/media/happenous/card-out-of-app.jpg", alt: "Friends sitting in a circle on a rooftop at sunset, talking.",
         body: "The point is time spent together, not time spent in the app. That is the test we are designing against.",
       },
     ],
@@ -254,9 +254,9 @@ export const happenous: HappenousContent = {
   how: {
     title: "How it is meant to work",
     steps: [
-      { title: "Pick something to do", body: "Find something happening near you — a run, a film, a workshop — or make it happen: choose what, where, when and how many people." },
-      { title: "See who is in", body: "See who has joined, then talk it through before you meet." },
-      { title: "Go", body: "Meet up and do it. Afterwards, the people who were there keep what it produced." },
+      { title: "Pick something to do", image: "/media/happenous/step-1.jpg", alt: "A runner stretching at a park gate in the morning, joggers passing behind.", body: "Find something happening near you — a run, a film, a workshop — or make it happen: choose what, where, when and how many people." },
+      { title: "See who is in", image: "/media/happenous/step-2.jpg", alt: "A small group meeting at a park gate in the morning, one holding a football.", body: "See who has joined, then talk it through before you meet." },
+      { title: "Go", image: "/media/happenous/step-3.jpg", alt: "A group doing yoga together on a lawn at sunrise.", body: "Meet up and do it. Afterwards, the people who were there keep what it produced." },
     ],
   },
   why: {
@@ -297,12 +297,12 @@ export const happenous: HappenousContent = {
   visit: {
     title: "Not open yet.",
     body: "Happenous is still being built. happenous.com is a holding page for now — there is nothing to join there yet.",
-    asset: "[ HAPPENOUS — people out doing something together ]",
+    asset: "[ HAPPENOUS — people out doing something together ]", image: "/media/happenous/band.jpg", imageAlt: "Four friends walking by a lake at golden hour.",
     href: "https://www.happenous.com",
     action: "See happenous.com",
   },
   more: {
     label: "More in Product",
-    links: [{ name: "StayOnMap", href: "/product/stayonmap", desc: "Rent with intelligence." }],
+    links: [{ name: "StayOnMap", href: "/product/stayonmap", image: "/media/stayonmap/step-1.jpg", desc: "Rent with intelligence." }],
   },
 };

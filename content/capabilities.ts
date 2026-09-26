@@ -61,8 +61,8 @@ function noteRow(slug: string, desc: string): Row {
 
 // "More in …" strip items as they appear on the boards; each page lists the other three.
 const studioMore: Record<string, StripLink> = {
-  web: { name: "Web", href: "/studio/web", desc: "Sites and product interfaces, designed and built in-house." },
-  animation: { name: "Animation", href: "/studio/animation", desc: "Motion that explains how a system works." },
+  web: { name: "Web", href: "/studio/web", image: "/media/web/step-2.jpg", desc: "Sites and product interfaces, designed and built in-house." },
+  animation: { name: "Animation", href: "/studio/animation", image: "/media/animation/band.jpg", desc: "Motion that explains how a system works." },
   "image-generation": {
     name: "Image Generation",
     href: "/studio/image-generation",
@@ -70,25 +70,25 @@ const studioMore: Record<string, StripLink> = {
     // The page's own banner, so the strip card shows the work rather than a label.
     image: "/media/image-generation/banner.webp",
   },
-  video: { name: "Video", href: "/studio/video", desc: "Generated and shot footage, cut into films." },
+  video: { name: "Video", href: "/studio/video", image: "/media/video/poster.avif", desc: "Generated and shot footage, cut into films." },
 };
 
 const intelligenceMore: Record<string, StripLink> = {
-  spatial: { name: "Spatial Intelligence", href: "/intelligence/spatial", desc: "Knowing where things are, and why it matters." },
+  spatial: { name: "Spatial Intelligence", href: "/intelligence/spatial", image: "/media/intelligence/index-spatial.jpg", desc: "Knowing where things are, and why it matters." },
   "trust-score": {
     name: "Trust Score",
-    href: "/intelligence/trust-score",
+    href: "/intelligence/trust-score", image: "/media/trust-score/band.jpg",
     desc: "A readable signal for how far something can be relied on.",
   },
 };
 
 const agentsMore: Record<string, StripLink> = {
-  workflow: { name: "Workflow Agents", href: "/agents/workflow", desc: "Agents that carry one task from start to finish." },
-  automation: { name: "Automation", href: "/agents/automation", desc: "Routine work, handled the same way every time." },
-  experiments: { name: "Experiments", href: "/agents/experiments", desc: "Prototypes and open questions." },
+  workflow: { name: "Workflow Agents", href: "/agents/workflow", image: "/media/agents/index-workflow.jpg", desc: "Agents that carry one task from start to finish." },
+  automation: { name: "Automation", href: "/agents/automation", image: "/media/agents/index-automation.jpg", desc: "Routine work, handled the same way every time." },
+  experiments: { name: "Experiments", href: "/agents/experiments", image: "/media/agents/index-experiments.jpg", desc: "Prototypes and open questions." },
   systems: {
     name: "Conventional & Multi-tool Systems",
-    href: "/agents/systems",
+    href: "/agents/systems", image: "/media/agents/index-systems.jpg",
     desc: "Classic software and agents that use many tools, working together.",
   },
 };
@@ -141,16 +141,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "What we make",
     cards: [
-      { tone: "dark", asset: "[ WEBSITE — full-page capture ]", title: "Websites", body: "Editorial, fast sites for Cosmonus and its products — this one included." },
-      { tone: "light", asset: "[ PRODUCT UI — app screens ]", title: "Product interfaces", body: "The working screens of our products, from first sketch to shipped front end." },
-      { tone: "mid", asset: "[ MAP VIEW — recording ]", title: "Interactive maps", body: "Map views that stay readable when they are dense with real places and real listings." },
+      { tone: "dark", asset: "[ WEBSITE — full-page capture ]", image: "/media/web/card-websites.jpg", alt: "The Cosmonus home page: 'Building Real-World Intelligence.' over a city street in motion.", title: "Websites", body: "Editorial, fast sites for Cosmonus and its products — this one included." },
+      { tone: "light", asset: "[ PRODUCT UI — app screens ]", image: "/media/studio/band.jpg", alt: "Two phones on a cafe table beside a glass of chai in the afternoon sun.", title: "Product interfaces", body: "The working screens of our products, from first sketch to shipped front end." },
+      { tone: "mid", asset: "[ MAP VIEW — recording ]", image: "/media/about/step-2.jpg", alt: "A phone held up on a street, its map matching the street behind it.", title: "Interactive maps", body: "Map views that stay readable when they are dense with real places and real listings." },
     ],
     process: {
       title: "Process",
       steps: [
-        { title: "Start from the product", body: "We begin with what the product does and who meets it first, before a single layout exists." },
-        { title: "Design and build in one place", body: "The same studio designs and builds, so decisions made in a sketch survive into the shipped front end." },
-        { title: "Fill it with real content", body: "Screens are judged with real listings, real places and real copy in them — dense maps included — not tidy placeholder data." },
+        { title: "Start from the product", image: "/media/web/step-1.jpg", alt: "A paper sketch of a phone screen layout with a pen resting on it.", body: "We begin with what the product does and who meets it first, before a single layout exists." },
+        { title: "Design and build in one place", image: "/media/web/step-2.jpg", alt: "A developer seen from behind working across two monitors at dusk.", body: "The same studio designs and builds, so decisions made in a sketch survive into the shipped front end." },
+        { title: "Fill it with real content", image: "/media/web/step-3.jpg", alt: "A photographer on a residential street photographing a building entrance.", body: "Screens are judged with real listings, real places and real copy in them — dense maps included — not tidy placeholder data." },
       ],
     },
     showsUp: [
@@ -170,7 +170,7 @@ const entries: Entry[] = [
       title: "A product needs a surface.",
       body: "If you are thinking about a product and how people will first meet it, tell us about it.",
       href: "/contact?topic=idea",
-      action: "Talk to us about an interface",
+      action: "Talk to us about an interface", image: "/media/web/band.jpg", imageAlt: "A phone showing a map with a single pin, held at a residential doorway.",
     },
   },
   {
@@ -202,9 +202,9 @@ const entries: Entry[] = [
     process: {
       title: "Process",
       steps: [
-        { title: "Find what changes", body: "Every piece starts with one question: what changes over time here, and what does the viewer need to see change?" },
-        { title: "Set the timing once", body: "Easing and duration are decided as a system, so a button, a transition and a film feel made by the same hand." },
-        { title: "Cut what only decorates", body: "If a movement does not explain something, it comes out — including the ones we liked." },
+        { title: "Find what changes", image: "/media/animation/step-1.jpg", alt: "A row of storyboard frames on a wall, one circled.", body: "Every piece starts with one question: what changes over time here, and what does the viewer need to see change?" },
+        { title: "Set the timing once", image: "/media/animation/step-2.jpg", alt: "An animator seen from behind adjusting a curve on a timeline.", body: "Easing and duration are decided as a system, so a button, a transition and a film feel made by the same hand." },
+        { title: "Cut what only decorates", image: "/media/animation/step-3.jpg", alt: "A hand crossing out a busy storyboard frame beside a simpler one.", body: "If a movement does not explain something, it comes out — including the ones we liked." },
       ],
     },
     showsUp: [
@@ -224,7 +224,7 @@ const entries: Entry[] = [
       title: "See what motion has to explain.",
       body: "Trust Score is one of the ideas our explainers are made for: a score, the reasons behind it, and how it changes.",
       href: "/intelligence/trust-score",
-      action: "Read about Trust Score",
+      action: "Read about Trust Score", image: "/media/animation/band.jpg", imageAlt: "Silhouettes watching a film projected on a studio wall.",
     },
   },
   {
@@ -373,16 +373,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "What we make",
     cards: [
-      { tone: "dark", asset: "[ GENERATED SHOT ]", title: "Generated footage", body: "Shots made with video models, directed and selected like any other footage." },
-      { tone: "light", asset: "[ BEFORE / AFTER GRADE ]", title: "Edit and grade", body: "Cutting, sound and colour, so generated and real footage sit together." },
-      { tone: "mid", asset: "[ LAUNCH FILM — still ]", title: "Launch films", body: "The film that introduces a product to the people it is for." },
+      { tone: "dark", asset: "[ GENERATED SHOT ]", image: "/media/video/card-generated.jpg", alt: "A misty street at dawn with one tea stall lighting up.", title: "Generated footage", body: "Shots made with video models, directed and selected like any other footage." },
+      { tone: "light", asset: "[ BEFORE / AFTER GRADE ]", image: "/media/video/card-grade.jpg", alt: "A park at sunset shown half ungraded and half graded.", title: "Edit and grade", body: "Cutting, sound and colour, so generated and real footage sit together." },
+      { tone: "mid", asset: "[ LAUNCH FILM — still ]", image: "/media/video/card-launch.jpg", alt: "Friends laughing in a park under fairy lights at dusk.", title: "Launch films", body: "The film that introduces a product to the people it is for." },
     ],
     process: {
       title: "Process",
       steps: [
-        { title: "Decide what the film must show", body: "One idea per film: a product doing its job, somewhere real." },
-        { title: "Shoot and generate", body: "Some shots are filmed and some are made with video models, each chosen for what the scene needs." },
-        { title: "Cut, sound and grade", body: "Everything is edited and coloured together, so nobody notices where one kind of footage ends and the other begins." },
+        { title: "Decide what the film must show", image: "/media/video/step-1.jpg", alt: "A shot list on a clipboard beside a small camera.", body: "One idea per film: a product doing its job, somewhere real." },
+        { title: "Shoot and generate", image: "/media/video/step-2.jpg", alt: "A camera operator on a city pavement at golden hour.", body: "Some shots are filmed and some are made with video models, each chosen for what the scene needs." },
+        { title: "Cut, sound and grade", image: "/media/video/step-3.jpg", alt: "An editor at a dark desk with a timeline of coloured clips.", body: "Everything is edited and coloured together, so nobody notices where one kind of footage ends and the other begins." },
       ],
     },
     showsUp: [
@@ -402,7 +402,7 @@ const entries: Entry[] = [
       title: "Made for products that live outdoors.",
       body: "Happenous is about time spent together outside the app — the kind of product our films are made for. It is still being built.",
       href: "/product/happenous",
-      action: "See Happenous",
+      action: "See Happenous", image: "/media/video/band.jpg", imageAlt: "Runners crossing a city bridge at sunrise.",
     },
   },
 
@@ -420,16 +420,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "What we work on",
     cards: [
-      { tone: "dark", asset: "[ DIAGRAM — place ]", title: "Place", body: "Putting every listing, venue and event where it actually is, not where a form says it is." },
-      { tone: "light", asset: "[ DIAGRAM — surroundings ]", title: "Surroundings", body: "What is nearby — transit, shops, noise, people — and what that means for the question being asked." },
-      { tone: "mid", asset: "[ DIAGRAM — movement ]", title: "Movement", body: "How people really get from one place to another, and how long it takes them." },
+      { tone: "dark", asset: "[ DIAGRAM — place ]", image: "/media/spatial/card-place.jpg", alt: "A hand pressing a pin into a printed street map.", title: "Place", body: "Putting every listing, venue and event where it actually is, not where a form says it is." },
+      { tone: "light", asset: "[ DIAGRAM — surroundings ]", image: "/media/spatial/card-surroundings.jpg", alt: "A street corner with a bus stop, shops and a tea stall around an apartment building.", title: "Surroundings", body: "What is nearby — transit, shops, noise, people — and what that means for the question being asked." },
+      { tone: "mid", asset: "[ DIAGRAM — movement ]", image: "/media/spatial/card-movement.jpg", alt: "Commuters climbing out of a metro station at morning rush.", title: "Movement", body: "How people really get from one place to another, and how long it takes them." },
     ],
     process: {
       title: "How it works",
       steps: [
-        { title: "Place it", body: "Every listing, venue or event is put where it really is, and the written address is kept alongside the pin." },
-        { title: "Read the surroundings", body: "What is nearby is gathered for the question at hand: a walk to the station, a street that is loud at night, a shop at the corner." },
-        { title: "Let place shape the answer", body: "Location and surroundings travel on to scores and agents, so their answers change when the street does." },
+        { title: "Place it", image: "/media/spatial/step-1.jpg", alt: "A person checking a phone map in front of a building entrance.", body: "Every listing, venue or event is put where it really is, and the written address is kept alongside the pin." },
+        { title: "Read the surroundings", image: "/media/spatial/step-2.jpg", alt: "A balcony view over a park, a market lane and a metro line.", body: "What is nearby is gathered for the question at hand: a walk to the station, a street that is loud at night, a shop at the corner." },
+        { title: "Let place shape the answer", image: "/media/spatial/step-3.jpg", alt: "A couple walking down a quiet tree-lined lane toward home.", body: "Location and surroundings travel on to scores and agents, so their answers change when the street does." },
       ],
     },
     showsUp: [
@@ -450,7 +450,7 @@ const entries: Entry[] = [
       title: "Start with the map.",
       body: "StayOnMap is where our spatial work is used first: every home, where it really is.",
       href: "/product/stayonmap",
-      action: "See StayOnMap",
+      action: "See StayOnMap", image: "/media/spatial/band.jpg", imageAlt: "A hand tracing a route on a paper city map.",
     },
   },
   {
@@ -466,16 +466,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "How we think about it",
     cards: [
-      { tone: "dark", asset: "[ DIAGRAM — signals ]", title: "Signals", body: "Identity, verification, history, behaviour, community and context — each counted only when it is actually available." },
-      { tone: "light", asset: "[ UI — score with reasons ]", title: "Explanation", body: "A score is only useful if you can see why, so the reasons travel with the number." },
-      { tone: "mid", asset: "[ DIAGRAM — score over time ]", title: "Change over time", body: "Scores should move when the world does. When a signal is added, confirmed or goes stale, the score is recalculated and the change is explained." },
+      { tone: "dark", asset: "[ DIAGRAM — signals ]", image: "/media/trust-score/card-signals.jpg", alt: "Documents, keys and a phone laid out in a row on a desk.", title: "Signals", body: "Identity, verification, history, behaviour, community and context — each counted only when it is actually available." },
+      { tone: "light", asset: "[ UI — score with reasons ]", image: "/media/about/step-4.jpg", alt: "Two people reading a printed page together, one pointing to a line.", title: "Explanation", body: "A score is only useful if you can see why, so the reasons travel with the number." },
+      { tone: "mid", asset: "[ DIAGRAM — score over time ]", image: "/media/trust-score/card-over-time.jpg", alt: "Three photographs of one building entrance in different seasons.", title: "Change over time", body: "Scores should move when the world does. When a signal is added, confirmed or goes stale, the score is recalculated and the change is explained." },
     ],
     process: {
       title: "How it works",
       steps: [
-        { title: "Gather what is available", body: "Signals are collected only where they actually exist for this listing, place or claim. A missing signal is left out, not guessed." },
-        { title: "Weigh and explain", body: "The signals that moved the score most are written out in plain language beside the number." },
-        { title: "Recalculate when things change", body: "A new, confirmed or stale signal leads to a fresh score, and the change is explained rather than silently applied." },
+        { title: "Gather what is available", image: "/media/trust-score/step-1.jpg", alt: "A person comparing a phone with a building's name board.", body: "Signals are collected only where they actually exist for this listing, place or claim. A missing signal is left out, not guessed." },
+        { title: "Weigh and explain", image: "/media/trust-score/step-2.jpg", alt: "A hand ticking items on a short checklist.", body: "The signals that moved the score most are written out in plain language beside the number." },
+        { title: "Recalculate when things change", image: "/media/trust-score/step-3.jpg", alt: "A hand replacing an old photo of a building with a new one on a pinboard.", body: "A new, confirmed or stale signal leads to a fresh score, and the change is explained rather than silently applied." },
       ],
     },
     showsUp: [
@@ -495,7 +495,7 @@ const entries: Entry[] = [
       title: "Reliability, made visible.",
       body: "If you are working on something where people need to know how far to rely on what they see, we would like to hear about it.",
       href: "/contact?topic=collaboration",
-      action: "Talk to us about Trust Score",
+      action: "Talk to us about Trust Score", image: "/media/trust-score/band.jpg", imageAlt: "A tenant and an owner shaking hands at an apartment doorway.",
     },
   },
   // ——— Agents ———
@@ -512,16 +512,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "How they work",
     cards: [
-      { tone: "dark", asset: "[ DIAGRAM — plan ]", title: "Plan", body: "Breaks a job into steps and decides what it needs to know first." },
-      { tone: "light", asset: "[ DIAGRAM — act ]", title: "Act", body: "Calls tools, reads the results and adjusts the plan as it goes." },
-      { tone: "mid", asset: "[ DIAGRAM — hand back ]", title: "Hand back", body: "Returns finished work with a record of what it did and why." },
+      { tone: "dark", asset: "[ DIAGRAM — plan ]", image: "/media/workflow/card-plan.jpg", alt: "A hand sketching a job broken into steps on a large sheet.", title: "Plan", body: "Breaks a job into steps and decides what it needs to know first." },
+      { tone: "light", asset: "[ DIAGRAM — act ]", image: "/media/workflow/card-act.jpg", alt: "A hand on a phone call while typing, a list beside it.", title: "Act", body: "Calls tools, reads the results and adjusts the plan as it goes." },
+      { tone: "mid", asset: "[ DIAGRAM — hand back ]", image: "/media/workflow/card-hand-back.jpg", alt: "A finished folder with a cover note left in a tray.", title: "Hand back", body: "Returns finished work with a record of what it did and why." },
     ],
     process: {
       title: "How we work",
       steps: [
-        { title: "Define the finished job", body: "Before an agent starts, we decide what done looks like and who confirms it." },
-        { title: "Give it context and tools", body: "The agent gets the facts the job depends on, and only the tools it needs to finish it." },
-        { title: "Ask rather than guess", body: "Where a detail is absent rather than implied, the agent asks one clear question instead of filling the gap confidently." },
+        { title: "Define the finished job", image: "/media/workflow/step-1.jpg", alt: "A single card with one line and an empty tick box.", body: "Before an agent starts, we decide what done looks like and who confirms it." },
+        { title: "Give it context and tools", image: "/media/workflow/step-2.jpg", alt: "An open toolbox holding only two tools.", body: "The agent gets the facts the job depends on, and only the tools it needs to finish it." },
+        { title: "Ask rather than guess", image: "/media/workflow/step-3.jpg", alt: "One person turning to ask another a question about a form.", body: "Where a detail is absent rather than implied, the agent asks one clear question instead of filling the gap confidently." },
       ],
     },
     showsUp: [
@@ -540,7 +540,7 @@ const entries: Entry[] = [
       title: "A job worth handing over?",
       body: "If there is work you would like carried from start to finish — with a person checking the result — tell us about it.",
       href: "/contact?topic=idea",
-      action: "Talk to us about a workflow",
+      action: "Talk to us about a workflow", image: "/media/workflow/band.jpg", imageAlt: "A person signing off a finished document.",
     },
   },
   {
@@ -556,16 +556,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "Principles",
     cards: [
-      { tone: "dark", asset: "[ DIAGRAM — triggers ]", title: "Triggers", body: "Work starts when something happens, not when someone remembers." },
-      { tone: "light", asset: "[ DIAGRAM — reliability ]", title: "Reliability", body: "The same input gives the same result, and failures are surfaced instead of hidden." },
-      { tone: "mid", asset: "[ DIAGRAM — escalation ]", title: "Escalation", body: "When a case does not fit the rule, it goes to an agent or to a person." },
+      { tone: "dark", asset: "[ DIAGRAM — triggers ]", image: "/media/automation/card-triggers.jpg", alt: "A doorbell being pressed with a parcel at the door.", title: "Triggers", body: "Work starts when something happens, not when someone remembers." },
+      { tone: "light", asset: "[ DIAGRAM — reliability ]", image: "/media/automation/card-reliability.jpg", alt: "Three identical cups of tea in a row on a stall counter.", title: "Reliability", body: "The same input gives the same result, and failures are surfaced instead of hidden." },
+      { tone: "mid", asset: "[ DIAGRAM — escalation ]", image: "/media/automation/card-escalation.jpg", alt: "An odd parcel set aside from a line of identical ones.", title: "Escalation", body: "When a case does not fit the rule, it goes to an agent or to a person." },
     ],
     process: {
       title: "How we work",
       steps: [
-        { title: "Write the rule down", body: "If a task can be described completely, it is described completely before anything is built." },
-        { title: "Start on an event", body: "Each automation runs because something happened, not because someone remembered to run it." },
-        { title: "Route what does not fit", body: "Cases outside the rule go to an agent or a person, with the reason they did not fit attached." },
+        { title: "Write the rule down", image: "/media/automation/step-1.jpg", alt: "A sheet of simple instructions taped above a work counter.", body: "If a task can be described completely, it is described completely before anything is built." },
+        { title: "Start on an event", image: "/media/automation/step-2.jpg", alt: "A hand switching on the lights as a shop opens.", body: "Each automation runs because something happened, not because someone remembered to run it." },
+        { title: "Route what does not fit", image: "/media/automation/step-3.jpg", alt: "A hand passing one unusual form to a colleague.", body: "Cases outside the rule go to an agent or a person, with the reason they did not fit attached." },
       ],
     },
     showsUp: [
@@ -585,7 +585,7 @@ const entries: Entry[] = [
       title: "Routine work you would rather not do?",
       body: "Tell us about it. Some of it needs an agent; much of it just needs doing reliably.",
       href: "/contact?topic=problem",
-      action: "Talk to us about automation",
+      action: "Talk to us about automation", image: "/media/automation/band.jpg", imageAlt: "A tall stack of forms on a desk in the late evening.",
     },
   },
   {
@@ -601,16 +601,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "Current experiments",
     cards: [
-      { tone: "dark", asset: "[ EXPERIMENT — capture ]", title: "Listing by conversation", body: "Can a home be listed through a chat, without a single form?" },
-      { tone: "light", asset: "[ EXPERIMENT — capture ]", title: "Saying how sure it is", body: "Can a system show its confidence in words a person reads at a glance?" },
-      { tone: "mid", asset: "[ EXPERIMENT — capture ]", title: "Knowing the neighbourhood", body: "What should an agent know about a place before it suggests what to do there?" },
+      { tone: "dark", asset: "[ EXPERIMENT — capture ]", title: "Listing by conversation", image: "/media/experiments/card-conversation.jpg", alt: "A person on a sofa typing a message about the room around them.", body: "Can a home be listed through a chat, without a single form?" },
+      { tone: "light", asset: "[ EXPERIMENT — capture ]", title: "Saying how sure it is", image: "/media/experiments/card-how-sure.jpg", alt: "An analogue gauge with its needle at three quarters.", body: "Can a system show its confidence in words a person reads at a glance?" },
+      { tone: "mid", asset: "[ EXPERIMENT — capture ]", title: "Knowing the neighbourhood", image: "/media/experiments/card-neighbourhood.jpg", alt: "A neighbourhood map with handwritten notes on different spots.", body: "What should an agent know about a place before it suggests what to do there?" },
     ],
     process: {
       title: "How we run them",
       steps: [
-        { title: "Start with a question", body: "Each experiment begins as a plain question, like the three above, not as a feature waiting to ship." },
-        { title: "Build the smallest thing", body: "A prototype just large enough to show whether the question has a useful answer." },
-        { title: "Write up what happened", body: "What it is, what we learned and what is still unknown — including when the answer turned out to be no." },
+        { title: "Start with a question", image: "/media/experiments/step-1.jpg", alt: "A sticky note with a question mark on an empty desk.", body: "Each experiment begins as a plain question, like the three above, not as a feature waiting to ship." },
+        { title: "Build the smallest thing", image: "/media/experiments/step-2.jpg", alt: "A hand holding a rough paper prototype of a phone.", body: "A prototype just large enough to show whether the question has a useful answer." },
+        { title: "Write up what happened", image: "/media/experiments/step-3.jpg", alt: "A person writing up notes at a window table.", body: "What it is, what we learned and what is still unknown — including when the answer turned out to be no." },
       ],
     },
     showsUp: [
@@ -631,7 +631,7 @@ const entries: Entry[] = [
       title: "Read the write-ups.",
       body: "Research notes and experiments, published as the work produces them.",
       href: "/company/research",
-      action: "Read research and experiments",
+      action: "Read research and experiments", image: "/media/experiments/band.jpg", imageAlt: "A shelf of notebooks with one open on the desk.",
     },
   },
   {
@@ -647,16 +647,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "What we build",
     cards: [
-      { tone: "dark", asset: "[ DIAGRAM — services ]", title: "Conventional systems", body: "Deterministic software for the parts that must never surprise anyone." },
-      { tone: "light", asset: "[ DIAGRAM — agent and tools ]", title: "Multi-tool agents", body: "Agents that choose among maps, messaging, databases and other tools to finish a job." },
-      { tone: "mid", asset: "[ DIAGRAM — boundary ]", title: "The boundary", body: "Deciding which parts must be deterministic and which can be left to judgement." },
+      { tone: "dark", asset: "[ DIAGRAM — services ]", image: "/media/systems/card-services.jpg", alt: "A signal operator at a row of levers in a railway signal box.", title: "Conventional systems", body: "Deterministic software for the parts that must never surprise anyone." },
+      { tone: "light", asset: "[ DIAGRAM — agent and tools ]", image: "/media/systems/card-agent-tools.jpg", alt: "A person at a desk reaching between a phone, laptop and printer.", title: "Multi-tool agents", body: "Agents that choose among maps, messaging, databases and other tools to finish a job." },
+      { tone: "mid", asset: "[ DIAGRAM — boundary ]", image: "/media/systems/card-boundary.jpg", alt: "A painted line separating a machine area from a hand workbench.", title: "The boundary", body: "Deciding which parts must be deterministic and which can be left to judgement." },
     ],
     process: {
       title: "How we work",
       steps: [
-        { title: "Map the parts", body: "List every step of the job and ask of each one: must this always behave the same way?" },
-        { title: "Draw the boundary", body: "Deterministic software takes the steps where certainty matters; agents take the ones that need judgement." },
-        { title: "Connect them plainly", body: "Agents reach maps, messaging and databases through defined tools, and each call leaves a record." },
+        { title: "Map the parts", image: "/media/systems/step-1.jpg", alt: "An engineer drawing a system's parts as boxes on a whiteboard.", body: "List every step of the job and ask of each one: must this always behave the same way?" },
+        { title: "Draw the boundary", image: "/media/systems/step-2.jpg", alt: "A hand drawing a dashed boundary around boxes on a whiteboard.", body: "Deterministic software takes the steps where certainty matters; agents take the ones that need judgement." },
+        { title: "Connect them plainly", image: "/media/intelligence/step-2.jpg", alt: "Papers grouped into piles and linked with string on a map.", body: "Agents reach maps, messaging and databases through defined tools, and each call leaves a record." },
       ],
     },
     showsUp: [
@@ -676,7 +676,7 @@ const entries: Entry[] = [
       title: "Designing a whole system?",
       body: "If you are deciding which parts of a job should be certain and which can be left to judgement, we would like to think it through with you.",
       href: "/contact?topic=collaboration",
-      action: "Talk to us about a system",
+      action: "Talk to us about a system", image: "/media/agents/band.jpg", imageAlt: "A small operations room at dusk, seen from the back.",
     },
   },
 ];

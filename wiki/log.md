@@ -616,3 +616,25 @@
   says emails are used only to reply, so it was cut. `#E8421A` confirmed as the Happenous colour.
 - Owner also confirmed: Conventional & Multi-tool Systems stays one page; About and Careers copy approved.
 - typecheck, lint and build pass.
+
+## [2026-09-26] media | Image Generation page: all ten stills in
+- Generated in ChatGPT from the prompts doc (Style A), one chat so the cards, steps, band and three selected frames
+  share one light and grade. Saved to `public/media/image-generation/` under the names content already used, so no
+  code changed; `inPublic` swapped each placeholder for its picture.
+- 1536×1024 JPG at q84 (210–405 KB each). PNG originals kept in `raw/footage/image-generation/` (gitignored).
+
+## [2026-09-26] media | Generated stills on every page
+- 117 stills generated in ChatGPT (one style line, one page at a time) and wired into cards, steps, bands, index
+  and strip cards, blog covers and a research cover; diagram slots became real-world photographs (owner: "everything
+  in this website is about the real world and real people"). See media-brief.md §0.
+- Added `image` fields to section bands, product visit bands, research/blog covers, home product panels, the home
+  careers band and AgentsFlow nodes; product "Built on" cards reuse capability stills and research covers.
+- 7 left pending after the ChatGPT Plus image limit (listed in media-brief.md §0). Must-be-real slots (app UI,
+  site captures, team) stay labelled. typecheck, lint and build pass.
+
+## [2026-09-26] media | Every page carries images (banners excepted)
+- Filled the remaining placeholders: real cosmonus.com captures for the website slots; real-world photographs for
+  StayOnMap/Happenous UI slots (stayonmap.com had no live listings to capture; Happenous is unbuilt); stand-in
+  reuses for the 7 generations blocked by the ChatGPT limit. Full mapping in media-brief.md §0.
+- Row thumbnails now take `image`; `pageThumb(href)` in lib/media.ts supplies the linked page's picture.
+- Scan of 29 routes: no `[ … ]` placeholder left, all 132 image URLs 200. typecheck, lint, build pass.

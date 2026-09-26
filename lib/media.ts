@@ -1,5 +1,6 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
+import { getNote } from "@/content/research";
 
 /**
  * A media path is used only once its file is actually in `public/`, so a slot keeps its labelled placeholder
@@ -23,4 +24,27 @@ export function inPublic(src?: string): string | undefined {
 export function posterFor(video?: string): string | undefined {
   if (!video) return undefined;
   return inPublic(video.replace(/[^/]+$/, "poster.avif"));
+}
+
+/** The picture that stands for a page when a row or card links to it: its own still, or its banner's poster. */
+const pageThumbs: Record<string, string> = {
+  "/studio/web": "/media/web/card-websites.jpg",
+  "/studio/animation": "/media/animation/band.jpg",
+  "/studio/image-generation": "/media/image-generation/banner.webp",
+  "/studio/video": "/media/video/poster.avif",
+  "/product/stayonmap": "/media/stayonmap/step-1.jpg",
+  "/product/happenous": "/media/home/product-happenous.jpg",
+  "/intelligence/spatial": "/media/intelligence/index-spatial.jpg",
+  "/intelligence/trust-score": "/media/trust-score/band.jpg",
+  "/agents/workflow": "/media/agents/index-workflow.jpg",
+  "/agents/automation": "/media/agents/index-automation.jpg",
+  "/agents/experiments": "/media/agents/index-experiments.jpg",
+  "/agents/systems": "/media/agents/index-systems.jpg",
+  "/company/research": "/media/research/poster.avif",
+  "/company/blog": "/media/company/index-blog.jpg",
+};
+
+export function pageThumb(href: string): string | undefined {
+  const note = href.match(/^\/company\/research\/([^/]+)$/);
+  return inPublic(note ? getNote(note[1])?.cover.image : pageThumbs[href]);
 }

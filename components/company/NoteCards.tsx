@@ -13,7 +13,7 @@ export function NoteCards({ notes }: { notes: Note[] }) {
       {notes.map((n) => (
         <li key={n.slug}>
           <Link href={`/company/research/${n.slug}`} className="row flex flex-col gap-2.5">
-            <MediaPanel tone={n.cover.tone} label={n.cover.label} decorative className="mb-3 h-[216px] rounded-media" />
+            <MediaPanel tone={n.cover.tone} label={n.cover.label} src={n.cover.image} decorative sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="mb-3 h-[216px] rounded-media" />
             <span className="font-mono text-xs text-muted">
               {n.kind} · {n.status}
             </span>

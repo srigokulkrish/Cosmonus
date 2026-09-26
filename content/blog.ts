@@ -26,7 +26,7 @@ export type Post = {
   summary: string;
   /** ISO date the post went live. Shown on every blog surface and sent to Google as datePublished. */
   published: string;
-  cover: { tone: Tone; label: string };
+  cover: { tone: Tone; label: string; image?: string; alt?: string };
   body: PostSection[];
   /** Outside material a post relies on. Required whenever a post states facts that are not ours. */
   sources?: { name: string; href: string }[];
@@ -42,7 +42,7 @@ export const posts: Post[] = [
       "A model is a machine for guessing what comes next. Understanding that one sentence explains most of what it is good at and almost everything it gets wrong.",
     cover: {
       tone: "dark",
-      label: "[ COVER — a sentence being continued, one word at a time ]",
+      label: "[ COVER — a sentence being continued, one word at a time ]", image: "/media/blog/ai-models.jpg", alt: "A typewriter striking the next letter of a line.",
     },
     body: [
       {
@@ -125,7 +125,7 @@ export const posts: Post[] = [
       "How a computer can tell that “two-wheeler parking” and “bike parking” mean the same thing, when the two phrases share almost no letters.",
     cover: {
       tone: "light",
-      label: "[ COVER — words placed on a map by meaning, similar ones clustered ]",
+      label: "[ COVER — words placed on a map by meaning, similar ones clustered ]", image: "/media/blog/embeddings.jpg", alt: "A wall of photographs grouped by what they show.",
     },
     body: [
       {
@@ -209,7 +209,7 @@ export const posts: Post[] = [
       "Where embeddings live once there are millions of them, why an ordinary database struggles, and the honest answer to whether you need one yet.",
     cover: {
       tone: "mid",
-      label: "[ COVER — shelves arranged by similarity rather than by label ]",
+      label: "[ COVER — shelves arranged by similarity rather than by label ]", image: "/media/blog/vector-databases.jpg", alt: "A library shelf arranged by similarity, a hand pulling out a book.",
     },
     body: [
       {
@@ -283,7 +283,7 @@ export const posts: Post[] = [
       "An open-book exam for a model: find the right pages first, then ask the question. Most of the difficulty is in the finding.",
     cover: {
       tone: "dark",
-      label: "[ COVER — an open book beside a question, the relevant passage marked ]",
+      label: "[ COVER — an open book beside a question, the relevant passage marked ]", image: "/media/blog/rag.jpg", alt: "An open book with one passage marked beside a written question.",
     },
     body: [
       {
@@ -368,7 +368,7 @@ export const posts: Post[] = [
       "The Model Context Protocol is USB-C for AI assistants: one agreed way to connect a model to the outside tools and data it needs.",
     cover: {
       tone: "light",
-      label: "[ COVER — many cables into one standard socket ]",
+      label: "[ COVER — many cables into one standard socket ]", image: "/media/blog/mcp.jpg", alt: "Many different cables plugged into one standard power strip.",
     },
     body: [
       {
@@ -451,7 +451,7 @@ export const posts: Post[] = [
       "TypeSafe AI's Jev answers with a typed choice and a confidence number instead of prose — what that changes, and what “cannot hallucinate” really means.",
     cover: {
       tone: "mid",
-      label: "[ COVER — a page of prose beside a single ticked box and a confidence figure ]",
+      label: "[ COVER — a page of prose beside a single ticked box and a confidence figure ]", image: "/media/trust-score/step-2.jpg", alt: "A hand ticking items on a short checklist.",
     },
     sources: [
       {
@@ -605,7 +605,7 @@ export const posts: Post[] = [
       "What a prompt really is, why a vague request comes back as a guess, and how to write one that a stranger could follow without asking you a thing.",
     cover: {
       tone: "mid",
-      label: "[ COVER — the same request written twice, once vague and once exact ]",
+      label: "[ COVER — the same request written twice, once vague and once exact ]", image: "/media/studio/step-1.jpg", alt: "An open notebook with a handwritten question and a pencil sketch of a phone screen.",
     },
     body: [
       {
@@ -689,7 +689,7 @@ export const posts: Post[] = [
       "What a model can actually see when it answers, why more information is not automatically better, and how to decide what goes in.",
     cover: {
       tone: "light",
-      label: "[ COVER — a bag packed for an errand: a list, money, a photo ]",
+      label: "[ COVER — a bag packed for an errand: a list, money, a photo ]", image: "/media/home/agent-step-2.jpg", alt: "A map, calendar page, notes and a phone gathered on a desk.",
     },
     body: [
       {
@@ -773,7 +773,7 @@ export const posts: Post[] = [
       "Why real work is a cycle rather than a single answer, and how to decide when a system should try again, ask for help, or stop.",
     cover: {
       tone: "dark",
-      label: "[ COVER — the same step attempted three times, each a little different ]",
+      label: "[ COVER — the same step attempted three times, each a little different ]", image: "/media/animation/step-3.jpg", alt: "A hand crossing out a busy storyboard frame beside a simpler one.",
     },
     body: [
       {
@@ -863,7 +863,7 @@ export const posts: Post[] = [
     summary: "The tools, permissions, memory and failure paths that surround a model, and why they decide what is possible at all.",
     cover: {
       tone: "mid",
-      label: "[ COVER — a kitchen set up for a beginner: tools within reach, sharp things away ]",
+      label: "[ COVER — a kitchen set up for a beginner: tools within reach, sharp things away ]", image: "/media/workflow/step-2.jpg", alt: "An open toolbox holding only two tools.",
     },
     body: [
       {

@@ -4,7 +4,7 @@ import { Arrow } from "@/components/ui/Button";
 import { MediaPanel, toneAt } from "@/components/ui/MediaPanel";
 import { SectionHead } from "@/components/ui/Section";
 
-export type Row = { name: string; desc: ReactNode; href: string };
+export type Row = { name: string; desc: ReactNode; href: string; image?: string };
 
 /** A text row (name | description | arrow) on the thirds from lg. Used by the research note index. */
 export function RowLink({ name, desc, href }: Row) {
@@ -44,7 +44,7 @@ export function RowLink({ name, desc, href }: Row) {
  * a small thumbnail and a round arrow at the end of the third. The arrow fills ink and the name underlines on
  * hover. Below lg: number + name with the arrow, the description underneath.
  */
-function IndexRow({ name, desc, href, index }: Row & { index: number }) {
+function IndexRow({ name, desc, href, image, index }: Row & { index: number }) {
   const cls = "row group grid grid-cols-[1fr_auto] items-center gap-x-5 gap-y-2 border-t border-line py-6 lg:grid-cols-3 lg:py-8";
   const num = String(index + 1).padStart(2, "0");
   const body = (
@@ -60,6 +60,8 @@ function IndexRow({ name, desc, href, index }: Row & { index: number }) {
         <MediaPanel
           tone={toneAt(index)}
           label=""
+          src={image}
+          sizes="112px"
           decorative
           className="hidden h-[72px] w-[112px] rounded-[8px] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 md:flex"
         />

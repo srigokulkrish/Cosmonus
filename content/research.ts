@@ -25,7 +25,7 @@ export type Note = {
   title: string;
   /** One sentence. Used as the lead, the row description and the meta description. */
   summary: string;
-  cover: { tone: Tone; label: string };
+  cover: { tone: Tone; label: string; image?: string; alt?: string };
   body: NoteSection[];
 };
 
@@ -45,7 +45,7 @@ export const notes: Note[] = [
     status: "In progress",
     title: "Where a listing says it is, and where it really is",
     summary: "A written address and a point on a map are two different claims about a home. We are learning to treat the gap between them as information.",
-    cover: { tone: "dark", label: "[ COVER — address vs. pin, map detail ]" },
+    cover: { tone: "dark", label: "[ COVER — address vs. pin, map detail ]", image: "/media/research/cover-listing-location.jpg", alt: "A person on a street comparing a phone map with the building in front of them.", },
     body: [
       {
         paragraphs: [
@@ -83,7 +83,7 @@ export const notes: Note[] = [
     status: "In progress",
     title: "From a message to a listing someone can check",
     summary: "An experiment in letting a workflow agent turn a loosely written message into a structured listing, while the owner stays the one who confirms it.",
-    cover: { tone: "mid", label: "[ COVER — message to listing, screen recording ]" },
+    cover: { tone: "mid", label: "[ COVER — message to listing, screen recording ]", image: "/media/experiments/card-conversation.jpg", alt: "A person on a sofa typing a message about the room around them." },
     body: [
       {
         paragraphs: [
@@ -121,7 +121,7 @@ export const notes: Note[] = [
     status: "Published",
     title: "A new Cosmonus site, made in our own studio",
     summary: "We rebuilt this site around the four things we actually do: products, intelligence, agents and the studio that makes them.",
-    cover: { tone: "light", label: "[ COVER — site overview, still ]" },
+    cover: { tone: "light", label: "[ COVER — site overview, still ]", image: "/media/research/cover-new-site.jpg", alt: "Three pages of the Cosmonus site side by side: home, blog and Spatial Intelligence." },
     body: [
       {
         paragraphs: [
@@ -158,7 +158,7 @@ export const notes: Note[] = [
     status: "In progress",
     title: "A score is only useful if it shows its reasons",
     summary: "Why TrustScore on StayOnMap travels with the reasons behind it, and what we have had to give up to keep it readable.",
-    cover: { tone: "light", label: "[ COVER — score with reasons, UI detail ]" },
+    cover: { tone: "light", label: "[ COVER — score with reasons, UI detail ]", image: "/media/trust-score/step-2.jpg", alt: "A hand ticking items on a short checklist." },
     body: [
       {
         paragraphs: [

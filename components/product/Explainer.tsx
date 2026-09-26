@@ -20,7 +20,7 @@ export function Explainer({
   label: string;
   title: string;
   lead: string;
-  media: { tone: Tone; asset: string };
+  media: { tone: Tone; asset: string; image?: string; alt?: string };
   parts: ExplainerPart[];
   link?: { href: string; action: string };
 }) {
@@ -39,7 +39,7 @@ export function Explainer({
         }
       >
         <div className="flex flex-col gap-10">
-          <MediaPanel tone={media.tone} label={media.asset} className="h-[280px] rounded-media lg:h-[420px]" />
+          <MediaPanel tone={media.tone} label={media.asset} src={media.image} alt={media.alt} className="h-[280px] rounded-media lg:h-[420px]" />
           {/* Parts go 2×2 inside the two thirds, so each is exactly one third wide. */}
           <ol className={`m-0 list-none p-0 ${PAIRS} gap-y-10`}>
             {parts.map((p, i) => (

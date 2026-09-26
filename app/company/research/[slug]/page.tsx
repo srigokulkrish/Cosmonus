@@ -77,7 +77,7 @@ export default async function ResearchNotePage({ params }: Props) {
       </header>
 
       <div className="wrap pt-12 lg:pt-16">
-        <MediaPanel tone={note.cover.tone} label={note.cover.label} labelSize="text-[13px]" className="h-[260px] rounded-card sm:h-[400px] lg:h-[520px]" />
+        <MediaPanel tone={note.cover.tone} label={note.cover.label} src={note.cover.image} alt={note.cover.alt} sizes="100vw" labelSize="text-[13px]" className="h-[260px] rounded-card sm:h-[400px] lg:h-[520px]" />
       </div>
 
       {/* Body: a narrow meta column beside the text, so the reading column keeps its width.

@@ -9,10 +9,10 @@ import type { StatusKeyItem } from "@/components/company/StatusKey";
 import type { Step, StripLink } from "@/components/ui/Section";
 
 const strip = {
-  about: { name: "About", href: "/company/about", desc: "Who we are and why." },
-  research: { name: "Research", href: "/company/research", desc: "What we are learning." },
-  blog: { name: "Blog", href: "/company/blog", desc: "Things worth explaining, in plain language." },
-  careers: { name: "Careers", href: "/company/careers", desc: "Work on the real world." },
+  about: { name: "About", href: "/company/about", image: "/media/about/poster.avif", desc: "Who we are and why." },
+  research: { name: "Research", href: "/company/research", image: "/media/research/poster.avif", desc: "What we are learning." },
+  blog: { name: "Blog", href: "/company/blog", image: "/media/company/index-blog.jpg", desc: "Things worth explaining, in plain language." },
+  careers: { name: "Careers", href: "/company/careers", image: "/media/careers/poster.avif", desc: "Work on the real world." },
 } satisfies Record<string, StripLink>;
 
 export const about = {
@@ -52,12 +52,12 @@ export const about = {
   principles: {
     title: "How we think",
     steps: [
-      { title: "Problems first", body: "We choose the problem before the tool. A new model is only interesting if it makes something real better." },
-      { title: "The world is the test", body: "Streets, homes and groups of people are where our work is judged, so that is where we test it." },
-      { title: "Simpler, then smarter", body: "We remove steps before we add intelligence. Often the most useful change is the one nobody notices." },
-      { title: "Readable systems", body: "When software makes a judgement, a person should be able to see why and check the result." },
-      { title: "Say only what is true", body: "We describe what we have built, label what is still an experiment, and publish what did not work." },
-      { title: "One practice", body: "Design, film, engineering and research sit together, because the best ideas cross those lines." },
+      { title: "Problems first", image: "/media/about/step-1.jpg", alt: "A single index card pinned to an empty wall.", body: "We choose the problem before the tool. A new model is only interesting if it makes something real better." },
+      { title: "The world is the test", image: "/media/about/step-2.jpg", alt: "A phone held up on a street, its map matching the street behind it.", body: "Streets, homes and groups of people are where our work is judged, so that is where we test it." },
+      { title: "Simpler, then smarter", image: "/media/about/step-3.jpg", alt: "A tangled sketch beside a simple one on a desk.", body: "We remove steps before we add intelligence. Often the most useful change is the one nobody notices." },
+      { title: "Readable systems", image: "/media/about/step-4.jpg", alt: "Two people reading a printed page together, one pointing to a line.", body: "When software makes a judgement, a person should be able to see why and check the result." },
+      { title: "Say only what is true", image: "/media/about/step-5.jpg", alt: "An empty picture frame leaning against a white wall.", body: "We describe what we have built, label what is still an experiment, and publish what did not work." },
+      { title: "One practice", image: "/media/about/step-6.jpg", alt: "A shared table with sketches, a laptop and printed photographs, hands at work.", body: "Design, film, engineering and research sit together, because the best ideas cross those lines." },
     ] satisfies Step[],
   },
   parts: {
@@ -192,9 +192,9 @@ export const careers = {
   hiring: {
     title: "How we hire",
     steps: [
-      { title: "Introduce yourself", body: "Tell us what you would build, and show us something you have made. The contact page is the place to start." },
-      { title: "A conversation about the work", body: "We talk about what you have made, how you made it, and the problems here you would want to work on." },
-      { title: "Meet the team", body: "You meet the people you would work with, and ask them whatever you want to know about how we work." },
+      { title: "Introduce yourself", image: "/media/careers/step-1.jpg", alt: "A laptop with an email being written beside a cup of tea.", body: "Tell us what you would build, and show us something you have made. The contact page is the place to start." },
+      { title: "A conversation about the work", image: "/media/careers/step-2.jpg", alt: "Two people in conversation across a cafe table, hands only.", body: "We talk about what you have made, how you made it, and the problems here you would want to work on." },
+      { title: "Meet the team", image: "/media/careers/step-3.jpg", alt: "A round table from above with five people's hands, laptops and sketches.", body: "You meet the people you would work with, and ask them whatever you want to know about how we work." },
     ] satisfies Step[],
   },
   more: [strip.about, strip.research],

@@ -96,6 +96,9 @@ export default async function BlogPostPage({ params }: Props) {
         <MediaPanel
           tone={post.cover.tone}
           label={post.cover.label}
+          src={post.cover.image}
+          alt={post.cover.alt}
+          sizes="(min-width: 1100px) 1100px, 100vw"
           labelSize="text-[13px]"
           className="mx-auto h-[240px] max-w-[1100px] rounded-card sm:h-[360px] lg:h-[460px]"
         />

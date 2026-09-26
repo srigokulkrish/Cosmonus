@@ -17,13 +17,13 @@ export const metadata: Metadata = pageMetadata({ description: site.description, 
 
 // Source of truth: raw/handoff/design/Main.dc.html
 
-const products: { name: string; href: string; site: { href: string; label: string }; tone: Tone; asset: string; title: string; body: string }[] = [
+const products: { name: string; href: string; site: { href: string; label: string }; tone: Tone; asset: string; image?: string; alt?: string; title: string; body: string }[] = [
   {
     name: "StayOnMap",
     href: "/product/stayonmap",
     site: { href: "https://www.stayonmap.com", label: "Open stayonmap.com" },
     tone: "dark",
-    asset: "[ STAYONMAP — map view screen recording ]",
+    asset: "[ STAYONMAP — map view screen recording ]", image: "/media/stayonmap/step-1.jpg", alt: "A young man on a residential street studying a map on his phone.",
     title: "Rent with intelligence.",
     body: "Rental infrastructure without brokers. Every listing is scored across twelve trust signals before it surfaces, and owners and tenants connect directly, on a live map, with no commission.",
   },
@@ -33,6 +33,8 @@ const products: { name: string; href: string; site: { href: string; label: strin
     site: { href: "https://www.happenous.com", label: "See happenous.com" },
     tone: "light",
     asset: "[ HAPPENOUS — people doing things, outdoors, candid ]",
+    image: "/media/home/product-happenous.jpg",
+    alt: "Friends playing football in a city park in the early evening light.",
     title: "Life happens outside the feed.",
     body: "An activity-based social network, in build. Organised around what people are actually doing, and who they could do it with — not around what keeps them scrolling.",
   },
@@ -83,12 +85,13 @@ const agentLinks = [
 ];
 
 // The newest research note, company news and experiment, from content/research.ts.
-const research: { tone: Tone; kind: string; title: string; href: string; cover: string }[] = latestByKind().map((n) => ({
+const research: { tone: Tone; kind: string; title: string; href: string; cover: string; image?: string }[] = latestByKind().map((n) => ({
   tone: n.cover.tone,
   kind: n.kind,
   title: n.title,
   href: `/company/research/${n.slug}`,
   cover: n.cover.label,
+  image: n.cover.image,
 }));
 
 export default function HomePage() {
@@ -147,7 +150,7 @@ export default function HomePage() {
           {products.map((p) => (
             <article key={p.href} className="flex flex-col">
               <h3 className="m-0 mb-4 text-2xl leading-[1.15] font-medium tracking-[-0.01em] text-ink-2">{p.name}</h3>
-              <MediaPanel tone={p.tone} label={p.asset} labelSize="text-[13px]" className="h-[280px] rounded-media sm:h-[420px]" />
+              <MediaPanel tone={p.tone} label={p.asset} src={p.image} alt={p.alt} labelSize="text-[13px]" className="h-[280px] rounded-media sm:h-[420px]" />
               <p className="m-0 mt-8 max-w-[520px] text-[26px] leading-[1.2] tracking-[-0.015em] text-balance">{p.title}</p>
               <p className="m-0 mt-4 max-w-[520px] text-[15px] leading-[1.55] text-pretty text-muted">{p.body}</p>
               <div className="mt-6 flex flex-wrap gap-2">
@@ -247,7 +250,7 @@ export default function HomePage() {
         <div className={`${THIRDS} gap-y-10`}>
           {research.map((r) => (
             <Link key={r.href} href={r.href} className="row flex flex-col gap-2.5">
-              <MediaPanel tone={r.tone} label={r.cover} decorative className="mb-3 h-[216px] rounded-media" />
+              <MediaPanel tone={r.tone} label={r.cover} src={r.image} decorative sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="mb-3 h-[216px] rounded-media" />
               <span className="text-[13px] text-muted">{r.kind}</span>
               <span className="rowname text-2xl leading-[1.2] font-normal tracking-[-0.015em]">{r.title}</span>
             </Link>
@@ -262,6 +265,8 @@ export default function HomePage() {
           body="We are a small team building for streets, homes and the people in them. If that sounds like your kind of problem, we would like to hear from you."
           href="/company/careers"
           action="View open roles"
+          image="/media/home/band-careers.jpg"
+          imageAlt="Two people's hands pointing at a marked-up city map on a work table by a window."
         />
       </div>
     </>

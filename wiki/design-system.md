@@ -135,6 +135,10 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
   - Blog does **not** mirror them — see "The blog is its own layout" below.
 - `Band` (the closing call-to-action on home, section, capability and product pages) is a rounded soft-grey panel:
   heading, one line and a button left, an image placeholder filling the right half (`asset` labels it).
+- **Image fields now reach every slot (2026-09-26):** besides capability pages, `image`/`alt` work on section
+  bands (`sections.ts` `band`), product visit bands (`visit.image`/`imageAlt`), research and blog `cover`, home
+  product panels, the home careers band and `AgentsFlow` nodes. Only capability pages run paths through `inPublic`;
+  everywhere else a path must point at a file that exists, or it renders broken.
 - **Real images:** files go in `public/media/<page>/<slot>.<ext>` (names from the prompts doc). `MediaPanel` takes
   `src` + `alt` and renders `next/image` (fill, object-cover, `sizes`) in the same slot; without `src` it stays the
   placeholder. Media cards, `Steps` and `Band` all take `image`/`alt` the same way. First one in:

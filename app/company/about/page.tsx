@@ -9,6 +9,7 @@ import { InnerHero } from "@/components/ui/Hero";
 import { Intro, MoreStrip, SectionHead, Steps } from "@/components/ui/Section";
 import { about } from "@/content/company";
 import { notes } from "@/content/research";
+import { pageThumb } from "@/lib/media";
 
 export const metadata: Metadata = pageMetadata({ ...about.meta, path: "/company/about" });
 
@@ -19,7 +20,7 @@ export default function AboutPage() {
       <InnerHero tone="dark" {...about.hero} />
       <Intro {...about.intro} />
       <LinkCards {...about.parts} />
-      <RowList {...about.madeOf} />
+      <RowList {...about.madeOf} rows={about.madeOf.rows.map((r) => ({ ...r, image: pageThumb(r.href) }))} />
       <Story {...about.why} />
       <Steps {...about.principles} />
       <section className="wrap sec flex flex-col gap-12">

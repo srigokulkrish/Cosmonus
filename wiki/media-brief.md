@@ -9,6 +9,53 @@ come from the world and the products, not from graphics. People on camera must h
 
 ---
 
+## 0. Generated stills across the site (2026-09-26)
+
+Owner asked for every page to carry real-world, real-people imagery that matches the banner films. **117 stills**
+now fill cards, steps, bands, index cards, strips, blog covers and one research cover. They were generated in
+ChatGPT, one page at a time, from one style line so they read as one family (and as frames from the same films):
+
+> Cinematic film still, 35mm cinema camera, natural light, filmic colour grade with soft contrast and fine grain,
+> real places and real people, candid and unposed, set in a contemporary Indian city. People seen from behind, in
+> profile or small in the frame; no close-up faces, no children. Phone and laptop screens show only soft abstract
+> shapes. No readable text, no logos, no watermarks, no borders. Landscape 3:2.
+
+- **Diagrams became photographs.** The diagram slots (Intelligence, Agents, home "How an agent works") now show a
+  real-world scene that makes the same point — a pin pressed into a map, a checklist ticked, a signal box. Owner
+  direction: everything on the site is about the real world and real people.
+- **Files:** `public/media/<page>/<slot>.jpg`, 1536×1024, JPG q84 (≈140–400 KB; `next/image` resizes). PNG
+  originals in `raw/footage/generated/` (gitignored). Prompt + alt for every file: the session manifest, copied
+  into the prompts doc's naming.
+- **Reused, not regenerated:** index and "More in …" strip cards reuse a page's own still or banner poster
+  (`about`, `research`, `careers`, `video` posters; `image-generation/banner.webp`). Posters with an OpenArt
+  watermark or letterbox (`animation`, `stayonmap`) are **not** reused on cards.
+- **No placeholder left outside the banners (owner, 2026-09-26: "make sure every page is loaded with images").**
+  Slots that were held for real captures now carry the following — swap each for the real thing when it exists:
+  - **cosmonus.com captures are real:** `web/card-websites.jpg` (home page, headless Chrome at 1536×1024) fills the
+    Web card, the home Web tab and the /studio Web card; `research/cover-new-site.jpg` is a collage of three real
+    page captures (home, blog, Spatial).
+  - **StayOnMap UI slots show real-world photographs, not mock screens.** stayonmap.com had no live listings on
+    2026-09-26 (map: "No homes in this view"), so there was nothing real to capture. Map-first → `studio/step-3`,
+    Trust → `trust-score/card-signals`, No broker → `trust-score/band`, trust-engine explainer and Trust Score
+    "Explanation" → `about/step-4`, visit band → `spatial/band`, home/product index → `stayonmap/step-1`, Web
+    "Product interfaces" → `studio/band`, Web "Interactive maps" → `about/step-2`, Intelligence index →
+    `trust-score/band`. Research covers: message-to-listing → `experiments/card-conversation`, score-with-reasons →
+    `trust-score/step-2`. **Replace with real screen captures once the map has listings.**
+  - **Happenous UI cards show photographs** (the app is not built): Activities → `home/product-happenous`, People
+    nearby → `video/card-launch`.
+  - **Stand-ins for the 7 blocked generations** (reuse from other pages, alt text describes what is shown):
+    Systems step 3 → `intelligence/step-2`, Systems band → `agents/band`; blog covers System One →
+    `trust-score/step-2`, Prompt → `studio/step-1`, Context → `home/agent-step-2`, Loop → `animation/step-3`,
+    Harness → `workflow/step-2`. To swap: generate the file below, then point the slot at it.
+  - **Row thumbnails** ("Where it shows up", About "What Cosmonus is made of") now show the linked page's picture
+    via `pageThumb(href)` in `lib/media.ts` (server-only; called from `CapabilityPage` and the About page, never
+    from `RowList`, which a client component also imports).
+- **Careers team photo** is still a stand-in (the careers banner poster on the Company index card) — a real team
+  photo should replace it.
+- **Banners are still films.** The 12 pages without a banner film (Web, Product, Happenous, Intelligence, Spatial,
+  Trust Score, Agents, Workflow, Automation, Experiments, Systems, Contact) keep the flat tone; stills were not put
+  in banners, per the "every banner is a video" rule.
+
 ## 1. Formats and specs
 
 | Slot | Shape on screen (desktop) | Deliver | Type |
@@ -152,8 +199,8 @@ accident. **Put new footage in `raw/footage/`; only the cut, re-encoded result b
 
 **Image Generation carries the most stills** (owner, 2026-09-20). Its banner is now a still too — the only one on
 the site (`banner.webp`, owner 2026-09-21) — and everything below it is a still, and it gained a "Selected frames" row of three finished images
-after the cards. Its ten stills are named and wired already — drop them into `public/media/image-generation/` and
-they appear on the next build:
+after the cards. **All ten are in (2026-09-26)** — generated in one ChatGPT chat so they share a light and grade,
+exported as 1536×1024 JPG (q84, 210–405 KB; next/image resizes them), PNG originals in `raw/footage/image-generation/`:
 `card-art-direction.jpg` · `card-visual-systems.jpg` · `card-concept-frames.jpg` ·
 `step-1.jpg` · `step-2.jpg` · `step-3.jpg` · `band.jpg` ·
 `frame-lane.jpg` · `frame-rooftops.jpg` · `frame-doorway.jpg`.

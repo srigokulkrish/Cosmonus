@@ -5,7 +5,7 @@ import { RowList } from "@/components/company/RowList";
 import { InnerHero } from "@/components/ui/Hero";
 import { Band, Intro, MediaCards, MoreStrip, Steps } from "@/components/ui/Section";
 import { getCapability, type Capability, type CapabilitySection } from "@/content/capabilities";
-import { inPublic } from "@/lib/media";
+import { inPublic, pageThumb } from "@/lib/media";
 import { JsonLd } from "@/components/site/JsonLd";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import { menus } from "@/lib/site";
@@ -25,7 +25,7 @@ export function capabilityMetadata(section: CapabilitySection, slug: string): Me
 export function CapabilityPage({ capability: c, path }: { capability: Capability; path?: string }) {
   // "Where it shows up" only lists places outside this page's "More in …" strip; with fewer than two left it is dropped.
   const moreHrefs = new Set(c.more.links.map((l) => l.href));
-  const showsUp = (c.showsUp ?? []).filter((r) => !moreHrefs.has(r.href));
+  const showsUp = (c.showsUp ?? []).filter((r) => !moreHrefs.has(r.href)).map((r) => ({ ...r, image: r.image ?? pageThumb(r.href) }));
   // Media named in content but not yet in public/ falls back to its placeholder; a showcase row waits until it is whole.
   const cards = c.cards.map((card) => ({ ...card, video: inPublic(card.video), image: inPublic(card.image) }));
   const steps = c.process?.steps.map((s) => ({ ...s, image: inPublic(s.image) }));

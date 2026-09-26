@@ -15,7 +15,7 @@ const tabData = [
     title: "Sites and interfaces that feel considered",
     body: "We design and build the surfaces our products live on, from marketing sites to map-heavy product interfaces.",
     chips: ["websites", "product interfaces", "interactive maps"],
-    asset: "[ WEB — screen capture of a Cosmonus-built interface ]",
+    asset: "[ WEB — screen capture of a Cosmonus-built interface ]", image: "/media/web/card-websites.jpg", alt: "The Cosmonus home page: 'Building Real-World Intelligence.' over a city street in motion.",
   },
   {
     id: "animation",
@@ -33,7 +33,7 @@ const tabData = [
     title: "Generated imagery with an art director",
     body: "We use image models the way a studio uses a camera: with a brief, a point of view and a lot of editing.",
     chips: ["art direction", "visual systems", "concept frames"],
-    asset: "[ IMAGE GEN — before / after or contact sheet ]",
+    asset: "[ IMAGE GEN — before / after or contact sheet ]", image: "/media/image-generation/card-art-direction.jpg", alt: "A written brief on a cork board beside reference photographs of a street at dawn and a sheet of small image options.",
   },
   {
     id: "video",
@@ -41,7 +41,7 @@ const tabData = [
     title: "Film for products that live outdoors",
     body: "Generated and shot footage, cut together into launch films and the cinematic loops you see across this site.",
     chips: ["generated footage", "edit and grade", "launch films"],
-    asset: "[ VIDEO — 16:9 reel ]",
+    asset: "[ VIDEO — 16:9 reel ]", image: "/media/video/poster.avif", alt: "A figure in a magenta coat walking in front of a blue wall in a white studio.",
   },
 ];
 
