@@ -451,7 +451,7 @@ export const posts: Post[] = [
       "TypeSafe AI's Jev answers with a typed choice and a confidence number instead of prose — what that changes, and what “cannot hallucinate” really means.",
     cover: {
       tone: "mid",
-      label: "[ COVER — a page of prose beside a single ticked box and a confidence figure ]", image: "/media/trust-score/step-2.jpg", alt: "A hand ticking items on a short checklist.",
+      label: "[ COVER — a page of prose beside a single ticked box and a confidence figure ]", image: "/media/blog/system-one-models.jpg", alt: "A long typed page beside a form with one ticked box.",
     },
     sources: [
       {
@@ -605,7 +605,7 @@ export const posts: Post[] = [
       "What a prompt really is, why a vague request comes back as a guess, and how to write one that a stranger could follow without asking you a thing.",
     cover: {
       tone: "mid",
-      label: "[ COVER — the same request written twice, once vague and once exact ]", image: "/media/studio/step-1.jpg", alt: "An open notebook with a handwritten question and a pencil sketch of a phone screen.",
+      label: "[ COVER — the same request written twice, once vague and once exact ]", image: "/media/blog/prompt-engineering.jpg", alt: "A short scribbled note beside a careful, detailed one.",
     },
     body: [
       {
@@ -689,7 +689,7 @@ export const posts: Post[] = [
       "What a model can actually see when it answers, why more information is not automatically better, and how to decide what goes in.",
     cover: {
       tone: "light",
-      label: "[ COVER — a bag packed for an errand: a list, money, a photo ]", image: "/media/home/agent-step-2.jpg", alt: "A map, calendar page, notes and a phone gathered on a desk.",
+      label: "[ COVER — a bag packed for an errand: a list, money, a photo ]", image: "/media/blog/context-engineering.jpg", alt: "A bag packed for an errand: a list, money, a photo and keys.",
     },
     body: [
       {
@@ -773,7 +773,7 @@ export const posts: Post[] = [
       "Why real work is a cycle rather than a single answer, and how to decide when a system should try again, ask for help, or stop.",
     cover: {
       tone: "dark",
-      label: "[ COVER — the same step attempted three times, each a little different ]", image: "/media/animation/step-3.jpg", alt: "A hand crossing out a busy storyboard frame beside a simpler one.",
+      label: "[ COVER — the same step attempted three times, each a little different ]", image: "/media/blog/loop-engineering.jpg", alt: "Three attempts at a bowl in a row, each a little better.",
     },
     body: [
       {
@@ -863,7 +863,7 @@ export const posts: Post[] = [
     summary: "The tools, permissions, memory and failure paths that surround a model, and why they decide what is possible at all.",
     cover: {
       tone: "mid",
-      label: "[ COVER — a kitchen set up for a beginner: tools within reach, sharp things away ]", image: "/media/workflow/step-2.jpg", alt: "An open toolbox holding only two tools.",
+      label: "[ COVER — a kitchen set up for a beginner: tools within reach, sharp things away ]", image: "/media/blog/harness-engineering.jpg", alt: "A kitchen laid out for a beginner, tools in reach and knives put away.",
     },
     body: [
       {

@@ -656,7 +656,7 @@ const entries: Entry[] = [
       steps: [
         { title: "Map the parts", image: "/media/systems/step-1.jpg", alt: "An engineer drawing a system's parts as boxes on a whiteboard.", body: "List every step of the job and ask of each one: must this always behave the same way?" },
         { title: "Draw the boundary", image: "/media/systems/step-2.jpg", alt: "A hand drawing a dashed boundary around boxes on a whiteboard.", body: "Deterministic software takes the steps where certainty matters; agents take the ones that need judgement." },
-        { title: "Connect them plainly", image: "/media/intelligence/step-2.jpg", alt: "Papers grouped into piles and linked with string on a map.", body: "Agents reach maps, messaging and databases through defined tools, and each call leaves a record." },
+        { title: "Connect them plainly", image: "/media/systems/step-3.jpg", alt: "A hand connecting a cable into a neat patch panel.", body: "Agents reach maps, messaging and databases through defined tools, and each call leaves a record." },
       ],
     },
     showsUp: [
@@ -676,7 +676,7 @@ const entries: Entry[] = [
       title: "Designing a whole system?",
       body: "If you are deciding which parts of a job should be certain and which can be left to judgement, we would like to think it through with you.",
       href: "/contact?topic=collaboration",
-      action: "Talk to us about a system", image: "/media/agents/band.jpg", imageAlt: "A small operations room at dusk, seen from the back.",
+      action: "Talk to us about a system", image: "/media/systems/band.jpg", imageAlt: "Two operators seen from behind in a traffic control room.",
     },
   },
 ];

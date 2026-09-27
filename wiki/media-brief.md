@@ -11,7 +11,7 @@ come from the world and the products, not from graphics. People on camera must h
 
 ## 0. Generated stills across the site (2026-09-26)
 
-Owner asked for every page to carry real-world, real-people imagery that matches the banner films. **117 stills**
+Owner asked for every page to carry real-world, real-people imagery that matches the banner films. **124 stills**
 now fill cards, steps, bands, index cards, strips, blog covers and one research cover. They were generated in
 ChatGPT, one page at a time, from one style line so they read as one family (and as frames from the same films):
 
@@ -43,10 +43,9 @@ ChatGPT, one page at a time, from one style line so they read as one family (and
     `trust-score/step-2`. **Replace with real screen captures once the map has listings.**
   - **Happenous UI cards show photographs** (the app is not built): Activities → `home/product-happenous`, People
     nearby → `video/card-launch`.
-  - **Stand-ins for the 7 blocked generations** (reuse from other pages, alt text describes what is shown):
-    Systems step 3 → `intelligence/step-2`, Systems band → `agents/band`; blog covers System One →
-    `trust-score/step-2`, Prompt → `studio/step-1`, Context → `home/agent-step-2`, Loop → `animation/step-3`,
-    Harness → `workflow/step-2`. To swap: generate the file below, then point the slot at it.
+  - **The 7 generations blocked by the ChatGPT limit are in (2026-09-27):** `systems/step-3.jpg`,
+    `systems/band.jpg` and the blog covers `blog/system-one-models.jpg`, `prompt-engineering.jpg`,
+    `context-engineering.jpg`, `loop-engineering.jpg`, `harness-engineering.jpg` replace the stand-in reuses.
   - **Row thumbnails** ("Where it shows up", About "What Cosmonus is made of") now show the linked page's picture
     via `pageThumb(href)` in `lib/media.ts` (server-only; called from `CapabilityPage` and the About page, never
     from `RowList`, which a client component also imports).

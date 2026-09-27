@@ -638,3 +638,9 @@
   reuses for the 7 generations blocked by the ChatGPT limit. Full mapping in media-brief.md §0.
 - Row thumbnails now take `image`; `pageThumb(href)` in lib/media.ts supplies the linked page's picture.
 - Scan of 29 routes: no `[ … ]` placeholder left, all 132 image URLs 200. typecheck, lint, build pass.
+
+## [2026-09-27] media | Last 7 stills in; no stand-ins left
+- Generated the 7 stills the ChatGPT limit had blocked (same style line, one chat): Systems step 3 and band, and
+  the System One, Prompt, Context, Loop and Harness blog covers. Wired into `content/capabilities.ts` and
+  `content/blog.ts` with alt text from the manifest; the stand-in reuses are gone. 1536×1024 JPG q84, 157–253 KB.
+- Must-be-real slots (StayOnMap/Happenous UI, careers team photo) still carry photographs until real captures exist.
