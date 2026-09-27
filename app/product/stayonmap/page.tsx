@@ -31,7 +31,7 @@ export default function StayOnMapPage() {
       <LinkGroups {...c.builtOn} />
       <Faq {...c.faq} />
       {/* The live product opens in a new tab. */}
-      <Band {...c.visit} arrow external />
+      <Band {...c.visit} arrow external brand="stayonmap" />
       <MoreStrip {...c.more} />
     </>
   );

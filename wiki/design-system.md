@@ -224,8 +224,12 @@ One curve everywhere: `cubic-bezier(0.22, 1, 0.36, 1)` (`EASE` in Header.tsx).
 - Mobile menu fades/slides in; accordion sections animate height.
 - Home product buttons out to stayonmap.com / happenous.com use the `stayonmap` / `happenous` button variants:
   the brand colour a shade deeper (`#0B7A54`, `#D13A12`) so white 15px text passes AA (owner, 2026-09-27).
-- Home "How an agent works" sits on the Cosmonus mesh (`MeshBackdrop palette="cosmonus" dim lively`), white
-  copy and rail; `lively` runs the drift on 6–10 s loops instead of 11–19 s (owner: was a flat grey panel).
+- Home "How an agent works" and every page's closing Band sit on a pale drifting mesh (`MeshBackdrop pale
+  lively`, palette `cosmonusLight`; `stayonmapLight` / `happenousLight` on those products' own bands, with
+  brand-coloured buttons). Dark text stays. `lively` = 6–10 s loops. (Owner, 2026-09-27: grey panels read flat;
+  the dark mesh read too heavy under the Agents band.) Palettes live in `components/ui/mesh.ts` so server
+  components can read them.
+- Dropdowns: `components/ui/Select.tsx` (ARIA listbox), never a native <select> — its open list is OS-drawn.
 - Studio tabs: sliding accent dot beside the selected practice (`layoutId`), 260ms content fade-up. Every tab has
   a 2px rule; the selected one fills over 6 s (`.tab-progress`) and the tabs advance on their own while the box is
   on screen, pausing on hover/focus, never under reduced motion (owner, 2026-09-27: they did not look switchable).

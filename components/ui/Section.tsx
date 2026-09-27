@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { ButtonLink, Arrow } from "./Button";
 import { Dot } from "./Dot";
 import { MediaPanel, toneAt, type Tone } from "./MediaPanel";
+import { MESH } from "./mesh";
+import { MeshBackdrop } from "./MeshBackdrop";
 import { LoopVideo } from "./LoopVideo";
 import { MonoLabel } from "./MonoLabel";
 
@@ -173,6 +175,7 @@ export function Band({
   imageAlt,
   external = false,
   arrow = false,
+  brand,
 }: {
   title: ReactNode;
   body: ReactNode;
@@ -183,17 +186,22 @@ export function Band({
   imageAlt?: string;
   external?: boolean;
   arrow?: boolean;
+  /** A product page's own band: its colour for the mesh and the button (owner, 2026-09-27). */
+  brand?: "stayonmap" | "happenous";
 }) {
+  const palette = brand ? (`${brand}Light` as const) : "cosmonusLight";
   const label = asset ?? `[ ${typeof title === "string" ? title.replace(/[.?]$/, "").toUpperCase() : "IMAGE"} ]`;
   return (
     <section className="wrap sec">
-      <div className="grid grid-cols-1 overflow-hidden rounded-hero bg-panel-light md:grid-cols-2">
-        <div className="flex flex-col items-start justify-between gap-10 p-8 sm:p-10 lg:min-h-[420px] lg:p-14">
+      <div className="grid grid-cols-1 overflow-hidden rounded-hero md:grid-cols-2" style={{ backgroundColor: MESH[palette][2] }}>
+        {/* The copy sits on the pale Cosmonus mesh, drifting (owner, 2026-09-27: it was a flat grey panel). */}
+        <div className="relative isolate flex flex-col items-start justify-between gap-10 overflow-hidden p-8 sm:p-10 lg:min-h-[420px] lg:p-14">
+          <MeshBackdrop palette={palette} pale lively />
           <div className="flex flex-col gap-4">
             <h2 className="m-0 text-[32px] leading-[1.1] font-normal tracking-[-0.02em] text-balance lg:text-[44px]">{title}</h2>
             <p className="m-0 max-w-[480px] text-lg leading-normal text-pretty text-ink-2">{body}</p>
           </div>
-          <ButtonLink href={href} external={external} icon={arrow ? <Arrow /> : undefined}>
+          <ButtonLink href={href} external={external} variant={brand ?? "primary"} icon={arrow ? <Arrow /> : undefined}>
             {action}
           </ButtonLink>
         </div>

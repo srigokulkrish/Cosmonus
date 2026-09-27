@@ -35,8 +35,8 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const STEP_MS = 5000;
 
 /**
- * How an agent works: a stepper on the Cosmonus mesh (the Agents band's backdrop, on its livelier loop; owner,
- * 2026-09-27 — it was a flat grey panel). Five steps across the top with a progress rule that fills to
+ * How an agent works: a stepper on a pale Cosmonus mesh (the Agents band's moving backdrop in light tints, on its
+ * livelier loop; owner, 2026-09-27 — it was a flat grey panel, then the dark mesh read too heavy under the band). Five steps across the top with a progress rule that fills to
  * the current one; below, the current step large (number, name, description, next button) beside its diagram.
  * Advances on its own every 5 s, only while the panel is on screen (so a visitor arrives at step 01, not wherever the
  * timer got to during scrolling); pauses on hover/focus, never under prefers-reduced-motion. Tabs pattern:
@@ -86,13 +86,13 @@ export function AgentsFlow() {
 
         <div
           ref={panelRef}
-          className="relative isolate overflow-hidden rounded-hero bg-[#070d2e] p-5 text-white sm:p-8 lg:p-12"
+          className="relative isolate overflow-hidden rounded-hero bg-[#e6ebfa] p-5 text-ink sm:p-8 lg:p-12"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocus={() => setPaused(true)}
           onBlur={() => setPaused(false)}
         >
-          <MeshBackdrop palette="cosmonus" dim lively />
+          <MeshBackdrop palette="cosmonusLight" pale lively />
 
           {/* Step rail */}
           <div role="tablist" aria-label="How an agent works" className="grid grid-cols-5 gap-2 sm:gap-4">
@@ -114,12 +114,12 @@ export function AgentsFlow() {
                   onClick={() => go(i)}
                   onKeyDown={onKeyDown}
                   className={`group flex min-h-11 flex-col items-start gap-3 bg-transparent p-0 text-left transition-colors duration-300 ${
-                    selected ? "text-white" : "text-white/60 hover:text-white"
+                    selected ? "text-ink" : "text-muted hover:text-ink"
                   }`}
                 >
-                  <span className="relative block h-[3px] w-full overflow-hidden rounded-full bg-white/25">
+                  <span className="relative block h-[3px] w-full overflow-hidden rounded-full bg-ink/15">
                     <m.span
-                      className="absolute inset-y-0 left-0 rounded-full bg-white"
+                      className="absolute inset-y-0 left-0 rounded-full bg-ink"
                       initial={false}
                       animate={{ width: done ? "100%" : "0%" }}
                       transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
@@ -145,11 +145,11 @@ export function AgentsFlow() {
                 className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center md:gap-10"
               >
                 <div className="flex flex-col items-start gap-5">
-                  <MonoLabel dot={active === 2} className="text-white/75!">
+                  <MonoLabel dot={active === 2}>
                     Step {node.num} of 0{n}
                   </MonoLabel>
                   <h3 className="m-0 text-[44px] leading-none font-normal tracking-[-0.025em] lg:text-[64px]">{node.name}</h3>
-                  <p className="m-0 max-w-[460px] text-lg leading-normal text-pretty text-white/85 lg:text-xl">{node.body}</p>
+                  <p className="m-0 max-w-[460px] text-lg leading-normal text-pretty text-ink-2 lg:text-xl">{node.body}</p>
                   <button
                     type="button"
                     onClick={() => go(active + 1)}

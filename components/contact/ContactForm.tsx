@@ -2,7 +2,8 @@
 
 import { useSearchParams } from "next/navigation";
 import { useId, useRef, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
-import { Arrow, Chevron } from "@/components/ui/Button";
+import { Arrow } from "@/components/ui/Button";
+import { Select } from "@/components/ui/Select";
 import { site } from "@/lib/site";
 import { toTopic, topics, type Topic } from "./topics";
 
@@ -28,7 +29,7 @@ function validate(v: { name: string; email: string; message: string }): Errors {
 function FieldShell({ id, label, error, children }: { id: string; label: string; error?: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-[15px] font-medium">
+      <label id={`${id}-label`} htmlFor={id} className="text-[15px] font-medium">
         {label}
       </label>
       {children}
@@ -124,26 +125,12 @@ export function ContactForm({ initialTopic = "general" }: { initialTopic?: Topic
         </FieldShell>
       </div>
 
-      <FieldShell id={ids.topic} label="Topic">
-        <div className="relative">
-          <select
-            id={ids.topic}
-            name="topic"
-            value={topic}
-            onChange={(e) => setTopic(toTopic(e.target.value))}
-            className={`${control} h-11 appearance-none pr-10`}
-          >
-            {topics.map((t) => (
-              <option key={t.value} value={t.value}>
-                {t.label}
-              </option>
-            ))}
-          </select>
-          <span className="pointer-events-none absolute top-1/2 right-3.5 flex -translate-y-1/2 rotate-90 text-muted">
-            <Chevron />
-          </span>
-        </div>
-      </FieldShell>
+      {/* Half width, under Name: a full-width field made the open list a huge panel for one-word options. */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <FieldShell id={ids.topic} label="Topic">
+          <Select id={ids.topic} labelId={`${ids.topic}-label`} value={topic} options={topics} onChange={setTopic} className={`${control} h-11`} />
+        </FieldShell>
+      </div>
 
       <FieldShell id={ids.message} label="Message" error={errors.message}>
         <textarea

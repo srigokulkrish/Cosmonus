@@ -1,19 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { MESH, type MeshPalette } from "./mesh";
 
-/**
- * Mesh-gradient palettes: four oversized colour fields each (light → mid → deep → shadow), all heavily blurred so no
- * gradient boundary shows. StayOnMap = greens, Happenous = reddish oranges, Cosmonus = four colours only: blue, the brand
- * violet (#635BFF, from the original cosmonus.com buttons), dark blue and navy.
- */
-export const MESH = {
-  stayonmap: ["#6fe0ae", "#16a36f", "#0b6d52", "#04301f"],
-  happenous: ["#ffb27a", "#ff6a2e", "#c9310f", "#4a1004"],
-  cosmonus: ["#2f6bff", "#635bff", "#1d3fa8", "#070d2e"],
-} as const;
-
-export type MeshPalette = keyof typeof MESH;
+export { MESH, type MeshPalette };
 
 /** Fine film grain: an SVG noise texture, blended over the colour. */
 const GRAIN =
@@ -27,18 +17,21 @@ const GRAIN =
  * GPU draws on the page, so they draw only while someone can see them) and shift a little further when a parent
  * `group` is hovered. Fills its parent, which needs `relative isolate overflow-hidden`. `dim` adds an even shade for large areas of white text (keeps it above 4.5:1); `bloom={false}`
  * drops the white light bloom so only the palette's own colours show. `lively` runs the same drift on shorter
- * 6–10 s loops, for a panel that should feel busier (home "How an agent works").
+ * 6–10 s loops, for a panel that should feel busier (home "How an agent works"). `pale` drops the dark edge
+ * falloff and bottom shade and softens the grain, for a pale palette under dark text.
  */
 export function MeshBackdrop({
   palette,
   dim = false,
   bloom = true,
   lively = false,
+  pale = false,
 }: {
   palette: MeshPalette;
   dim?: boolean;
   bloom?: boolean;
   lively?: boolean;
+  pale?: boolean;
 }) {
   const [light, mid, deep, shadow] = MESH[palette];
   const ref = useRef<HTMLSpanElement>(null);
@@ -79,12 +72,16 @@ export function MeshBackdrop({
       </span>
       {/* Light bloom (off when a palette must stay to its exact colours) */}
       {bloom && <span className="absolute -top-1/4 right-0 h-3/4 w-2/3 rounded-full bg-white/25 blur-[80px]" />}
-      {/* Dark edge falloff; deepest along the bottom */}
-      <span className="absolute inset-0 bg-[radial-gradient(130%_110%_at_65%_20%,transparent_35%,rgba(0,0,0,0.55)_100%)]" />
-      <span className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/45 to-transparent" />
+      {/* Dark edge falloff; deepest along the bottom (not on a light palette) */}
+      {!pale && (
+        <>
+          <span className="absolute inset-0 bg-[radial-gradient(130%_110%_at_65%_20%,transparent_35%,rgba(0,0,0,0.55)_100%)]" />
+          <span className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/45 to-transparent" />
+        </>
+      )}
       {dim && <span className="absolute inset-0 bg-black/35" />}
       {/* Film grain */}
-      <span className="absolute inset-0 opacity-[0.18] mix-blend-overlay" style={{ backgroundImage: GRAIN }} />
+      <span className={`absolute inset-0 mix-blend-overlay ${pale ? "opacity-[0.08]" : "opacity-[0.18]"}`} style={{ backgroundImage: GRAIN }} />
     </span>
   );
 }

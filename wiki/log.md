@@ -681,3 +681,12 @@
   than the swatch for AA) and carry an arrow; new `stayonmap` / `happenous` ButtonLink variants.
 - "How an agent works" moved off the grey panel onto the Agents band's Cosmonus mesh, on a livelier loop
   (`MeshBackdrop lively`), with white copy and step rail.
+
+## [2026-09-28] design | Styled dropdown on the contact form; light mesh bands
+- Contact Topic field: the native <select> (its open list is drawn by the OS, blue on Windows) replaced by
+  `components/ui/Select.tsx`, an ARIA listbox styled like the site (white card, shadow-menu, soft hover row, the
+  accent dot on the chosen topic). Keyboard: arrows, Home/End, type-ahead, Enter/Space, Escape, Tab; outside click
+  closes. `?topic=` still pre-selects.
+- "How an agent works" and every page's closing Band moved onto a pale drifting mesh (`MeshBackdrop pale lively`,
+  palettes in `components/ui/mesh.ts`); the StayOnMap and Happenous bands use their own light green / orange and
+  brand-coloured buttons (`Band brand=`).

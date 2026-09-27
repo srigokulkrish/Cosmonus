@@ -30,7 +30,7 @@ export default function HappenousPage() {
       <LinkGroups {...c.builtOn} />
       <Faq {...c.faq} />
       {/* happenous.com is a holding page while the product is built; it opens in a new tab. */}
-      <Band {...c.visit} arrow external />
+      <Band {...c.visit} arrow external brand="happenous" />
       <MoreStrip {...c.more} />
     </>
   );
