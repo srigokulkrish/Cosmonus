@@ -65,8 +65,8 @@ ChatGPT, one page at a time, from one style line so they read as one family (and
   been one man at one wooden desk in golden light. Slots that borrowed another page's photo now have their own:
   Web product-UI and maps cards, Trust Score explanation card, StayOnMap map/trust/chat cards and decision-trace
   panel, Happenous activities and nearby cards, the score-with-reasons research cover. Index and "More in" cards
-  still show the linked page's own picture, which is intended. Blog covers and the Studio pages (Web steps,
-  Animation, Video, Image Generation) and About/Careers still carry the older warm style.
+  still show the linked page's own picture, which is intended. The ten blog covers were reshot in the same style (same metaphors). The Studio pages (Web steps, Animation,
+  Video, Image Generation) and About/Careers still carry the older warm style.
 
 ## 1. Formats and specs
 

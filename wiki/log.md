@@ -658,3 +658,8 @@
   (3), Intelligence steps, Trust Score (4) and home "How an agent works" — one subject each, own light and palette.
 - Ten slots that borrowed another page's photo got their own (Web, Trust Score, StayOnMap, Happenous, a research
   cover). Alt text rewritten to match every new picture. Blog, Studio, About and Careers stills are unchanged.
+
+## [2026-09-27] media | Blog covers in the minimal style
+- All ten blog covers regenerated with the same metaphors (typewriter, clustered objects, drawers, marked book,
+  one socket, toggle switch, two cards, packed pouch, three bowls, prepped kitchen), each with its own light and
+  palette; alt text rewritten to match.
