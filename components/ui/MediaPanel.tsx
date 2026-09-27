@@ -13,7 +13,7 @@ const tones: Record<Tone, string> = {
 export const toneAt = (i: number): Tone => (["dark", "light", "mid"] as const)[i % 3];
 
 /**
- * An image slot. With `src` (a file in public/, e.g. "/media/home/studio-animation.png") it shows that image,
+ * An image slot. With `src` (a file in public/, e.g. "/media/home/studio-animation.jpg") it shows that image,
  * cropped to fill the slot, with `alt` (or the label) as its text alternative. Without `src` it is the placeholder:
  * a flat tone with a small picture glyph and a mono label, e.g. "[ MAP VIEW — recording ]". Never stock imagery.
  */

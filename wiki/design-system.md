@@ -222,7 +222,10 @@ One curve everywhere: `cubic-bezier(0.22, 1, 0.36, 1)` (`EASE` in Header.tsx).
 - Mega menu: 90ms hover intent, 160ms close grace (separate open/close timers); 280ms fade-in, panel height
   glides and content cross-fades when switching menus; keyboard open moves focus in; Escape/outside click close.
 - Mobile menu fades/slides in; accordion sections animate height.
-- Studio tabs: sliding accent dot beside the selected practice (`layoutId`), 260ms content fade-up.
+- Studio tabs: sliding accent dot beside the selected practice (`layoutId`), 260ms content fade-up. Every tab has
+  a 2px rule; the selected one fills over 6 s (`.tab-progress`) and the tabs advance on their own while the box is
+  on screen, pausing on hover/focus, never under reduced motion (owner, 2026-09-27: they did not look switchable).
+  A JS timer moves on (banking elapsed time across pauses); the CSS fill is visual only. Other tabs show → on hover.
 - Hover: `fade` opacity 280ms; `.rowname` underline fades in; FAQ `<details>` animate open via `::details-content`.
 - Pages fade in on arrival, opacity only (`app/template.tsx` + `.page-in`). Never translate the page: it slides the hero under the sticky bar.
 - Heroes sit 8px below the bar (`pt-2`) so their rounded top edge is never tucked under it.

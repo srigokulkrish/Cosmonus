@@ -199,6 +199,18 @@
   animation: skeleton-sweep 1.4s ease-in-out infinite;
 }
 
+/* Auto-advancing tabs (components/home/StudioTabs.tsx): the active tab's rule fills over one step. Visual only;
+   a JS timer moves on, and pauses with it (data-paused). */
+@keyframes tab-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.tab-progress {
+  transform-origin: left center;
+  animation: tab-progress var(--tab-ms, 6000ms) linear forwards;
+}
+.tab-progress[data-paused="true"] { animation-play-state: paused; }
+
 /* Navigation progress bar (components/site/NavProgress.tsx). */
 .nav-progress {
   transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;

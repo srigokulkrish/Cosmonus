@@ -63,8 +63,8 @@ export const studio: SectionContent = {
         desc: "A route forming, a score resolving, an agent taking its next step.",
         tone: "light",
         asset: "[ ANIMATION — looping motion piece ]",
-        image: "/media/home/studio-animation.png",
-        alt: "A line map of city blocks with a route drawn between two points and a score ring loading beside the destination.",
+        image: "/media/home/studio-animation.jpg",
+        alt: "A single route of light crossing a city at night to one bright point.",
       },
       {
         name: "Image Generation",

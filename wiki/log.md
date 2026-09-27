@@ -663,3 +663,10 @@
 - All ten blog covers regenerated with the same metaphors (typewriter, clustered objects, drawers, marked book,
   one socket, toggle switch, two cards, packed pouch, three bowls, prepped kitchen), each with its own light and
   palette; alt text rewritten to match.
+
+## [2026-09-27] feature | Studio tabs auto-advance and read as switchable; Animation stills
+- Home Studio tabs now advance every 6 s while on screen (pause on hover/focus, none under reduced motion), with a
+  progress rule under each tab and a → hover cue. JS timer, not animationend (Chrome defers animation events in
+  unpainted tabs).
+- Animation page stills and band redone (card sequence, pendulum, cut film frame, a score ring on a screen); the
+  home Animation tab and Studio index card show a night route of light (`home/studio-animation.jpg`, PNG removed).

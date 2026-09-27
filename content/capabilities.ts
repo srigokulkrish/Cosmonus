@@ -204,9 +204,9 @@ const entries: Entry[] = [
     process: {
       title: "Process",
       steps: [
-        { title: "Find what changes", image: "/media/animation/step-1.jpg", alt: "A row of storyboard frames on a wall, one circled.", body: "Every piece starts with one question: what changes over time here, and what does the viewer need to see change?" },
-        { title: "Set the timing once", image: "/media/animation/step-2.jpg", alt: "An animator seen from behind adjusting a curve on a timeline.", body: "Easing and duration are decided as a system, so a button, a transition and a film feel made by the same hand." },
-        { title: "Cut what only decorates", image: "/media/animation/step-3.jpg", alt: "A hand crossing out a busy storyboard frame beside a simpler one.", body: "If a movement does not explain something, it comes out — including the ones we liked." },
+        { title: "Find what changes", image: "/media/animation/step-1.jpg", alt: "Six cards pinned in a row, a dot moving across them, one card circled.", body: "Every piece starts with one question: what changes over time here, and what does the viewer need to see change?" },
+        { title: "Set the timing once", image: "/media/animation/step-2.jpg", alt: "A steel pendulum caught mid-swing.", body: "Easing and duration are decided as a system, so a button, a transition and a film feel made by the same hand." },
+        { title: "Cut what only decorates", image: "/media/animation/step-3.jpg", alt: "A strip of film with one frame cut out, scissors beside it.", body: "If a movement does not explain something, it comes out — including the ones we liked." },
       ],
     },
     showsUp: [
@@ -226,7 +226,7 @@ const entries: Entry[] = [
       title: "See what motion has to explain.",
       body: "Trust Score is one of the ideas our explainers are made for: a score, the reasons behind it, and how it changes.",
       href: "/intelligence/trust-score",
-      action: "Read about Trust Score", image: "/media/animation/band.jpg", imageAlt: "Silhouettes watching a film projected on a studio wall.",
+      action: "Read about Trust Score", image: "/media/animation/band.jpg", imageAlt: "A dark screening room, a glowing ring filling on the screen.",
     },
   },
   {

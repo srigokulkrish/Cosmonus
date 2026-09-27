@@ -1,7 +1,7 @@
 "use client";
 
-import { AnimatePresence, LazyMotion, m, useReducedMotion } from "framer-motion";
-import { useId, useRef, useState, type KeyboardEvent } from "react";
+import { AnimatePresence, LazyMotion, m, useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { MediaPanel } from "@/components/ui/MediaPanel";
 
 // Layout animations (the sliding dot) load after the page is interactive; see ./motion-features.ts.
@@ -24,8 +24,8 @@ const tabData = [
     body: "Animation is how we show a system working: a route forming, a score resolving, an agent taking a step.",
     chips: ["motion identity", "product films", "explainers"],
     asset: "[ ANIMATION — looping motion piece ]",
-    image: "/media/home/studio-animation.png",
-    alt: "A line map of city blocks with a route drawn between two points and a score ring loading beside the destination.",
+    image: "/media/home/studio-animation.jpg",
+    alt: "A single route of light crossing a city at night to one bright point.",
   },
   {
     id: "image",
@@ -45,10 +45,40 @@ const tabData = [
   },
 ];
 
+const STEP_MS = 6000;
+
+/**
+ * Studio practices on the home page. Advances on its own every 6 s while the box is on screen, pausing on
+ * hover/focus and never under prefers-reduced-motion (the same rules as AgentsFlow). Each tab carries a rule;
+ * the active one fills over the step, which shows both that the names are switchable and when the next comes.
+ */
 export function StudioTabs() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(boxRef, { amount: 0.4 });
   const reduce = useReducedMotion();
+  const running = !reduce && !paused && inView;
+  const elapsed = useRef(0);
+
+  // A new tab starts its step from zero. Declared before the timer so, on a change, the timer's cleanup (which
+  // banks the time already run) happens first and this reset wins.
+  useEffect(() => {
+    elapsed.current = 0;
+  }, [active]);
+
+  // The timer that moves on. Pausing banks the elapsed time, so resuming finishes the step instead of restarting
+  // it — in step with the CSS fill, which pauses in place.
+  useEffect(() => {
+    if (!running) return;
+    const start = performance.now();
+    const t = setTimeout(() => setActive((a) => (a + 1) % tabData.length), Math.max(0, STEP_MS - elapsed.current));
+    return () => {
+      clearTimeout(t);
+      elapsed.current += performance.now() - start;
+    };
+  }, [running, active]);
   const base = useId();
   const panelId = `${base}-panel`;
   const tab = tabData[active];
@@ -88,12 +118,19 @@ export function StudioTabs() {
   // The full set (`domMax`, for the dot's `layoutId` slide) is fetched separately rather than with the page.
   return (
     <LazyMotion features={loadFeatures}>
-      <div className="grid w-full grid-cols-1 gap-8 rounded-card border border-line p-5 sm:p-8 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:items-center lg:gap-12 lg:p-12">
+      <div
+        ref={boxRef}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+        className="grid w-full grid-cols-1 gap-8 rounded-card border border-line p-5 sm:p-8 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:items-center lg:gap-12 lg:p-12"
+      >
         <div
           role="tablist"
           aria-label="Studio practices"
           aria-orientation="vertical"
-          className="flex flex-wrap gap-x-5 gap-y-1 lg:flex-col lg:gap-y-2"
+          className="grid grid-cols-2 gap-x-5 gap-y-3 sm:grid-cols-4 lg:grid-cols-1 lg:gap-y-5"
         >
           {tabData.map((t, i) => {
             const selected = i === active;
@@ -111,21 +148,43 @@ export function StudioTabs() {
                 tabIndex={selected ? 0 : -1}
                 onClick={() => setActive(i)}
                 onKeyDown={onKeyDown}
-                className={`flex min-h-11 items-center gap-3 bg-transparent p-0 text-left text-[22px] leading-[1.2] font-normal tracking-[-0.015em] transition-colors duration-300 lg:text-[28px] ${
+                className={`group flex min-h-11 flex-col items-stretch gap-2.5 bg-transparent p-0 text-left text-[22px] leading-[1.2] font-normal tracking-[-0.015em] transition-colors duration-300 lg:text-[28px] ${
                   selected ? "text-ink" : "text-muted hover:text-ink"
                 }`}
               >
-                {/* The accent dot slides to the selected practice. */}
-                <span className="relative hidden size-2 shrink-0 lg:block" aria-hidden="true">
+                <span className="flex items-center gap-3">
+                  {/* The accent dot slides to the selected practice. */}
+                  <span className="relative hidden size-2 shrink-0 lg:block" aria-hidden="true">
+                    {selected && (
+                      <m.span
+                        layoutId="studio-tab-dot"
+                        className="absolute inset-0 rounded-full bg-accent"
+                        transition={{ duration: reduce ? 0 : 0.36, ease }}
+                      />
+                    )}
+                  </span>
+                  <span>{t.label}</span>
+                  {/* Hover cue on the other practices: they can be opened. */}
+                  {!selected && (
+                    <span
+                      aria-hidden="true"
+                      className="-translate-x-1 text-[0.7em] opacity-0 transition-[opacity,transform] duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+                    >
+                      →
+                    </span>
+                  )}
+                </span>
+                {/* Every tab has a rule; the selected one fills over the step and, when full, moves on. */}
+                <span aria-hidden="true" className="relative block h-[2px] w-full overflow-hidden rounded-full bg-rule/60 lg:ml-5 lg:w-[calc(100%-20px)]">
                   {selected && (
-                    <m.span
-                      layoutId="studio-tab-dot"
-                      className="absolute inset-0 rounded-full bg-accent"
-                      transition={{ duration: reduce ? 0 : 0.36, ease }}
+                    <span
+                      key={`${t.id}-${active}`}
+                      className={`absolute inset-0 rounded-full bg-ink ${reduce ? "" : "tab-progress"}`}
+                      data-paused={!running}
+                      style={{ "--tab-ms": `${STEP_MS}ms` } as CSSProperties}
                     />
                   )}
                 </span>
-                <span>{t.label}</span>
               </button>
             );
           })}
