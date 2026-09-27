@@ -670,3 +670,8 @@
   unpainted tabs).
 - Animation page stills and band redone (card sequence, pendulum, cut film frame, a score ring on a screen); the
   home Animation tab and Studio index card show a night route of light (`home/studio-animation.jpg`, PNG removed).
+
+## [2026-09-27] perf | Stills re-encoded from originals
+- 148 JPGs re-encoded from their PNG originals at q78 progressive (was q84): 31.1 MB → 25.8 MB, same 1536×1024.
+  SSIM drop ≈0.005 on samples, invisible after next/image's AVIF/WebP. Three stills without an original
+  (two captures, one cover) left untouched to avoid a second JPEG pass.

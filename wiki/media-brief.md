@@ -23,7 +23,7 @@ ChatGPT, one page at a time, from one style line so they read as one family (and
 - **Diagrams became photographs.** The diagram slots (Intelligence, Agents, home "How an agent works") now show a
   real-world scene that makes the same point — a pin pressed into a map, a checklist ticked, a signal box. Owner
   direction: everything on the site is about the real world and real people.
-- **Files:** `public/media/<page>/<slot>.jpg`, 1536×1024, JPG q84 (≈140–400 KB; `next/image` resizes). PNG
+- **Files:** `public/media/<page>/<slot>.jpg`, 1536×1024, JPG q78 progressive, encoded from the PNG original (≈110–380 KB; `next/image` resizes and serves AVIF/WebP). PNG
   originals in `raw/footage/generated/` (gitignored). Prompt + alt for every file: the session manifest, copied
   into the prompts doc's naming.
 - **Reused, not regenerated:** index and "More in …" strip cards reuse a page's own still or banner poster
