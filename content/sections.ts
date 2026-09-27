@@ -295,11 +295,11 @@ export const intelligence: SectionContent = {
     title: "From signal to understanding",
     steps: [
       {
-        title: "Data", image: "/media/intelligence/step-1.jpg", alt: "Unsorted slips of paper and street photos scattered across a table.",
+        title: "Data", image: "/media/intelligence/step-1.jpg", alt: "Blank paper slips scattered across a dark floor.",
         body: "Scattered signals: a location, a listing, a message, a history. On their own, they say little.",
       },
       {
-        title: "Context", image: "/media/intelligence/step-2.jpg", alt: "Papers grouped into three piles and linked with string on a map.",
+        title: "Context", image: "/media/intelligence/step-2.jpg", alt: "Paper slips sorted into three neat stacks.",
         body: "What those signals mean together, for this place and this moment.",
       },
       {
@@ -373,16 +373,16 @@ export const agents: SectionContent = {
     kind: "steps",
     title: "Understand. Then act.",
     steps: [
-      { title: "Understand", image: "/media/agents/step-1.jpg", alt: "A person reading a printed message with a highlighter in hand.", body: "Work out what the person actually wants, and what is still missing." },
-      { title: "Plan", image: "/media/agents/step-2.jpg", alt: "Three sticky notes placed in a row as a plan.", body: "Break the job into steps and decide what to find out first." },
-      { title: "Use tools", image: "/media/agents/step-3.jpg", alt: "A hand working across a phone, a calculator and a laptop.", body: "Reach the maps, messages and data the job needs, and read the results." },
-      { title: "Verify", image: "/media/agents/step-4.jpg", alt: "A person checking a printed page against a laptop screen.", body: "Check the work against something real before relying on it." },
-      { title: "Act", image: "/media/agents/step-5.jpg", alt: "A hand posting a sealed envelope into a post box.", body: "Carry out the work within limits agreed in advance." },
-      { title: "Report", image: "/media/agents/step-6.jpg", alt: "A short printed summary placed on a desk beside a coffee.", body: "Hand back the result with a record of what was done and why." },
+      { title: "Understand", image: "/media/agents/step-1.jpg", alt: "A person by a window reading one message on a phone.", body: "Work out what the person actually wants, and what is still missing." },
+      { title: "Plan", image: "/media/agents/step-2.jpg", alt: "Three blank cards laid in a row.", body: "Break the job into steps and decide what to find out first." },
+      { title: "Use tools", image: "/media/agents/step-3.jpg", alt: "A hand taking one tool from a neat pegboard.", body: "Reach the maps, messages and data the job needs, and read the results." },
+      { title: "Verify", image: "/media/agents/step-4.jpg", alt: "A photo of a building held up against the building itself.", body: "Check the work against something real before relying on it." },
+      { title: "Act", image: "/media/agents/step-5.jpg", alt: "A hand posting a sealed envelope.", body: "Carry out the work within limits agreed in advance." },
+      { title: "Report", image: "/media/agents/step-6.jpg", alt: "A one-page summary on an empty table.", body: "Hand back the result with a record of what was done and why." },
     ],
   },
   band: {
-    title: "The intelligence behind it.", image: "/media/agents/band.jpg", imageAlt: "A small operations room at dusk, seen from the back.",
+    title: "The intelligence behind it.", image: "/media/agents/band.jpg", imageAlt: "A computer chip in raking blue light.",
     body: "An agent is only as good as the context it is given and the checks it runs.",
     href: "/intelligence",
     action: "See Intelligence",

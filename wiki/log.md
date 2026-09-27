@@ -652,3 +652,9 @@
 - Owner: stills all looked alike and should match their own page. New minimal style line, light and palette set
   per image. Automation redone as machines only; Spatial as places and maps; StayOnMap visit band given its own
   still. Agents-section index card for Automation now shows the Automation page's own picture.
+
+## [2026-09-27] media | Premium, content-matched imagery (part 2)
+- Redid the look-alike "wooden desk at golden hour" stills: Agents section, Workflow, Experiments, Systems
+  (3), Intelligence steps, Trust Score (4) and home "How an agent works" — one subject each, own light and palette.
+- Ten slots that borrowed another page's photo got their own (Web, Trust Score, StayOnMap, Happenous, a research
+  cover). Alt text rewritten to match every new picture. Blog, Studio, About and Careers stills are unchanged.

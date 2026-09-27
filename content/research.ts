@@ -158,7 +158,7 @@ export const notes: Note[] = [
     status: "In progress",
     title: "A score is only useful if it shows its reasons",
     summary: "Why TrustScore on StayOnMap travels with the reasons behind it, and what we have had to give up to keep it readable.",
-    cover: { tone: "light", label: "[ COVER — score with reasons, UI detail ]", image: "/media/trust-score/step-2.jpg", alt: "A hand ticking items on a short checklist." },
+    cover: { tone: "light", label: "[ COVER — score with reasons, UI detail ]", image: "/media/research/cover-score-with-reasons.jpg", alt: "A printed page with a score and its reasons." },
     body: [
       {
         paragraphs: [

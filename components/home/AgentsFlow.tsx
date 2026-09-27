@@ -10,24 +10,24 @@ import { SectionHead } from "@/components/ui/Section";
 const nodes = [
   { num: "01", name: "Signal", body: "Something happens in the real world — a message, a listing, a request.", asset: "[ DIAGRAM — a signal arrives ]",
     image: "/media/home/agent-step-1.jpg",
-    alt: "A phone on a desk lighting up with a new message." },
+    alt: "A phone lighting up with one notification." },
   { num: "02", name: "Context", body: "Place, time, history and the people involved are gathered first.", asset: "[ DIAGRAM — context gathered around it ]",
     image: "/media/home/agent-step-2.jpg",
-    alt: "A map, calendar page, notes and a phone gathered on a desk." },
+    alt: "A phone surrounded by a map, keys, a watch and a photo." },
   {
     num: "03",
     name: "Agent",
     body: "Plans the steps, decides which tools to call, and checks each result before moving on.",
     asset: "[ DIAGRAM — the agent plans and checks ]",
     image: "/media/home/agent-step-3.jpg",
-    alt: "A hand writing a short numbered plan with ticks beside each step.",
+    alt: "A hand about to move a chess piece.",
   },
   { num: "04", name: "Tools", body: "Maps, messaging, databases and conventional services.", asset: "[ DIAGRAM — tools called ]",
     image: "/media/home/agent-step-4.jpg",
-    alt: "A hand reaching for one of several tools laid out on a workbench." },
+    alt: "A phone, compass, hard drive and map on a blue surface." },
   { num: "05", name: "Action", body: "A finished result, handed back for a person to review.", asset: "[ DIAGRAM — result handed back ]",
     image: "/media/home/agent-step-5.jpg",
-    alt: "A finished folder handed across a desk for review." },
+    alt: "A person reviewing a printed page by a window." },
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as const;

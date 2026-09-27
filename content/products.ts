@@ -85,19 +85,19 @@ export const stayonmap: StayOnMapContent = {
     cards: [
       {
         tone: "dark",
-        asset: "[ UI — map homepage, pins with live rent ]", image: "/media/studio/step-3.jpg", alt: "A hand holding up a phone with a map on a busy street at dusk.",
+        asset: "[ UI — map homepage, pins with live rent ]", image: "/media/stayonmap/card-map.jpg", alt: "A phone showing a full-screen map with pins.",
         title: "Map-first",
         body: "The full-screen map is the product. Property pins show live rent prices and update as you pan and zoom.",
       },
       {
         tone: "light",
-        asset: "[ UI — trust score on a listing ]", image: "/media/trust-score/card-signals.jpg", alt: "Documents, keys and a phone laid out in a row on a desk.",
+        asset: "[ UI — trust score on a listing ]", image: "/media/stayonmap/card-trust.jpg", alt: "A phone showing a listing with a green check.",
         title: "Trust, engineered",
         body: "Every listing is scored across twelve live trust signals before it surfaces, and high-risk listings are suspended before a tenant ever visits.",
       },
       {
         tone: "mid",
-        asset: "[ UI — tenant–owner chat ]", image: "/media/trust-score/band.jpg", alt: "A tenant and an owner shaking hands at an apartment doorway.",
+        asset: "[ UI — tenant–owner chat ]", image: "/media/stayonmap/card-chat.jpg", alt: "A tenant and an owner shaking hands in a bright doorway.",
         title: "No broker, no commission",
         body: "Owners list directly and tenants connect directly. Chat, visits and the lease all happen between the two of them.",
       },
@@ -139,7 +139,7 @@ export const stayonmap: StayOnMapContent = {
     label: "Trust engine",
     title: "Twelve signals in. One score, and the reasoning behind it, out.",
     lead: "A trust score nobody can interrogate is just a number. Every listing carries both the score and the evidence that produced it, so a suspension can be explained to the owner it affects.",
-    media: { tone: "light", asset: "[ UI — trust score with its decision trace, listing detail ]", image: "/media/about/step-4.jpg", alt: "Two people reading a printed page together, one pointing to a line." },
+    media: { tone: "light", asset: "[ UI — trust score with its decision trace, listing detail ]", image: "/media/stayonmap/trace.jpg", alt: "A laptop showing a score beside its reasons." },
     parts: [
       {
         title: "Twelve live signals",
@@ -234,13 +234,13 @@ export const happenous: HappenousContent = {
     cards: [
       {
         tone: "dark",
-        asset: "[ UI — activity card ]", image: "/media/home/product-happenous.jpg", alt: "Friends playing football in a city park in the early evening light.",
+        asset: "[ UI — activity card ]", image: "/media/happenous/card-activities.jpg", alt: "A football on the line of an empty pitch.",
         title: "Activities, not posts",
         body: "The unit of Happenous is something to do, with a place and a time attached — not a post.",
       },
       {
         tone: "light",
-        asset: "[ UI — nearby view ]", image: "/media/video/card-launch.jpg", alt: "Friends laughing in a park under fairy lights at dusk.",
+        asset: "[ UI — nearby view ]", image: "/media/happenous/card-nearby.jpg", alt: "Three friends on the steps of a sunny square.",
         title: "People nearby",
         body: "The plan is to surface activities around you, so people are found through what they are doing nearby rather than through follower counts.",
       },

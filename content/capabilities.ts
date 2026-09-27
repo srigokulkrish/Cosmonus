@@ -144,8 +144,8 @@ const entries: Entry[] = [
     cardsTitle: "What we make",
     cards: [
       { tone: "dark", asset: "[ WEBSITE — full-page capture ]", image: "/media/web/card-websites.jpg", alt: "The Cosmonus home page: 'Building Real-World Intelligence.' over a city street in motion.", title: "Websites", body: "Editorial, fast sites for Cosmonus and its products — this one included." },
-      { tone: "light", asset: "[ PRODUCT UI — app screens ]", image: "/media/studio/band.jpg", alt: "Two phones on a cafe table beside a glass of chai in the afternoon sun.", title: "Product interfaces", body: "The working screens of our products, from first sketch to shipped front end." },
-      { tone: "mid", asset: "[ MAP VIEW — recording ]", image: "/media/about/step-2.jpg", alt: "A phone held up on a street, its map matching the street behind it.", title: "Interactive maps", body: "Map views that stay readable when they are dense with real places and real listings." },
+      { tone: "light", asset: "[ PRODUCT UI — app screens ]", image: "/media/web/card-product-ui.jpg", alt: "Two phones showing app screens.", title: "Product interfaces", body: "The working screens of our products, from first sketch to shipped front end." },
+      { tone: "mid", asset: "[ MAP VIEW — recording ]", image: "/media/web/card-maps.jpg", alt: "A tablet showing a map dense with points.", title: "Interactive maps", body: "Map views that stay readable when they are dense with real places and real listings." },
     ],
     process: {
       title: "Process",
@@ -470,16 +470,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "How we think about it",
     cards: [
-      { tone: "dark", asset: "[ DIAGRAM — signals ]", image: "/media/trust-score/card-signals.jpg", alt: "Documents, keys and a phone laid out in a row on a desk.", title: "Signals", body: "Identity, verification, history, behaviour, community and context — each counted only when it is actually available." },
-      { tone: "light", asset: "[ UI — score with reasons ]", image: "/media/about/step-4.jpg", alt: "Two people reading a printed page together, one pointing to a line.", title: "Explanation", body: "A score is only useful if you can see why, so the reasons travel with the number." },
+      { tone: "dark", asset: "[ DIAGRAM — signals ]", image: "/media/trust-score/card-signals.jpg", alt: "An ID card, key, phone, document, receipt and photo in a row.", title: "Signals", body: "Identity, verification, history, behaviour, community and context — each counted only when it is actually available." },
+      { tone: "light", asset: "[ UI — score with reasons ]", image: "/media/trust-score/card-explanation.jpg", alt: "A magnifying glass over a printed page.", title: "Explanation", body: "A score is only useful if you can see why, so the reasons travel with the number." },
       { tone: "mid", asset: "[ DIAGRAM — score over time ]", image: "/media/trust-score/card-over-time.jpg", alt: "Three photographs of one building entrance in different seasons.", title: "Change over time", body: "Scores should move when the world does. When a signal is added, confirmed or goes stale, the score is recalculated and the change is explained." },
     ],
     process: {
       title: "How it works",
       steps: [
         { title: "Gather what is available", image: "/media/trust-score/step-1.jpg", alt: "A person comparing a phone with a building's name board.", body: "Signals are collected only where they actually exist for this listing, place or claim. A missing signal is left out, not guessed." },
-        { title: "Weigh and explain", image: "/media/trust-score/step-2.jpg", alt: "A hand ticking items on a short checklist.", body: "The signals that moved the score most are written out in plain language beside the number." },
-        { title: "Recalculate when things change", image: "/media/trust-score/step-3.jpg", alt: "A hand replacing an old photo of a building with a new one on a pinboard.", body: "A new, confirmed or stale signal leads to a fresh score, and the change is explained rather than silently applied." },
+        { title: "Weigh and explain", image: "/media/trust-score/step-2.jpg", alt: "A brass balance scale with small weights.", body: "The signals that moved the score most are written out in plain language beside the number." },
+        { title: "Recalculate when things change", image: "/media/trust-score/step-3.jpg", alt: "Two photos of one doorway, in sun and in rain.", body: "A new, confirmed or stale signal leads to a fresh score, and the change is explained rather than silently applied." },
       ],
     },
     showsUp: [
@@ -517,16 +517,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "How they work",
     cards: [
-      { tone: "dark", asset: "[ DIAGRAM — plan ]", image: "/media/workflow/card-plan.jpg", alt: "A hand sketching a job broken into steps on a large sheet.", title: "Plan", body: "Breaks a job into steps and decides what it needs to know first." },
-      { tone: "light", asset: "[ DIAGRAM — act ]", image: "/media/workflow/card-act.jpg", alt: "A hand on a phone call while typing, a list beside it.", title: "Act", body: "Calls tools, reads the results and adjusts the plan as it goes." },
-      { tone: "mid", asset: "[ DIAGRAM — hand back ]", image: "/media/workflow/card-hand-back.jpg", alt: "A finished folder with a cover note left in a tray.", title: "Hand back", body: "Returns finished work with a record of what it did and why." },
+      { tone: "dark", asset: "[ DIAGRAM — plan ]", image: "/media/workflow/card-plan.jpg", alt: "Five points joined by one pencil line.", title: "Plan", body: "Breaks a job into steps and decides what it needs to know first." },
+      { tone: "light", asset: "[ DIAGRAM — act ]", image: "/media/workflow/card-act.jpg", alt: "A hand pressing a key, a lit phone beside it.", title: "Act", body: "Calls tools, reads the results and adjusts the plan as it goes." },
+      { tone: "mid", asset: "[ DIAGRAM — hand back ]", image: "/media/workflow/card-hand-back.jpg", alt: "A closed folder handed across a table.", title: "Hand back", body: "Returns finished work with a record of what it did and why." },
     ],
     process: {
       title: "How we work",
       steps: [
-        { title: "Define the finished job", image: "/media/workflow/step-1.jpg", alt: "A single card with one line and an empty tick box.", body: "Before an agent starts, we decide what done looks like and who confirms it." },
-        { title: "Give it context and tools", image: "/media/workflow/step-2.jpg", alt: "An open toolbox holding only two tools.", body: "The agent gets the facts the job depends on, and only the tools it needs to finish it." },
-        { title: "Ask rather than guess", image: "/media/workflow/step-3.jpg", alt: "One person turning to ask another a question about a form.", body: "Where a detail is absent rather than implied, the agent asks one clear question instead of filling the gap confidently." },
+        { title: "Define the finished job", image: "/media/workflow/step-1.jpg", alt: "A finish-line tape across an empty track.", body: "Before an agent starts, we decide what done looks like and who confirms it." },
+        { title: "Give it context and tools", image: "/media/workflow/step-2.jpg", alt: "A case holding just two tools.", body: "The agent gets the facts the job depends on, and only the tools it needs to finish it." },
+        { title: "Ask rather than guess", image: "/media/workflow/step-3.jpg", alt: "One person turning to ask another a question.", body: "Where a detail is absent rather than implied, the agent asks one clear question instead of filling the gap confidently." },
       ],
     },
     showsUp: [
@@ -545,7 +545,7 @@ const entries: Entry[] = [
       title: "A job worth handing over?",
       body: "If there is work you would like carried from start to finish — with a person checking the result — tell us about it.",
       href: "/contact?topic=idea",
-      action: "Talk to us about a workflow", image: "/media/workflow/band.jpg", imageAlt: "A person signing off a finished document.",
+      action: "Talk to us about a workflow", image: "/media/workflow/band.jpg", imageAlt: "A hand signing the last page of a document.",
     },
   },
   {
@@ -608,16 +608,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "Current experiments",
     cards: [
-      { tone: "dark", asset: "[ EXPERIMENT — capture ]", title: "Listing by conversation", image: "/media/experiments/card-conversation.jpg", alt: "A person on a sofa typing a message about the room around them.", body: "Can a home be listed through a chat, without a single form?" },
-      { tone: "light", asset: "[ EXPERIMENT — capture ]", title: "Saying how sure it is", image: "/media/experiments/card-how-sure.jpg", alt: "An analogue gauge with its needle at three quarters.", body: "Can a system show its confidence in words a person reads at a glance?" },
-      { tone: "mid", asset: "[ EXPERIMENT — capture ]", title: "Knowing the neighbourhood", image: "/media/experiments/card-neighbourhood.jpg", alt: "A neighbourhood map with handwritten notes on different spots.", body: "What should an agent know about a place before it suggests what to do there?" },
+      { tone: "dark", asset: "[ EXPERIMENT — capture ]", title: "Listing by conversation", image: "/media/experiments/card-conversation.jpg", alt: "A phone showing a chat, on a sofa in a bright room.", body: "Can a home be listed through a chat, without a single form?" },
+      { tone: "light", asset: "[ EXPERIMENT — capture ]", title: "Saying how sure it is", image: "/media/experiments/card-how-sure.jpg", alt: "A dial with its needle at three quarters.", body: "Can a system show its confidence in words a person reads at a glance?" },
+      { tone: "mid", asset: "[ EXPERIMENT — capture ]", title: "Knowing the neighbourhood", image: "/media/experiments/card-neighbourhood.jpg", alt: "A person at a street corner looking around.", body: "What should an agent know about a place before it suggests what to do there?" },
     ],
     process: {
       title: "How we run them",
       steps: [
-        { title: "Start with a question", image: "/media/experiments/step-1.jpg", alt: "A sticky note with a question mark on an empty desk.", body: "Each experiment begins as a plain question, like the three above, not as a feature waiting to ship." },
-        { title: "Build the smallest thing", image: "/media/experiments/step-2.jpg", alt: "A hand holding a rough paper prototype of a phone.", body: "A prototype just large enough to show whether the question has a useful answer." },
-        { title: "Write up what happened", image: "/media/experiments/step-3.jpg", alt: "A person writing up notes at a window table.", body: "What it is, what we learned and what is still unknown — including when the answer turned out to be no." },
+        { title: "Start with a question", image: "/media/experiments/step-1.jpg", alt: "A sticky note with a question mark on a white wall.", body: "Each experiment begins as a plain question, like the three above, not as a feature waiting to ship." },
+        { title: "Build the smallest thing", image: "/media/experiments/step-2.jpg", alt: "A cardboard phone prototype held between two fingers.", body: "A prototype just large enough to show whether the question has a useful answer." },
+        { title: "Write up what happened", image: "/media/experiments/step-3.jpg", alt: "An open notebook of handwritten notes.", body: "What it is, what we learned and what is still unknown — including when the answer turned out to be no." },
       ],
     },
     showsUp: [
@@ -638,7 +638,7 @@ const entries: Entry[] = [
       title: "Read the write-ups.",
       body: "Research notes and experiments, published as the work produces them.",
       href: "/company/research",
-      action: "Read research and experiments", image: "/media/experiments/band.jpg", imageAlt: "A shelf of notebooks with one open on the desk.",
+      action: "Read research and experiments", image: "/media/experiments/band.jpg", imageAlt: "A row of notebooks, one pulled out.",
     },
   },
   {
@@ -656,14 +656,14 @@ const entries: Entry[] = [
     cardsTitle: "What we build",
     cards: [
       { tone: "dark", asset: "[ DIAGRAM — services ]", image: "/media/systems/card-services.jpg", alt: "A signal operator at a row of levers in a railway signal box.", title: "Conventional systems", body: "Deterministic software for the parts that must never surprise anyone." },
-      { tone: "light", asset: "[ DIAGRAM — agent and tools ]", image: "/media/systems/card-agent-tools.jpg", alt: "A person at a desk reaching between a phone, laptop and printer.", title: "Multi-tool agents", body: "Agents that choose among maps, messaging, databases and other tools to finish a job." },
+      { tone: "light", asset: "[ DIAGRAM — agent and tools ]", image: "/media/systems/card-agent-tools.jpg", alt: "A phone surrounded by a map, printer, keyboard and hard drive.", title: "Multi-tool agents", body: "Agents that choose among maps, messaging, databases and other tools to finish a job." },
       { tone: "mid", asset: "[ DIAGRAM — boundary ]", image: "/media/systems/card-boundary.jpg", alt: "A painted line separating a machine area from a hand workbench.", title: "The boundary", body: "Deciding which parts must be deterministic and which can be left to judgement." },
     ],
     process: {
       title: "How we work",
       steps: [
-        { title: "Map the parts", image: "/media/systems/step-1.jpg", alt: "An engineer drawing a system's parts as boxes on a whiteboard.", body: "List every step of the job and ask of each one: must this always behave the same way?" },
-        { title: "Draw the boundary", image: "/media/systems/step-2.jpg", alt: "A hand drawing a dashed boundary around boxes on a whiteboard.", body: "Deterministic software takes the steps where certainty matters; agents take the ones that need judgement." },
+        { title: "Map the parts", image: "/media/systems/step-1.jpg", alt: "A person looking at a wall of cards pinned in rows.", body: "List every step of the job and ask of each one: must this always behave the same way?" },
+        { title: "Draw the boundary", image: "/media/systems/step-2.jpg", alt: "A hand drawing a dashed line between two groups of cards.", body: "Deterministic software takes the steps where certainty matters; agents take the ones that need judgement." },
         { title: "Connect them plainly", image: "/media/systems/step-3.jpg", alt: "A hand connecting a cable into a neat patch panel.", body: "Agents reach maps, messaging and databases through defined tools, and each call leaves a record." },
       ],
     },

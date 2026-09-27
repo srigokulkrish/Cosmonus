@@ -60,8 +60,13 @@ ChatGPT, one page at a time, from one style line so they read as one family (and
   editorial photograph … one clear subject and generous negative space … precise light, restrained colour", with
   the light and palette written per image, no shared setting. Done so far: all 12 banners, Automation (machines
   only), Spatial Intelligence (places and maps), and a StayOnMap visit band of its own (it borrowed Spatial's).
-  In progress: Agents, Workflow, Experiments, Systems, Intelligence steps, Trust Score, home "How an agent works"
-  and the slots that borrowed another page's photo. Blog covers and Studio pages still carry the older style.
+  Round 2 (same day): the Agents section, Workflow, Experiments, Systems (agent-tools card, steps 1–2),
+  Intelligence steps 1–2, Trust Score (signals, steps 2–3) and home "How an agent works" were redone — they had
+  been one man at one wooden desk in golden light. Slots that borrowed another page's photo now have their own:
+  Web product-UI and maps cards, Trust Score explanation card, StayOnMap map/trust/chat cards and decision-trace
+  panel, Happenous activities and nearby cards, the score-with-reasons research cover. Index and "More in" cards
+  still show the linked page's own picture, which is intended. Blog covers and the Studio pages (Web steps,
+  Animation, Video, Image Generation) and About/Careers still carry the older warm style.
 
 ## 1. Formats and specs
 
