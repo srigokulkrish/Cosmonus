@@ -18,14 +18,18 @@ export function Chevron({ size = 14 }: { size?: number }) {
 }
 
 // Compact, Runway-style buttons: 40px, 8px radius, semibold 15px. Primary is ink; secondary is a soft grey
-// fill; inverse sits on dark panels; ghost is a thin white outline for dark panels.
-type Variant = "primary" | "secondary" | "inverse" | "ghost";
+// fill; inverse sits on dark panels; ghost is a thin white outline for dark panels. The two product variants fill
+// with the product's own colour, a shade deeper than the brand swatch (#0D8A5F, #E8421A) so white 15px text keeps
+// AA contrast (5.3:1 and 4.9:1); used only for the links out to stayonmap.com and happenous.com.
+type Variant = "primary" | "secondary" | "inverse" | "ghost" | "stayonmap" | "happenous";
 
 const variants: Record<Variant, string> = {
   primary: "bg-ink text-white hover:bg-ink-2",
   secondary: "bg-soft text-ink hover:bg-line",
   inverse: "bg-white/95 text-ink hover:bg-white/80",
   ghost: "border border-white/60 text-white hover:bg-white/10",
+  stayonmap: "bg-[#0b7a54] text-white hover:bg-[#08613f]",
+  happenous: "bg-[#d13a12] text-white hover:bg-[#ad2f0d]",
 };
 
 /**

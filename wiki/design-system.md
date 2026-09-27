@@ -222,6 +222,10 @@ One curve everywhere: `cubic-bezier(0.22, 1, 0.36, 1)` (`EASE` in Header.tsx).
 - Mega menu: 90ms hover intent, 160ms close grace (separate open/close timers); 280ms fade-in, panel height
   glides and content cross-fades when switching menus; keyboard open moves focus in; Escape/outside click close.
 - Mobile menu fades/slides in; accordion sections animate height.
+- Home product buttons out to stayonmap.com / happenous.com use the `stayonmap` / `happenous` button variants:
+  the brand colour a shade deeper (`#0B7A54`, `#D13A12`) so white 15px text passes AA (owner, 2026-09-27).
+- Home "How an agent works" sits on the Cosmonus mesh (`MeshBackdrop palette="cosmonus" dim lively`), white
+  copy and rail; `lively` runs the drift on 6–10 s loops instead of 11–19 s (owner: was a flat grey panel).
 - Studio tabs: sliding accent dot beside the selected practice (`layoutId`), 260ms content fade-up. Every tab has
   a 2px rule; the selected one fills over 6 s (`.tab-progress`) and the tabs advance on their own while the box is
   on screen, pausing on hover/focus, never under reduced motion (owner, 2026-09-27: they did not look switchable).

@@ -675,3 +675,9 @@
 - 148 JPGs re-encoded from their PNG originals at q78 progressive (was q84): 31.1 MB → 25.8 MB, same 1536×1024.
   SSIM drop ≈0.005 on samples, invisible after next/image's AVIF/WebP. Three stills without an original
   (two captures, one cover) left untouched to avoid a second JPEG pass.
+
+## [2026-09-27] design | Brand-coloured product links; agent steps on the moving mesh
+- Home "Open stayonmap.com" / "See happenous.com" buttons now fill with each product's colour (a shade deeper
+  than the swatch for AA) and carry an arrow; new `stayonmap` / `happenous` ButtonLink variants.
+- "How an agent works" moved off the grey panel onto the Agents band's Cosmonus mesh, on a livelier loop
+  (`MeshBackdrop lively`), with white copy and step rail.

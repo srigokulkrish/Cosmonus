@@ -26,9 +26,20 @@ const GRAIN =
  * reduced motion, and paused while the backdrop is scrolled off screen — four 64px blurs are the dearest thing the
  * GPU draws on the page, so they draw only while someone can see them) and shift a little further when a parent
  * `group` is hovered. Fills its parent, which needs `relative isolate overflow-hidden`. `dim` adds an even shade for large areas of white text (keeps it above 4.5:1); `bloom={false}`
- * drops the white light bloom so only the palette's own colours show.
+ * drops the white light bloom so only the palette's own colours show. `lively` runs the same drift on shorter
+ * 6–10 s loops, for a panel that should feel busier (home "How an agent works").
  */
-export function MeshBackdrop({ palette, dim = false, bloom = true }: { palette: MeshPalette; dim?: boolean; bloom?: boolean }) {
+export function MeshBackdrop({
+  palette,
+  dim = false,
+  bloom = true,
+  lively = false,
+}: {
+  palette: MeshPalette;
+  dim?: boolean;
+  bloom?: boolean;
+  lively?: boolean;
+}) {
   const [light, mid, deep, shadow] = MESH[palette];
   const ref = useRef<HTMLSpanElement>(null);
   const [onScreen, setOnScreen] = useState(true);
@@ -51,7 +62,7 @@ export function MeshBackdrop({ palette, dim = false, bloom = true }: { palette: 
     <span
       ref={ref}
       aria-hidden="true"
-      className={`absolute inset-0 -z-10 overflow-hidden ${onScreen ? "" : "mesh-paused"}`}
+      className={`absolute inset-0 -z-10 overflow-hidden ${lively ? "mesh-lively" : ""} ${onScreen ? "" : "mesh-paused"}`}
       style={{ backgroundColor: deep }}
     >
       <span className={`${field} mesh-a ${drift} -top-1/3 -right-1/4 h-[110%] w-[80%] group-hover:-translate-x-8 group-hover:translate-y-6`}>

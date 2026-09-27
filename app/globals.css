@@ -183,6 +183,11 @@
 .mesh-b { animation-name: mesh-drift-b; animation-duration: 11s; }
 .mesh-c { animation-name: mesh-drift-c; animation-duration: 17s; }
 .mesh-d { animation-name: mesh-drift-d; animation-duration: 19s; }
+/* `lively`: the same paths on shorter loops. */
+.mesh-lively .mesh-a { animation-duration: 8s; }
+.mesh-lively .mesh-b { animation-duration: 6s; }
+.mesh-lively .mesh-c { animation-duration: 9s; }
+.mesh-lively .mesh-d { animation-duration: 10s; }
 /* Off screen (MeshBackdrop's IntersectionObserver): the fields hold still so the blurs are not redrawn unseen. */
 .mesh-paused .mesh-field { animation-play-state: paused; }
 

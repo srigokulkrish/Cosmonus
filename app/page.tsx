@@ -17,11 +17,11 @@ export const metadata: Metadata = pageMetadata({ description: site.description, 
 
 // Source of truth: raw/handoff/design/Main.dc.html
 
-const products: { name: string; href: string; site: { href: string; label: string }; tone: Tone; asset: string; image?: string; alt?: string; title: string; body: string }[] = [
+const products: { name: string; href: string; site: { href: string; label: string; variant: "stayonmap" | "happenous" }; tone: Tone; asset: string; image?: string; alt?: string; title: string; body: string }[] = [
   {
     name: "StayOnMap",
     href: "/product/stayonmap",
-    site: { href: "https://www.stayonmap.com", label: "Open stayonmap.com" },
+    site: { href: "https://www.stayonmap.com", label: "Open stayonmap.com", variant: "stayonmap" },
     tone: "dark",
     asset: "[ STAYONMAP — map view screen recording ]", image: "/media/stayonmap/step-1.jpg", alt: "A young man on a residential street studying a map on his phone.",
     title: "Rent with intelligence.",
@@ -30,7 +30,7 @@ const products: { name: string; href: string; site: { href: string; label: strin
   {
     name: "Happenous",
     href: "/product/happenous",
-    site: { href: "https://www.happenous.com", label: "See happenous.com" },
+    site: { href: "https://www.happenous.com", label: "See happenous.com", variant: "happenous" },
     tone: "light",
     asset: "[ HAPPENOUS — people doing things, outdoors, candid ]",
     image: "/media/home/product-happenous.jpg",
@@ -155,7 +155,7 @@ export default function HomePage() {
               <p className="m-0 mt-4 max-w-[520px] text-[15px] leading-[1.55] text-pretty text-muted">{p.body}</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 <ButtonLink href={p.href}>Explore {p.name}</ButtonLink>
-                <ButtonLink href={p.site.href} variant="secondary" external>
+                <ButtonLink href={p.site.href} variant={p.site.variant} icon={<Arrow />} external>
                   {p.site.label}
                 </ButtonLink>
               </div>
