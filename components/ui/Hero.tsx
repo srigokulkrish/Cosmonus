@@ -57,8 +57,8 @@ const BANNER_PAD_TOP = "justify-start px-5 pt-8 pb-10 md:px-[3.25%] lg:pt-10 lg:
  * Runway-style: copy sits bottom-left, regular weight. Banners are films: pass `video` (the MP4 path,
  * e.g. "/media/web/banner.mp4") once the file exists; until then the flat tone (and grid lines) show.
  * A `poster.avif` beside the film (its first frame — `posterFor`) is painted straight away, before the film
- * is requested. `image` is the one exception (Image Generation — owner, 2026-09-21): a still in place of a
- * film. A page sets one or the other; if both arrive, the film wins.
+ * is requested. `image` is a still in place of a film, for pages that have no film (owner, 2026-09-27; first
+ * used on Image Generation, 2026-09-21). A page sets one or the other; if both arrive, the film wins.
  */
 export function InnerHero({
   tone = "dark",

@@ -19,7 +19,7 @@ import { getNote } from "@/content/research";
 export type ProductContent = {
   meta: { title: string; description: string };
   /** `video`: the banner video (MP4 in public/), once it exists. */
-  hero: { tone: "dark" | "light"; title: string; lead: string; video?: string };
+  hero: { tone: "dark" | "light"; title: string; lead: string; video?: string; image?: string };
   intro: { label: string; title: string; body: string };
   different: { title: string; cards: MediaCardData[] };
   how: { title: string; steps: Step[] };
@@ -203,7 +203,7 @@ export const stayonmap: StayOnMapContent = {
   visit: {
     title: "See it on the map.",
     body: "Browse live rent prices across the city, request a visit and talk to the owner directly — no broker in between.",
-    asset: "[ STAYONMAP — live map with rent pins, screen recording ]", image: "/media/spatial/band.jpg", imageAlt: "A hand tracing a route on a paper city map.",
+    asset: "[ STAYONMAP — live map with rent pins, screen recording ]", image: "/media/stayonmap/visit-band.jpg", imageAlt: "A hand holding a phone with a map of pins in an empty, sunlit flat.",
     href: "https://www.stayonmap.com",
     action: "Visit StayOnMap",
   },
@@ -219,7 +219,8 @@ export const happenous: HappenousContent = {
     description: "An activity-based social network, in build. Organised around what people are doing, not around a feed.",
   },
   hero: {
-    tone: "light",
+    tone: "dark",
+    image: "/media/happenous/banner.jpg",
     title: "Life happens outside the feed.",
     lead: "An activity-based social network, in build.",
   },

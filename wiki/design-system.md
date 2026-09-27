@@ -64,14 +64,18 @@ One structure for every section, defined in `components/ui/Section.tsx`, so edge
 - Constants carry columns + column gap only; add the row gap at the use site (`gap-y-10` cards, `gap-y-5` bordered cards).
 
 ## Banners and image placeholders (owner-requested, 2026-09-19)
-- **Every banner is a video** (owner decision, restated 2026-09-20), **with one exception**: `InnerHero` takes
+- **Every banner is a video** (owner decision, restated 2026-09-20), **unless the page has none** (see below): `InnerHero` takes
   `video="/media/<page>/banner.mp4"` (and `BannerVideo`
   takes optional `webm`/`poster`); it plays muted and looping (`components/ui/BannerVideo.tsx`), with a
   soft shade from the bottom-left for the title; paused on its first frame under reduced motion. The film's first
   frame sits beside it as `poster.avif` (found by `posterFor` in `lib/media.ts`, 2026-09-25) and is drawn at once
   as a preloaded `<img>` under the video, so the picture is there before the film is requested and the film fades
   in over it without a jump. Until a film exists the flat tone shows.
-- **The exception is Image Generation** (owner, 2026-09-21): a still, not a film — `heroImage` on the capability
+- **Pages without a film take a still** (owner, 2026-09-27; first done on Image Generation, 2026-09-21). Web,
+  Product, Happenous, Intelligence, Spatial, Trust Score, Agents, Workflow, Automation, Experiments, Systems and
+  Contact carry `banner.jpg` (sections/products: `hero.image`; capabilities: `heroImage`; Contact: in the page). A
+  photograph behind the title always takes the dark treatment (white copy over the shade), so those heroes are
+  `tone: "dark"` even in the Agents section. The Image Generation still: a still, not a film — `heroImage` on the capability
   entry, rendered by `components/ui/BannerImage.tsx` (`next/image`, `fill`, `preload`, `quality={90}`). A page sets
   `heroVideo` or `heroImage`; if both are present the film wins. Do not spread this to other pages — the page about
   making images is the one place a still argues for itself. That banner alone also has:

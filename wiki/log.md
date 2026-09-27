@@ -644,3 +644,11 @@
   the System One, Prompt, Context, Loop and Harness blog covers. Wired into `content/capabilities.ts` and
   `content/blog.ts` with alt text from the manifest; the stand-in reuses are gone. 1536×1024 JPG q84, 157–253 KB.
 - Must-be-real slots (StayOnMap/Happenous UI, careers team photo) still carry photographs until real captures exist.
+
+## [2026-09-27] media | Banner stills; premium, content-matched imagery (part 1)
+- Owner: pages without a film get a still banner. Web, Product, Happenous, Intelligence, Spatial, Trust Score,
+  Agents, Workflow, Automation, Experiments, Systems and Contact now carry `banner.jpg` (`hero.image` /
+  `heroImage` / Contact page); a still behind the title takes the dark hero treatment.
+- Owner: stills all looked alike and should match their own page. New minimal style line, light and palette set
+  per image. Automation redone as machines only; Spatial as places and maps; StayOnMap visit band given its own
+  still. Agents-section index card for Automation now shows the Automation page's own picture.

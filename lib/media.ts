@@ -37,7 +37,7 @@ const pageThumbs: Record<string, string> = {
   "/intelligence/spatial": "/media/intelligence/index-spatial.jpg",
   "/intelligence/trust-score": "/media/trust-score/band.jpg",
   "/agents/workflow": "/media/agents/index-workflow.jpg",
-  "/agents/automation": "/media/agents/index-automation.jpg",
+  "/agents/automation": "/media/automation/card-reliability.jpg",
   "/agents/experiments": "/media/agents/index-experiments.jpg",
   "/agents/systems": "/media/agents/index-systems.jpg",
   "/company/research": "/media/research/poster.avif",

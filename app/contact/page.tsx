@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import { Suspense } from "react";
 import { ContactForm, ContactFormFromQuery } from "@/components/contact/ContactForm";
 import { InnerHero } from "@/components/ui/Hero";
+import { inPublic } from "@/lib/media";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { site } from "@/lib/site";
 
@@ -18,7 +19,8 @@ export default function ContactPage() {
   return (
     <>
       <InnerHero
-        tone="light"
+        tone="dark"
+        image={inPublic("/media/contact/banner.jpg")}
         title="What are you thinking about?"
         lead="Write to us about the thing you keep coming back to. We read every message."
       />

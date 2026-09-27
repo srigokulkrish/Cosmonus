@@ -22,7 +22,7 @@ export type SectionIndexItem = {
 export type SectionContent = {
   meta: { title: string; description: string };
   /** `video`: the banner video (MP4 in public/), once it exists. */
-  hero: { tone: "dark" | "light"; title: string; lead: string; video?: string };
+  hero: { tone: "dark" | "light"; title: string; lead: string; video?: string; image?: string };
   intro: { label: string; title: string; body: string };
   index: { title: string; lead?: string; items: SectionIndexItem[] };
   detail: { kind: "steps"; title: string; steps: Step[] } | { kind: "principles"; title: string; cards: BorderedCardData[] };
@@ -117,6 +117,7 @@ export const product: SectionContent = {
   },
   hero: {
     tone: "dark",
+    image: "/media/product/banner.jpg",
     title: "Products for the physical world.",
     lead: "Two products, both built on the idea that software should know where you are and what is around you.",
   },
@@ -258,6 +259,7 @@ export const intelligence: SectionContent = {
   },
   hero: {
     tone: "dark",
+    image: "/media/intelligence/banner.jpg",
     title: "Real-world intelligence.",
     lead: "How our systems understand place and trust.",
   },
@@ -320,7 +322,8 @@ export const agents: SectionContent = {
     description: "Systems that act: from understanding to finished work, with a person able to check the result.",
   },
   hero: {
-    tone: "light",
+    tone: "dark",
+    image: "/media/agents/banner.jpg",
     title: "Systems that act.",
     lead: "From understanding to finished work, with a person able to check the result.",
   },
@@ -346,7 +349,7 @@ export const agents: SectionContent = {
         title: "Routine work, handled reliably",
         desc: "Well-understood tasks, automated plainly, with judgement kept for the cases that need it.",
         tone: "light",
-        asset: "[ AUTOMATION — automation recording ]", image: "/media/agents/index-automation.jpg",
+        asset: "[ AUTOMATION — automation recording ]", image: "/media/automation/card-reliability.jpg",
       },
       {
         name: "Experiments",

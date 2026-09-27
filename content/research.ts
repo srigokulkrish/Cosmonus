@@ -83,7 +83,7 @@ export const notes: Note[] = [
     status: "In progress",
     title: "From a message to a listing someone can check",
     summary: "An experiment in letting a workflow agent turn a loosely written message into a structured listing, while the owner stays the one who confirms it.",
-    cover: { tone: "mid", label: "[ COVER — message to listing, screen recording ]", image: "/media/experiments/card-conversation.jpg", alt: "A person on a sofa typing a message about the room around them." },
+    cover: { tone: "mid", label: "[ COVER — message to listing, screen recording ]", image: "/media/research/cover-message-to-listing.jpg", alt: "A person on a sofa typing a message about the room around them." },
     body: [
       {
         paragraphs: [

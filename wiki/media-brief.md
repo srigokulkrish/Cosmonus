@@ -51,9 +51,17 @@ ChatGPT, one page at a time, from one style line so they read as one family (and
     from `RowList`, which a client component also imports).
 - **Careers team photo** is still a stand-in (the careers banner poster on the Company index card) — a real team
   photo should replace it.
-- **Banners are still films.** The 12 pages without a banner film (Web, Product, Happenous, Intelligence, Spatial,
-  Trust Score, Agents, Workflow, Automation, Experiments, Systems, Contact) keep the flat tone; stills were not put
-  in banners, per the "every banner is a video" rule.
+- **Banners: stills where there is no film (owner, 2026-09-27).** The 12 pages without a banner film (Web, Product,
+  Happenous, Intelligence, Spatial, Trust Score, Agents, Workflow, Automation, Experiments, Systems, Contact) carry a
+  generated `banner.jpg` — wide shot, subject right, quiet lower-left for the title.
+- **Premium, minimal, content-matched stills (owner, 2026-09-27).** Owner: every image had the same pattern (Indian
+  city, golden hour, wooden desk); each should match its own page's content — machines where the copy is about
+  machines, people where it is about people — clean, minimal, premium, not look-alike. New style line: "Premium
+  editorial photograph … one clear subject and generous negative space … precise light, restrained colour", with
+  the light and palette written per image, no shared setting. Done so far: all 12 banners, Automation (machines
+  only), Spatial Intelligence (places and maps), and a StayOnMap visit band of its own (it borrowed Spatial's).
+  In progress: Agents, Workflow, Experiments, Systems, Intelligence steps, Trust Score, home "How an agent works"
+  and the slots that borrowed another page's photo. Blog covers and Studio pages still carry the older style.
 
 ## 1. Formats and specs
 

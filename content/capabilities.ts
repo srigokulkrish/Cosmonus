@@ -22,7 +22,7 @@ export type Capability = {
   /** The banner video (MP4 in public/), once it exists; `heroVideoZoom` crops letterbox bars recorded into it. */
   heroVideo?: string;
   heroVideoZoom?: number;
-  /** A still banner instead of a film — Image Generation only (owner, 2026-09-21). */
+  /** A still banner instead of a film, for pages that have no film (owner, 2026-09-27). */
   heroImage?: string;
   /** Banner copy at the top instead of the bottom. */
   heroAlign?: "top" | "bottom";
@@ -84,7 +84,7 @@ const intelligenceMore: Record<string, StripLink> = {
 
 const agentsMore: Record<string, StripLink> = {
   workflow: { name: "Workflow Agents", href: "/agents/workflow", image: "/media/agents/index-workflow.jpg", desc: "Agents that carry one task from start to finish." },
-  automation: { name: "Automation", href: "/agents/automation", image: "/media/agents/index-automation.jpg", desc: "Routine work, handled the same way every time." },
+  automation: { name: "Automation", href: "/agents/automation", image: "/media/automation/card-reliability.jpg", desc: "Routine work, handled the same way every time." },
   experiments: { name: "Experiments", href: "/agents/experiments", image: "/media/agents/index-experiments.jpg", desc: "Prototypes and open questions." },
   systems: {
     name: "Conventional & Multi-tool Systems",
@@ -119,7 +119,8 @@ function build(e: Entry): Capability {
   return {
     ...e,
     // Boards: dark hero (with grid/contour lines) for Studio and Intelligence, light hero (no lines) for Agents.
-    heroTone: e.heroTone ?? (e.section === "agents" ? "light" : "dark"),
+    // A photograph behind the title always takes the dark treatment (white copy over a dark shade).
+    heroTone: e.heroTone ?? (e.heroImage || e.section !== "agents" ? "dark" : "light"),
     intro: { label: e.title, ...e.intro },
     more: more(e.section, e.slug),
     metaDescription: e.metaDescription ?? e.lead,
@@ -130,6 +131,7 @@ const entries: Entry[] = [
   // ——— Studio ———
   {
     slug: "web",
+    heroImage: "/media/web/banner.jpg",
     metaDescription:
       "Sites and product interfaces designed and built in-house: marketing sites, product screens and the map-heavy surfaces our products are met through.",
     section: "studio",
@@ -409,6 +411,7 @@ const entries: Entry[] = [
   // ——— Intelligence ———
   {
     slug: "spatial",
+    heroImage: "/media/spatial/banner.jpg",
     metaDescription:
       "Spatial intelligence is our work on giving software a sense of place: where something is, what surrounds it, and why the same question changes with the street.",
     section: "intelligence",
@@ -420,16 +423,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "What we work on",
     cards: [
-      { tone: "dark", asset: "[ DIAGRAM — place ]", image: "/media/spatial/card-place.jpg", alt: "A hand pressing a pin into a printed street map.", title: "Place", body: "Putting every listing, venue and event where it actually is, not where a form says it is." },
-      { tone: "light", asset: "[ DIAGRAM — surroundings ]", image: "/media/spatial/card-surroundings.jpg", alt: "A street corner with a bus stop, shops and a tea stall around an apartment building.", title: "Surroundings", body: "What is nearby — transit, shops, noise, people — and what that means for the question being asked." },
-      { tone: "mid", asset: "[ DIAGRAM — movement ]", image: "/media/spatial/card-movement.jpg", alt: "Commuters climbing out of a metro station at morning rush.", title: "Movement", body: "How people really get from one place to another, and how long it takes them." },
+      { tone: "dark", asset: "[ DIAGRAM — place ]", image: "/media/spatial/card-place.jpg", alt: "A brass survey marker set into concrete.", title: "Place", body: "Putting every listing, venue and event where it actually is, not where a form says it is." },
+      { tone: "light", asset: "[ DIAGRAM — surroundings ]", image: "/media/spatial/card-surroundings.jpg", alt: "One apartment block from above, with a park, shops and a bus stop around it.", title: "Surroundings", body: "What is nearby — transit, shops, noise, people — and what that means for the question being asked." },
+      { tone: "mid", asset: "[ DIAGRAM — movement ]", image: "/media/spatial/card-movement.jpg", alt: "People crossing a street, seen from directly above.", title: "Movement", body: "How people really get from one place to another, and how long it takes them." },
     ],
     process: {
       title: "How it works",
       steps: [
-        { title: "Place it", image: "/media/spatial/step-1.jpg", alt: "A person checking a phone map in front of a building entrance.", body: "Every listing, venue or event is put where it really is, and the written address is kept alongside the pin." },
-        { title: "Read the surroundings", image: "/media/spatial/step-2.jpg", alt: "A balcony view over a park, a market lane and a metro line.", body: "What is nearby is gathered for the question at hand: a walk to the station, a street that is loud at night, a shop at the corner." },
-        { title: "Let place shape the answer", image: "/media/spatial/step-3.jpg", alt: "A couple walking down a quiet tree-lined lane toward home.", body: "Location and surroundings travel on to scores and agents, so their answers change when the street does." },
+        { title: "Place it", image: "/media/spatial/step-1.jpg", alt: "A GPS receiver on a tripod in an empty plaza.", body: "Every listing, venue or event is put where it really is, and the written address is kept alongside the pin." },
+        { title: "Read the surroundings", image: "/media/spatial/step-2.jpg", alt: "A hand placing a tree on a white scale model of a neighbourhood.", body: "What is nearby is gathered for the question at hand: a walk to the station, a street that is loud at night, a shop at the corner." },
+        { title: "Let place shape the answer", image: "/media/spatial/step-3.jpg", alt: "One person walking down a tree-lined lane, seen from above.", body: "Location and surroundings travel on to scores and agents, so their answers change when the street does." },
       ],
     },
     showsUp: [
@@ -450,11 +453,12 @@ const entries: Entry[] = [
       title: "Start with the map.",
       body: "StayOnMap is where our spatial work is used first: every home, where it really is.",
       href: "/product/stayonmap",
-      action: "See StayOnMap", image: "/media/spatial/band.jpg", imageAlt: "A hand tracing a route on a paper city map.",
+      action: "See StayOnMap", image: "/media/spatial/band.jpg", imageAlt: "A wooden relief map of hills and a valley in raking light.",
     },
   },
   {
     slug: "trust-score",
+    heroImage: "/media/trust-score/banner.jpg",
     metaDescription:
       "Trust Score is our approach to making reliability legible — a readable signal for how far a listing, a place or a claim can be relied on, with its reasons.",
     section: "intelligence",
@@ -501,6 +505,7 @@ const entries: Entry[] = [
   // ——— Agents ———
   {
     slug: "workflow",
+    heroImage: "/media/workflow/banner.jpg",
     metaDescription:
       "A workflow agent takes responsibility for a whole job rather than a single reply: it gathers context, plans the steps, uses its tools and hands back a result.",
     section: "agents",
@@ -545,6 +550,7 @@ const entries: Entry[] = [
   },
   {
     slug: "automation",
+    heroImage: "/media/automation/banner.jpg",
     metaDescription:
       "Not everything needs an agent. Where a task is well understood we automate it plainly and reliably, and keep agents for the parts that need judgement.",
     section: "agents",
@@ -556,16 +562,16 @@ const entries: Entry[] = [
     },
     cardsTitle: "Principles",
     cards: [
-      { tone: "dark", asset: "[ DIAGRAM — triggers ]", image: "/media/automation/card-triggers.jpg", alt: "A doorbell being pressed with a parcel at the door.", title: "Triggers", body: "Work starts when something happens, not when someone remembers." },
-      { tone: "light", asset: "[ DIAGRAM — reliability ]", image: "/media/automation/card-reliability.jpg", alt: "Three identical cups of tea in a row on a stall counter.", title: "Reliability", body: "The same input gives the same result, and failures are surfaced instead of hidden." },
-      { tone: "mid", asset: "[ DIAGRAM — escalation ]", image: "/media/automation/card-escalation.jpg", alt: "An odd parcel set aside from a line of identical ones.", title: "Escalation", body: "When a case does not fit the rule, it goes to an agent or to a person." },
+      { tone: "dark", asset: "[ DIAGRAM — triggers ]", image: "/media/automation/card-triggers.jpg", alt: "A parcel crossing a red sensor beam on a conveyor.", title: "Triggers", body: "Work starts when something happens, not when someone remembers." },
+      { tone: "light", asset: "[ DIAGRAM — reliability ]", image: "/media/automation/card-reliability.jpg", alt: "A row of identical robot arms in the same pose.", title: "Reliability", body: "The same input gives the same result, and failures are surfaced instead of hidden." },
+      { tone: "mid", asset: "[ DIAGRAM — escalation ]", image: "/media/automation/card-escalation.jpg", alt: "One dented box set aside from a line of identical boxes.", title: "Escalation", body: "When a case does not fit the rule, it goes to an agent or to a person." },
     ],
     process: {
       title: "How we work",
       steps: [
-        { title: "Write the rule down", image: "/media/automation/step-1.jpg", alt: "A sheet of simple instructions taped above a work counter.", body: "If a task can be described completely, it is described completely before anything is built." },
-        { title: "Start on an event", image: "/media/automation/step-2.jpg", alt: "A hand switching on the lights as a shop opens.", body: "Each automation runs because something happened, not because someone remembered to run it." },
-        { title: "Route what does not fit", image: "/media/automation/step-3.jpg", alt: "A hand passing one unusual form to a colleague.", body: "Cases outside the rule go to an agent or a person, with the reason they did not fit attached." },
+        { title: "Write the rule down", image: "/media/automation/step-1.jpg", alt: "A robot controller on a steel bench.", body: "If a task can be described completely, it is described completely before anything is built." },
+        { title: "Start on an event", image: "/media/automation/step-2.jpg", alt: "A green light switching on above an empty conveyor.", body: "Each automation runs because something happened, not because someone remembered to run it." },
+        { title: "Route what does not fit", image: "/media/automation/step-3.jpg", alt: "A sorting conveyor diverting one parcel onto a side lane.", body: "Cases outside the rule go to an agent or a person, with the reason they did not fit attached." },
       ],
     },
     showsUp: [
@@ -585,11 +591,12 @@ const entries: Entry[] = [
       title: "Routine work you would rather not do?",
       body: "Tell us about it. Some of it needs an agent; much of it just needs doing reliably.",
       href: "/contact?topic=problem",
-      action: "Talk to us about automation", image: "/media/automation/band.jpg", imageAlt: "A tall stack of forms on a desk in the late evening.",
+      action: "Talk to us about automation", image: "/media/automation/band.jpg", imageAlt: "Warehouse robots moving along a floor grid, seen from above.",
     },
   },
   {
     slug: "experiments",
+    heroImage: "/media/experiments/banner.jpg",
     metaDescription:
       "Prototypes and the open questions behind them, published honestly. Some become products or research and many do not; each is labelled with how far it has got.",
     section: "agents",
@@ -636,6 +643,7 @@ const entries: Entry[] = [
   },
   {
     slug: "systems",
+    heroImage: "/media/systems/banner.jpg",
     metaDescription:
       "Agents are one part of a system. Around them sit databases, queues and services that do exactly what they are told. We design the whole, not just the agent.",
     section: "agents",

@@ -8,6 +8,7 @@ import { Band, HALVES, Intro, PAIRS, SectionHead, SideHead, SideLayout, Steps, T
 import type { SectionContent, SectionIndexItem } from "@/content/sections";
 import { JsonLd } from "@/components/site/JsonLd";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
+import { inPublic } from "@/lib/media";
 import { menus } from "@/lib/site";
 
 /** `metadata` for a section landing route (layout adds "— Cosmonus"). */
@@ -48,7 +49,7 @@ export function SectionPage({ content: c, path }: { content: SectionContent; pat
   return (
     <>
       {menu && <JsonLd data={breadcrumbJsonLd([{ name: menu.label, path: menu.href }])} />}
-      <InnerHero tone={c.hero.tone} title={c.hero.title} lead={c.hero.lead} video={c.hero.video} />
+      <InnerHero tone={c.hero.tone} title={c.hero.title} lead={c.hero.lead} video={c.hero.video} image={inPublic(c.hero.image)} />
       <Intro {...c.intro} />
 
       {/* On the site grid: four pages go 2×2 beside the heading (each card one third wide), three sit in thirds,

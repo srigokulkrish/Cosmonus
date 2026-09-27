@@ -5,6 +5,7 @@ import { Story } from "@/components/company/Story";
 import { Faq } from "@/components/product/Faq";
 import { LinkGroups } from "@/components/product/LinkGroups";
 import { InnerHero } from "@/components/ui/Hero";
+import { inPublic } from "@/lib/media";
 import { Band, Intro, MediaCards, MoreStrip, Steps } from "@/components/ui/Section";
 import { happenous as c } from "@/content/products";
 
@@ -21,7 +22,7 @@ export default function HappenousPage() {
         ])}
       />
       {faq && <JsonLd data={faq} />}
-      <InnerHero {...c.hero} />
+      <InnerHero {...c.hero} image={inPublic(c.hero.image)} />
       <Intro {...c.intro} />
       <MediaCards {...c.different} />
       <Story {...c.why} />
