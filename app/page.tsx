@@ -25,7 +25,7 @@ const products: { name: string; href: string; site: { href: string; label: strin
     tone: "dark",
     asset: "[ STAYONMAP — map view screen recording ]", image: "/media/stayonmap/step-1.jpg", alt: "A young man on a residential street studying a map on his phone.",
     title: "Rent with intelligence.",
-    body: "Rental infrastructure without brokers. Every listing is scored across twelve trust signals before it surfaces, and owners and tenants connect directly, on a live map, with no commission.",
+    body: "Helping people find their home. Broker-free rentals on a map across seven states in India: owners list free, tenants talk to them directly, and nobody pays to see a house.",
   },
   {
     name: "Happenous",
@@ -36,7 +36,7 @@ const products: { name: string; href: string; site: { href: string; label: strin
     image: "/media/home/product-happenous.jpg",
     alt: "Friends playing football in a city park in the early evening light.",
     title: "Life happens outside the feed.",
-    body: "An activity-based social network, in build. Organised around what people are actually doing, and who they could do it with — not around what keeps them scrolling.",
+    body: "Helping people stay connected with the activities they love. An activity-first social network, in build: find something happening near you, join the people doing it, and keep going.",
   },
 ];
 

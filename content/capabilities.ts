@@ -483,7 +483,7 @@ const entries: Entry[] = [
       ],
     },
     showsUp: [
-      { name: "StayOnMap", href: "/product/stayonmap", desc: "Twelve live signals compound into one trust score per listing, with the evidence behind it on show." },
+      { name: "StayOnMap", href: "/product/stayonmap", desc: "Twelve review ratings weighted into one StayScore per home, and a separate risk score that suspends a listing once serious reports cross the line." },
       { name: "Spatial Intelligence", href: "/intelligence/spatial", desc: "Where a home really is, compared with where it says it is." },
       noteRow("a-score-with-its-reasons", "The principle TrustScore is designed around, and what it costs."),
     ],
@@ -531,7 +531,7 @@ const entries: Entry[] = [
     },
     showsUp: [
       noteRow("listing-from-a-message", "A workflow agent that turns a loosely written message into a draft listing the owner confirms."),
-      { name: "StayOnMap", href: "/product/stayonmap", desc: "Owners list directly today, and an opt-in agent already watches listings for fraud. The experiment explores what else an agent could do." },
+      { name: "StayOnMap", href: "/product/stayonmap", desc: "Owners list directly today, and automatic checks already catch duplicate addresses, reused photos and shared phone numbers. The experiment explores what an agent could add." },
     ],
     principles: {
       title: "What a person checks",
@@ -668,7 +668,7 @@ const entries: Entry[] = [
       ],
     },
     showsUp: [
-      { name: "StayOnMap", href: "/product/stayonmap", desc: "A map, listings, trust and risk scoring, a fraud agent, chat and visits in one product — the kind of whole a system has to be designed as." },
+      { name: "StayOnMap", href: "/product/stayonmap", desc: "A map, listings, neighbourhood facts, trust and risk scoring, fraud checks, chat, visits and agreements in one product — the kind of whole a system has to be designed as." },
       { name: "Automation", href: "/agents/automation", desc: "The plain, reliable part of many systems." },
       { name: "Workflow Agents", href: "/agents/workflow", desc: "The part that carries a single job across many tools." },
     ],

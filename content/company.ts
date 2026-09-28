@@ -67,7 +67,7 @@ export const about = {
       {
         label: "Products",
         title: "StayOnMap and Happenous",
-        body: "Rentals on the map, with a TrustScore on every listing; and activities near you, with the people who want to do them.",
+        body: "StayOnMap helps people find a home, on the map and with no broker in between. Happenous, in build, helps them stay connected with the activities they love and the people nearby who do them too.",
         href: "/product",
         action: "See the products",
       },

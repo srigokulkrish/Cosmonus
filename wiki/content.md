@@ -24,7 +24,35 @@ All copy is typed data in `content/`:
   and duplicated the steps above it. Menu blurb, home card, Product index and the Studio "where it shows up" rows
   all say "in build" too. **Keep Happenous in this tense until the owner says it has launched.**
 
-## StayOnMap source of truth
+## Product sources (2026-09-28) — supersedes the two sections below where they disagree
+The owner pointed us at the product repositories: `~/Desktop/StayOnMap` and `~/Desktop/happenous`. Product copy is now
+written from them. The story the owner set: **Cosmonus is the parent company; StayOnMap helps people find their home,
+Happenous helps people stay connected with the activities they like.** Product index, home cards, menu blurbs and About
+"The three parts" all carry that line.
+
+StayOnMap — what the repo showed, and what changed on this site because of it:
+- Live across **7 states, 47 cities** (`backend/src/config/cities.js`); towns off the list get a waitlist.
+- The "twelve live trust sub-scores" are **twelve review ratings** weighted into a 0–5 **StayScore**
+  (`docs/scoring.md`); no reviews → no score. Copy now says so.
+- Risk score auto-suspends only when serious reports come from ≥2 distinct reporters and risk ≥ 50; users see the level.
+- The AI fraud agent is **off in production** (`AI_PROVIDER=stub`). Removed "opt-in fraud agent" everywhere; the site
+  now names the deterministic checks that *are* live (duplicate address, listing within 50 m, reused photos, shared
+  phone, similar description).
+- There is **no user-facing decision trace**. Removed.
+- Chat is **not** private from staff: StayOnMap's own privacy policy says messages are not end-to-end encrypted and
+  staff may review them. The FAQ that said "even admins can't read them" was wrong and now quotes the policy.
+- The lease is an in-app agreement record; copy says "rental agreement … sign it there", not "digital lease".
+- StayOnMap takes no money. Neighbourhood facts (metro, bus stops, groceries/pharmacies/hospitals/schools/banks,
+  air quality now + 90 days, ward/zone/municipality, elevation) are live, each tagged measured/derived/estimated.
+- Not claimed: payments, walk times, flood data, a store-listed mobile app, WhatsApp listing (built, not public).
+
+Happenous — built in code, **not launched** (nothing deployed, no store listings). The page now describes the built
+product in detail (discovery, hosting, joining, check-in, Crew chat, Moments, Buddies, recognition, safety) but every
+section and the FAQ still say it is not open. Use Happenous vocabulary: Activity, Host, Crew, Buddy, Moment — never
+event, organiser, friend, follower. Not claimed: ID checks (it runs none — the FAQ says so), Track/Challenges (built
+but off at launch), city counts or any usage numbers (the design kit's stats are placeholders).
+
+## StayOnMap source of truth (2026-09-19, superseded above)
 - **Careful:** the documented source, https://www.cosmonus.com/work/stayonmap, is now a 308 redirect *into this
   site* (see next.config.ts), so it can no longer verify anything — checking it just reflects our own copy back.
   stayonmap.com serves only the tagline. The facts below are as recorded on 2026-09-19 and re-confirmed by the

@@ -690,3 +690,34 @@
 - "How an agent works" and every page's closing Band moved onto a pale drifting mesh (`MeshBackdrop pale lively`,
   palettes in `components/ui/mesh.ts`); the StayOnMap and Happenous bands use their own light green / orange and
   brand-coloured buttons (`Band brand=`).
+
+## [2026-09-28] content | Product pages rewritten from the product repositories
+- StayOnMap and Happenous copy now comes from ~/Desktop/StayOnMap and ~/Desktop/happenous (see content.md "Product
+  sources"). New sections: StayOnMap "Why it exists" story and neighbourhood facts; Happenous joining/hosting split,
+  "What stays with you", safety, and a fuller FAQ (7 questions; StayOnMap now 8).
+- Corrected StayOnMap claims the code does not support: "twelve live signals" (twelve review ratings), opt-in fraud
+  agent (AI off in production), decision trace (none), "admins can't read chats" (staff may review them).
+- Parent story on home, menu, Product index and About: StayOnMap helps people find their home; Happenous helps people
+  stay connected with the activities they love. Happenous remains pre-launch in every sentence.
+
+## [2026-09-28] design | Happenous page drawn in Happenous's own UI
+- Owner: bring the Happenous website's components onto the Happenous page instead of images. New
+  `components/happenous/` ports the pieces from ~/Desktop/happenous/apps/web (hero world map + phone showing the
+  Happening tab, Activity cards, check-in card, Host composer, safety tiles, closing statement) as React, with the
+  Happenous tokens, Outfit/Inter and Lucide icons, all scoped under `.hx` so nothing leaks into the rest of the site.
+- No photographs on the page any more, and none of the Happenous site's Unsplash/Pexels photos were copied (no stock
+  imagery rule): covers are the category's colour and icon, as the app draws a card with no photo. Every drawn
+  Activity and person is an example and the page says so.
+- Happenous orange here is #FC4C02, the current value in happenous/design/tokens (owner changed it there on
+  2026-09-27); the site-wide `--color-happenous` is still #e8421a and should be confirmed.
+
+## [2026-09-28] design | StayOnMap page drawn in StayOnMap's own UI
+- Same treatment as Happenous. New `components/stayonmap/` draws the app's pieces from ~/Desktop/StayOnMap/frontend:
+  the map with type-coloured price pills and clusters (useMapPins.js), search bar and filter chips, PropertyCard,
+  TrustBadge, the StayScore widget with a risk level, neighbourhood FactRows with Measured/Calculated/Estimated chips,
+  the visit day/time picker, and the tenant–owner chat ending in a rental agreement to sign. Jade palette and Plus
+  Jakarta Sans, scoped under `.sx`.
+- Hero, "What makes it different", the three steps, neighbourhood, trust and the closing band are now drawings; no
+  photographs remain on the page except the "More in Product" card. Every drawing carries an "Example" label —
+  prices, the listing, "Ravi" and the facts are illustrative, not live data.
+- `components/product/Explainer.tsx` and `Points.tsx` are no longer used by any page.

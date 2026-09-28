@@ -113,18 +113,18 @@ export const studio: SectionContent = {
 export const product: SectionContent = {
   meta: {
     title: "Product",
-    description: "StayOnMap, and Happenous in build: two products on the idea that software should know where you are and what is around you.",
+    description: "StayOnMap helps people find a home; Happenous, in build, helps them stay close to the activities they love. Two products for life in a city.",
   },
   hero: {
     tone: "dark",
     image: "/media/product/banner.jpg",
     title: "Products for the physical world.",
-    lead: "Two products, both built on the idea that software should know where you are and what is around you.",
+    lead: "Where you live, and what you do there. Two products for the two questions that shape life in a city.",
   },
   intro: {
     label: "Product",
-    title: "Products that start from the real world.",
-    body: "StayOnMap and Happenous answer different questions — where should I live, and what could I do this evening — but both begin in the same place: a map, a neighbourhood, the people nearby. They are also where our intelligence work meets real use.",
+    title: "A home to come back to. Something worth going out for.",
+    body: "Life in a city turns on two questions: where will I live, and what will I do — and with whom? StayOnMap answers the first, helping people find a home on the map and deal with the owner directly, with no broker in between. Happenous, still in build, answers the second, helping people find the activities they love nearby and stay connected with the people who do them too. Both begin in the same place: a map, a neighbourhood, the people nearby.",
   },
   index: {
     title: "Two products",
@@ -133,7 +133,7 @@ export const product: SectionContent = {
         name: "StayOnMap",
         href: "/product/stayonmap",
         title: "Rent with intelligence.",
-        desc: "Rental infrastructure without brokers. Every listing is scored across twelve trust signals before it surfaces, and owners and tenants connect directly, on a live map, with no commission.",
+        desc: "Helping people find their home. Broker-free rentals on a map across seven states in India: owners list free, tenants talk to them directly, and every home carries a score from the people who lived there.",
         tone: "dark",
         asset: "[ STAYONMAP — map view screen recording ]", image: "/media/stayonmap/step-1.jpg",
       },
@@ -141,7 +141,7 @@ export const product: SectionContent = {
         name: "Happenous",
         href: "/product/happenous",
         title: "Life happens outside the feed.",
-        desc: "An activity-based social network, in build. Organised around what people are actually doing, and who they could do it with — not around what keeps them scrolling.",
+        desc: "Helping people stay connected with the activities they love. An activity-first social network, in build: find something happening near you, join the people doing it, and keep doing it together.",
         tone: "light",
         asset: "[ HAPPENOUS — people doing things, outdoors, candid ]", image: "/media/home/product-happenous.jpg",
       },
@@ -161,7 +161,7 @@ export const product: SectionContent = {
       },
       {
         title: "Out of the app",
-        body: "Both are meant to get you somewhere: into a home, or out to something happening.",
+        body: "Both are meant to get you somewhere: into a home, or out to something you love doing.",
       },
     ],
   },
