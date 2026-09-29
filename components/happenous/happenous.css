@@ -307,6 +307,8 @@
 
 /* ---------------------------------------------------------------- closing statement */
 .hx .statement { font-family: var(--hx-display); font-weight: 700; font-size: clamp(40px, 8.4vw, 128px); line-height: 0.92; letter-spacing: -0.045em; text-transform: uppercase; text-wrap: balance; }
-.hx .statement span { display: block; }
+.hx .statement > span { display: block; }
+.hx .statement .word { display: inline-block; }
+.hx .statement .pop { display: inline-block; transform-origin: 20% 80%; }
 .hx .statement .quiet { color: #8a8a8a; }
 .hx .statement em { font-style: normal; color: var(--brand); }

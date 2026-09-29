@@ -2,6 +2,7 @@ import { Inter, Outfit } from "next/font/google";
 import type { CSSProperties, ReactNode } from "react";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { ICONS, type IconName } from "./icons";
+import { Statement } from "./Statement";
 import "./happenous.css";
 
 /**
@@ -701,12 +702,7 @@ export function Close({ c }: { c: CloseContent }) {
   return (
     <section className="frame py-5">
       <Hx className="flex flex-col gap-14 rounded-[20px] bg-[var(--paper-deep)] px-6 py-16 md:px-[6.25%] lg:py-24">
-        <p className="statement" aria-hidden="true">
-          <span className="quiet">{c.quiet}</span>
-          <span>
-            {c.loud[0]} <em>{c.loud[1]}</em>
-          </span>
-        </p>
+        <Statement quiet={c.quiet} loud={c.loud} />
         <p className="sr-only">
           {c.quiet} {c.loud.join(" ")}
         </p>

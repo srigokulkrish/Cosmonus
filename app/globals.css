@@ -324,3 +324,27 @@
     display: none;
   }
 }
+
+/* anime.js entrance start states (components/ui/Anime.tsx). Only while html.anime is set, which the
+   boot script skips under reduced motion — so nothing is hidden without JS or with motion turned down. */
+html.anime [data-anime="up"]:not([data-anime-done]),
+html.anime [data-anime="words"]:not([data-anime-done]) [data-word],
+html.anime [data-anime="draw"]:not([data-anime-done]),
+html.anime [data-anime="stagger"]:not([data-anime-done]) > * {
+  opacity: 0;
+}
+
+/* Word masks for anime.js word rises (RiseWords, the Happenous statement). Padded on every side so round
+   letters (S, O) that overshoot cap height and baseline, and edges pulled out by negative tracking, are not
+   shaved; the negative margin cancels the padding so layout is unchanged. Clipping is only needed while words
+   rise, so it is switched off once the element settles. */
+.anime-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding: 0.14em 0.12em 0.18em;
+  margin: -0.14em -0.12em -0.18em;
+}
+[data-anime-settled] .anime-mask {
+  overflow: visible;
+}

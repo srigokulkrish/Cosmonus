@@ -4,6 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { NavProgress } from "@/components/site/NavProgress";
 import { SmoothAnchors } from "@/components/site/SmoothAnchors";
+import { ANIME_BOOT } from "@/lib/anime-boot";
 import { siteJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -38,7 +39,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${grotesk.variable} ${mono.variable}`}>
+    <html lang="en" className={`${grotesk.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Turns on the anime.js start states before first paint (components/ui/Anime.tsx) */}
+        <script dangerouslySetInnerHTML={{ __html: ANIME_BOOT }} />
+      </head>
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-btn focus:bg-ink focus:px-4 focus:py-3 focus:text-white">
           Skip to content

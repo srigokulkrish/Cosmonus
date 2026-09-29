@@ -510,7 +510,7 @@ export const happenous: HappenousContent = {
   },
   close: {
     quiet: "The internet has enough watching.",
-    loud: ["Go do", "something."],
+    loud: ["Let's go do", "something."],
     title: "Not open yet.",
     body: "Happenous is built and being readied for launch in India. happenous.com is a holding page for now — there is nothing to join there yet.",
     href: "https://www.happenous.com",

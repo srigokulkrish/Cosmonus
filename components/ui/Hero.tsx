@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { posterFor } from "@/lib/media";
+import { Reveal, RiseWords } from "./Anime";
 import { BannerImage } from "./BannerImage";
 import { BannerVideo } from "./BannerVideo";
 
@@ -108,19 +109,17 @@ export function InnerHero({
         ) : (
           dark && <HeroLines />
         )}
-        <h1
-          className={
-            titleHidden
-              ? "sr-only"
-              : "relative m-0 max-w-[1000px] text-[36px] leading-[1.05] font-normal tracking-[-0.025em] text-balance sm:text-5xl lg:text-[64px]"
-          }
-        >
-          {title}
-        </h1>
+        {titleHidden ? (
+          <h1 className="sr-only">{title}</h1>
+        ) : (
+          <RiseWords className="relative m-0 max-w-[1000px] text-[36px] leading-[1.05] font-normal tracking-[-0.025em] text-balance sm:text-5xl lg:text-[64px]">
+            {title}
+          </RiseWords>
+        )}
         {lead && (
-          <p className={`relative m-0 max-w-[600px] text-lg leading-[1.5] text-pretty lg:text-xl ${dark ? "text-white/85" : "text-ink-2"}`}>
+          <Reveal as="p" delay={350} className={`relative m-0 max-w-[600px] text-lg leading-[1.5] text-pretty lg:text-xl ${dark ? "text-white/85" : "text-ink-2"}`}>
             {lead}
-          </p>
+          </Reveal>
         )}
         {children}
       </div>

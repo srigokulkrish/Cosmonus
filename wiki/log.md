@@ -721,3 +721,25 @@
   photographs remain on the page except the "More in Product" card. Every drawing carries an "Example" label —
   prices, the listing, "Ravi" and the facts are illustrative, not live data.
 - `components/product/Explainer.tsx` and `Points.tsx` are no longer used by any page.
+
+## [2026-09-30] feature | anime.js entrance motion
+- Added `animejs` v4 and `components/ui/Anime.tsx` (`Reveal`, `RiseWords`): word-by-word hero titles, staggered
+  section heads and home card rows, stroke-drawn Intelligence icons. Once per element, on scroll into view.
+- Start states keyed on `html.anime`, set by `lib/anime-boot.ts` in the root layout; off under reduced motion.
+- Details in design-system.md §Motion.
+
+## [2026-09-30] fix | anime.js text vanishing after its fade-in
+- `utils.cleanInlineStyles` restores the inline styles present when a tween starts; the `utils.set({opacity: 0})`
+  before it meant faded-in text went back to invisible. The CSS start state now holds the hidden state and the
+  element is marked done in `onComplete`, before the clean-up.
+
+## [2026-09-30] feature | Happenous closing statement animated; "Let's go do something."
+- Copy corrected (owner): "Go do something." → "Let's go do something." (`content/products.ts`, `close.loud`).
+- `components/happenous/Statement.tsx`: anime.js timeline — quiet line rises word by word in ink, the call to act
+  rises while the quiet line dims to grey, "something." springs in in the brand colour. Once, on view; static under
+  reduced motion. Screen-reader sentence unchanged (sr-only copy in `Close`).
+
+## [2026-09-30] fix | Word-rise masks shaved letter edges
+- Masks clipped round letters (S, O) past cap height/baseline and edges pulled out by negative tracking. Shared
+  `.anime-mask` (globals.css) is now padded on every side with cancelling margins, and stops clipping once the
+  element settles (`data-anime-settled`). Words start at 140% so the deeper padding still hides them.

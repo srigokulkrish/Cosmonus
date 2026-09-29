@@ -241,6 +241,15 @@ One curve everywhere: `cubic-bezier(0.22, 1, 0.36, 1)` (`EASE` in Header.tsx).
   (pages landed part-scrolled, hero under the bar) and animated Back/Forward. Only same-page `#anchor` links are
   smoothed, by `components/site/SmoothAnchors.tsx`; `scroll-padding-top: 76px` keeps targets clear of the bar.
 - Everything drops to instant under `prefers-reduced-motion`.
+- **anime.js entrances** (owner, 2026-09-30; `animejs` v4, `components/ui/Anime.tsx`). Each runs once, when it first
+  scrolls into view, and only after its own component hydrates. `RiseWords` — hero titles (home and every `InnerHero`)
+  rise word by word out of a clipping mask. `Reveal kind="stagger"` — heading stacks (`SectionHead`, `SideLayout` head)
+  and home card rows (products, Intelligence, Agents band, research) rise child by child. `Reveal` — hero lead and
+  button. `Reveal kind="draw"` — the Intelligence icons draw their strokes. Hidden start states are CSS on
+  `html.anime [data-anime]` (globals.css); `html.anime` is set before first paint by the inline boot script in the
+  root layout (`lib/anime-boot.ts`), skipped under reduced motion and removed after 4 s if the motion code never
+  loads — nothing is hidden without JS. Do not let anime.js split or restyle DOM from outside the owning component:
+  a layout-level controller did that first and broke hydration of the home hero.
 
 ## The blog is its own layout (owner, 2026-09-21)
 "Blog UI can be different, it should not replicate the research theme." `/company/blog` and its posts are the one

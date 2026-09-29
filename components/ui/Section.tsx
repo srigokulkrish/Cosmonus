@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Reveal } from "./Anime";
 import { ButtonLink, Arrow } from "./Button";
 import { Dot } from "./Dot";
 import { MediaPanel, toneAt, type Tone } from "./MediaPanel";
@@ -25,7 +26,7 @@ export const HALVES = "grid grid-cols-1 gap-x-5 md:grid-cols-2";
 export function SideLayout({ head, children, className = "" }: { head: ReactNode; children: ReactNode; className?: string }) {
   return (
     <div className={`grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-3 ${className}`}>
-      <div className="flex flex-col gap-4 lg:pr-6 xl:pr-10">{head}</div>
+      <Reveal kind="stagger" className="flex flex-col gap-4 lg:pr-6 xl:pr-10">{head}</Reveal>
       <div className="min-w-0 lg:col-span-2">{children}</div>
     </div>
   );
@@ -58,7 +59,7 @@ export function SectionHead({
   children?: ReactNode;
 }) {
   return (
-    <div className="flex max-w-[900px] flex-col items-start gap-4">
+    <Reveal kind="stagger" className="flex max-w-[900px] flex-col items-start gap-4">
       {eyebrow && <MonoLabel>{eyebrow}</MonoLabel>}
       <h2
         className={`m-0 leading-[1.1] font-normal tracking-[-0.02em] text-balance ${
@@ -69,7 +70,7 @@ export function SectionHead({
       </h2>
       {lead && <p className="m-0 max-w-[640px] text-lg leading-normal text-pretty text-muted">{lead}</p>}
       {children}
-    </div>
+    </Reveal>
   );
 }
 
