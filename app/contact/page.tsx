@@ -8,7 +8,7 @@ import { MonoLabel } from "@/components/ui/MonoLabel";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact",
+  title: "Contact: talk to the team",
   description: "A product idea, an unusual problem, a collaboration, something worth exploring. Tell us.",
   path: "/contact",
 });

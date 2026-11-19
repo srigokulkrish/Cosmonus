@@ -13,7 +13,7 @@ import { menus } from "@/lib/site";
 /** `metadata` for a capability route: title = page name (layout adds "— Cosmonus"), description = lead. */
 export function capabilityMetadata(section: CapabilitySection, slug: string): Metadata {
   const c = getCapability(section, slug);
-  return pageMetadata({ title: c.title, description: c.metaDescription, path: `/${section}/${slug}` });
+  return pageMetadata({ title: c.metaTitle ?? c.title, description: c.metaDescription, path: `/${section}/${slug}` });
 }
 
 /**

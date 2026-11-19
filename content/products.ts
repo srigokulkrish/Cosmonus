@@ -85,7 +85,7 @@ export type HappenousContent = {
 // and every drawing says so.
 export const stayonmap: StayOnMapContent = {
     meta: {
-    title: "StayOnMap",
+    title: "StayOnMap: broker-free rentals on a map",
     description:
       "Broker-free rentals on a map, live across seven states in India. Owners list free, tenants talk to them directly, and nobody pays to see a house.",
   },
@@ -292,9 +292,9 @@ export const stayonmap: StayOnMapContent = {
 // Activities and people drawn are examples — the page says so — never live listings or real accounts.
 export const happenous: HappenousContent = {
   meta: {
-    title: "Happenous",
+    title: "Happenous: meet people around real Activities",
     description:
-      "An activity-first social network for meeting people in real life, live in India on Android. Find something happening near you, join the people doing it, and keep doing what you love.",
+      "An activity-first social network for meeting people in real life, live in India on Android. Find something happening near you and join the people doing it.",
   },
   hero: {
     eyebrow: "Live · India · Android, iPhone soon",

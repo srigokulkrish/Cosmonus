@@ -20,7 +20,7 @@ export default function StayOnMapPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Product", path: "/product" },
-          { name: c.meta.title, path: "/product/stayonmap" },
+          { name: "StayOnMap", path: "/product/stayonmap" },
         ])}
       />
       {faq && <JsonLd data={faq} />}

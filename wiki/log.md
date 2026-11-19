@@ -750,3 +750,9 @@
   action go to the Play listing (`content/products.ts`).
 - "In build" / "not open yet" removed from the menu blurb (`lib/site.ts`), home card (`app/page.tsx`), Product index
   and About (`content/sections.ts`, `content/company.ts`). content.md and open-questions.md updated.
+
+## [2026-11-19] seo | Descriptive titles, unique descriptions, the product family in JSON-LD
+- 21 titles were 14–23 characters ("Web — Cosmonus"); each now says what the page is for, inside 60. New optional
+  `metaTitle` on capabilities keeps the visible page name short (`components/capability/CapabilityPage.tsx`).
+- Company had About's description; Happenous's was 182 characters. Both fixed.
+- `lib/seo.ts`: StayOnMap and Happenous as `subOrganization` of Cosmonus. Details in seo.md.

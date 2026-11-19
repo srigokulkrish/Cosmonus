@@ -19,7 +19,7 @@ export default function HappenousPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Product", path: "/product" },
-          { name: c.meta.title, path: "/product/happenous" },
+          { name: "Happenous", path: "/product/happenous" },
         ])}
       />
       {faq && <JsonLd data={faq} />}

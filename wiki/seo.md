@@ -79,3 +79,11 @@ it only when set. After launch: submit https://www.cosmonus.com/sitemap.xml in S
 ## Differences from the old site
 - Titles/descriptions describe the new site ("Building Real-World Intelligence."), not "Intelligence Engineering".
 - Share image is 1200×630 (old: the 1000×1000 icon); keywords updated to the new site's subjects.
+
+## Titles and entities (2026-11-19)
+- Every title says what the page is for, ≤ 49 characters before the template's " — Cosmonus" (≤ 60 in all).
+  Sections, company pages and products set it in `meta.title`; capability pages keep their short page name in
+  `title` (the h1) and set the search title in `metaTitle`. Product breadcrumbs name the product, not the title.
+- Company and About no longer share a description.
+- Organization JSON-LD lists StayOnMap and Happenous as `subOrganization` (URL + Play listing), so search engines
+  can connect the three sites. StayOnMap and Happenous point back with `parentOrganization` on their own sites.

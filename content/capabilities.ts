@@ -16,8 +16,11 @@ export type CapabilitySection = "studio" | "intelligence" | "agents";
 export type Capability = {
   slug: string;
   section: CapabilitySection;
-  /** Page name: h1, intro label and <title>. */
+  /** Page name: h1, intro label and, unless `metaTitle` is set, <title>. */
   title: string;
+  /** Search-result title when the page name alone ("Web") says too little. ≤ 49 characters, so the
+   * layout's " — Cosmonus" keeps it inside the ~60 a result shows. */
+  metaTitle?: string;
   heroTone: "dark" | "light";
   /** The banner video (MP4 in public/), once it exists; `heroVideoZoom` crops letterbox bars recorded into it. */
   heroVideo?: string;
@@ -131,6 +134,7 @@ const entries: Entry[] = [
   // ——— Studio ———
   {
     slug: "web",
+    metaTitle: "Web design and product interfaces",
     heroImage: "/media/web/banner.jpg",
     metaDescription:
       "Sites and product interfaces designed and built in-house: marketing sites, product screens and the map-heavy surfaces our products are met through.",
@@ -177,6 +181,7 @@ const entries: Entry[] = [
   },
   {
     slug: "animation",
+    metaTitle: "Animation and motion design",
     metaDescription:
       "Motion that explains how a system works — a route forming, a score resolving, an agent taking its next step. Animation that carries meaning, never decoration.",
     section: "studio",
@@ -231,6 +236,7 @@ const entries: Entry[] = [
   },
   {
     slug: "image-generation",
+    metaTitle: "Image generation with a point of view",
     metaDescription:
       "Generative imagery held to an art director's standard: a brief and a point of view first, then art direction, selection and a great deal of editing.",
     section: "studio",
@@ -350,6 +356,7 @@ const entries: Entry[] = [
   },
   {
     slug: "video",
+    metaTitle: "Video: launch films and cinematic loops",
     metaDescription:
       "Film for products that live outdoors. We combine generated and shot footage, then edit and grade it into launch films and the loops used across this site.",
     section: "studio",
@@ -411,6 +418,7 @@ const entries: Entry[] = [
   // ——— Intelligence ———
   {
     slug: "spatial",
+    metaTitle: "Spatial intelligence: where things are and why",
     heroImage: "/media/spatial/banner.jpg",
     metaDescription:
       "Spatial intelligence is our work on giving software a sense of place: where something is, what surrounds it, and why the same question changes with the street.",
@@ -458,6 +466,7 @@ const entries: Entry[] = [
   },
   {
     slug: "trust-score",
+    metaTitle: "Trust Score: how far a claim can be relied on",
     heroImage: "/media/trust-score/banner.jpg",
     metaDescription:
       "Trust Score is our approach to making reliability legible — a readable signal for how far a listing, a place or a claim can be relied on, with its reasons.",
@@ -505,6 +514,7 @@ const entries: Entry[] = [
   // ——— Agents ———
   {
     slug: "workflow",
+    metaTitle: "Workflow agents that finish one task end to end",
     heroImage: "/media/workflow/banner.jpg",
     metaDescription:
       "A workflow agent takes responsibility for a whole job rather than a single reply: it gathers context, plans the steps, uses its tools and hands back a result.",
@@ -550,6 +560,7 @@ const entries: Entry[] = [
   },
   {
     slug: "automation",
+    metaTitle: "Automation: routine work, the same way each time",
     heroImage: "/media/automation/banner.jpg",
     metaDescription:
       "Not everything needs an agent. Where a task is well understood we automate it plainly and reliably, and keep agents for the parts that need judgement.",
@@ -596,6 +607,7 @@ const entries: Entry[] = [
   },
   {
     slug: "experiments",
+    metaTitle: "Agent experiments and prototypes",
     heroImage: "/media/experiments/banner.jpg",
     metaDescription:
       "Prototypes and the open questions behind them, published honestly. Some become products or research and many do not; each is labelled with how far it has got.",

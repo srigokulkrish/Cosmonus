@@ -17,7 +17,7 @@ const strip = {
 
 export const about = {
   meta: {
-    title: "About",
+    title: "About Cosmonus: building real-world intelligence",
     description: "Cosmonus is the parent company behind StayOnMap, Happenous and the research that connects them.",
   },
   hero: {
@@ -99,7 +99,7 @@ export const about = {
 
 export const research = {
   meta: {
-    title: "Research",
+    title: "Research notes on place, trust and agents",
     description: "Notes on what we are learning about place, trust and agents — research, experiments and company news, each labelled with how far the work has got.",
   },
   hero: {
@@ -135,7 +135,7 @@ export const research = {
  */
 export const blog = {
   meta: {
-    title: "Blog",
+    title: "Blog: AI engineering, explained plainly",
     description: "Plain explanations of AI engineering: models, embeddings, vector databases, RAG, MCP, and prompt, context, loop and harness engineering.",
   },
   masthead: {
@@ -151,7 +151,7 @@ export const blog = {
 
 export const careers = {
   meta: {
-    title: "Careers",
+    title: "Careers: work on the real world",
     description: "Work on the real world. A small team building for streets, homes and the people in them. No open roles right now — introduce yourself.",
   },
   hero: {
