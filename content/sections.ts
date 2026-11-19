@@ -104,7 +104,7 @@ export const studio: SectionContent = {
   },
   band: {
     title: "What the studio makes it for.",
-    body: "StayOnMap is where the studio's work meets the people it is for. Happenous is being built.",
+    body: "StayOnMap and Happenous are where the studio's work meets the people it is for. Both are live.",
     href: "/product",
     action: "See the products", image: "/media/studio/band.jpg", imageAlt: "Two phones on a cafe table beside a glass of chai in the afternoon sun.",
   },

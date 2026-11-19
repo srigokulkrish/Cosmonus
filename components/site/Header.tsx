@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { MeshBackdrop } from "@/components/ui/MeshBackdrop";
-import { menuForPath, menus, type MenuId } from "@/lib/site";
+import { menuForPath, menus, navMenus, type MenuId } from "@/lib/site";
 
 // One easing curve for all UI motion: quick start, long soft settle.
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -164,7 +164,7 @@ export function Header() {
             </Link>
 
             <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
-              {menus.map((m) => (
+              {navMenus.map((m) => (
                 <button
                   key={m.id}
                   type="button"
@@ -443,7 +443,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         </button>
       </div>
       <nav aria-label="Primary" className="flex flex-col px-5 pb-10">
-        {menus.map((menu) => {
+        {navMenus.map((menu) => {
           const isOpen = expanded === menu.id;
           return (
             <div key={menu.id} className="border-b border-line">

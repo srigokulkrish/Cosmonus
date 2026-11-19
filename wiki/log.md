@@ -756,3 +756,8 @@
   `metaTitle` on capabilities keeps the visible page name short (`components/capability/CapabilityPage.tsx`).
 - Company had About's description; Happenous's was 182 characters. Both fixed.
 - `lib/seo.ts`: StayOnMap and Happenous as `subOrganization` of Cosmonus. Details in seo.md.
+
+## [2026-11-19] content | Product company, not a studio for hire
+- Studio left the header and footer (pages kept, linked from Company); products follow the hero; hero CTAs Explore products / About Cosmonus.
+- Status labels on products, Intelligence and Agents (Live, Live in StayOnMap, Research, Experiments); bands that asked for client briefs now point to products or research.
+- Contact topics: General, Partnership, Press, Product help, Careers. Careers CTA says Introduce yourself. Line endings normalised (.gitattributes).

@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { Logo } from "@/components/site/Header";
-import { menus, site } from "@/lib/site";
+import { navMenus, site } from "@/lib/site";
 
 export function Footer() {
   return (
     <footer id="contact" className="bg-footer text-white">
       <div className="wrap flex flex-col justify-between gap-14 pt-14 pb-8 lg:min-h-[440px]">
-        <div className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-5">
-          {menus.map((m) => (
+        <div className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-4">
+          {navMenus.map((m) => (
             <div key={m.id} className="flex flex-col gap-1">
               <div className="mb-3 text-[13px] text-footer-muted">{m.label}</div>
               {m.links.map((l) => (

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { AgentsFlow } from "@/components/home/AgentsFlow";
-import { StudioTabs } from "@/components/home/StudioTabs";
 import { Reveal, RiseWords } from "@/components/ui/Anime";
 import { Arrow, ButtonLink, Chevron } from "@/components/ui/Button";
 import { BannerVideo } from "@/components/ui/BannerVideo";
@@ -18,9 +17,10 @@ export const metadata: Metadata = pageMetadata({ description: site.description, 
 
 // Source of truth: raw/handoff/design/Main.dc.html
 
-const products: { name: string; href: string; site: { href: string; label: string; variant: "stayonmap" | "happenous" }; tone: Tone; asset: string; image?: string; alt?: string; title: string; body: string }[] = [
+const products: { name: string; status: string; href: string; site: { href: string; label: string; variant: "stayonmap" | "happenous" }; tone: Tone; asset: string; image?: string; alt?: string; title: string; body: string }[] = [
   {
     name: "StayOnMap",
+    status: "Live · Web and Android · India",
     href: "/product/stayonmap",
     site: { href: "https://www.stayonmap.com", label: "Open stayonmap.com", variant: "stayonmap" },
     tone: "dark",
@@ -30,6 +30,7 @@ const products: { name: string; href: string; site: { href: string; label: strin
   },
   {
     name: "Happenous",
+    status: "Live · Android · iPhone soon",
     href: "/product/happenous",
     site: { href: "https://www.happenous.com", label: "See happenous.com", variant: "happenous" },
     tone: "light",
@@ -53,9 +54,10 @@ const iconProps = {
   "aria-hidden": true,
 };
 
-const intelligence: { name: string; href: string; desc: string; icon: ReactNode }[] = [
+const intelligence: { name: string; status: string; href: string; desc: string; icon: ReactNode }[] = [
   {
     name: "Spatial Intelligence",
+    status: "Research",
     href: "/intelligence/spatial",
     desc: "Knowing where things are, what surrounds them, and why location changes the answer.",
     icon: (
@@ -67,6 +69,7 @@ const intelligence: { name: string; href: string; desc: string; icon: ReactNode 
   },
   {
     name: "Trust Score",
+    status: "Live in StayOnMap",
     href: "/intelligence/trust-score",
     desc: "A readable signal for how far a listing, a place or a claim can be relied on.",
     icon: (
@@ -95,6 +98,11 @@ const research: { tone: Tone; kind: string; title: string; href: string; cover: 
   image: n.cover.image,
 }));
 
+/** A small mono label saying how far something has got: live, in a product, research or an experiment. */
+function StatusTag({ children }: { children: ReactNode }) {
+  return <span className="shrink-0 font-mono text-xs text-muted">{children}</span>;
+}
+
 export default function HomePage() {
   return (
     <>
@@ -108,38 +116,25 @@ export default function HomePage() {
             Intelligence.
           </RiseWords>
           <Reveal as="p" delay={400} className="relative m-0 max-w-[580px] text-lg leading-[1.5] text-pretty text-white/85 lg:text-xl">
-            Cosmonus is the parent company behind products, research and systems that understand the physical world — where things are,
-            what they mean, and what to do next.
+            Cosmonus is an independent technology company. We build our own products for everyday life in the city, and research
+            systems that understand the physical world — where things are, what they mean, and what to do next.
           </Reveal>
-          <Reveal delay={550} className="relative mt-1">
+          <Reveal delay={550} className="relative mt-1 flex flex-wrap gap-2">
             <ButtonLink href="#products" variant="inverse" icon={<Chevron />}>
-              See what we&apos;re building
+              Explore products
+            </ButtonLink>
+            <ButtonLink href="/company/about" variant="ghost">
+              About Cosmonus
             </ButtonLink>
           </Reveal>
         </div>
-      </section>
-
-      {/* STUDIO */}
-      <section id="studio" className="wrap sec flex scroll-mt-20 flex-col gap-10">
-        <SectionHead
-          size="home"
-          eyebrow="Studio"
-          title={
-            <>
-              The craft behind
-              <br />
-              everything we ship.
-            </>
-          }
-        />
-        <StudioTabs />
       </section>
 
       {/* PRODUCTS */}
       <section id="products" className="wrap sec flex scroll-mt-20 flex-col gap-14">
         <SectionHead
           size="home"
-          eyebrow="Product"
+          eyebrow="Products"
           title={
             <>
               Products that start
@@ -152,7 +147,10 @@ export default function HomePage() {
         <Reveal kind="stagger" className={`${HALVES} gap-y-12`}>
           {products.map((p) => (
             <article key={p.href} className="flex flex-col">
-              <h3 className="m-0 mb-4 text-2xl leading-[1.15] font-medium tracking-[-0.01em] text-ink-2">{p.name}</h3>
+              <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 className="m-0 text-2xl leading-[1.15] font-medium tracking-[-0.01em] text-ink-2">{p.name}</h3>
+                <StatusTag>{p.status}</StatusTag>
+              </div>
               <MediaPanel tone={p.tone} label={p.asset} src={p.image} alt={p.alt} labelSize="text-[13px]" className="h-[280px] rounded-media sm:h-[420px]" />
               <p className="m-0 mt-8 max-w-[520px] text-[26px] leading-[1.2] tracking-[-0.015em] text-balance">{p.title}</p>
               <p className="m-0 mt-4 max-w-[520px] text-[15px] leading-[1.55] text-pretty text-muted">{p.body}</p>
@@ -175,7 +173,7 @@ export default function HomePage() {
             <SideHead
               label="Intelligence"
               title="Where, what it means, what's next."
-              lead="Two disciplines we practise so that software can reason about places and trust — not just text."
+              lead="Two disciplines behind our products, so that software can reason about places and trust — not just text. Each says how far it has got."
             />
           }
         >
@@ -186,9 +184,12 @@ export default function HomePage() {
                 href={c.href}
                 className="row flex min-h-[240px] flex-col justify-between gap-10 rounded-card border border-line p-7"
               >
-                <Reveal kind="draw" as="span" className="flex size-11 items-center justify-center rounded-btn border border-line">
-                  {c.icon}
-                </Reveal>
+                <span className="flex items-start justify-between gap-4">
+                  <Reveal kind="draw" as="span" className="flex size-11 items-center justify-center rounded-btn border border-line">
+                    {c.icon}
+                  </Reveal>
+                  <StatusTag>{c.status}</StatusTag>
+                </span>
                 <span className="flex flex-col gap-2.5">
                   <span className="rowname text-[25px] leading-[1.12] font-normal tracking-[-0.015em]">{c.name}</span>
                   <span className="text-[15px] leading-[1.45] text-muted">{c.desc}</span>
@@ -208,13 +209,13 @@ export default function HomePage() {
             {/* Blue, violet, dark-blue and navy mesh gradient, the same treatment as the Product menu cards */}
             <MeshBackdrop palette="cosmonus" dim bloom={false} />
             <Reveal kind="stagger" className="relative flex flex-col items-start gap-5">
-              <span className="font-mono text-xs text-white/70">Agents</span>
+              <span className="font-mono text-xs text-white/70">Agents · Research and experiments</span>
               <h2 className="m-0 text-[32px] leading-[1.1] font-normal tracking-[-0.02em] text-balance min-[400px]:text-[36px] sm:text-[44px] lg:text-[56px]">
                 From understanding to action.
               </h2>
               <p className="m-0 max-w-[520px] text-lg leading-[1.5] text-pretty text-white/80">
-                Agents turn intelligence into finished work: they take in a signal, gather context, choose their tools and hand back a result
-                someone can check.
+                Agents are where our research is heading: systems that take in a signal, gather context, choose their tools and hand back
+                a result someone can check. None is a product yet; each page says what stage the work is at.
               </p>
               <ButtonLink href="/agents" variant="ghost" className="mt-2">
                 Explore Agents
@@ -269,7 +270,7 @@ export default function HomePage() {
           title="Work on the real world."
           body="We are a small team building for streets, homes and the people in them. If that sounds like your kind of problem, we would like to hear from you."
           href="/company/careers"
-          action="View open roles"
+          action="Introduce yourself"
           image="/media/home/band-careers.jpg"
           imageAlt="Two people's hands pointing at a marked-up city map on a work table by a window."
         />
