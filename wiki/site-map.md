@@ -6,7 +6,7 @@ Boards live in `raw/handoff/design/`. "—" means the page was not designed and 
 | --- | --- | --- |
 | `/` | Main.dc.html | `app/page.tsx`, `components/home/*` |
 | `/studio` · `/product` · `/company` · `/intelligence` · `/agents` | — | `components/section/SectionPage.tsx`, `content/sections.ts` |
-| `/studio/{web,animation,image-generation,video}` | Studio-*.dc.html | Capability template |
+| `/studio/{web,animation,image-generation,video}` | Studio-*.dc.html | Capability template (not in the nav since 2026-11-19; linked from Company, highlights Company) |
 | `/intelligence/{spatial,trust-score}` | Intelligence-*.dc.html | Capability template |
 | `/agents/{workflow,automation,experiments,systems}` | Agents-*.dc.html | Capability template |
 | `/product/{stayonmap,happenous}` | Product-*.dc.html | `app/product/*`, `content/products.ts` |
