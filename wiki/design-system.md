@@ -37,7 +37,7 @@ The owner asked for the site to feel like runway.com: clean, simple, visually le
 - **Heroes:** copy bottom-left, not centred. Home h1 72px (40 on phones), inner 56px; lead 20px; one compact light button.
 - **Buttons (`ButtonLink`):** 40px, 8px radius, 15px semibold. `primary` ink · `secondary` soft grey · `inverse`
   white on dark · `ghost` white outline on dark. Header Contact/Menu are 36px (primary / soft grey).
-- **Home:** Studio is a bordered showcase — big practice names stacked left (accent dot marks the selected one), media and
+- **Home:** (removed from home 2026-11-19; `components/home/StudioTabs.tsx` is kept but unused) Studio was a bordered showcase — big practice names stacked left (accent dot marks the selected one), media and
   caption right. Products are Runway "platform" columns (name above media, one sentence, paragraph, "Explore X" +
   "Open x.com" buttons). Agents is a dark band with the statement left and the four agent links right. "How an agent works"
   follows as its own section: a stepper on a soft-grey panel — five steps across the top with a progress rule

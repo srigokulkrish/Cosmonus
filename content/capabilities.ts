@@ -116,6 +116,8 @@ type Entry = Omit<Capability, "more" | "metaDescription" | "heroTone" | "intro">
   metaDescription?: string;
   /** Overrides the section default below (Image Generation, whose banner is a bright still). */
   heroTone?: Capability["heroTone"];
+  /** How far the work has got (Live in StayOnMap, Research, Experiments), shown beside the page name in the intro. */
+  status?: string;
 };
 
 function build(e: Entry): Capability {
@@ -124,7 +126,7 @@ function build(e: Entry): Capability {
     // Boards: dark hero (with grid/contour lines) for Studio and Intelligence, light hero (no lines) for Agents.
     // A photograph behind the title always takes the dark treatment (white copy over a dark shade).
     heroTone: e.heroTone ?? (e.heroImage || e.section !== "agents" ? "dark" : "light"),
-    intro: { label: e.title, ...e.intro },
+    intro: { label: e.status ? `${e.title} · ${e.status}` : e.title, ...e.intro },
     more: more(e.section, e.slug),
     metaDescription: e.metaDescription ?? e.lead,
   };
@@ -134,7 +136,7 @@ const entries: Entry[] = [
   // ——— Studio ———
   {
     slug: "web",
-    metaTitle: "Web design and product interfaces",
+    metaTitle: "Web: how we design our product interfaces",
     heroImage: "/media/web/banner.jpg",
     metaDescription:
       "Sites and product interfaces designed and built in-house: marketing sites, product screens and the map-heavy surfaces our products are met through.",
@@ -174,14 +176,14 @@ const entries: Entry[] = [
     },
     band: {
       title: "A product needs a surface.",
-      body: "If you are thinking about a product and how people will first meet it, tell us about it.",
-      href: "/contact?topic=idea",
-      action: "Talk to us about an interface", image: "/media/web/band.jpg", imageAlt: "A phone showing a map with a single pin, held at a residential doorway.",
+      body: "The interfaces the studio designs are the ones people use in StayOnMap and Happenous.",
+      href: "/product",
+      action: "See the products", image: "/media/web/band.jpg", imageAlt: "A phone showing a map with a single pin, held at a residential doorway.",
     },
   },
   {
     slug: "animation",
-    metaTitle: "Animation and motion design",
+    metaTitle: "Animation: motion inside our products",
     metaDescription:
       "Motion that explains how a system works — a route forming, a score resolving, an agent taking its next step. Animation that carries meaning, never decoration.",
     section: "studio",
@@ -236,7 +238,7 @@ const entries: Entry[] = [
   },
   {
     slug: "image-generation",
-    metaTitle: "Image generation with a point of view",
+    metaTitle: "Image generation: how we make our imagery",
     metaDescription:
       "Generative imagery held to an art director's standard: a brief and a point of view first, then art direction, selection and a great deal of editing.",
     section: "studio",
@@ -346,17 +348,17 @@ const entries: Entry[] = [
       ],
     },
     band: {
-      title: "Have a brief?",
-      body: "If you are building a visual system and want to talk about directing image models, write to us.",
-      href: "/contact?topic=collaboration",
-      action: "Talk to us about imagery",
+      title: "Made for our own products.",
+      body: "Every frame on this site was made for Cosmonus, StayOnMap or Happenous.",
+      href: "/product",
+      action: "See the products",
       image: "/media/image-generation/band.jpg",
       imageAlt: "An empty narrow lane in an old city at first light, a single bicycle against a blue wall, soft haze.",
     },
   },
   {
     slug: "video",
-    metaTitle: "Video: launch films and cinematic loops",
+    metaTitle: "Video: how we make our product films",
     metaDescription:
       "Film for products that live outdoors. We combine generated and shot footage, then edit and grade it into launch films and the loops used across this site.",
     section: "studio",
@@ -409,7 +411,7 @@ const entries: Entry[] = [
     },
     band: {
       title: "Made for products that live outdoors.",
-      body: "Happenous is about time spent together outside the app — the kind of product our films are made for. It is still being built.",
+      body: "Happenous is about time spent together outside the app — the kind of product our films are made for. It is live on Android.",
       href: "/product/happenous",
       action: "See Happenous", image: "/media/video/band.jpg", imageAlt: "Runners crossing a city bridge at sunrise.",
     },
@@ -418,6 +420,7 @@ const entries: Entry[] = [
   // ——— Intelligence ———
   {
     slug: "spatial",
+    status: "Research",
     metaTitle: "Spatial intelligence: where things are and why",
     heroImage: "/media/spatial/banner.jpg",
     metaDescription:
@@ -466,6 +469,7 @@ const entries: Entry[] = [
   },
   {
     slug: "trust-score",
+    status: "Live in StayOnMap",
     metaTitle: "Trust Score: how far a claim can be relied on",
     heroImage: "/media/trust-score/banner.jpg",
     metaDescription:
@@ -507,13 +511,14 @@ const entries: Entry[] = [
     band: {
       title: "Reliability, made visible.",
       body: "If you are working on something where people need to know how far to rely on what they see, we would like to hear about it.",
-      href: "/contact?topic=collaboration",
-      action: "Talk to us about Trust Score", image: "/media/trust-score/band.jpg", imageAlt: "A tenant and an owner shaking hands at an apartment doorway.",
+      href: "/contact?topic=partnership",
+      action: "Talk to us about a partnership", image: "/media/trust-score/band.jpg", imageAlt: "A tenant and an owner shaking hands at an apartment doorway.",
     },
   },
   // ——— Agents ———
   {
     slug: "workflow",
+    status: "Research",
     metaTitle: "Workflow agents that finish one task end to end",
     heroImage: "/media/workflow/banner.jpg",
     metaDescription:
@@ -552,14 +557,15 @@ const entries: Entry[] = [
       ],
     },
     band: {
-      title: "A job worth handing over?",
-      body: "If there is work you would like carried from start to finish — with a person checking the result — tell us about it.",
-      href: "/contact?topic=idea",
-      action: "Talk to us about a workflow", image: "/media/workflow/band.jpg", imageAlt: "A hand signing the last page of a document.",
+      title: "Follow the research.",
+      body: "This is research at Cosmonus, not a product or a service. Notes are published as the work produces them.",
+      href: "/company/research",
+      action: "Read the research", image: "/media/workflow/band.jpg", imageAlt: "A hand signing the last page of a document.",
     },
   },
   {
     slug: "automation",
+    status: "Research",
     metaTitle: "Automation: routine work, the same way each time",
     heroImage: "/media/automation/banner.jpg",
     metaDescription:
@@ -599,14 +605,15 @@ const entries: Entry[] = [
       ],
     },
     band: {
-      title: "Routine work you would rather not do?",
-      body: "Tell us about it. Some of it needs an agent; much of it just needs doing reliably.",
-      href: "/contact?topic=problem",
-      action: "Talk to us about automation", image: "/media/automation/band.jpg", imageAlt: "Warehouse robots moving along a floor grid, seen from above.",
+      title: "Follow the research.",
+      body: "This is research at Cosmonus, not a product or a service. Notes are published as the work produces them.",
+      href: "/company/research",
+      action: "Read the research", image: "/media/automation/band.jpg", imageAlt: "Warehouse robots moving along a floor grid, seen from above.",
     },
   },
   {
     slug: "experiments",
+    status: "Experiments",
     metaTitle: "Agent experiments and prototypes",
     heroImage: "/media/experiments/banner.jpg",
     metaDescription:
@@ -655,6 +662,7 @@ const entries: Entry[] = [
   },
   {
     slug: "systems",
+    status: "Research",
     heroImage: "/media/systems/banner.jpg",
     metaDescription:
       "Agents are one part of a system. Around them sit databases, queues and services that do exactly what they are told. We design the whole, not just the agent.",
@@ -693,10 +701,10 @@ const entries: Entry[] = [
       ],
     },
     band: {
-      title: "Designing a whole system?",
-      body: "If you are deciding which parts of a job should be certain and which can be left to judgement, we would like to think it through with you.",
-      href: "/contact?topic=collaboration",
-      action: "Talk to us about a system", image: "/media/systems/band.jpg", imageAlt: "Two operators seen from behind in a traffic control room.",
+      title: "Follow the research.",
+      body: "This is research at Cosmonus, not a product or a service. Notes are published as the work produces them.",
+      href: "/company/research",
+      action: "Read the research", image: "/media/systems/band.jpg", imageAlt: "Two operators seen from behind in a traffic control room.",
     },
   },
 ];

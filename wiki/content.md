@@ -14,6 +14,16 @@ All copy is typed data in `content/`:
 - Buttons say where they go ("View open roles", "Visit StayOnMap"); never "Get started"/"Book demo".
 - Media stays as `MediaPanel` placeholders with `[ LABEL ]` until real footage exists. No stock imagery.
 
+## Cosmonus is a product company, not a studio for hire (owner, 2026-11-19)
+- Never sell services: no client-brief CTAs, no "tell us about your product/interface/workflow", no pricing or packages.
+  Bands on Studio, Intelligence and Agents pages point to the products or to research; the only outward contact
+  routes are partnership, press, product help and careers (`components/contact/topics.ts`).
+- Studio is how we make our own products. It is out of the header and footer (`inNav: false` in `lib/site.ts`),
+  linked from the Company menu; its routes and pages stay.
+- Every product and capability says how far it has got. Vocabulary: **Live** (with platforms), **Live in StayOnMap**,
+  **Research**, **Experiments**. Set by `status` on capability entries (shown in the intro label) and on the home
+  product and Intelligence cards. Do not promote anything without the owner saying so.
+
 ## Product status (owner, 2026-09-21)
 - **StayOnMap is live and its facts still hold** — confirmed by the owner. Written in the present tense.
 - **Happenous is live (owner, 2026-11-19).** On Google Play for Android in twenty Indian cities, iPhone coming soon,

@@ -10,22 +10,9 @@ export type MenuLink = {
   blurb?: string;
 };
 export type MenuId = "studio" | "product" | "company" | "intelligence" | "agents";
-export type Menu = { id: MenuId; label: string; href: string; title: string; desc: string; links: MenuLink[] };
+export type Menu = { id: MenuId; label: string; href: string; title: string; desc: string; links: MenuLink[]; inNav?: boolean };
 
 export const menus: Menu[] = [
-  {
-    id: "studio",
-    href: "/studio",
-    label: "Studio",
-    title: "The studio",
-    desc: "The creative practice behind every Cosmonus product: design, motion and generative media, made in-house.",
-    links: [
-      { name: "Web", href: "/studio/web", desc: "Sites and product interfaces" },
-      { name: "Animation", href: "/studio/animation", desc: "Motion that explains" },
-      { name: "Image Generation", href: "/studio/image-generation", desc: "Art-directed generative imagery" },
-      { name: "Video", href: "/studio/video", desc: "Generated and edited film" },
-    ],
-  },
   {
     id: "product",
     href: "/product",
@@ -47,19 +34,6 @@ export const menus: Menu[] = [
         brand: "happenous",
         blurb: "Helping people stay connected with the activities they love, and the people nearby who do them. Live on Android.",
       },
-    ],
-  },
-  {
-    id: "company",
-    href: "/company",
-    label: "Company",
-    title: "Cosmonus",
-    desc: "Who we are, what we are learning, what we can explain, and how to join us.",
-    links: [
-      { name: "About", href: "/company/about", desc: "Who we are and why" },
-      { name: "Research", href: "/company/research", desc: "What we are learning" },
-      { name: "Blog", href: "/company/blog", desc: "Ideas explained in plain language" },
-      { name: "Careers", href: "/company/careers", desc: "Work on the real world" },
     ],
   },
   {
@@ -86,12 +60,45 @@ export const menus: Menu[] = [
       { name: "Conventional & Multi-tool Systems", href: "/agents/systems", desc: "Classic software and many-tool agents" },
     ],
   },
+  {
+    id: "company",
+    href: "/company",
+    label: "Company",
+    title: "Cosmonus",
+    desc: "Who we are, what we are learning, how we make things, and how to join us.",
+    links: [
+      { name: "About", href: "/company/about", desc: "Who we are and why" },
+      { name: "Research", href: "/company/research", desc: "What we are learning" },
+      { name: "Blog", href: "/company/blog", desc: "Ideas explained in plain language" },
+      { name: "Careers", href: "/company/careers", desc: "Work on the real world" },
+      { name: "Studio", href: "/studio", desc: "How we make our products" },
+    ],
+  },
+  {
+    id: "studio",
+    href: "/studio",
+    label: "Studio",
+    /** Not in the header or footer: Cosmonus is not a studio for hire. Its pages stay, linked from Company. */
+    inNav: false,
+    title: "The studio",
+    desc: "How we make our own products: design, motion and generative media, made in-house for StayOnMap, Happenous and Cosmonus.",
+    links: [
+      { name: "Web", href: "/studio/web", desc: "How we design our product interfaces" },
+      { name: "Animation", href: "/studio/animation", desc: "Motion inside our products" },
+      { name: "Image Generation", href: "/studio/image-generation", desc: "How we make our imagery" },
+      { name: "Video", href: "/studio/video", desc: "How we make our product films" },
+    ],
+  },
 ];
 
-/** Which menu a pathname belongs to (highlights that label in the nav on inner pages). */
+/** The menus shown in the header and footer, in order. Studio is left out; see its `inNav`. */
+export const navMenus = menus.filter((m) => m.inNav !== false);
+
+/** Which menu a pathname belongs to (highlights that label in the nav on inner pages). Studio pages sit under Company. */
 export function menuForPath(pathname: string): MenuId | null {
   const seg = pathname.split("/")[1];
-  return (menus.find((m) => m.id === seg)?.id ?? null) as MenuId | null;
+  if (seg === "studio") return "company";
+  return (navMenus.find((m) => m.id === seg)?.id ?? null) as MenuId | null;
 }
 
 export const site = {
@@ -101,7 +108,7 @@ export const site = {
   tagline: "Building Real-World Intelligence.",
   legal: "Cosmonus Pvt Ltd",
   description:
-    "Cosmonus is the parent company behind products, research and systems that understand the physical world — where things are, what they mean, and what to do next.",
+    "Cosmonus is an independent technology company. We build our own products — StayOnMap and Happenous — and research systems that understand the physical world: where things are, what they mean, and what to do next.",
   contactEmail: "hello@cosmonus.com",
   /** SEO facts carried over from the original cosmonus.com's tags and structured data. */
   twitter: "@cosmonus",
@@ -119,8 +126,6 @@ export const site = {
     "map-based rental search",
     "Happenous",
     "activity-based social network",
-    "creative studio",
-    "generative video",
     "AI engineering",
     "prompt engineering",
     "context engineering",
