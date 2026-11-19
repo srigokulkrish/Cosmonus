@@ -743,3 +743,10 @@
 - Masks clipped round letters (S, O) past cap height/baseline and edges pulled out by negative tracking. Shared
   `.anime-mask` (globals.css) is now padded on every side with cancelling margins, and stops clipping once the
   element settles (`data-anime-settled`). Words start at 140% so the deeper padding still hides them.
+
+## [2026-11-19] content | Happenous is live
+- Owner: Happenous has launched. The page, FAQ and closing section now say it is live on Google Play in twenty
+  Indian cities (the list happenous.com gives), with iPhone coming soon. The hero's primary button and the closing
+  action go to the Play listing (`content/products.ts`).
+- "In build" / "not open yet" removed from the menu blurb (`lib/site.ts`), home card (`app/page.tsx`), Product index
+  and About (`content/sections.ts`, `content/company.ts`). content.md and open-questions.md updated.

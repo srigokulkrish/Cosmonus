@@ -11,7 +11,7 @@ import { happenous as c } from "@/content/products";
 export const metadata: Metadata = pageMetadata({ ...c.meta, path: "/product/happenous" });
 
 // Drawn in Happenous's own UI (components/happenous) rather than photographs, so the page reads like the
-// product. happenous.com is a holding page while the product is built; links to it open in a new tab.
+// product. happenous.com is the live product site; links to it open in a new tab.
 export default function HappenousPage() {
   const faq = faqJsonLd(c.faq.items);
   return (

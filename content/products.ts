@@ -2,8 +2,9 @@
 // and Product-Happenous.dc.html; since 2026-09-28 the copy is rewritten from the products' own repositories
 // (~/Desktop/StayOnMap and ~/Desktop/happenous) — see wiki/content.md "Product sources" for what each claim rests on.
 // [BRACKETED] text is an owner-supplied placeholder: keep it visible, never fill it in.
-// Nothing here may go beyond what those repositories show is built. Happenous is built but not launched, and
-// every Happenous section says so; StayOnMap claims are limited to what is live in production.
+// Nothing here may go beyond what those repositories show is built. Happenous is live on Google Play (Android) in
+// twenty Indian cities, with iPhone coming soon (per happenous.com, 2026-11-19); StayOnMap claims are limited to
+// what is live in production.
 
 import type {
   CheckInContent,
@@ -293,22 +294,22 @@ export const happenous: HappenousContent = {
   meta: {
     title: "Happenous",
     description:
-      "An activity-first social network for meeting people in real life, being readied for launch in India. Find something happening near you, join the people doing it, and keep doing what you love.",
+      "An activity-first social network for meeting people in real life, live in India on Android. Find something happening near you, join the people doing it, and keep doing what you love.",
   },
   hero: {
-    eyebrow: "Coming soon · India · Android and iPhone",
+    eyebrow: "Live · India · Android, iPhone soon",
     title: ["Less scrolling.", "More doing."],
     lead: "Find what's happening near you. Join the Crew. Go.",
-    fine: "Not open yet — launching later in 2026.",
-    primary: { href: "https://www.happenous.com", label: "See happenous.com" },
-    secondary: { href: "#how", label: "How it will work" },
+    fine: "On Google Play in twenty Indian cities. iPhone coming soon.",
+    primary: { href: "https://play.google.com/store/apps/details?id=com.happenous.app", label: "Get it on Google Play" },
+    secondary: { href: "#how", label: "How it works" },
     figure:
       "An example of the Happening tab in the Happenous app: a sunrise run, badminton doubles, a book swap and a Sunday ride nearby, each with the people going. Around the phone, labels for other things happening. Example Activities and people, not real ones.",
   },
   intro: {
     label: "Happenous",
     title: "Stay close to the things you love doing.",
-    body: "Most plans don't fail because nobody wanted to go. They fail because the friends who said “we should” never found the same Saturday. Meanwhile, a few kilometres away, somebody is already going. Happenous puts those two people in the same place — and keeps them coming back to the run, the board-game night or the Sunday ride they found there. It is not open yet: this page describes what we have built and are getting ready to launch.",
+    body: "Most plans don't fail because nobody wanted to go. They fail because the friends who said “we should” never found the same Saturday. Meanwhile, a few kilometres away, somebody is already going. Happenous puts those two people in the same place — and keeps them coming back to the run, the board-game night or the Sunday ride they found there. It is live on Android in twenty Indian cities, with iPhone coming soon.",
   },
   idea: {
     label: "The idea",
@@ -372,10 +373,10 @@ export const happenous: HappenousContent = {
       { c: "peach", icon: "dices", name: "Board games" },
     ],
     more: "and about forty more",
-    note: "Examples of what people will host, not live listings. Happenous is not open yet.",
+    note: "Examples of what people host, not live listings."
   },
   how: {
-    label: "How it is meant to work",
+    label: "How it works",
     title: ["Three steps.", "The second one happens offline."],
     steps: [
       {
@@ -436,7 +437,7 @@ export const happenous: HappenousContent = {
     paragraphs: [
       "A feed is made to be scrolled. It rewards whatever keeps you looking, and it measures people by how many others follow them.",
       "An activity asks something different: turn up. It has a place and a time, so the people who join it are the people nearby who want to do the same thing. You find them through what you both love doing — and the next time you want to do it, they are already there.",
-      "That is the loop Happenous is designed around: do it, finish it, get a little better, meet someone, do it again. Whether it holds is something we will only know once people are using it.",
+      "That is the loop Happenous is designed around: do it, finish it, get a little better, meet someone, do it again.",
     ],
   },
   safety: {
@@ -480,11 +481,11 @@ export const happenous: HappenousContent = {
     items: [
       {
         q: "Can I use Happenous now?",
-        a: "Not yet. The app is built and being tested, and happenous.com is a holding page. It will launch in India on Android and iPhone.",
+        a: "Yes. Happenous is live on Google Play for Android, in twenty Indian cities. iPhone is coming soon.",
       },
       {
-        q: "When does it open?",
-        a: "Later in 2026. This page will say so when there is a date.",
+        q: "Which cities is it in?",
+        a: "Twenty, chosen when you sign up: Chennai, Bengaluru, Mumbai, Delhi NCR, Hyderabad, Pondicherry, Pune, Kolkata, Ahmedabad, Jaipur, Kochi, Coimbatore, Chandigarh, Lucknow, Indore, Goa, Surat, Nagpur, Bhubaneswar and Guwahati.",
       },
       {
         q: "What counts as an Activity?",
@@ -504,17 +505,17 @@ export const happenous: HappenousContent = {
       },
       {
         q: "Is there a web version?",
-        a: "No. Happenous is an app for Android and iPhone.",
+        a: "No. Happenous is an app: on Android now, and coming soon to iPhone.",
       },
     ],
   },
   close: {
     quiet: "The internet has enough watching.",
     loud: ["Let's go do", "something."],
-    title: "Not open yet.",
-    body: "Happenous is built and being readied for launch in India. happenous.com is a holding page for now — there is nothing to join there yet.",
-    href: "https://www.happenous.com",
-    action: "See happenous.com",
+    title: "Out now on Android.",
+    body: "Happenous is live on Google Play in twenty Indian cities, and coming soon to iPhone.",
+    href: "https://play.google.com/store/apps/details?id=com.happenous.app",
+    action: "Get it on Google Play",
   },
   more: {
     label: "More in Product",

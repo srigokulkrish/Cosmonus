@@ -16,13 +16,10 @@ All copy is typed data in `content/`:
 
 ## Product status (owner, 2026-09-21)
 - **StayOnMap is live and its facts still hold** — confirmed by the owner. Written in the present tense.
-- **Happenous is pre-launch.** happenous.com serves "We're under construction". The page used to describe activity
-  chat, direct messaging, post-event photo memories and host limits as working features, and its FAQ answered
-  "Can I host my own activity?" with "Yes." All of that is gone. The page now says plainly that it is not open,
-  describes the idea and how it is *meant* to work, and its FAQ gives the owner's timing ("later in 2026", owner 2026-09-25).
-  The "What you can do" section was removed outright: it listed user capabilities for a product nobody can use,
-  and duplicated the steps above it. Menu blurb, home card, Product index and the Studio "where it shows up" rows
-  all say "in build" too. **Keep Happenous in this tense until the owner says it has launched.**
+- **Happenous is live (owner, 2026-11-19).** On Google Play for Android in twenty Indian cities, iPhone coming soon,
+  as happenous.com states. Written in the present tense: the hero, intro, FAQ and closing section say it is live and
+  link to the Play listing; menu blurb, home card and Product index say "live on Android". It was pre-launch from
+  2026-09-21 until this date (log.md has the history). The "What you can do" section removed then stays removed.
 
 ## Product sources (2026-09-28) — supersedes the two sections below where they disagree
 The owner pointed us at the product repositories: `~/Desktop/StayOnMap` and `~/Desktop/happenous`. Product copy is now
@@ -46,11 +43,11 @@ StayOnMap — what the repo showed, and what changed on this site because of it:
   air quality now + 90 days, ward/zone/municipality, elevation) are live, each tagged measured/derived/estimated.
 - Not claimed: payments, walk times, flood data, a store-listed mobile app, WhatsApp listing (built, not public).
 
-Happenous — built in code, **not launched** (nothing deployed, no store listings). The page now describes the built
-product in detail (discovery, hosting, joining, check-in, Crew chat, Moments, Buddies, recognition, safety) but every
-section and the FAQ still say it is not open. Use Happenous vocabulary: Activity, Host, Crew, Buddy, Moment — never
+Happenous — **live on Google Play** (Android) in twenty Indian cities, iPhone coming soon (owner and happenous.com,
+2026-11-19). The page describes the product in detail (discovery, hosting, joining, check-in, Crew chat, Moments,
+Buddies, recognition, safety); the drawn Activities and people stay labelled as examples, never live listings. Use Happenous vocabulary: Activity, Host, Crew, Buddy, Moment — never
 event, organiser, friend, follower. Not claimed: ID checks (it runs none — the FAQ says so), Track/Challenges (built
-but off at launch), city counts or any usage numbers (the design kit's stats are placeholders).
+but off at launch) or any usage numbers. The city list is the twenty happenous.com names (the design kit's stats are placeholders).
 
 ## StayOnMap source of truth (2026-09-19, superseded above)
 - **Careful:** the documented source, https://www.cosmonus.com/work/stayonmap, is now a 308 redirect *into this

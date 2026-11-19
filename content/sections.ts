@@ -113,7 +113,7 @@ export const studio: SectionContent = {
 export const product: SectionContent = {
   meta: {
     title: "Product",
-    description: "StayOnMap helps people find a home; Happenous, in build, helps them stay close to the activities they love. Two products for life in a city.",
+    description: "StayOnMap helps people find a home; Happenous helps them stay close to the activities they love. Two products for life in a city.",
   },
   hero: {
     tone: "dark",
@@ -124,7 +124,7 @@ export const product: SectionContent = {
   intro: {
     label: "Product",
     title: "A home to come back to. Something worth going out for.",
-    body: "Life in a city turns on two questions: where will I live, and what will I do — and with whom? StayOnMap answers the first, helping people find a home on the map and deal with the owner directly, with no broker in between. Happenous, still in build, answers the second, helping people find the activities they love nearby and stay connected with the people who do them too. Both begin in the same place: a map, a neighbourhood, the people nearby.",
+    body: "Life in a city turns on two questions: where will I live, and what will I do — and with whom? StayOnMap answers the first, helping people find a home on the map and deal with the owner directly, with no broker in between. Happenous answers the second, helping people find the activities they love nearby and stay connected with the people who do them too. Both begin in the same place: a map, a neighbourhood, the people nearby.",
   },
   index: {
     title: "Two products",
@@ -141,7 +141,7 @@ export const product: SectionContent = {
         name: "Happenous",
         href: "/product/happenous",
         title: "Life happens outside the feed.",
-        desc: "Helping people stay connected with the activities they love. An activity-first social network, in build: find something happening near you, join the people doing it, and keep doing it together.",
+        desc: "Helping people stay connected with the activities they love. An activity-first social network, live on Android: find something happening near you, join the people doing it, and keep doing it together.",
         tone: "light",
         asset: "[ HAPPENOUS — people doing things, outdoors, candid ]", image: "/media/home/product-happenous.jpg",
       },

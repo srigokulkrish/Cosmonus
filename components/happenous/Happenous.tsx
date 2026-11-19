@@ -697,7 +697,7 @@ export function Host({ c }: { c: HostContent }) {
 
 export type CloseContent = { quiet: string; loud: Headline; title: string; body: string; href: string; action: string };
 
-/** The Happenous site's closing statement, then the honest "not open yet" and the link out. */
+/** The Happenous site's closing statement, then where to get the app. */
 export function Close({ c }: { c: CloseContent }) {
   return (
     <section className="frame py-5">

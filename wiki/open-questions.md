@@ -15,7 +15,8 @@
 - ~~Is "Conventional & Multi-tool Systems" one page (as built) or two?~~ **One page (owner, 2026-09-25).**
 - ~~Do the About principles and Careers copy sound right?~~ **Yes (owner, 2026-09-25).**
 - ~~Are the Happenous features in its steps live?~~ **Answered 2026-09-21: no, Happenous is pre-launch.** The
-  page has been reframed; see content.md. **Opens later in 2026 (owner, 2026-09-25)** — now in its FAQ.
+  page has been reframed; see content.md. **Opens later in 2026 (owner, 2026-09-25).** **Launched: live on Android,
+  iPhone soon (owner, 2026-11-19)** — the page now says so.
 - ~~Final Happenous brand colour.~~ **`#E8421A` confirmed (owner, 2026-09-25).**
 
 ## Performance — proposals that would change what you see (2026-09-25)
