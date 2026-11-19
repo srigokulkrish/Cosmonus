@@ -45,7 +45,7 @@ export const menus: Menu[] = [
         href: "/product/happenous",
         desc: "Life happens outside the feed",
         brand: "happenous",
-        blurb: "Helping people stay connected with the activities they love, and the people nearby who do them. In build — not open yet.",
+        blurb: "Helping people stay connected with the activities they love, and the people nearby who do them. Live on Android.",
       },
     ],
   },

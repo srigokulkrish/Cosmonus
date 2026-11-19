@@ -37,7 +37,7 @@ const products: { name: string; href: string; site: { href: string; label: strin
     image: "/media/home/product-happenous.jpg",
     alt: "Friends playing football in a city park in the early evening light.",
     title: "Life happens outside the feed.",
-    body: "Helping people stay connected with the activities they love. An activity-first social network, in build: find something happening near you, join the people doing it, and keep going.",
+    body: "Helping people stay connected with the activities they love. An activity-first social network, live on Android: find something happening near you, join the people doing it, and keep going.",
   },
 ];
 
