@@ -72,6 +72,21 @@ export function siteJsonLd() {
         email: site.contactEmail,
         founder: { "@type": "Person", name: site.founder.name, url: site.founder.url },
         sameAs: site.sameAs,
+        // The two products, so search engines can connect the three sites as one company.
+        subOrganization: [
+          {
+            "@type": "Organization",
+            name: "StayOnMap",
+            url: "https://www.stayonmap.com",
+            sameAs: ["https://play.google.com/store/apps/details?id=com.stayonmap.app"],
+          },
+          {
+            "@type": "Organization",
+            name: "Happenous",
+            url: "https://happenous.com",
+            sameAs: ["https://play.google.com/store/apps/details?id=com.happenous.app"],
+          },
+        ],
       },
       {
         "@type": "WebSite",

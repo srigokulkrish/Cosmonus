@@ -31,7 +31,7 @@ export type SectionContent = {
 
 export const studio: SectionContent = {
   meta: {
-    title: "Studio",
+    title: "Studio: web, motion, video and generated images",
     description: "The creative practice behind every Cosmonus product: design, motion and generative media, made in-house.",
   },
   hero: {
@@ -112,7 +112,7 @@ export const studio: SectionContent = {
 
 export const product: SectionContent = {
   meta: {
-    title: "Product",
+    title: "Products: StayOnMap and Happenous",
     description: "StayOnMap helps people find a home; Happenous helps them stay close to the activities they love. Two products for life in a city.",
   },
   hero: {
@@ -175,8 +175,8 @@ export const product: SectionContent = {
 
 export const company: SectionContent = {
   meta: {
-    title: "Company",
-    description: "Cosmonus is the parent company behind StayOnMap, Happenous and the research that connects them.",
+    title: "Company: about, research, blog and careers",
+    description: "Inside Cosmonus: who we are, the research we publish as we go, plain-language explainers on our blog, and how to join the team.",
   },
   hero: {
     tone: "dark",
@@ -254,7 +254,7 @@ export const company: SectionContent = {
 
 export const intelligence: SectionContent = {
   meta: {
-    title: "Intelligence",
+    title: "Intelligence: spatial reasoning and Trust Score",
     description: "How Cosmonus systems understand the physical world: spatial intelligence for where things are, and Trust Score for how far a claim can be relied on.",
   },
   hero: {
@@ -318,7 +318,7 @@ export const intelligence: SectionContent = {
 
 export const agents: SectionContent = {
   meta: {
-    title: "Agents",
+    title: "AI agents: from understanding to finished work",
     description: "Systems that act: from understanding to finished work, with a person able to check the result.",
   },
   hero: {
