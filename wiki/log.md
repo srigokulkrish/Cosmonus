@@ -761,3 +761,9 @@
 - Studio left the header and footer (pages kept, linked from Company); products follow the hero; hero CTAs Explore products / About Cosmonus.
 - Status labels on products, Intelligence and Agents (Live, Live in StayOnMap, Research, Experiments); bands that asked for client briefs now point to products or research.
 - Contact topics: General, Partnership, Press, Product help, Careers. Careers CTA says Introduce yourself. Line endings normalised (.gitattributes).
+
+## [2026-11-20] content | Happenous buttons go straight to Google Play, tagged by placement
+- Home card: "See happenous.com" → "Get it on Google Play". One tap to the store instead of two.
+- Every Happenous Play link carries a UTM `referrer` (`utm_source=cosmonus.com`, campaign = placement) via
+  `happenousOnPlay()` in `lib/site.ts`, so Play Console's store listing acquisition shows installs from this site.
+- Verified: typecheck, lint, build; the built home and Happenous pages carry the three tagged links. Not checked in a browser.

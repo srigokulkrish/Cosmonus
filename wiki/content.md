@@ -30,6 +30,10 @@ All copy is typed data in `content/`:
   as happenous.com states. Written in the present tense: the hero, intro, FAQ and closing section say it is live and
   link to the Play listing; menu blurb, home card and Product index say "live on Android". It was pre-launch from
   2026-09-21 until this date (log.md has the history). The "What you can do" section removed then stays removed.
+- **Every Happenous button goes straight to the Play listing (owner goal "get users first", 2026-11-20).** The home
+  card's button says "Get it on Google Play" (it said "See happenous.com"). Build every Play link with
+  `happenousOnPlay("<placement>")` from `lib/site.ts`, never a bare URL, so Play Console can tell which placement
+  sent the install. Placements in use: `home-card`, `product-hero`, `product-close`.
 
 ## Product sources (2026-09-28) — supersedes the two sections below where they disagree
 The owner pointed us at the product repositories: `~/Desktop/StayOnMap` and `~/Desktop/happenous`. Product copy is now

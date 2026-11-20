@@ -15,6 +15,7 @@ import type {
   HostContent,
   TileItem,
 } from "@/components/happenous/Happenous";
+import { happenousOnPlay } from "@/lib/site";
 import type { FaqItem } from "@/components/product/Faq";
 import type { LinkGroup } from "@/components/product/LinkGroups";
 import type {
@@ -301,7 +302,7 @@ export const happenous: HappenousContent = {
     title: ["Less scrolling.", "More doing."],
     lead: "Find what's happening near you. Join the Crew. Go.",
     fine: "On Google Play in twenty Indian cities. iPhone coming soon.",
-    primary: { href: "https://play.google.com/store/apps/details?id=com.happenous.app", label: "Get it on Google Play" },
+    primary: { href: happenousOnPlay("product-hero"), label: "Get it on Google Play" },
     secondary: { href: "#how", label: "How it works" },
     figure:
       "An example of the Happening tab in the Happenous app: a sunrise run, badminton doubles, a book swap and a Sunday ride nearby, each with the people going. Around the phone, labels for other things happening. Example Activities and people, not real ones.",
@@ -514,7 +515,7 @@ export const happenous: HappenousContent = {
     loud: ["Let's go do", "something."],
     title: "Out now on Android.",
     body: "Happenous is live on Google Play in twenty Indian cities, and coming soon to iPhone.",
-    href: "https://play.google.com/store/apps/details?id=com.happenous.app",
+    href: happenousOnPlay("product-close"),
     action: "Get it on Google Play",
   },
   more: {

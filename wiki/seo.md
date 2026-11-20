@@ -87,3 +87,4 @@ it only when set. After launch: submit https://www.cosmonus.com/sitemap.xml in S
 - Company and About no longer share a description.
 - Organization JSON-LD lists StayOnMap and Happenous as `subOrganization` (URL + Play listing), so search engines
   can connect the three sites. StayOnMap and Happenous point back with `parentOrganization` on their own sites.
+  JSON-LD keeps the plain Play URL (`HAPPENOUS_PLAY`); only visible buttons carry the UTM `referrer`.

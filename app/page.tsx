@@ -11,7 +11,7 @@ import { MediaPanel, type Tone } from "@/components/ui/MediaPanel";
 import { Band, HALVES, PAIRS, SectionHead, SideHead, SideLayout, THIRDS } from "@/components/ui/Section";
 import { latestByKind } from "@/content/research";
 import { pageMetadata } from "@/lib/seo";
-import { site } from "@/lib/site";
+import { happenousOnPlay, site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({ description: site.description, path: "/" });
 
@@ -32,7 +32,7 @@ const products: { name: string; status: string; href: string; site: { href: stri
     name: "Happenous",
     status: "Live · Android · iPhone soon",
     href: "/product/happenous",
-    site: { href: "https://www.happenous.com", label: "See happenous.com", variant: "happenous" },
+    site: { href: happenousOnPlay("home-card"), label: "Get it on Google Play", variant: "happenous" },
     tone: "light",
     asset: "[ HAPPENOUS — people doing things, outdoors, candid ]",
     image: "/media/home/product-happenous.jpg",
