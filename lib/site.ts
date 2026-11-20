@@ -135,3 +135,14 @@ export const site = {
     "Model Context Protocol",
   ],
 };
+
+/**
+ * The Happenous Play listing, tagged with where on this site the visitor tapped. Play Console reads
+ * the `referrer` UTM tags, so store visits and installs from cosmonus.com show up by placement
+ * (Play Console → Grow → Store listing acquisition). Keep JSON-LD `sameAs` on the plain URL.
+ */
+export const HAPPENOUS_PLAY = "https://play.google.com/store/apps/details?id=com.happenous.app";
+export function happenousOnPlay(placement: string): string {
+  const referrer = `utm_source=cosmonus.com&utm_medium=website&utm_campaign=${placement}`;
+  return `${HAPPENOUS_PLAY}&referrer=${encodeURIComponent(referrer)}`;
+}
